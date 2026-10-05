@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import { AnimatePresence, MotionConfig, motion } from 'motion-v'
 import type { DealView } from '~/composables/useDeals'
-import { MIN_DISCOUNTS, SORTS } from '~/composables/useDealFilters'
+import { SORTS } from '~/composables/useDealFilters'
 
-const props = defineProps<{ deals: DealView[]; generatedAt: string; leadId?: string }>()
+const props = defineProps<{ deals: DealView[]; generatedAt: string; leadId?: string; shownAbove?: string[] }>()
 
 const deals = computed(() => props.deals)
 const f = useDealFilters(deals)
 
-// Rank is the deal's place in the day's score order, whatever the current sort.
-const rank = computed(() => new Map([...props.deals].sort((a, b) => b.score - a.score).map((d, i) => [d.id, i + 1])))
+// Rank is the deal's place in the day's file order (the editorial ranking), whatever the current sort.
+const rank = computed(() => new Map(props.deals.map((d, i) => [d.id, i + 1])))
 
-// The lead is already shown large; drop it from the default view only.
-const shown = computed(() => (f.active.value || !props.leadId ? f.results.value : f.results.value.filter(d => d.id !== props.leadId)))
+// The lead and the price-error section are already on the page above; drop
+// them from the default view only. Any filter shows the full matching set.
+const above = computed(() => new Set([props.leadId, ...(props.shownAbove ?? [])].filter(Boolean)))
+const shown = computed(() => (f.active.value || !above.value.size ? f.results.value : f.results.value.filter(d => !above.value.has(d.id))))
 
 // "hace 3 horas" is measured from generation time in the prerendered HTML,
 // then from the reader's clock once the page is live.
@@ -28,11 +30,6 @@ watch(search, (v) => {
   timer = setTimeout(() => f.set({ q: v.trim() || null }), 220)
 })
 
-const flags = [
-  { value: '', label: 'Todas' },
-  { value: 'error-probable', label: 'Error probable' },
-  { value: 'chollo', label: 'Chollo' },
-]
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 </script>
 
@@ -46,32 +43,42 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
     </div>
 
     <form class="filters" role="search" @submit.prevent>
-      <fieldset class="filters__group">
+      <!-- Only filters with something behind them: no zero options, no one-item lists. -->
+      <fieldset v-if="f.flags.value.length" class="filters__group">
         <legend>Tipo</legend>
+        <button type="button" class="seg" :aria-pressed="!f.flag.value" @click="f.set({ tipo: null })">Todas</button>
         <button
-          v-for="o in flags" :key="o.value" type="button" class="seg"
-          :aria-pressed="f.flag.value === o.value" @click="f.set({ tipo: o.value || null })"
-        >{{ o.label }}</button>
+          v-for="o in f.flags.value" :key="o.flag" type="button" class="seg"
+          :aria-pressed="f.flag.value === o.flag" @click="f.set({ tipo: o.query })"
+        >{{ o.label }} <span class="seg__n">{{ o.count }}</span></button>
       </fieldset>
 
-      <label class="filters__field">
+      <label v-if="f.stores.value.length > 1" class="filters__field">
         <span>Tienda</span>
         <select :value="f.store.value" @change="f.set({ tienda: ($event.target as HTMLSelectElement).value || null })">
-          <option value="">Todas</option>
+          <option value="">Todas ({{ f.stores.value.length }})</option>
           <option v-for="[name, n] in f.stores.value" :key="name" :value="name">{{ name }} ({{ n }})</option>
         </select>
       </label>
 
-      <label class="filters__field">
+      <label v-if="f.categories.value.length > 1" class="filters__field">
+        <span>Categoría</span>
+        <select :value="f.category.value" @change="f.set({ cat: ($event.target as HTMLSelectElement).value || null })">
+          <option value="">Todas ({{ f.categories.value.length }})</option>
+          <option v-for="[name, n] in f.categories.value" :key="name" :value="name">{{ name }} ({{ n }})</option>
+        </select>
+      </label>
+
+      <label v-if="f.mins.value.length > 1" class="filters__field">
         <span>Descuento mínimo</span>
         <select :value="String(f.min.value)" @change="f.set({ min: Number(($event.target as HTMLSelectElement).value) || null })">
-          <option v-for="m in MIN_DISCOUNTS" :key="m" :value="String(m)">{{ m ? `${m} %` : 'Cualquiera' }}</option>
+          <option v-for="m in f.mins.value" :key="m" :value="String(m)">{{ m ? `${m} %` : 'Cualquiera' }}</option>
         </select>
       </label>
 
       <label class="filters__field filters__search">
         <span>Buscar</span>
-        <input v-model="search" type="search" placeholder="tele, adidas, Amazon…" autocomplete="off">
+        <input v-model="search" type="search" placeholder="televisor, adidas, Steam…" autocomplete="off">
       </label>
 
       <fieldset class="filters__group">
@@ -103,8 +110,8 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         <p>Nada con estos filtros.</p>
         <button type="button" class="seg" @click="f.reset()">Quitar filtros</button>
       </template>
-      <p v-else-if="deals.length">Solo hay una oferta, y es la de arriba.</p>
-      <p v-else>Hoy no hay ofertas.</p>
+      <p v-else-if="deals.length">Todo lo de este día ya está arriba.</p>
+      <p v-else>Ese día no hubo nada barato de verdad.</p>
     </div>
   </section>
 </template>
@@ -126,7 +133,8 @@ select, input[type="search"] {
   height: 38px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 0;
   background: var(--bg-canvas); color: var(--fg-primary); font: inherit; font-size: 0.9375rem; min-width: 0;
 }
-select { padding-right: 28px; max-width: 16rem; }
+select { padding-right: 28px; max-width: 16rem; text-overflow: ellipsis; }
+.seg__n { margin-left: 0.35em; font-family: var(--font-mono); font-size: 0.8125rem; opacity: 0.7; font-variant-numeric: tabular-nums; }
 input[type="search"] { width: 100%; }
 select:focus-visible, input:focus-visible { outline: 2px solid var(--accent-lead); outline-offset: 1px; }
 

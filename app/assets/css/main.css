@@ -14,8 +14,8 @@ a { color: var(--link-fg); }
 
 /* The flag is a typographic label: small caps text with a rule, never a chip. */
 .flag { display: inline-block; justify-self: start; width: max-content; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1; padding-bottom: 3px; border-bottom: 1px solid currentColor; }
-.flag--error-probable { color: var(--accent-lead); }
-.flag--chollo { color: var(--fg-primary); }
+.flag--posible-error { color: var(--accent-lead); }
+.flag--baratisimo { color: var(--fg-primary); }
 
 /* Segmented text buttons for filters: square, ruled, no pills. */
 .seg { height: 38px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 0; background: transparent; color: var(--fg-primary); font: inherit; font-size: 0.875rem; cursor: pointer; }

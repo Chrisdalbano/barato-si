@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { DealView } from '~/composables/useDeals'
 
-defineProps<{ deal: DealView; now: number }>()
+const props = defineProps<{ deal: DealView; now: number }>()
+// The one exclamation on the page lives here, on the lead, never on every row.
+const label = computed(() => (props.deal.flag === 'chollo' ? '¡Baratísimo!' : FLAG_LABEL[props.deal.flag]))
 </script>
 
 <template>
@@ -13,7 +15,7 @@ defineProps<{ deal: DealView; now: number }>()
         :price="deal.price" :list-price="deal.listPrice" :currency="deal.currency" :discount-pct="deal.discountPct"
       />
       <div class="lead__text">
-        <p v-if="FLAG_LABEL[deal.flag]" class="flag" :class="`flag--${deal.flag}`">{{ FLAG_LABEL[deal.flag] }}</p>
+        <p v-if="label" class="flag" :class="`flag--${FLAG_QUERY[deal.flag] ?? deal.flag}`">{{ label }}</p>
         <h2 id="lead-title" class="lead__title">
           <a :href="deal.url" rel="noopener" target="_blank">{{ deal.title }}</a>
         </h2>

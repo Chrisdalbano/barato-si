@@ -1,9 +1,16 @@
 <script setup lang="ts">
 const day = await useToday()
 
+// The file order is the editorial ranking (the pipeline balances the top 30
+// across sources, then sorts by score), so the lead is simply the first deal.
 const lead = computed(() => day.value?.deals[0])
 const now = ref(Date.parse(day.value?.generatedAt ?? '') || 0)
 onMounted(() => { now.value = Date.now() })
+
+// Rank = place in the file's order, shared by every section.
+const ranks = computed(() => new Map((day.value?.deals ?? []).map((d, i) => [d.id, i + 1])))
+// Probable price errors get their own section; the lead is already shown large.
+const errors = computed(() => (day.value?.deals ?? []).filter(d => d.flag === 'error-probable' && d.id !== lead.value?.id))
 
 useHead({
   link: [{ rel: 'canonical', href: `${SITE}/` }],
@@ -20,14 +27,14 @@ useHead(() => {
     alternateName: 'barato, sí',
     url: `${SITE}/`,
     inLanguage: 'es',
-    description: 'Los chollos más profundos y los probables errores de precio del día, con API JSON y RSS gratis.',
+    description: 'Las mayores rebajas del día y los posibles errores de precio, ordenados. Con API JSON y RSS gratis.',
     author: { '@type': 'Person', name: "Chris D'Albano", url: 'https://chrisdalbano.com' },
   }]
   if (d?.deals.length) {
     graph.push({
       '@type': 'ItemList',
       '@id': `${SITE}/#ofertas`,
-      name: `Ofertas del ${formatDay(d.date)}`,
+      name: `Ofertas del ${formatDay(d.date)} en barato.si`,
       numberOfItems: Math.min(10, d.deals.length),
       itemListOrder: 'https://schema.org/ItemListOrderDescending',
       itemListElement: d.deals.slice(0, 10).map((deal, i) => ({
@@ -56,12 +63,16 @@ useHead(() => {
 
 <template>
   <div class="wrap">
+    <Masthead :day="day" />
     <template v-if="day">
-      <DayHeader :day="day" />
       <LeadDeal v-if="lead" :deal="lead" :now="now" />
-      <DealList v-if="day.deals.length" :deals="day.deals" :generated-at="day.generatedAt" :lead-id="lead?.id" />
+      <ErrorWatch v-if="errors.length" :deals="errors" :ranks="ranks" :now="now" />
+      <DealList
+        v-if="day.deals.length" :deals="day.deals" :generated-at="day.generatedAt"
+        :lead-id="lead?.id" :shown-above="errors.map(d => d.id)"
+      />
       <section v-else class="calm">
-        <p class="calm__big">Hoy no hay nada que merezca la pena.</p>
+        <p class="calm__big">Hoy, nada barato de verdad.</p>
         <p>
           Ninguna oferta pasó el filtro, o las fuentes no respondieron. No rellenamos el hueco con ofertas viejas.
           Vuelve mañana después de las 11:00 UTC, o mira el <NuxtLink to="/archivo">archivo</NuxtLink>.
@@ -69,7 +80,7 @@ useHead(() => {
       </section>
     </template>
     <section v-else class="calm">
-      <p class="calm__big">No se pudo leer el archivo de hoy.</p>
+      <p class="calm__big">No pudimos leer la lista de hoy.</p>
       <p>Prueba en un rato, o abre <a href="/api/deals.json">/api/deals.json</a> directamente.</p>
     </section>
 

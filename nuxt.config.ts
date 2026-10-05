@@ -1,6 +1,6 @@
 // barato.si — static site (nuxt generate), hosted on GitHub Pages.
-const title = 'barato.si · chollos y errores de precio del día'
-const description = 'Los chollos más profundos y los probables errores de precio de cada día, ordenados. También en JSON y RSS, gratis y sin clave.'
+const title = 'barato, sí. Las mayores rebajas del día · barato.si'
+const description = 'Un índice diario de precios rebajados: las mayores rebajas del día y los posibles errores de precio, ordenados. También en JSON y RSS, gratis y sin clave.'
 const ogImage = 'https://barato.si/og.png'
 
 export default defineNuxtConfig({
@@ -20,14 +20,15 @@ export default defineNuxtConfig({
         { name: 'author', content: "Chris D'Albano" },
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'barato.si' },
-        { property: 'og:locale', content: 'es_ES' },
+        { property: 'og:locale', content: 'es_LA' },
+        { property: 'og:locale:alternate', content: 'es_ES' },
         { property: 'og:title', content: title },
         { property: 'og:description', content: description },
         { property: 'og:url', content: 'https://barato.si/' },
         { property: 'og:image', content: ogImage },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: 'barato.si: chollos y errores de precio del día, en una web, en JSON y en RSS.' },
+        { property: 'og:image:alt', content: 'barato, sí. Índice diario de rebajas y posibles errores de precio, en la web, en JSON y en RSS.' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: description },
@@ -35,7 +36,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · chollos del día', href: 'https://barato.si/feed.xml' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · las rebajas del día', href: 'https://barato.si/feed.xml' },
         { rel: 'alternate', type: 'application/json', title: 'barato.si API', href: 'https://barato.si/api/deals.json' },
         { rel: 'alternate', hreflang: 'es', href: 'https://barato.si/' },
         { rel: 'alternate', hreflang: 'x-default', href: 'https://barato.si/' },

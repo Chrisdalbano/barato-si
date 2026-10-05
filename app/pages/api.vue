@@ -1,8 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'API · barato.si',
-  description: 'API JSON y RSS gratis con los chollos y probables errores de precio del día. Sin clave. Se actualiza a diario sobre las 11:00 UTC.',
+  description: 'API JSON y RSS gratis con las mayores rebajas y los posibles errores de precio del día. Sin clave. Se actualiza a diario sobre las 11:00 UTC.',
   ogTitle: 'API · barato.si',
+  ogDescription: 'Las rebajas del día en JSON y RSS. Gratis, sin clave, archivos estáticos.',
   ogUrl: `${SITE}/api`,
 })
 useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
@@ -12,10 +13,10 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
   <div class="wrap doc">
     <header class="doc__head">
       <p class="eyebrow">API</p>
-      <h1 class="doc__title">Hecho para leerse con código.</h1>
+      <h1 class="doc__title">Barato, sí. También en JSON<span class="doc__dot" aria-hidden="true">.</span></h1>
       <p class="doc__lede">
         barato.si es un archivo JSON que se regenera cada día, con una web encima. La API es gratis, no pide clave
-        y son ficheros estáticos: guárdalos en caché y con una consulta al día basta.
+        y son archivos estáticos: guárdalos en caché y con una consulta al día basta.
       </p>
     </header>
 
@@ -66,19 +67,19 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
     <section class="doc__sec prose" aria-labelledby="fair">
       <h2 id="fair">Atribución y uso razonable</h2>
       <p>
-        Cita a barato.si y a la fuente original. Conserva los enlaces tal cual y la atribución (hoy, DealNews).
+        Cita a barato.si y a la fuente original de cada oferta (el campo <code>source</code>). Conserva los enlaces tal cual y la atribución.
         No reescribas los títulos de la fuente ni los presentes como tuyos.
       </p>
       <p>
         La puntuación, la etiqueta y las razones son análisis independiente de barato.si, no texto de la fuente.
-        «Error probable» es una señal automática, no una confirmación de que la tienda se equivocó.
+        «Posible error de precio» es una señal automática, no una confirmación de que la tienda se equivocó.
       </p>
       <p>
         No revendas el contenido de las fuentes ni lo uses para entrenar modelos sin permiso de sus titulares.
-        El contenido de DealNews no puede usarse en extensiones públicas de navegador.
+        Algunas fuentes ponen sus propias condiciones: el contenido de DealNews, por ejemplo, no puede usarse en extensiones públicas de navegador.
       </p>
       <p>
-        Las ofertas caducan y pueden tener condiciones: cupones, envío mínimo, ser socio. Compruébalo en la fuente antes de comprar.
+        Las ofertas caducan y pueden tener condiciones: cupones, compra mínima para el envío, membresía. Compruébalo en la fuente antes de comprar.
       </p>
     </section>
   </div>
@@ -87,6 +88,7 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
 <style scoped>
 .doc__head { padding: clamp(40px, 6vw, 88px) 0 clamp(28px, 4vw, 48px); max-width: 60rem; }
 .doc__title { margin: 8px 0 20px; font-size: clamp(2.25rem, 6vw, 4.75rem); line-height: 0.98; font-weight: 600; letter-spacing: -0.045em; }
+.doc__dot { color: var(--accent-lead); }
 .doc__lede { margin: 0; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--fg-secondary); max-width: var(--container-max-prose); }
 .doc__sec { padding: clamp(28px, 4vw, 48px) 0; border-top: 2px solid var(--fg-primary); }
 .doc__sec h2 { margin: 0 0 20px; font-size: clamp(1.375rem, 2.6vw, 1.875rem); letter-spacing: -0.03em; font-weight: 600; }

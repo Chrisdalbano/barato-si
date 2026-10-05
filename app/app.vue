@@ -15,7 +15,7 @@ const isActive = (to: string) => (route.path.replace(/\/+$/, '') || '/') === to
       <div class="wrap top__inner">
         <NuxtLink to="/" class="brand" aria-label="barato.si, portada">
           <span class="brand__name">barato<span class="brand__dot">.</span>si</span>
-          <span class="brand__tag">barato, sí</span>
+          <span class="brand__tag">índice diario de rebajas</span>
         </NuxtLink>
         <nav aria-label="Secciones">
           <NuxtLink
@@ -33,9 +33,11 @@ const isActive = (to: string) => (route.path.replace(/\/+$/, '') || '/') === to
 
     <footer class="foot">
       <div class="wrap foot__inner">
+        <p class="foot__sign">barato, sí<span class="foot__dot" aria-hidden="true">.</span></p>
         <p class="foot__legal">
-          Los precios y la disponibilidad vienen de terceros y pueden cambiar o estar mal. barato.si no vende nada.
-          «Error probable» es una suposición automática, no una confirmación.
+          Los precios y la disponibilidad vienen de terceros y pueden cambiar o estar mal. barato.si no vende nada:
+          solo ordena lo que otros publican y enlaza a la oferta original.
+          «Posible error de precio» es una suposición automática, no una confirmación.
         </p>
         <p class="foot__links">
           <a href="/api/deals.json">deals.json</a>
@@ -68,6 +70,8 @@ nav { display: flex; gap: clamp(14px, 2.5vw, 28px); }
 .foot { margin-top: clamp(64px, 8vw, 120px); border-top: 1px solid var(--fg-primary); }
 .foot__inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 48px; padding-top: 24px; padding-bottom: 40px; font-size: 0.8125rem; color: var(--fg-secondary); }
 .foot p { margin: 0; }
+.foot__sign { grid-column: 1 / -1; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: var(--fg-primary); }
+.foot__dot { color: var(--accent-lead); }
 .foot__legal { max-width: 62ch; }
 .foot__links { display: flex; flex-wrap: wrap; gap: 6px 18px; align-content: start; }
 .foot a { color: var(--fg-primary); text-underline-offset: 3px; }

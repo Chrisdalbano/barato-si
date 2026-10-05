@@ -103,3 +103,104 @@ Not patched. These are notes only.
 ## Housekeeping
 
 `nuxt generate` fails with EBUSY on Windows if any process has `.output/public` as its working directory (for example a local static server). Serve a copy instead.
+
+## 2026-10-05: branding and day-header pass (owner feedback)
+
+### What changed
+
+- **Brand as the hero.** A new `Masthead` opens the home page: the lockup "barato, sí." in Inter 700 with the cobalt full stop, a dry one-line lede ("Un índice de precios, no una tienda."), then a ruled dateline strip. The strip (`DayStrip`) holds the date, figures, update time, and one quiet sources line. The old "Ofertas del día" eyebrow and the four-box stats strip are gone. The same voice carries through:
+  - **Header tag:** "índice diario de rebajas".
+  - **Footer:** a "barato, sí." sign-off, plus a legal line saying barato.si only orders and links what others publish.
+  - **Archive:** "Lo que fue barato."
+  - **API page:** "Barato, sí. También en JSON."
+  - **Empty states:** "Hoy, nada barato de verdad." and "El archivo empieza mañana."
+  - **Browser title:** "barato, sí. Las mayores rebajas del día · barato.si".
+- **No "chollo" anywhere visitors read.**
+  - The label is now "Baratísimo". The single exclamation, "¡Baratísimo!", is on the lead deal only. "Error probable" became "Posible error de precio".
+  - Meta and OG description, OG image alt, RSS link title, JSON-LD and the API prose were rewritten.
+  - CSS classes are now `flag--baratisimo` / `flag--posible-error`, so the class names do not leak the word.
+  - `?tipo=` now takes `baratisimo` / `posible-error`. The old values `chollo` / `error-probable` are still accepted, so old links keep working.
+  - The data value `'chollo'` is unchanged. It appears once on `/api`, as the literal enum in the schema table's code cell, with a note on how the web labels it. That is deliberate: developers filter on that value.
+  - Spain-only words were replaced: "ficheros" became "archivos", "merezca la pena" was removed, "ser socio" became "membresía", and "tele" became "televisor".
+  - `og:locale` is now `es_LA`, with `es_ES` as an alternate.
+  - Number formatting is still `es-ES` (decimal comma), to match the pipeline's `reasons` strings.
+- **No zeros.**
+  - The day strip shows only the figures that have something behind them.
+  - Probable price errors get their own `ErrorWatch` section, "Posibles errores de precio", between the lead and the ranked list. The section is skipped entirely when there are none. Its count in the strip links to it.
+  - Filters render only when they have content:
+    - The Tipo group shows only flags present that day, with counts.
+    - Store and category selects need at least two values.
+    - Minimum-discount options are limited to thresholds some deal reaches.
+  - The default list leaves out the lead and the error-section deals, the same way it already left out the lead.
+- **Sources.**
+  - One line: "Fuentes de hoy: CheapShark 60 · Steam 10 · Epic 2 · DealNews 36."
+  - A source with `ok: false` gets a short "X, sin respuesta hoy." mention. Two or three are named; more than three become "N fuentes sin respuesta hoy."
+  - Error text is never shown, and the disclosure is gone.
+  - The line reads whatever `sources` array arrives (`sourcesLine()` in `utils/format.ts`). Unknown names render as given.
+- **New entry kinds.**
+  - `formatPrice()` renders a price of 0 or less as "Gratis".
+  - Free deals do not count down: they show "Gratis" at once, and only the strike draws.
+  - `hasListPrice()` guards against null, NaN, zero and list prices at or below the sale price.
+  - `formatDiscount()` clamps to 0–100.
+  - The store filter was already a select; it now shows the store count.
+  - A new category select (`?cat=`) appears when deals carry `category`.
+- **Defensive fixes found while testing.**
+  - **Ordering follows the file.** Mid-pass, the pipeline changed the contract: `deals` is now "balanced top 30, then descending score" (see `lib/types.ts`). The UI now treats file order as the editorial ranking:
+    - the lead is `deals[0]`;
+    - the JSON-LD lists the first 10;
+    - the rank number is the position in the file;
+    - the new default sort, "Destacadas", is the file order.
+    - "Puntuación" became an explicit sort. `?orden=puntuacion` still works.
+    - The API endpoint description says how the file is ordered.
+  - **Client refresh.** `useToday()` / `useArchiveIndex()` registered `onMounted` after an `await`, so Vue dropped the hook and the client refresh never ran. The hooks are now registered before the await.
+- **OG image and favicon.**
+  - `public/og.png` was re-rasterised at 1200x630 with headless Chrome from an HTML composition in Inter. It shows the lockup, "Índice diario de rebajas", and "Las mayores rebajas del día | Posibles errores de precio | JSON · RSS".
+  - The source HTML is not committed; it was a scratch file.
+  - The favicon is now an ink "b" with a round cobalt full stop on paper, matching the lockup.
+
+### Verified
+
+- **Tests and build:**
+  - `npm.cmd test`: 126/126 pass, re-run after the pipeline commit 7527915.
+  - `npx.cmd nuxt typecheck`: clean.
+  - `npx.cmd nuxt generate`: succeeds.
+- **"chollo" audit** (case-insensitive) of the generated pages:
+  - `index.html` and `archivo/index.html`: zero matches, including the JSON-LD.
+  - `api/index.html`: one match, the enum literal in the schema code cell (see above).
+- **Formatting helpers:** a scratch Node script (not committed, since tests/ is not mine) asserts the following:
+  - `formatPrice(0)` gives "Gratis", and normal prices format as before.
+  - `hasListPrice` returns false for null, NaN and equal prices.
+  - A 100 % discount renders as "−100 %".
+  - `flagFromQuery` maps the new and legacy values.
+  - `sourcesLine` handles 0, 1, 2 and 10 failed sources, `undefined`, and `ok` with count 0.
+- **Real Chrome, desktop**, serving a copy of `.output/public`:
+  - The masthead and strip render as designed.
+  - The real free games show "Gratis" with the strike and "−100 %".
+  - No "0,00" and no NaN on the page.
+  - No console errors.
+- **Real Chrome, temporary fixture** (served copy only, not committed). The fixture added three deals and one failed source:
+  - a price-0 / listPrice-59,99 / 100 % deal flagged `error-probable`;
+  - a price-0 / listPrice-null deal;
+  - a paid / listPrice-null deal flagged `error-probable`;
+  - one source with `ok: false`.
+  - Results:
+    - The lead shows "Gratis" with the struck list price.
+    - The "Posibles errores de precio" section appears, and its strip link reads "2 posibles errores de precio".
+    - The Tipo filter gains "Posible error de precio 2". `?tipo=posible-error` gives 2 of 110.
+    - The null-list rows render with no strike and no discount.
+    - The failed source gets "GOG, sin respuesta hoy."
+- **Phone width:** measured in 390px same-origin iframes.
+  - `/`, `/?tipo=posible-error`, `/archivo?dia=…` and `/api` have no horizontal overflow.
+  - The lockup measures 316 of 343px.
+  - A wrapped strip line no longer starts with a separator rule.
+
+### Not verified
+
+- **Real phone or a true 390px window.** The window would not resize, so phone layout was checked through iframes, not on a device.
+- **Desktop after the last lockup tweak.** After the lockup size changed to `19vw`, the desktop size was not re-captured. It is capped at 12.5rem, the same cap as the version that was checked.
+- **Count-down frames.** The count-down was not watched frame by frame.
+- **Clipboard copy.** Not exercised.
+- **Link previews.** The new OG image was not checked in Slack or X.
+- **Favicon in Inter.** The favicon's "b" renders in Arial wherever Inter is not installed. Converting it to a path would fix that.
+- **Error-section prominence on real data.** The real data during this pass had no probable errors, so the section has only been seen with the fixture.
+- **Share of "Baratísimo".** 71 of 107 deals carry the flag, which dilutes the label. That is a ranking matter for the pipeline, not patched here.

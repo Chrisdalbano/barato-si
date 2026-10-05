@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { DealView } from '~/composables/useDeals'
 
-defineProps<{ deal: DealView; rank: number; now: number }>()
+defineProps<{ deal: DealView; rank: number; now: number; hideFlag?: boolean }>()
 </script>
 
 <template>
   <article class="row">
-    <span class="row__rank" :title="`Puesto ${rank} por puntuación`">{{ String(rank).padStart(2, '0') }}</span>
+    <span class="row__rank" :title="rank ? `Puesto ${rank} en la lista del día` : undefined">{{ rank ? String(rank).padStart(2, '0') : '' }}</span>
     <div class="row__body">
-      <p v-if="FLAG_LABEL[deal.flag]" class="flag" :class="`flag--${deal.flag}`">{{ FLAG_LABEL[deal.flag] }}</p>
+      <p v-if="!hideFlag && FLAG_LABEL[deal.flag]" class="flag" :class="`flag--${FLAG_QUERY[deal.flag] ?? deal.flag}`">{{ FLAG_LABEL[deal.flag] }}</p>
       <h3 class="row__title">
         <a :href="deal.url" rel="noopener" target="_blank">{{ deal.title }}</a>
       </h3>

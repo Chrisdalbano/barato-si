@@ -19,6 +19,18 @@ export function formatMoney(value: number, currency: string, digits = 2): string
   return fmt.format(value)
 }
 
+/** A price as readers see it: 0 is "Gratis", never "0,00 US$". */
+export function formatPrice(value: number, currency: string, digits = 2): string {
+  if (!Number.isFinite(value)) return ''
+  if (value <= 0) return 'Gratis'
+  return formatMoney(value, currency, digits)
+}
+
+/** True when a list price is real and above the sale price, so a strike makes sense. */
+export function hasListPrice(price: number, listPrice: number | null | undefined): listPrice is number {
+  return typeof listPrice === 'number' && Number.isFinite(listPrice) && listPrice > 0 && listPrice > price
+}
+
 /** Whole numbers stay whole ("29 US$"); anything with cents keeps two digits. */
 export function moneyDigits(...values: (number | null | undefined)[]): number {
   return values.every(v => v == null || Number.isInteger(v)) ? 0 : 2
@@ -26,7 +38,8 @@ export function moneyDigits(...values: (number | null | undefined)[]): number {
 
 const pct = new Intl.NumberFormat('es-ES', { style: 'percent', maximumFractionDigits: 0 })
 export function formatDiscount(discountPct: number): string {
-  return `−${pct.format(discountPct / 100)}`
+  const p = Math.max(0, Math.min(100, discountPct))
+  return `−${pct.format(p / 100)}`
 }
 
 const day = new Intl.DateTimeFormat('es-ES', {
@@ -79,12 +92,53 @@ const SOURCE_NAMES: Record<string, string> = {
   ebay: 'eBay',
   epic: 'Epic Games Store',
   steam: 'Steam',
+  gog: 'GOG',
+  humble: 'Humble',
 }
 export function sourceName(name: string): string {
   return SOURCE_NAMES[name] ?? name
 }
 
+// The data keeps its internal flag values; readers see neutral Spanish.
 export const FLAG_LABEL: Record<string, string> = {
-  'error-probable': 'Error probable',
-  chollo: 'Chollo',
+  'error-probable': 'Posible error de precio',
+  chollo: 'Baratísimo',
+}
+
+/** Flag value in the data <-> readable value in ?tipo=. Old links keep working. */
+export const FLAG_QUERY: Record<string, string> = {
+  'error-probable': 'posible-error',
+  chollo: 'baratisimo',
+}
+export function flagFromQuery(value: string): string {
+  if (!value) return ''
+  const hit = Object.entries(FLAG_QUERY).find(([, q]) => q === value)
+  if (hit) return hit[0]
+  return value in FLAG_QUERY ? value : ''
+}
+
+export interface SourceView { name: string; ok: boolean; count: number }
+
+/**
+ * The quiet sources line. Working sources with their counts; a source that
+ * failed today gets a short mention, never its error text.
+ */
+export function sourcesLine(sources: readonly SourceView[] | null | undefined): { working: string; quiet: string } {
+  const list = Array.isArray(sources) ? sources.filter(s => s && typeof s.name === 'string') : []
+  const working = list.filter(s => s.ok && s.count > 0)
+  const silent = list.filter(s => !s.ok)
+  const nf = new Intl.NumberFormat('es-ES')
+  const w = working.map(s => `${sourceName(s.name)} ${nf.format(s.count)}`).join(' · ')
+  let quiet = ''
+  if (silent.length === 1) quiet = `${sourceName(silent[0]!.name)}, sin respuesta hoy.`
+  else if (silent.length > 1 && silent.length <= 3) {
+    const names = silent.map(s => sourceName(s.name))
+    quiet = `${names.slice(0, -1).join(', ')} y ${names.at(-1)}, sin respuesta hoy.`
+  } else if (silent.length > 3) quiet = `${silent.length} fuentes sin respuesta hoy.`
+  return { working: w, quiet }
+}
+
+/** "1 oferta", "36 ofertas". */
+export function plural(n: number, one: string, many: string): string {
+  return `${new Intl.NumberFormat('es-ES').format(n)} ${n === 1 ? one : many}`
 }

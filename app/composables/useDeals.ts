@@ -25,6 +25,18 @@ export function toView(file: DealsFile): DayView {
  * After hydration the browser asks /api/deals.json for anything newer.
  */
 export async function useToday() {
+  // Lifecycle hooks must be registered before the first await: after it the
+  // component instance is no longer current and onMounted would be dropped.
+  const fresh = shallowRef<DayView | null>(null)
+  onMounted(async () => {
+    try {
+      const file = await $fetch<DealsFile>('/api/deals.json', { cache: 'no-cache' })
+      if (file?.generatedAt) fresh.value = toView(file)
+    } catch {
+      // Keep the prerendered copy; it is the same file as of the last build.
+    }
+  })
+
   const { data } = await useAsyncData('today', async () => {
     if (import.meta.server) {
       const mod = await import('../../public/api/deals.json')
@@ -33,19 +45,18 @@ export async function useToday() {
     return toView(await $fetch<DealsFile>('/api/deals.json'))
   })
 
-  onMounted(async () => {
-    try {
-      const fresh = await $fetch<DealsFile>('/api/deals.json', { cache: 'no-cache' })
-      if (fresh?.generatedAt && fresh.generatedAt !== data.value?.generatedAt) data.value = toView(fresh)
-    } catch {
-      // Keep the prerendered copy; it is the same file as of the last build.
-    }
+  watch(fresh, (f) => {
+    if (f && f.generatedAt !== data.value?.generatedAt) data.value = f
   })
 
   return data
 }
 
 export async function useArchiveIndex() {
+  const fresh = shallowRef<ArchiveIndex | null>(null)
+  onMounted(async () => {
+    try { fresh.value = await $fetch<ArchiveIndex>('/api/index.json', { cache: 'no-cache' }) } catch { /* keep build copy */ }
+  })
   const { data } = await useAsyncData('archive-index', async () => {
     if (import.meta.server) {
       const mod = await import('../../public/api/index.json')
@@ -53,9 +64,7 @@ export async function useArchiveIndex() {
     }
     return await $fetch<ArchiveIndex>('/api/index.json')
   })
-  onMounted(async () => {
-    try { data.value = await $fetch<ArchiveIndex>('/api/index.json', { cache: 'no-cache' }) } catch { /* keep build copy */ }
-  })
+  watch(fresh, (f) => { if (f) data.value = f })
   return data
 }
 
