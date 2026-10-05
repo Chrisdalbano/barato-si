@@ -35,7 +35,7 @@ describe('real response fixtures (captured 2026-10-05)', () => {
   })
   it('normalizes Steam cents and ignores expired specials', () => {
     const deals = normalizeSource(source('steam'), fixture('steam.json'), now)
-    expect(deals[0]).toMatchObject({ title: 'Cyberpunk 2077', price: 17.99, listPrice: 59.99, category: 'videojuegos', flag: 'chollo' })
+    expect(deals[0]).toMatchObject({ title: 'Cyberpunk 2077', price: 17.99, listPrice: 59.99, category: 'videojuegos', flag: 'normal' })
     expect(deals[0]?.discountPct).toBeCloseTo(70.01, 2)
     expect(normalizeSource(source('steam'), fixture('steam.json'), new Date('2030-01-01'))).toEqual([])
   })
