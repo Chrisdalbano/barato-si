@@ -34,6 +34,13 @@ export default defineNuxtConfig({
         { name: 'twitter:description', content: description },
         { name: 'twitter:image', content: ogImage },
       ],
+      script: [
+        // Mouseflow (same pattern as chrisdalbano.com). Project f6bd17cc… is barato.si.
+        {
+          innerHTML: 'window._mfq=window._mfq||[];(function(){var mf=document.createElement("script");mf.type="text/javascript";mf.defer=true;mf.src="//cdn.mouseflow.com/projects/f6bd17cc-9df3-4a8a-baea-69c1121ab594.js";document.getElementsByTagName("head")[0].appendChild(mf);})();',
+          type: 'text/javascript',
+        },
+      ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · las rebajas del día', href: 'https://barato.si/feed.xml' },
