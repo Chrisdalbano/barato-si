@@ -16,6 +16,8 @@ describe('real response fixtures (captured 2026-10-05)', () => {
     for (const d of deals) {
       expect(d.url).toContain('iref=')
       expect(d.syndication?.attribution).toBe('DealNews')
+      expect(d.syndication?.feedUrl).toBe(source('dealnews').url)
+      expect(d.sourceUrl).toMatch(/^https:\/\/www\.dealnews\.com\/\d+\.html\?iref=rss$/)
       expect(feedItems(raw)).toContain(d.syndication?.itemXml)
       expect(d.price).toBeGreaterThanOrEqual(0)
       expect(d.id).toMatch(/^[\da-f]{16}$/)
@@ -47,6 +49,18 @@ describe('real response fixtures (captured 2026-10-05)', () => {
 })
 
 describe('synthetic adapter edge cases for blocked/authenticated sources', () => {
+  it.each([
+    ['<guid>https://www.dealnews.com/123.html?iref=rss</guid>', 'https://shop.test/offer', 'https://www.dealnews.com/123.html?iref=rss'],
+    ['<guid>opaque-id</guid>', 'https://www.dealnews.com/offer/123.html', 'https://www.dealnews.com/offer/123.html'],
+    ['<guid>javascript:alert(1)</guid>', 'https://shop.test/offer', 'https://www.dealnews.com/'],
+    ['<guid>https://www.dealnews.com.evil.test/123.html</guid>', 'https://shop.test/offer', 'https://www.dealnews.com/'],
+    ['', 'https://shop.test/offer', 'https://www.dealnews.com/'],
+  ])('uses a source item page or homepage for attribution (%s)', (guid, url, sourceUrl) => {
+    const raw = `<rss><channel><item><title>IHOP Four $25 Gift Cards ($100 Value) for $80</title><link>${url}</link>${guid}</item></channel></rss>`
+    expect(normalizeSource(source('dealnews'), raw, now)).toMatchObject([
+      { url, sourceUrl, price: 80, listPrice: 100, discountPct: 20, syndication: { feedUrl: source('dealnews').url } },
+    ])
+  })
   it('CheapShark uses redirect URLs, USD and actual deal ratings', () => {
     const raw = JSON.stringify([{ title: 'Space Quest', dealID: 'a+b/c=', isOnSale: '1', storeID: '1', salePrice: '5', normalPrice: '59.99', dealRating: '9', lastChange: now.getTime() / 1000 }, { title: 'Invalid', isOnSale: '1', dealID: 'x', salePrice: '' }])
     const result = normalizeSource(source('cheapshark'), raw, now)

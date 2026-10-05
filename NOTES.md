@@ -11,6 +11,14 @@ Built a Node 22 daily collector using built-in fetch, pure TypeScript parsers, s
 
 On this Windows machine use npm.cmd if PowerShell blocks npm.ps1. Vitest needed execution outside the filesystem sandbox because esbuild could not read ancestor directories; no code workaround or policy change was needed. Static generation succeeded, with Nuxt's existing Windows file-URL external-import warnings.
 
+## Changes since UI hand-off
+
+- Reasons now use es-ES money and percentage formatting, including decimal commas. Removed time-relative reasons; freshness still affects scores.
+- RSS attribution links use the source's item GUID/link when it is a valid source-hosted URL, falling back to the source homepage. Original offer URLs and syndicated XML remain unchanged; the feed address remains in syndication.feedUrl.
+- Added explicit parenthesized value and orig. list-price parsing, with regression coverage for reg., list and MSRP. Gift-card denominations are excluded from sale prices; ambiguous value wording does not establish a list price.
+- Added optional sources[].errorEs with short Spanish visitor messages; existing English error diagnostics remain available. The UI can adopt errorEs separately. UTF-8 output and Spanish accents are covered by round-trip tests.
+- Regenerated current and daily JSON, RSS and discovery output: 36 live DealNews offers. All 106 tests and the library type-check pass. app/ and source enablement were not changed; no push or deployment was performed.
+
 ## Live source audit ? 2026-10-05
 
 All probes used the honest User-Agent: barato.si deals bot; +https://barato.si/llms.txt. Actual status/robots snapshots are in tests/fixtures/live-probes.json. A robots denial is a completed policy probe: the denied endpoint is deliberately NOT fetched. One feed data request per enabled source per run, plus robots.txt preflight cached per origin. No retries, automatic redirects, product-page requests, credentials or IP/UA workarounds. Each request has a 15-second deadline and 4 MB response cap. Robots failures/HTML/403/429/5xx fail closed; 404/410 means no policy file. Crawl-delay is honored. A dead source never aborts the collection.

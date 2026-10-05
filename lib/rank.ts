@@ -1,4 +1,5 @@
 import type { Deal } from './types.ts'
+import { formatMoney, formatPercentage } from './format.ts'
 
 export function discount(price: number, list: number | null): number | null {
   return Number.isFinite(price) && price >= 0 && list !== null && Number.isFinite(list) && list > price
@@ -22,11 +23,10 @@ export function scoreDeal(d: Omit<Deal, 'score' | 'flag' | 'reasons'>, now: Date
   const flag = d.price < 0 || !Number.isFinite(d.price) ? 'normal' : explicit || extreme ? 'error-probable' : pct >= 50 || (comparable && saved >= 40 && pct >= 30) || d.price === 0 ? 'chollo' : 'normal'
   const reasons: string[] = []
   if (explicit && flag === 'error-probable') reasons.push('La fuente indica un posible error')
-  if (pct) reasons.push(`${Math.round(pct)}% bajo el precio de lista`)
-  if (saved && comparable) reasons.push(`Ahorro de ${saved.toFixed(2)} ${d.currency}`)
+  if (pct) reasons.push(`${formatPercentage(pct)} bajo el precio de lista`)
+  if (saved && comparable) reasons.push(`Ahorro de ${formatMoney(saved)} ${d.currency}`)
   if (d.price === 0) reasons.push('Oferta gratuita')
   if (signal >= 10) reasons.push('Destacada por la comunidad')
-  if (age <= 1) reasons.push('Publicada en las últimas 24 h')
   if (!reasons.length) reasons.push('Precio de referencia no disponible')
   return { score, flag, reasons }
 }

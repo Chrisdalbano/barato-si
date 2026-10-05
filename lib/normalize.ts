@@ -21,7 +21,7 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
     const old = seen.get(id)
     const listPrice = row.listPrice != null && number(row.listPrice) !== null && row.listPrice > row.price ? row.listPrice : null
     const base = {
-      ...row, id, title: row.title.trim(), url: row.url, source: source.name, sourceUrl: source.url,
+      ...row, id, title: row.title.trim(), url: row.url, source: source.name, sourceUrl: safeUrl(row.sourceUrl) || new URL('/', source.url).href,
       store: row.store || source.name, currency: row.currency || 'USD', price: row.price,
       listPrice, discountPct: discount(row.price, listPrice), image: safeUrl(row.image), category: row.category || null,
       publishedAt: date(row.publishedAt, old?.publishedAt || stamp), foundAt: old?.foundAt || stamp,
@@ -45,7 +45,10 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
       const price = structured ? number(structured) : titlePrices.price
       if (price === 0 && /\b(?:trial|purchase|order|subscription|membership|with)\b|\bw\//i.test(title)) continue
       const url = tag(item, 'link') || decodeEntities(/<link[^>]+href="([^"]+)"/.exec(item)?.[1] || '')
-      add({ title, url, price, listPrice: parsed.currency === currency ? parsed.listPrice : null, currency,
+      // Only source-hosted item pages qualify as attribution, not merchant links or opaque GUIDs.
+      const sourceUrl = [tag(item, 'guid'), url].find(candidate => safeUrl(candidate)
+        && new URL(candidate).hostname === new URL(source.url).hostname && candidate !== source.url)
+      add({ title, url, sourceUrl, price, listPrice: parsed.currency === currency ? parsed.listPrice : null, currency,
         store: tag(item, 'dealnews:retailer') || source.name, publishedAt: tag(item, 'pubDate') || tag(item, 'updated'),
         category: tag(item, 'dealnews:category') || null,
         image: decodeEntities(/<media:content[^>]+url="([^"]+)"/.exec(item)?.[1] || '') || null,

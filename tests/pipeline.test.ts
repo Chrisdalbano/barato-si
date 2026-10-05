@@ -20,12 +20,46 @@ it('runs fixtures through collection, recording every source outcome', async () 
   expect(file.sources.filter(s => s.ok).map(s => s.name)).toEqual(['dealnews'])
   expect(file.count).toBeGreaterThan(0)
   expect(file.count).toBe(file.deals.length)
+  expect(file.sources.filter(s => !s.ok).every(s => s.error && s.errorEs)).toBe(true)
+  expect(file.sources.find(s => s.ok)?.errorEs).toBeUndefined()
 })
 
 it('fails soft even when every source is down', async () => {
   const file = await collect(sources, async () => { throw new Error('offline') }, now)
   expect(file.count).toBe(0)
   expect(file.sources.every(s => !s.ok && s.error === 'offline')).toBe(true)
+  expect(file.sources.every(s => s.errorEs)).toBe(true)
+})
+
+it.each([
+  ['Blocked by robots.txt; endpoint was not requested', 'La fuente no permite la consulta automática.'],
+  ['robots.txt unavailable or invalid (HTTP 403)', 'No se pudo comprobar el permiso de consulta.'],
+  ['Redirect refused (HTTP 301)', 'La fuente redirige a otra dirección; pendiente de revisión.'],
+  ['Invalid or unsafe syndication XML', 'La fuente devolvió datos que no se pudieron interpretar.'],
+  ['HTTP 503', 'No se pudieron obtener las ofertas de esta fuente.'],
+  ['timeout', 'No se pudieron obtener las ofertas de esta fuente.'],
+])('preserves English diagnostics and supplies Spanish visitor text: %s', async (error, errorEs) => {
+  const file = await collect([sources[3]!], async () => { throw new Error(error) }, now)
+  expect(file.sources[0]).toEqual({ name: 'dealnews', ok: false, count: 0, error, errorEs })
+})
+
+it('round-trips Spanish accents as UTF-8 in JSON, archives, RSS and discovery text', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'barato-utf8-'))
+  try {
+    const file = await collect([sources[1]!], async () => { throw new Error(sources[1]!.disabled) }, now)
+    file.deals = [deal({ title: 'Café y té', reasons: ['Ahorro de 42,54 USD'] })]
+    file.count = 1
+    await writeOutputs(root, file)
+    for (const name of ['api/deals.json', `api/deals/${file.date}.json`]) {
+      const bytes = await readFile(join(root, name))
+      const text = new TextDecoder('utf-8', { fatal: true }).decode(bytes)
+      expect(JSON.parse(text)).toEqual(file)
+      expect(text).toContain('Fuente desactivada; pendiente de revisión.')
+      expect(text).toContain('Café y té')
+    }
+    expect(await readFile(join(root, 'feed.xml'), 'utf8')).toContain('Café y té')
+    expect(await readFile(join(root, 'llms.txt'), 'utf8')).toContain('últimos 30 días UTC')
+  } finally { await rm(root, { recursive: true }) }
 })
 
 it('preserves first-seen dates when an offer disappears for a day', async () => {

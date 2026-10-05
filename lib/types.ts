@@ -16,6 +16,7 @@ export interface Deal {
   store: string // "Amazon", "eBay", "Steam", ...
   /** Where we learned about it ("slickdeals", "cheapshark", ...). */
   source: string
+  /** Human-readable source item page, or source homepage when unavailable. */
   sourceUrl: string
   currency: string // ISO 4217
   price: number
@@ -46,7 +47,7 @@ export interface DealsFile {
   generatedAt: string
   count: number
   /** Per-source fetch outcome, so a dead source is visible, not silent. */
-  sources: { name: string; ok: boolean; count: number; error?: string }[]
+  sources: { name: string; ok: boolean; count: number; error?: string; errorEs?: string }[]
   deals: Deal[] // sorted by score, descending
 }
 

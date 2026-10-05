@@ -16,8 +16,9 @@ export function parsePrices(title: string): { price: number | null; listPrice: n
     return {
       value: amount(m[2] || m[3]!),
       currency: /EUR|€/.test(symbol) ? 'EUR' : /GBP|£/.test(symbol) ? 'GBP' : 'USD',
-      list: /(?:was|were|list(?: price)?|msrp|rrp|regular(?:ly)?(?: price)?|reg\.?|original(?:ly)?(?: price)?|antes|down from)\s*[:=]?\s*$/.test(before) || /^\s*(?:list price|msrp|rrp)\b/.test(after),
-      excluded: /(?:save|saving(?:s)?(?: of)?|coupon(?: of)?|shipping(?:\s+(?:w\/|with|on orders over))?|delivery|gift card|rebate)\s*[:=]?\s*$/.test(before) || /^\s*(?:off\b|shipping\b|delivery\b|gift card\b|rebate\b|coupon\b|\/\s*(?:mo|month)\b)/.test(after),
+      list: /\b(?:was|were|list(?: price)?|msrp|rrp|regular(?:ly)?(?: price)?|reg\.?|orig\.?|original(?:ly)?(?: price)?|antes|down from)\s*[:=]?\s*$/.test(before) || /^\s*(?:list price|msrp|rrp)\b/.test(after)
+        || /\(\s*(?:a\s+)?$/.test(before) && /^\s+value\s*\)/.test(after),
+      excluded: /(?:save|saving(?:s)?(?: of)?|coupon(?: of)?|shipping(?:\s+(?:w\/|with|on orders over))?|delivery|gift card|rebate)\s*[:=]?\s*$/.test(before) || /^\s*(?:off\b|shipping\b|delivery\b|gift cards?\b|rebate\b|coupon\b|\/\s*(?:mo|month)\b)/.test(after),
     }
   })
   const sale = values.find(v => !v.list && !v.excluded)

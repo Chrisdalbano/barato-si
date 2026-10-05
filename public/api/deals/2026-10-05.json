@@ -1,25 +1,28 @@
 {
   "date": "2026-10-05",
-  "generatedAt": "2026-10-05T21:38:00.198Z",
+  "generatedAt": "2026-10-05T22:10:38.341Z",
   "count": 36,
   "sources": [
     {
       "name": "cheapshark",
       "ok": false,
       "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested"
+      "error": "Blocked by robots.txt; endpoint was not requested",
+      "errorEs": "La fuente no permite la consulta automática."
     },
     {
       "name": "slickdeals-frontpage",
       "ok": false,
       "count": 0,
-      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed."
+      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed.",
+      "errorEs": "Fuente desactivada; pendiente de revisión."
     },
     {
       "name": "slickdeals-popular",
       "ok": false,
       "count": 0,
-      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed."
+      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed.",
+      "errorEs": "Fuente desactivada; pendiente de revisión."
     },
     {
       "name": "dealnews",
@@ -30,49 +33,57 @@
       "name": "reddit-deals",
       "ok": false,
       "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested"
+      "error": "Blocked by robots.txt; endpoint was not requested",
+      "errorEs": "La fuente no permite la consulta automática."
     },
     {
       "name": "reddit-buildapcsales",
       "ok": false,
       "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested"
+      "error": "Blocked by robots.txt; endpoint was not requested",
+      "errorEs": "La fuente no permite la consulta automática."
     },
     {
       "name": "reddit-GameDeals",
       "ok": false,
       "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested"
+      "error": "Blocked by robots.txt; endpoint was not requested",
+      "errorEs": "La fuente no permite la consulta automática."
     },
     {
       "name": "woot",
       "ok": false,
       "count": 0,
-      "error": "Official API requires x-api-key; legacy /blog/feed.rss returned HTTP 404."
+      "error": "Official API requires x-api-key; legacy /blog/feed.rss returned HTTP 404.",
+      "errorEs": "Fuente desactivada; pendiente de revisión."
     },
     {
       "name": "ebay",
       "ok": false,
       "count": 0,
-      "error": "Legacy deals RSS returned HTTP 404; no open replacement verified."
+      "error": "Legacy deals RSS returned HTTP 404; no open replacement verified.",
+      "errorEs": "Fuente desactivada; pendiente de revisión."
     },
     {
       "name": "epic",
       "ok": false,
       "count": 0,
-      "error": "HTTP 200 in live probe, but no documented public syndication permission verified."
+      "error": "HTTP 200 in live probe, but no documented public syndication permission verified.",
+      "errorEs": "Fuente desactivada; pendiente de revisión."
     },
     {
       "name": "steam",
       "ok": false,
       "count": 0,
-      "error": "HTTP 200 in live probe, but undocumented storefront endpoint; syndication permission unverified."
+      "error": "HTTP 200 in live probe, but undocumented storefront endpoint; syndication permission unverified.",
+      "errorEs": "Fuente desactivada; pendiente de revisión."
     }
   ],
   "deals": [
     {
       "title": "Alfani Men's Short-Sleeve Solid Textured Shirt for $7 + free shipping w/ $39",
       "url": "https://www.dealnews.com/Alfani-Mens-Short-Sleeve-Solid-Textured-Shirt-for-7-free-shipping-w-39/22246961.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246961.html?iref=rss",
       "price": 7.46,
       "listPrice": 50,
       "currency": "USD",
@@ -88,20 +99,19 @@
       },
       "id": "79f567e7eeef0d66",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": 85.08,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 74,
       "flag": "chollo",
       "reasons": [
-        "85% bajo el precio de lista",
-        "Ahorro de 42.54 USD",
-        "Publicada en las últimas 24 h"
+        "85,08 % bajo el precio de lista",
+        "Ahorro de 42,54 USD"
       ]
     },
     {
       "title": "adidas Men's Samoa Shoes for $29 + free shipping",
       "url": "https://www.dealnews.com/adidas-Mens-Samoa-Shoes-for-29-free-shipping/22246856.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246856.html?iref=rss",
       "price": 29,
       "listPrice": 80,
       "currency": "USD",
@@ -117,49 +127,19 @@
       },
       "id": "491f2983b6217419",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": 63.75,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 62,
       "flag": "chollo",
       "reasons": [
-        "64% bajo el precio de lista",
-        "Ahorro de 51.00 USD",
-        "Publicada en las últimas 24 h"
-      ]
-    },
-    {
-      "title": "adidas Men's Run 70s 2.0 Shoes for $26 + free shipping",
-      "url": "https://www.dealnews.com/adidas-Mens-Run-70-s-2-0-Shoes-for-26-free-shipping/22246844.html?iref=rss",
-      "price": 26,
-      "listPrice": 70,
-      "currency": "USD",
-      "store": "eBay",
-      "publishedAt": "2026-10-05T18:31:38.000Z",
-      "category": "Shoes",
-      "image": "https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>adidas Men's Run 70s 2.0 Shoes for $26 + free shipping</title>\n   <link>https://www.dealnews.com/adidas-Mens-Run-70-s-2-0-Shoes-for-26-free-shipping/22246844.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These&#x20;adidas&#x20;Run&#x20;70s&#x20;2.0&#x20;shoes&#x20;drop&#x20;to&#x20;&#x24;26&#x20;via&#x20;promo&#x20;code&#x20;&quot;COUNTDOWN20&quot;&#x20;down&#x20;from&#x20;the&#x20;&#x24;70&#x20;list&#x20;price,&#x20;and&#x20;the&#x20;best&#x20;deal&#x20;we&#x20;could&#x20;find&#x20;by&#x20;&#x24;23.&#x20;Coupon&#x20;ends&#x20;October&#x20;11&#x20;at&#x20;11&#x3A;59&#x20;PM&#x20;EDT.\"><p>These adidas Run 70s 2.0 shoes drop to $26 via promo code \"COUNTDOWN20\" down from the $70 list price, and the best deal we could find by $23. Coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Lace-up&#x20;closure&#x20;Textile&#x20;upper&#x20;construction&#x20;Made&#x20;in&#x20;Vietnam&#x20;New&#x20;with&#x20;original&#x20;box&#x20;and&#x20;tags&#x20;Sold&#x20;directly&#x20;by&#x20;adidas&#x20;through&#x20;eBay\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Lace-up closure</li> <li>Textile upper construction</li> <li>Made in Vietnam</li> <li>New with original box and tags</li> <li>Sold directly by adidas through eBay</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246844.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:31:38 -0400</pubDate>\n   <dealnews:retailer>eBay</dealnews:retailer>\n   <dealnews:expires>2026-10-11T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">26.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&amp;w=250\" medium=\"image\" height=\"238\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These adidas Run 70s 2.0 shoes drop to $26 via promo code \"COUNTDOWN20\" down from the $70 list price, and the best deal we could find by $23. Coupon ends October 11 at 11:59 PM EDT.\"><p>These adidas Run 70s 2.0 shoes drop to $26 via promo code \"COUNTDOWN20\" down from the $70 list price, and the best deal we could find by $23. Coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Lace-up closure Textile upper construction Made in Vietnam New with original box and tags Sold directly by adidas through eBay\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Lace-up closure</li> <li>Textile upper construction</li> <li>Made in Vietnam</li> <li>New with original box and tags</li> <li>Sold directly by adidas through eBay</li> </ul> </div>"
-      },
-      "id": "b0c1c047e3615e13",
-      "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": 62.86,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 61,
-      "flag": "chollo",
-      "reasons": [
-        "63% bajo el precio de lista",
-        "Ahorro de 44.00 USD",
-        "Publicada en las últimas 24 h"
+        "63,75 % bajo el precio de lista",
+        "Ahorro de 51,00 USD"
       ]
     },
     {
       "title": "Amazon Ember 4-Series 55\" 4K UHD HDR10+ Smart TV for $280 w/ Prime + free shipping",
       "url": "https://www.dealnews.com/Amazon-Ember-4-Series-55-4-K-UHD-HDR10-Smart-TV-for-280-w-Prime-free-shipping/22246918.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246918.html?iref=rss",
       "price": 280,
       "listPrice": 460,
       "currency": "USD",
@@ -175,20 +155,19 @@
       },
       "id": "7393576313043bde",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": 39.13,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 51,
       "flag": "chollo",
       "reasons": [
-        "39% bajo el precio de lista",
-        "Ahorro de 180.00 USD",
-        "Publicada en las últimas 24 h"
+        "39,13 % bajo el precio de lista",
+        "Ahorro de 180,00 USD"
       ]
     },
     {
       "title": "Keurig K-Duo Single Serve & Carafe Coffee Maker for $130 + free shipping",
       "url": "https://www.dealnews.com/Keurig-K-Duo-Single-Serve-Carafe-Coffee-Maker-for-130-free-shipping/22246938.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246938.html?iref=rss",
       "price": 130,
       "listPrice": 219.99,
       "currency": "USD",
@@ -204,20 +183,19 @@
       },
       "id": "1a8cfa733465aa82",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": 40.91,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 50,
       "flag": "chollo",
       "reasons": [
-        "41% bajo el precio de lista",
-        "Ahorro de 89.99 USD",
-        "Publicada en las últimas 24 h"
+        "40,91 % bajo el precio de lista",
+        "Ahorro de 89,99 USD"
       ]
     },
     {
       "title": "Dockers Men's Estes Wax Casual Sneakers for $26 + free shipping w/ $39",
       "url": "https://www.dealnews.com/Dockers-Mens-Estes-Wax-Casual-Sneakers-for-26-free-shipping-w-39/22247053.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247053.html?iref=rss",
       "price": 26,
       "listPrice": 50,
       "currency": "USD",
@@ -233,20 +211,19 @@
       },
       "id": "ff91463227acc828",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": 48,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 50,
       "flag": "normal",
       "reasons": [
-        "48% bajo el precio de lista",
-        "Ahorro de 24.00 USD",
-        "Publicada en las últimas 24 h"
+        "48 % bajo el precio de lista",
+        "Ahorro de 24,00 USD"
       ]
     },
     {
       "title": "Snore Circle YA4600 Smart Electronic Muscle Stimulator Anti-Snoring Device for $89 + free shipping",
       "url": "https://www.dealnews.com/products/Snore-Circle/Snore-Circle-YA4600-Smart-Electronic-Muscle-Stimulator-Anti-Snoring-Device/538832.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22231868.html?iref=rss",
       "price": 89,
       "listPrice": 149,
       "currency": "USD",
@@ -262,107 +239,49 @@
       },
       "id": "77590d6bcd941fa4",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": 40.27,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 48,
       "flag": "chollo",
       "reasons": [
-        "40% bajo el precio de lista",
-        "Ahorro de 60.00 USD",
-        "Publicada en las últimas 24 h"
+        "40,27 % bajo el precio de lista",
+        "Ahorro de 60,00 USD"
       ]
     },
     {
-      "title": "AceMagic X3 Ryzen 7 H 255 Radeon 780M Mini Gaming PC for $575 + free shipping",
-      "url": "https://www.dealnews.com/Ace-Magic-X3-Ryzen-7-H-255-Radeon-780-M-Mini-Gaming-PC-for-575-free-shipping/22246855.html?iref=rss",
-      "price": 575,
-      "listPrice": 638.99,
+      "title": "Latitude Run 80\" L-Shaped Sleeper Sectional Sofa for $500 + free 2-day shipping",
+      "url": "https://www.dealnews.com/Latitude-Run-80-L-Shaped-Sleeper-Sectional-Sofa-for-500-free-2-day-shipping/22247112.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247112.html?iref=rss",
+      "price": 500,
+      "listPrice": 730,
       "currency": "USD",
-      "store": "Amazon",
-      "publishedAt": "2026-10-05T18:42:08.000Z",
-      "category": "Desktops",
-      "image": "https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&w=250",
+      "store": "Wayfair",
+      "publishedAt": "2026-10-05T22:01:41.000Z",
+      "category": "Sofas & Couches",
+      "image": "https://d.dlnws.com/64599/1791237692-80_22_l-shaped_sleeper_sectional_sofa_with_pull-out_bed_and_storage_chaise_2c_for_living_room_office.webp?h=250&w=250",
       "syndication": {
         "attribution": "DealNews",
         "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>AceMagic X3 Ryzen 7 H 255 Radeon 780M Mini Gaming PC for $575 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-X3-Ryzen-7-H-255-Radeon-780-M-Mini-Gaming-PC-for-575-free-shipping/22246855.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;X3&#x20;mini&#x20;PC&#x20;hits&#x20;its&#x20;all-time&#x20;low&#x20;price&#x20;of&#x20;&#x24;575,&#x20;down&#x20;from&#x20;&#x24;638.99.&#x20;The&#x20;build&#x20;pairs&#x20;16GB&#x20;of&#x20;RAM&#x20;with&#x20;a&#x20;1TB&#x20;SSD&#x20;that&#x20;can&#x20;be&#x20;expanded&#x20;up&#x20;to&#x20;4TB,&#x20;and&#x20;includes&#x20;triple&#x20;display&#x20;support&#x20;through&#x20;DP2.0,&#x20;HDMI&#x20;2.1,&#x20;and&#x20;USB4&#x20;Type-C.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This AceMagic X3 mini PC hits its all-time low price of $575, down from $638.99. The build pairs 16GB of RAM with a 1TB SSD that can be expanded up to 4TB, and includes triple display support through DP2.0, HDMI 2.1, and USB4 Type-C. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD&#x20;Ryzen&#x20;7&#x20;H&#x20;255&#x20;processor&#x20;running&#x20;up&#x20;to&#x20;4.9GHz&#x20;AMD&#x20;Radeon&#x20;780M&#x20;integrated&#x20;graphics&#x20;16GB&#x20;LPDDR5&#x20;RAM&#x20;and&#x20;1TB&#x20;NVMe&#x20;PCIe&#x20;4.0&#x20;SSD,&#x20;expandable&#x20;up&#x20;to&#x20;4TB&#x20;Supports&#x20;triple&#x20;display&#x20;output&#x20;via&#x20;DP2.0,&#x20;HDMI&#x20;2.1,&#x20;and&#x20;USB4&#x20;Type-C&#x20;up&#x20;to&#x20;4K@120Hz&#x20;Wi-Fi&#x20;6E&#x20;and&#x20;Bluetooth&#x20;5.2&#x20;connectivity&#x20;2-year&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 7 H 255 processor running up to 4.9GHz</li> <li>AMD Radeon 780M integrated graphics</li> <li>16GB LPDDR5 RAM and 1TB NVMe PCIe 4.0 SSD, expandable up to 4TB</li> <li>Supports triple display output via DP2.0, HDMI 2.1, and USB4 Type-C up to 4K@120Hz</li> <li>Wi-Fi 6E and Bluetooth 5.2 connectivity</li> <li>2-year warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246855.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:42:08 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:42:08-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Desktops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">575.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic X3 mini PC hits its all-time low price of $575, down from $638.99. The build pairs 16GB of RAM with a 1TB SSD that can be expanded up to 4TB, and includes triple display support through DP2.0, HDMI 2.1, and USB4 Type-C. It ships for free. \"><p>This AceMagic X3 mini PC hits its all-time low price of $575, down from $638.99. The build pairs 16GB of RAM with a 1TB SSD that can be expanded up to 4TB, and includes triple display support through DP2.0, HDMI 2.1, and USB4 Type-C. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD Ryzen 7 H 255 processor running up to 4.9GHz AMD Radeon 780M integrated graphics 16GB LPDDR5 RAM and 1TB NVMe PCIe 4.0 SSD, expandable up to 4TB Supports triple display output via DP2.0, HDMI 2.1, and USB4 Type-C up to 4K@120Hz Wi-Fi 6E and Bluetooth 5.2 connectivity 2-year warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 7 H 255 processor running up to 4.9GHz</li> <li>AMD Radeon 780M integrated graphics</li> <li>16GB LPDDR5 RAM and 1TB NVMe PCIe 4.0 SSD, expandable up to 4TB</li> <li>Supports triple display output via DP2.0, HDMI 2.1, and USB4 Type-C up to 4K@120Hz</li> <li>Wi-Fi 6E and Bluetooth 5.2 connectivity</li> <li>2-year warranty</li> </ul> </div>"
+        "itemXml": "<item>\n   <title>Latitude Run 80&quot; L-Shaped Sleeper Sectional Sofa for $500 + free 2-day shipping</title>\n   <link>https://www.dealnews.com/Latitude-Run-80-L-Shaped-Sleeper-Sectional-Sofa-for-500-free-2-day-shipping/22247112.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791237692-80_22_l-shaped_sleeper_sectional_sofa_with_pull-out_bed_and_storage_chaise_2c_for_living_room_office.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Latitude&#x20;Run&#x20;sleeper&#x20;sectional&#x20;is&#x20;priced&#x20;at&#x20;&#x24;500,&#x20;down&#x20;from&#x20;&#x24;730,&#x20;and&#x20;includes&#x20;a&#x20;pull-out&#x20;bed&#x20;plus&#x20;a&#x20;storage&#x20;chaise&#x20;that&#x20;can&#x20;be&#x20;configured&#x20;on&#x20;either&#x20;side.&#x20;It&#x27;s&#x20;available&#x20;at&#x20;this&#x20;price&#x20;in&#x20;select&#x20;colors&#x20;&#x28;Brown&#x20;Faux&#x20;Leather&#x20;pictured&#x29;.&#x20;Shipping&#x20;is&#x20;free. \"><p>This Latitude Run sleeper sectional is priced at $500, down from $730, and includes a pull-out bed plus a storage chaise that can be configured on either side. It's available at this price in select colors (Brown Faux Leather pictured). Shipping is free.  Buy Now at Wayfair</p></div> <div class=\"snippet features\" title=\"Pull-out&#x20;bed&#x20;converts&#x20;the&#x20;sectional&#x20;into&#x20;a&#x20;full-size&#x20;sleeper&#x20;Reversible&#x20;chaise&#x20;can&#x20;be&#x20;set&#x20;up&#x20;on&#x20;either&#x20;the&#x20;left&#x20;or&#x20;right&#x20;side&#x20;Hidden&#x20;storage&#x20;compartment&#x20;built&#x20;into&#x20;the&#x20;chaise&#x20;Zipper-connected&#x20;armrests&#x20;detach&#x20;for&#x20;use&#x20;as&#x20;extra&#x20;pillows&#x20;Hybrid&#x20;frame&#x20;with&#x20;a&#x20;metal&#x20;pull-out&#x20;structure&#x20;and&#x20;solid&#x20;wood&#x20;base&#x20;Supports&#x20;up&#x20;to&#x20;700&#x20;lb.\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Pull-out bed converts the sectional into a full-size sleeper</li> <li>Reversible chaise can be set up on either the left or right side</li> <li>Hidden storage compartment built into the chaise</li> <li>Zipper-connected armrests detach for use as extra pillows</li> <li>Hybrid frame with a metal pull-out structure and solid wood base</li> <li>Supports up to 700 lb.</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22247112.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:01:41 -0400</pubDate>\n   <dealnews:retailer>Wayfair</dealnews:retailer>\n   <dealnews:expires>2027-01-03T17:01:41-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Sofas &amp; Couches </dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">500.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791237692-80_22_l-shaped_sleeper_sectional_sofa_with_pull-out_bed_and_storage_chaise_2c_for_living_room_office.webp?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791237692-80_22_l-shaped_sleeper_sectional_sofa_with_pull-out_bed_and_storage_chaise_2c_for_living_room_office.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Latitude Run sleeper sectional is priced at $500, down from $730, and includes a pull-out bed plus a storage chaise that can be configured on either side. It's available at this price in select colors (Brown Faux Leather pictured). Shipping is free. \"><p>This Latitude Run sleeper sectional is priced at $500, down from $730, and includes a pull-out bed plus a storage chaise that can be configured on either side. It's available at this price in select colors (Brown Faux Leather pictured). Shipping is free.  Buy Now at Wayfair</p></div> <div class=\"snippet features\" title=\"Pull-out bed converts the sectional into a full-size sleeper Reversible chaise can be set up on either the left or right side Hidden storage compartment built into the chaise Zipper-connected armrests detach for use as extra pillows Hybrid frame with a metal pull-out structure and solid wood base Supports up to 700 lb.\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Pull-out bed converts the sectional into a full-size sleeper</li> <li>Reversible chaise can be set up on either the left or right side</li> <li>Hidden storage compartment built into the chaise</li> <li>Zipper-connected armrests detach for use as extra pillows</li> <li>Hybrid frame with a metal pull-out structure and solid wood base</li> <li>Supports up to 700 lb.</li> </ul> </div>"
       },
-      "id": "4f51edcd55c182c9",
+      "id": "a04023624581f45e",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": 10.01,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 30,
-      "flag": "normal",
+      "discountPct": 31.51,
+      "foundAt": "2026-10-05T22:10:24.149Z",
+      "score": 47,
+      "flag": "chollo",
       "reasons": [
-        "10% bajo el precio de lista",
-        "Ahorro de 63.99 USD",
-        "Publicada en las últimas 24 h"
-      ]
-    },
-    {
-      "title": "AceMagic AX15 15.6\" Intel N95 16GB RAM 512GB SSD Laptop for $313 + free shipping",
-      "url": "https://www.dealnews.com/Ace-Magic-AX15-15-6-Intel-N95-16-GB-RAM-512-GB-SSD-Laptop-for-313-free-shipping/22246854.html?iref=rss",
-      "price": 313,
-      "listPrice": 329.99,
-      "currency": "USD",
-      "store": "Amazon",
-      "publishedAt": "2026-10-05T18:38:20.000Z",
-      "category": "Laptops",
-      "image": "https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>AceMagic AX15 15.6&quot; Intel N95 16GB RAM 512GB SSD Laptop for $313 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-AX15-15-6-Intel-N95-16-GB-RAM-512-GB-SSD-Laptop-for-313-free-shipping/22246854.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;laptop&#x20;comes&#x20;to&#x20;&#x24;313.49&#x20;after&#x20;an&#x20;on-page&#x20;coupon&#x20;is&#x20;applied,&#x20;down&#x20;from&#x20;&#x24;329.99.&#x20;It&#x20;pairs&#x20;16GB&#x20;of&#x20;RAM&#x20;with&#x20;a&#x20;512GB&#x20;SSD&#x20;that&#x20;can&#x20;be&#x20;swapped&#x20;for&#x20;up&#x20;to&#x20;2TB&#x20;of&#x20;storage,&#x20;giving&#x20;it&#x20;more&#x20;upgrade&#x20;room&#x20;than&#x20;many&#x20;laptops&#x20;in&#x20;this&#x20;price&#x20;range.&#x20;The&#x20;metal&#x20;shell&#x20;and&#x20;180-degree&#x20;hinge&#x20;add&#x20;some&#x20;durability&#x20;features&#x20;not&#x20;always&#x20;found&#x20;at&#x20;this&#x20;price&#x20;point.\"><p>This AceMagic laptop comes to $313.49 after an on-page coupon is applied, down from $329.99. It pairs 16GB of RAM with a 512GB SSD that can be swapped for up to 2TB of storage, giving it more upgrade room than many laptops in this price range. The metal shell and 180-degree hinge add some durability features not always found at this price point. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Intel&#x20;12th&#x20;Gen&#x20;quad-core&#x20;processor&#x20;up&#x20;to&#x20;3.4GHz&#x20;16GB&#x20;DDR4&#x20;RAM&#x20;&amp;&#x20;512GB&#x20;SSD&#x20;storage&#x20;Supports&#x20;storage&#x20;expansion&#x20;up&#x20;to&#x20;2TB&#x20;SSD&#x20;&amp;&#x20;128GB&#x20;microSD&#x20;card&#x20;Thin-bezel&#x20;FHD&#x20;display&#x20;w&#x2F;&#x20;180°&#x20;hinge&#x20;Metal&#x20;shell&#x20;construction&#x20;WiFi&#x20;802.11ac,&#x20;Bluetooth&#x20;5.0,&#x20;USB&#x20;3.2,&#x20;USB-C&#x20;ports\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Intel 12th Gen quad-core processor up to 3.4GHz</li> <li>16GB DDR4 RAM & 512GB SSD storage</li> <li>Supports storage expansion up to 2TB SSD & 128GB microSD card</li> <li>Thin-bezel FHD display w/ 180° hinge</li> <li>Metal shell construction</li> <li>WiFi 802.11ac, Bluetooth 5.0, USB 3.2, USB-C ports</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246854.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:38:20 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:38:20-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Laptops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">313.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic laptop comes to $313.49 after an on-page coupon is applied, down from $329.99. It pairs 16GB of RAM with a 512GB SSD that can be swapped for up to 2TB of storage, giving it more upgrade room than many laptops in this price range. The metal shell and 180-degree hinge add some durability features not always found at this price point.\"><p>This AceMagic laptop comes to $313.49 after an on-page coupon is applied, down from $329.99. It pairs 16GB of RAM with a 512GB SSD that can be swapped for up to 2TB of storage, giving it more upgrade room than many laptops in this price range. The metal shell and 180-degree hinge add some durability features not always found at this price point. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Intel 12th Gen quad-core processor up to 3.4GHz 16GB DDR4 RAM & 512GB SSD storage Supports storage expansion up to 2TB SSD & 128GB microSD card Thin-bezel FHD display w/ 180° hinge Metal shell construction WiFi 802.11ac, Bluetooth 5.0, USB 3.2, USB-C ports\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Intel 12th Gen quad-core processor up to 3.4GHz</li> <li>16GB DDR4 RAM & 512GB SSD storage</li> <li>Supports storage expansion up to 2TB SSD & 128GB microSD card</li> <li>Thin-bezel FHD display w/ 180° hinge</li> <li>Metal shell construction</li> <li>WiFi 802.11ac, Bluetooth 5.0, USB 3.2, USB-C ports</li> </ul> </div>"
-      },
-      "id": "a1a9156ab8d41679",
-      "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": 5.15,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 23,
-      "flag": "normal",
-      "reasons": [
-        "5% bajo el precio de lista",
-        "Ahorro de 16.99 USD",
-        "Publicada en las últimas 24 h"
-      ]
-    },
-    {
-      "title": "AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping",
-      "url": "https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss",
-      "price": 409,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "Amazon",
-      "publishedAt": "2026-10-05T18:44:09.000Z",
-      "category": "Desktops",
-      "image": "https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;K1&#x20;mini&#x20;PC&#x20;matches&#x20;its&#x20;all-time&#x20;low&#x20;price&#x20;at&#x20;&#x24;409,&#x20;down&#x20;from&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;509.&#x20;It&#x20;packs&#x20;16GB&#x20;of&#x20;RAM&#x20;and&#x20;a&#x20;512GB&#x20;SSD&#x20;into&#x20;a&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;case&#x20;that&#x20;weighs&#x20;under&#x20;3&#x20;lb.,&#x20;and&#x20;it&#x20;can&#x20;drive&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;monitors&#x20;at&#x20;once.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD&#x20;Ryzen&#x20;5&#x20;7430U&#x20;processor&#x20;with&#x20;integrated&#x20;Radeon&#x20;graphics&#x20;16GB&#x20;DDR4&#x20;RAM,&#x20;expandable&#x20;up&#x20;to&#x20;64GB&#x20;512GB&#x20;SSD&#x20;with&#x20;two&#x20;M.2&#x20;slots&#x20;supporting&#x20;up&#x20;to&#x20;4TB&#x20;Supports&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;displays&#x20;at&#x20;60Hz&#x20;via&#x20;HDMI,&#x20;DisplayPort,&#x20;and&#x20;USB-C&#x20;Measures&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;and&#x20;weighs&#x20;2.3&#x20;lb.&#x20;Comes&#x20;with&#x20;Windows&#x20;11&#x20;Pro&#x20;pre-installed&#x20;and&#x20;a&#x20;1-year&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246857.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:44:09 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:44:09-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Desktops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">409.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD Ryzen 5 7430U processor with integrated Radeon graphics 16GB DDR4 RAM, expandable up to 64GB 512GB SSD with two M.2 slots supporting up to 4TB Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb. Comes with Windows 11 Pro pre-installed and a 1-year warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>"
-      },
-      "id": "02952e843e67f619",
-      "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Publicada en las últimas 24 h"
+        "31,51 % bajo el precio de lista",
+        "Ahorro de 230,00 USD"
       ]
     },
     {
       "title": "IHOP Four $25 Gift Cards ($100 Value) for $80 + email delivery",
       "url": "https://www.dealnews.com/IHOP-Four-25-Gift-Cards-100-Value-for-80-email-delivery/22247035.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247035.html?iref=rss",
       "price": 80,
-      "listPrice": null,
+      "listPrice": 100,
       "currency": "USD",
       "store": "Costco",
       "publishedAt": "2026-10-05T20:58:28.000Z",
@@ -376,18 +295,46 @@
       },
       "id": "1ce7de4c284083b9",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": null,
+      "discountPct": 20,
       "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 33,
+      "flag": "normal",
+      "reasons": [
+        "20 % bajo el precio de lista",
+        "Ahorro de 20,00 USD"
+      ]
+    },
+    {
+      "title": "Ryobi One+ 18V Brushless 1/2\" High Torque Impact Wrench Kit for $159 + free shipping",
+      "url": "https://www.dealnews.com/products/Ryobi/Ryobi-One-18-V-Brushless-1-2-High-Torque-Impact-Wrench-Kit/540654.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247103.html?iref=rss",
+      "price": 159,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Home Depot",
+      "publishedAt": "2026-10-05T21:49:59.000Z",
+      "category": "Impact Wrenches & Drivers",
+      "image": "https://d.dlnws.com/64599/1791236938-ryobi-impact-wrenches-pbliw01k1-64_600.avif?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Ryobi One+ 18V Brushless 1/2&quot; High Torque Impact Wrench Kit for $159 + free shipping</title>\n   <link>https://www.dealnews.com/products/Ryobi/Ryobi-One-18-V-Brushless-1-2-High-Torque-Impact-Wrench-Kit/540654.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791236938-ryobi-impact-wrenches-pbliw01k1-64_600.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"At&#x20;&#x24;159,&#x20;this&#x20;Ryobi&#x20;impact&#x20;wrench&#x20;kit&#x20;is&#x20;&#x24;110&#x20;off&#x20;its&#x20;regular&#x20;price&#x20;and&#x20;comes&#x20;with&#x20;a&#x20;4.0&#x20;Ah&#x20;battery&#x20;and&#x20;charger&#x20;included.&#x20;Shipping&#x20;is&#x20;free. \"><p>At $159, this Ryobi impact wrench kit is $110 off its regular price and comes with a 4.0 Ah battery and charger included. Shipping is free.  Buy Now at Home Depot</p></div> <div class=\"snippet features\" title=\"Delivers&#x20;up&#x20;to&#x20;1,170&#x20;ft.-lbs.&#x20;of&#x20;breakaway&#x20;torque&#x20;Brushless&#x20;motor&#x20;with&#x20;4&#x20;speed&#x2F;mode&#x20;control&#x20;settings&#x20;Includes&#x20;a&#x20;4.0&#x20;Ah&#x20;battery&#x20;and&#x20;18V&#x20;charger&#x20;Auto&#x20;Mode&#x20;prevents&#x20;overtightening&#x20;and&#x20;allows&#x20;controlled&#x20;removal&#x20;in&#x20;reverse&#x20;Die&#x20;cast&#x20;gear&#x20;case&#x20;for&#x20;added&#x20;durability&#x20;Backed&#x20;by&#x20;a&#x20;3-year&#x20;manufacturer&#x27;s&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Delivers up to 1,170 ft.-lbs. of breakaway torque</li> <li>Brushless motor with 4 speed/mode control settings</li> <li>Includes a 4.0 Ah battery and 18V charger</li> <li>Auto Mode prevents overtightening and allows controlled removal in reverse</li> <li>Die cast gear case for added durability</li> <li>Backed by a 3-year manufacturer's warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22247103.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 17:49:59 -0400</pubDate>\n   <dealnews:retailer>Home Depot</dealnews:retailer>\n   <dealnews:expires>2027-01-03T16:49:59-05:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Impact Wrenches &amp; Drivers</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">159.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791236938-ryobi-impact-wrenches-pbliw01k1-64_600.avif?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791236938-ryobi-impact-wrenches-pbliw01k1-64_600.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"At $159, this Ryobi impact wrench kit is $110 off its regular price and comes with a 4.0 Ah battery and charger included. Shipping is free. \"><p>At $159, this Ryobi impact wrench kit is $110 off its regular price and comes with a 4.0 Ah battery and charger included. Shipping is free.  Buy Now at Home Depot</p></div> <div class=\"snippet features\" title=\"Delivers up to 1,170 ft.-lbs. of breakaway torque Brushless motor with 4 speed/mode control settings Includes a 4.0 Ah battery and 18V charger Auto Mode prevents overtightening and allows controlled removal in reverse Die cast gear case for added durability Backed by a 3-year manufacturer's warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Delivers up to 1,170 ft.-lbs. of breakaway torque</li> <li>Brushless motor with 4 speed/mode control settings</li> <li>Includes a 4.0 Ah battery and 18V charger</li> <li>Auto Mode prevents overtightening and allows controlled removal in reverse</li> <li>Die cast gear case for added durability</li> <li>Backed by a 3-year manufacturer's warranty</li> </ul> </div>"
+      },
+      "id": "1e21b80afdadf8c2",
+      "source": "dealnews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T22:10:24.149Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Marvel Men's Deadpool Palms Swim Trunks for $4 + free shipping w/ $35",
       "url": "https://www.dealnews.com/Marvel-Mens-Deadpool-Palms-Swim-Trunks-for-4-free-shipping-w-35/22246999.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246999.html?iref=rss",
       "price": 4,
       "listPrice": null,
       "currency": "USD",
@@ -403,45 +350,18 @@
       },
       "id": "1eb0bed5740a53e5",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
-      ]
-    },
-    {
-      "title": "Vevor Rolling Garden Cart for $47 + free shipping",
-      "url": "https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss",
-      "price": 47,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "VEVOR",
-      "publishedAt": "2026-10-05T18:47:01.000Z",
-      "category": "Garden Tools",
-      "image": "https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Vevor Rolling Garden Cart for $47 + free shipping</title>\n   <link>https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use&#x20;promo&#x20;code&#x20;&quot;VVGG8&quot;&#x20;to&#x20;drop&#x20;the&#x20;price&#x20;on&#x20;this&#x20;Vevor&#x20;Rolling&#x20;Garden&#x20;Cart&#x20;to&#x20;&#x24;46.51,&#x20;its&#x20;best-ever&#x20;price. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb.&#x20;capacity&#x20;built-in&#x20;storage&#x20;tray&#x20;and&#x20;basket&#x20;360°&#x20;rotating&#x20;seat&#x20;&amp;&#x20;height&#x20;adjustable&#x20;up&#x20;to&#x20;3.1&quot;\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246873.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:47:01 -0400</pubDate>\n   <dealnews:retailer>VEVOR</dealnews:retailer>\n   <dealnews:expires>2026-10-15T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Garden Tools</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">47.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb. capacity built-in storage tray and basket 360° rotating seat & height adjustable up to 3.1\"\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>"
-      },
-      "id": "203c3c8235cd6151",
-      "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Reebok Men's Windbreaker for $13 + free shipping w/ $35",
       "url": "https://www.dealnews.com/Reebok-Mens-Windbreaker-for-13-free-shipping-w-35/22246978.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246978.html?iref=rss",
       "price": 13,
       "listPrice": null,
       "currency": "USD",
@@ -457,18 +377,18 @@
       },
       "id": "223db244069a942c",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Soundcraft Ui24R 24-channel Remote-controlled Digital Mixer for $999 + free shipping",
       "url": "https://www.dealnews.com/Soundcraft-Ui24-R-24-channel-Remote-controlled-Digital-Mixer-for-999-free-shipping/22247051.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247051.html?iref=rss",
       "price": 999,
       "listPrice": null,
       "currency": "USD",
@@ -484,18 +404,18 @@
       },
       "id": "294f59df5cc5a94b",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Turtle Beach Rematch Core Wired Controller for Xbox and PC for $15 + free shipping",
       "url": "https://www.dealnews.com/products/Turtle-Beach/Turtle-Beach-Rematch-Core-Wired-Controller-for-Xbox-and-PC/523735.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246979.html?iref=rss",
       "price": 15,
       "listPrice": null,
       "currency": "USD",
@@ -511,18 +431,18 @@
       },
       "id": "379d25424ede1fa8",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt for $20 + free shipping",
       "url": "https://www.dealnews.com/Awearness-Kenneth-Cole-Mens-Slim-Fit-Sharkskin-Covered-Placket-Dress-Shirt-for-20-free-shipping/22246960.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246960.html?iref=rss",
       "price": 20,
       "listPrice": null,
       "currency": "USD",
@@ -538,18 +458,18 @@
       },
       "id": "388471b213e9e474",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Skeri 3200W Electric Dirt Bike for $540 + free shipping",
       "url": "https://www.dealnews.com/Skeri-3200-W-Electric-Dirt-Bike-for-540-free-shipping/22223228.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22223228.html?iref=rss",
       "price": 539.99,
       "listPrice": null,
       "currency": "USD",
@@ -565,18 +485,18 @@
       },
       "id": "3d4b6a633974618e",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Hanes Men's Adjustable Plush Robe for $18 + free shipping w/ $39",
       "url": "https://www.dealnews.com/Hanes-Mens-Adjustable-Plush-Robe-for-18-free-shipping-w-39/22247054.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247054.html?iref=rss",
       "price": 18,
       "listPrice": null,
       "currency": "USD",
@@ -592,45 +512,72 @@
       },
       "id": "3f7b10f9acf494ad",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
-      "title": "Great Value Bacon Luncheon Meat 12-oz. Can 12-Pack for $21 + free shipping w/ $35",
-      "url": "https://www.dealnews.com/Great-Value-Bacon-Luncheon-Meat-12-oz-Can-12-Pack-for-21-free-shipping-w-35/22246877.html?iref=rss",
-      "price": 21,
+      "title": "adidas Women's Originals Firebird Adilenium Track Top for $26 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/adidas-Womens-Originals-Firebird-Adilenium-Track-Top-for-26-free-shipping-w-49/22247086.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247086.html?iref=rss",
+      "price": 26,
       "listPrice": null,
       "currency": "USD",
-      "store": "Walmart",
-      "publishedAt": "2026-10-05T19:00:30.000Z",
-      "category": "Groceries",
-      "image": "https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T21:41:52.000Z",
+      "category": "Activewear",
+      "image": "https://d.dlnws.com/64599/1791236504-product-trimmed.png?h=250&w=250",
       "syndication": {
         "attribution": "DealNews",
         "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Great Value Bacon Luncheon Meat 12-oz. Can 12-Pack for $21 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Great-Value-Bacon-Luncheon-Meat-12-oz-Can-12-Pack-for-21-free-shipping-w-35/22246877.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;12-pack&#x20;of&#x20;Great&#x20;Value&#x20;Bacon&#x20;Luncheon&#x20;Meat&#x20;is&#x20;&#x24;20.74&#x20;at&#x20;Walmart. &#x20;That&#x27;s&#x20;a&#x20;&#x24;7&#x20;savings&#x20;and&#x20;just&#x20;&#x24;1.73&#x20;a&#x20;can. &#x20;Choose&#x20;pickup&#x20;or&#x20;spend&#x20;&#x24;35&#x20;to&#x20;avoid&#x20;the&#x20;&#x24;6.99&#x20;shipping&#x20;charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246877.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:00:30 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:00:30-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Groceries</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">21.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&amp;w=250\" medium=\"image\" height=\"114\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
+        "itemXml": "<item>\n   <title>adidas Women's Originals Firebird Adilenium Track Top for $26 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/adidas-Womens-Originals-Firebird-Adilenium-Track-Top-for-26-free-shipping-w-49/22247086.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791236504-product-trimmed.png?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick&#x27;s&#x20;Sporting&#x20;Goods&#x20;offers&#x20;the&#x20;adidas&#x20;Women&#x27;s&#x20;Originals&#x20;Firebird&#x20;Adilenium&#x20;Track&#x20;Top&#x20;in&#x20;Better&#x20;Scarlet&#x20;for&#x20;&#x24;25.97. &#x20;That&#x27;s&#x20;a&#x20;&#x24;64&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>Dick's Sporting Goods offers the adidas Women's Originals Firebird Adilenium Track Top in Better Scarlet for $25.97.  That's a $64 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247086.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 17:41:52 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T16:41:52-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Activewear</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">26.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791236504-product-trimmed.png?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791236504-product-trimmed.png?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick's Sporting Goods offers the adidas Women's Originals Firebird Adilenium Track Top in Better Scarlet for $25.97.  That's a $64 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>Dick's Sporting Goods offers the adidas Women's Originals Firebird Adilenium Track Top in Better Scarlet for $25.97.  That's a $64 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
       },
-      "id": "48e559405f992fc7",
+      "id": "42aa3f5d8d4dbbdb",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
+      "foundAt": "2026-10-05T22:10:24.149Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Under Armour Men's HeatGear Armour Leggings for $15 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/Under-Armour-Mens-Heat-Gear-Armour-Leggings-for-15-free-shipping-w-49/22247122.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247122.html?iref=rss",
+      "price": 15,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T22:05:10.000Z",
+      "category": "Activewear",
+      "image": "https://d.dlnws.com/64599/1791237903-20uarmhgrmrlggngsapb_red_white.webp?h=250&w=121",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Under Armour Men's HeatGear Armour Leggings for $15 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/Under-Armour-Mens-Heat-Gear-Armour-Leggings-for-15-free-shipping-w-49/22247122.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791237903-20uarmhgrmrlggngsapb_red_white.webp?h=250&w=121' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick&#x27;s&#x20;Sporting&#x20;Goods&#x20;offers&#x20;the&#x20;Under&#x20;Armour&#x20;Men&#x27;s&#x20;HeatGear&#x20;Armour&#x20;Leggings&#x20;in&#x20;Red&#x2F;White&#x20;for&#x20;&#x24;14.97. &#x20;That&#x27;s&#x20;a&#x20;&#x24;25&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>Dick's Sporting Goods offers the Under Armour Men's HeatGear Armour Leggings in Red/White for $14.97.  That's a $25 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247122.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:05:10 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T17:05:10-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Activewear</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">15.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791237903-20uarmhgrmrlggngsapb_red_white.webp?h=250&amp;w=121\" medium=\"image\" height=\"250\" width=\"121\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791237903-20uarmhgrmrlggngsapb_red_white.webp?h=250&w=121' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick's Sporting Goods offers the Under Armour Men's HeatGear Armour Leggings in Red/White for $14.97.  That's a $25 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>Dick's Sporting Goods offers the Under Armour Men's HeatGear Armour Leggings in Red/White for $14.97.  That's a $25 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
+      },
+      "id": "58657a5c517be46a",
+      "source": "dealnews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T22:10:24.149Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Jaszdot 32\" Digital Signage Display for $539.40 + free shipping",
       "url": "https://www.dealnews.com/products/Jaszdot/Jaszdot-32-Digital-Signage-Display/537735.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22212707.html?iref=rss",
       "price": 539.4,
       "listPrice": null,
       "currency": "USD",
@@ -646,18 +593,18 @@
       },
       "id": "62945a60810391c0",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "adidas Men's Trefoil Essentials Woven Cargo Pants for $23 + free shipping w/ $49",
       "url": "https://www.dealnews.com/adidas-Mens-Trefoil-Essentials-Woven-Cargo-Pants-for-23-free-shipping-w-49/22247071.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247071.html?iref=rss",
       "price": 23,
       "listPrice": null,
       "currency": "USD",
@@ -673,18 +620,18 @@
       },
       "id": "6664065cd3bb360c",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping",
       "url": "https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246917.html?iref=rss",
       "price": 79,
       "listPrice": null,
       "currency": "USD",
@@ -700,45 +647,18 @@
       },
       "id": "6bd5a7f1ce95c348",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
-      ]
-    },
-    {
-      "title": "HDX 2.5-Qt. Tough Storage Tote for 6 for $9.96 + free shipping w/ $25",
-      "url": "https://www.dealnews.com/HDX-2-5-Qt-Tough-Storage-Tote-for-6-for-9-96-free-shipping-w-25/22246853.html?iref=rss",
-      "price": 9.96,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "Home Depot",
-      "publishedAt": "2026-10-05T18:35:26.000Z",
-      "category": "Tool Storage & Organization",
-      "image": "https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>HDX 2.5-Qt. Tough Storage Tote for 6 for $9.96 + free shipping w/ $25</title>\n   <link>https://www.dealnews.com/HDX-2-5-Qt-Tough-Storage-Tote-for-6-for-9-96-free-shipping-w-25/22246853.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Add&#x20;six&#x20;of&#x20;these&#x20;HDX&#x20;2.5-Qt.&#x20;Tough&#x20;Storage&#x20;Totes&#x20;to&#x20;cart&#x20;to&#x20;see&#x20;the&#x20;price&#x20;drop&#x20;to&#x20;just&#x20;&#x24;9.96.&#x20;That&#x20;works&#x20;out&#x20;to&#x20;just&#x20;&#x24;1.66&#x20;each&#x20;instead&#x20;of&#x20;their&#x20;regular&#x20;price&#x20;of&#x20;&#x24;2.48.&#x20;Shipping&#x20;adds&#x20;&#x24;2.99&#x20;or&#x20;is&#x20;free&#x20;over&#x20;&#x24;25. &#x20;Pickup&#x20;is&#x20;also&#x20;available.\"><p>Add six of these HDX 2.5-Qt. Tough Storage Totes to cart to see the price drop to just $9.96. That works out to just $1.66 each instead of their regular price of $2.48. Shipping adds $2.99 or is free over $25.  Pickup is also available. Buy Now at Home Depot</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246853.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:35:26 -0400</pubDate>\n   <dealnews:retailer>Home Depot</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:35:26-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Tool Storage &amp; Organization</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">9.96</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Add six of these HDX 2.5-Qt. Tough Storage Totes to cart to see the price drop to just $9.96. That works out to just $1.66 each instead of their regular price of $2.48. Shipping adds $2.99 or is free over $25.  Pickup is also available.\"><p>Add six of these HDX 2.5-Qt. Tough Storage Totes to cart to see the price drop to just $9.96. That works out to just $1.66 each instead of their regular price of $2.48. Shipping adds $2.99 or is free over $25.  Pickup is also available. Buy Now at Home Depot</p></div>"
-      },
-      "id": "6ca6e4b743c279c2",
-      "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Campus Sutra Men's Micro-Check Chino Trousers for $26 + free shipping w/ $39",
       "url": "https://www.dealnews.com/Campus-Sutra-Mens-Micro-Check-Chino-Trousers-for-26-free-shipping-w-39/22247034.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247034.html?iref=rss",
       "price": 26,
       "listPrice": null,
       "currency": "USD",
@@ -754,18 +674,18 @@
       },
       "id": "7e72baba9b49ea9c",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest for $19 + free shipping w/ $39",
       "url": "https://www.dealnews.com/Alfani-Mens-Welded-Alfatech-Contrast-Trim-Full-Zip-Vest-for-19-free-shipping-w-39/22247016.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247016.html?iref=rss",
       "price": 19,
       "listPrice": null,
       "currency": "USD",
@@ -781,18 +701,18 @@
       },
       "id": "8c2f9050d360e734",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49",
       "url": "https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246897.html?iref=rss",
       "price": 18,
       "listPrice": null,
       "currency": "USD",
@@ -808,18 +728,18 @@
       },
       "id": "8eae9fbcbdf989f4",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Kobalt 4V Max 1/4\" Cordless Screwdriver for $20 + free shipping",
       "url": "https://www.dealnews.com/products/Kobalt/Kobalt-4-V-Max-1-4-Cordless-Screwdriver/540621.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246940.html?iref=rss",
       "price": 20,
       "listPrice": null,
       "currency": "USD",
@@ -835,18 +755,18 @@
       },
       "id": "aad44e054c865556",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping",
       "url": "https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246916.html?iref=rss",
       "price": 45,
       "listPrice": null,
       "currency": "USD",
@@ -862,18 +782,18 @@
       },
       "id": "b039e54b05150da0",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Squier Classic Vibe '60s Jazzmaster Electric Guitar for $380 + free shipping",
       "url": "https://www.dealnews.com/Squier-Classic-Vibe-60-s-Jazzmaster-Electric-Guitar-for-380-free-shipping/22246977.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246977.html?iref=rss",
       "price": 380,
       "listPrice": null,
       "currency": "USD",
@@ -889,18 +809,18 @@
       },
       "id": "bee56e99360f674d",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Dreamust Shock-Absorbing Shoe Insoles for $5 + free shipping w/ Prime",
       "url": "https://www.dealnews.com/Dreamust-Shock-Absorbing-Shoe-Insoles-for-5-free-shipping-w-Prime/22203454.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22203454.html?iref=rss",
       "price": 4.99,
       "listPrice": null,
       "currency": "USD",
@@ -916,18 +836,18 @@
       },
       "id": "cfa656fad0644f41",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $86 + free shipping",
       "url": "https://www.dealnews.com/Nike-Mens-or-Womens-Air-Max-90-Tiempo-Shoes-for-86-free-shipping/22246939.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246939.html?iref=rss",
       "price": 86,
       "listPrice": null,
       "currency": "USD",
@@ -943,18 +863,126 @@
       },
       "id": "e379d046e6ec9a96",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "RealPlay Shot Roulette Game w/ 16 Shot Glasses for $15 + free shipping w/ $35",
+      "url": "https://www.dealnews.com/Real-Play-Shot-Roulette-Game-w-16-Shot-Glasses-for-15-free-shipping-w-35/22247123.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247123.html?iref=rss",
+      "price": 15,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Walmart",
+      "publishedAt": "2026-10-05T22:08:36.000Z",
+      "category": "Gaming & Toys",
+      "image": "https://d.dlnws.com/64599/1791238108-product-trimmed.png?h=190&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>RealPlay Shot Roulette Game w/ 16 Shot Glasses for $15 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Real-Play-Shot-Roulette-Game-w-16-Shot-Glasses-for-15-free-shipping-w-35/22247123.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791238108-product-trimmed.png?h=190&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart&#x20;offers&#x20;the&#x20;RealPlay&#x20;Shot&#x20;Roulette&#x20;Game&#x20;for&#x20;&#x24;14.97. &#x20;That&#x27;s&#x20;a&#x20;&#x24;25&#x20;savings. &#x20;Choose&#x20;pickup&#x20;or&#x20;spend&#x20;&#x24;35&#x20;to&#x20;avoid&#x20;the&#x20;&#x24;6.99&#x20;shipping&#x20;charge.\"><p>Walmart offers the RealPlay Shot Roulette Game for $14.97.  That's a $25 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247123.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:08:36 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2027-01-03T17:08:36-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Gaming &amp; Toys</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">15.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791238108-product-trimmed.png?h=190&amp;w=250\" medium=\"image\" height=\"190\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791238108-product-trimmed.png?h=190&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart offers the RealPlay Shot Roulette Game for $14.97.  That's a $25 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>Walmart offers the RealPlay Shot Roulette Game for $14.97.  That's a $25 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
+      },
+      "id": "f07cfc0e898da430",
+      "source": "dealnews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T22:10:38.341Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping",
+      "url": "https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246857.html?iref=rss",
+      "price": 409,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T18:44:09.000Z",
+      "category": "Desktops",
+      "image": "https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;K1&#x20;mini&#x20;PC&#x20;matches&#x20;its&#x20;all-time&#x20;low&#x20;price&#x20;at&#x20;&#x24;409,&#x20;down&#x20;from&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;509.&#x20;It&#x20;packs&#x20;16GB&#x20;of&#x20;RAM&#x20;and&#x20;a&#x20;512GB&#x20;SSD&#x20;into&#x20;a&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;case&#x20;that&#x20;weighs&#x20;under&#x20;3&#x20;lb.,&#x20;and&#x20;it&#x20;can&#x20;drive&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;monitors&#x20;at&#x20;once.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD&#x20;Ryzen&#x20;5&#x20;7430U&#x20;processor&#x20;with&#x20;integrated&#x20;Radeon&#x20;graphics&#x20;16GB&#x20;DDR4&#x20;RAM,&#x20;expandable&#x20;up&#x20;to&#x20;64GB&#x20;512GB&#x20;SSD&#x20;with&#x20;two&#x20;M.2&#x20;slots&#x20;supporting&#x20;up&#x20;to&#x20;4TB&#x20;Supports&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;displays&#x20;at&#x20;60Hz&#x20;via&#x20;HDMI,&#x20;DisplayPort,&#x20;and&#x20;USB-C&#x20;Measures&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;and&#x20;weighs&#x20;2.3&#x20;lb.&#x20;Comes&#x20;with&#x20;Windows&#x20;11&#x20;Pro&#x20;pre-installed&#x20;and&#x20;a&#x20;1-year&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246857.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:44:09 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:44:09-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Desktops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">409.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD Ryzen 5 7430U processor with integrated Radeon graphics 16GB DDR4 RAM, expandable up to 64GB 512GB SSD with two M.2 slots supporting up to 4TB Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb. Comes with Windows 11 Pro pre-installed and a 1-year warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>"
+      },
+      "id": "02952e843e67f619",
+      "source": "dealnews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Vevor Rolling Garden Cart for $47 + free shipping",
+      "url": "https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246873.html?iref=rss",
+      "price": 47,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "VEVOR",
+      "publishedAt": "2026-10-05T18:47:01.000Z",
+      "category": "Garden Tools",
+      "image": "https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Vevor Rolling Garden Cart for $47 + free shipping</title>\n   <link>https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use&#x20;promo&#x20;code&#x20;&quot;VVGG8&quot;&#x20;to&#x20;drop&#x20;the&#x20;price&#x20;on&#x20;this&#x20;Vevor&#x20;Rolling&#x20;Garden&#x20;Cart&#x20;to&#x20;&#x24;46.51,&#x20;its&#x20;best-ever&#x20;price. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb.&#x20;capacity&#x20;built-in&#x20;storage&#x20;tray&#x20;and&#x20;basket&#x20;360°&#x20;rotating&#x20;seat&#x20;&amp;&#x20;height&#x20;adjustable&#x20;up&#x20;to&#x20;3.1&quot;\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246873.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:47:01 -0400</pubDate>\n   <dealnews:retailer>VEVOR</dealnews:retailer>\n   <dealnews:expires>2026-10-15T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Garden Tools</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">47.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb. capacity built-in storage tray and basket 360° rotating seat & height adjustable up to 3.1\"\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>"
+      },
+      "id": "203c3c8235cd6151",
+      "source": "dealnews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Great Value Bacon Luncheon Meat 12-oz. Can 12-Pack for $21 + free shipping w/ $35",
+      "url": "https://www.dealnews.com/Great-Value-Bacon-Luncheon-Meat-12-oz-Can-12-Pack-for-21-free-shipping-w-35/22246877.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246877.html?iref=rss",
+      "price": 21,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Walmart",
+      "publishedAt": "2026-10-05T19:00:30.000Z",
+      "category": "Groceries",
+      "image": "https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Great Value Bacon Luncheon Meat 12-oz. Can 12-Pack for $21 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Great-Value-Bacon-Luncheon-Meat-12-oz-Can-12-Pack-for-21-free-shipping-w-35/22246877.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;12-pack&#x20;of&#x20;Great&#x20;Value&#x20;Bacon&#x20;Luncheon&#x20;Meat&#x20;is&#x20;&#x24;20.74&#x20;at&#x20;Walmart. &#x20;That&#x27;s&#x20;a&#x20;&#x24;7&#x20;savings&#x20;and&#x20;just&#x20;&#x24;1.73&#x20;a&#x20;can. &#x20;Choose&#x20;pickup&#x20;or&#x20;spend&#x20;&#x24;35&#x20;to&#x20;avoid&#x20;the&#x20;&#x24;6.99&#x20;shipping&#x20;charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246877.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:00:30 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:00:30-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Groceries</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">21.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&amp;w=250\" medium=\"image\" height=\"114\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
+      },
+      "id": "48e559405f992fc7",
+      "source": "dealnews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Epiphone Les Paul Custom Limited-Edition Electric Guitar for $599 + free shipping",
       "url": "https://www.dealnews.com/Epiphone-Les-Paul-Custom-Limited-Edition-Electric-Guitar-for-599-free-shipping/22246896.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246896.html?iref=rss",
       "price": 599,
       "listPrice": null,
       "currency": "USD",
@@ -970,45 +998,18 @@
       },
       "id": "f6dc05f63c1b37f3",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Publicada en las últimas 24 h"
-      ]
-    },
-    {
-      "title": "Haunted Hill Farm 5.9-Foot Reaper w/ Ghost Halloween Animatronic for $84 + free shipping",
-      "url": "https://www.dealnews.com/Haunted-Hill-Farm-5-9-Foot-Reaper-w-Ghost-Halloween-Animatronic-for-84-free-shipping/22246852.html?iref=rss",
-      "price": 84,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "Amazon",
-      "publishedAt": "2026-10-05T18:33:39.000Z",
-      "category": "Seasonal/Holidays",
-      "image": "https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Haunted Hill Farm 5.9-Foot Reaper w/ Ghost Halloween Animatronic for $84 + free shipping</title>\n   <link>https://www.dealnews.com/Haunted-Hill-Farm-5-9-Foot-Reaper-w-Ghost-Halloween-Animatronic-for-84-free-shipping/22246852.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Haunted&#x20;Hill&#x20;Farm&#x20;animatronic&#x20;is&#x20;&#x24;36&#x20;off&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;120&#x20;and&#x20;is&#x20;at&#x20;its&#x20;all-time&#x20;low&#x20;on&#x20;Amazon.&#x20;Standing&#x20;nearly&#x20;6&#x20;feet&#x20;tall,&#x20;it&#x20;includes&#x20;sound-activated&#x20;movement,&#x20;glowing&#x20;red&#x20;eyes,&#x20;and&#x20;moaning&#x20;sound&#x20;effects&#x20;for&#x20;haunted&#x20;house&#x20;displays.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This Haunted Hill Farm animatronic is $36 off its regular price of $120 and is at its all-time low on Amazon. Standing nearly 6 feet tall, it includes sound-activated movement, glowing red eyes, and moaning sound effects for haunted house displays. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Stands&#x20;5&#x20;ft&#x20;11&#x20;in&#x20;tall&#x20;Sound-activated&#x20;vertical&#x20;raising&#x20;motion&#x20;Red&#x20;LED&#x20;glowing&#x20;eyes&#x20;Emits&#x20;low&#x20;moaning&#x20;sounds&#x20;when&#x20;triggered&#x20;Battery&#x20;powered&#x20;1-year&#x20;limited&#x20;manufacturer&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Stands 5 ft 11 in tall</li> <li>Sound-activated vertical raising motion</li> <li>Red LED glowing eyes</li> <li>Emits low moaning sounds when triggered</li> <li>Battery powered</li> <li>1-year limited manufacturer warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246852.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:33:39 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:33:39-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Seasonal/Holidays</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">84.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Haunted Hill Farm animatronic is $36 off its regular price of $120 and is at its all-time low on Amazon. Standing nearly 6 feet tall, it includes sound-activated movement, glowing red eyes, and moaning sound effects for haunted house displays. It ships for free. \"><p>This Haunted Hill Farm animatronic is $36 off its regular price of $120 and is at its all-time low on Amazon. Standing nearly 6 feet tall, it includes sound-activated movement, glowing red eyes, and moaning sound effects for haunted house displays. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Stands 5 ft 11 in tall Sound-activated vertical raising motion Red LED glowing eyes Emits low moaning sounds when triggered Battery powered 1-year limited manufacturer warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Stands 5 ft 11 in tall</li> <li>Sound-activated vertical raising motion</li> <li>Red LED glowing eyes</li> <li>Emits low moaning sounds when triggered</li> <li>Battery powered</li> <li>1-year limited manufacturer warranty</li> </ul> </div>"
-      },
-      "id": "08ebcbd35895df74",
-      "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 11,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "Joyfy 5-Foot Giant Halloween Spider for $12 + free shipping w/ $35",
       "url": "https://www.dealnews.com/Joyfy-5-Foot-Giant-Halloween-Spider-for-12-free-shipping-w-35/22246098.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246098.html?iref=rss",
       "price": 11.69,
       "listPrice": null,
       "currency": "USD",
@@ -1024,18 +1025,18 @@
       },
       "id": "3530d6a43fc06edf",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 10,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     },
     {
       "title": "The Fab Collab Tenski Cigar Grip II for $23 + free shipping",
       "url": "https://www.dealnews.com/The-Fab-Collab-Tenski-Cigar-Grip-II-for-23-free-shipping/22234724.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22234724.html?iref=rss",
       "price": 22.99,
       "listPrice": null,
       "currency": "USD",
@@ -1051,13 +1052,12 @@
       },
       "id": "c753aa118c515eee",
       "source": "dealnews",
-      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 9,
       "flag": "normal",
       "reasons": [
-        "Publicada en las últimas 24 h"
+        "Precio de referencia no disponible"
       ]
     }
   ]

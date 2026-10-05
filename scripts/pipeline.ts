@@ -4,6 +4,16 @@ import type { Deal, DealsFile } from '../lib/types.ts'
 import { normalizeSource, type Source } from '../lib/normalize.ts'
 import { dedupe } from '../lib/dedupe.ts'
 import { xmlEscape as x } from '../lib/feeds.ts'
+import { formatMoney } from '../lib/format.ts'
+
+function sourceErrorEs(source: Source, error: string): string {
+  if (source.disabled) return 'Fuente desactivada; pendiente de revisión.'
+  if (/Blocked by robots/.test(error)) return 'La fuente no permite la consulta automática.'
+  if (/robots.txt/.test(error)) return 'No se pudo comprobar el permiso de consulta.'
+  if (/Redirect refused/.test(error)) return 'La fuente redirige a otra dirección; pendiente de revisión.'
+  if (/schema|XML|JSON/i.test(error)) return 'La fuente devolvió datos que no se pudieron interpretar.'
+  return 'No se pudieron obtener las ofertas de esta fuente.'
+}
 
 export async function collect(sources: Source[], read: (source: Source) => Promise<string>, now: Date, previous: Deal[] = []): Promise<DealsFile> {
   const deals: Deal[] = []
@@ -14,7 +24,8 @@ export async function collect(sources: Source[], read: (source: Source) => Promi
       deals.push(...found)
       outcomes.push({ name: source.name, ok: true, count: found.length })
     } catch (e) {
-      outcomes.push({ name: source.name, ok: false, count: 0, error: e instanceof Error ? e.message : 'Unknown source failure' })
+      const error = e instanceof Error ? e.message : 'Unknown source failure'
+      outcomes.push({ name: source.name, ok: false, count: 0, error, errorEs: sourceErrorEs(source, error) })
     }
   }
   const ranked = dedupe(deals).slice(0, 150)
@@ -22,7 +33,7 @@ export async function collect(sources: Source[], read: (source: Source) => Promi
 }
 
 export function rss(file: DealsFile): string {
-  const items = file.deals.slice(0, 30).map(d => d.syndication?.itemXml || `<item><title>${x(d.title)}</title><link>${x(d.url)}</link><guid isPermaLink="false">${x(d.id)}</guid><pubDate>${new Date(d.publishedAt).toUTCString()}</pubDate><description>${x(`${d.price.toFixed(2)} ${d.currency}. ${d.reasons.join('. ')}. Fuente: ${d.source}`)}</description><source url="${x(d.sourceUrl)}">${x(d.source)}</source></item>`).join('\n')
+  const items = file.deals.slice(0, 30).map(d => d.syndication?.itemXml || `<item><title>${x(d.title)}</title><link>${x(d.url)}</link><guid isPermaLink="false">${x(d.id)}</guid><pubDate>${new Date(d.publishedAt).toUTCString()}</pubDate><description>${x(`${formatMoney(d.price)} ${d.currency}. ${d.reasons.join('. ')}. Fuente: ${d.source}`)}</description><source url="${x(d.sourceUrl)}">${x(d.source)}</source></item>`).join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dealnews="https://www.dealnews.com/ns/rss/1.0.htm" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>barato.si — chollos del día</title><link>https://barato.si/</link><description>Ofertas seleccionadas cada día. Fuente: DealNews; contenido y enlaces originales. La clasificación de barato.si es independiente.</description><language>es</language><lastBuildDate>${new Date(file.generatedAt).toUTCString()}</lastBuildDate><atom:link href="https://barato.si/feed.xml" rel="self" type="application/rss+xml"/>
@@ -79,7 +90,7 @@ https://barato.si/api/index.json — { latest: fecha YYYY-MM-DD, days: fechas di
 https://barato.si/feed.xml — RSS 2.0, hasta 30 ofertas.
 
 ## Esquema
-DealsFile: { date: string, generatedAt: ISO8601, count: number, sources: [{ name: string, ok: boolean, count: number, error?: string }], deals: Deal[] }.
+DealsFile: { date: string, generatedAt: ISO8601, count: number, sources: [{ name: string, ok: boolean, count: number, error?: string, errorEs?: string }], deals: Deal[] }.
 Deal: { id: string, title: string, url: string, store: string, source: string, sourceUrl: string, currency: ISO4217, price: number, listPrice: number|null, discountPct: number|null, image: string|null, category: string|null, publishedAt: ISO8601, foundAt: ISO8601, score: number (0–100), flag: "error-probable"|"chollo"|"normal", reasons: string[], sourceSignal?: number, syndication?: { attribution: string, feedUrl: string, itemXml: string, descriptionHtml: string } }.
 Los precios se expresan en unidades de la moneda indicada. Un precio desconocido se omite, nunca se convierte en cero. Los porcentajes sin precio de lista no se tratan como verificados.
 

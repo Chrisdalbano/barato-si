@@ -3,6 +3,19 @@ import { scoreDeal } from '../lib/index'
 import { deal, now } from './helpers'
 
 describe('conservative ranking', () => {
+  it('formats savings and fractional percentages in Spanish', () => {
+    expect(scoreDeal(deal({ price: 7.46, listPrice: 50 }), now).reasons).toEqual([
+      '85,08\u00a0% bajo el precio de lista', 'Ahorro de 42,54 USD',
+    ])
+  })
+  it('keeps reasons valid in archives while freshness still affects the score', () => {
+    const offer = deal({ price: 7.46, listPrice: 50 })
+    const current = scoreDeal(offer, now)
+    const archived = scoreDeal(offer, new Date(now.getTime() + 30 * 86400000))
+    expect(current.reasons).toEqual(archived.reasons)
+    expect(current.score).toBeGreaterThan(archived.score)
+    expect(scoreDeal(deal({ listPrice: null }), now).reasons).toEqual(['Precio de referencia no disponible'])
+  })
   it.each([
     [{ price: 10, listPrice: 100 }, 'error-probable'],
     [{ price: 15, listPrice: 100 }, 'error-probable'],
