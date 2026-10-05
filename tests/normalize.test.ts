@@ -1,12 +1,12 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
-import { normalizeSource, type Source } from '../lib/normalize'
+import { normalizeSource, cheapSharkDealId, type Source } from '../lib/normalize'
 import { sources } from '../scripts/sources'
 import { feedItems } from '../lib/feeds'
 import { now } from './helpers'
 
 const fixture = (name: string) => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')
-const source = (name: string) => sources.find(s => s.name === name)!
+const source = (name: string): Source => sources.find(s => s.name.toLowerCase() === name.toLowerCase()) || { name, kind: name.startsWith('reddit-') ? 'reddit' : name === 'woot' ? 'woot' : 'rss', url: 'https://test.example/feed' }
 
 describe('real response fixtures (captured 2026-10-05)', () => {
   it('normalizes DealNews and preserves exact attribution, links, and original XML', () => {
@@ -89,4 +89,21 @@ describe('synthetic adapter edge cases for blocked/authenticated sources', () =>
     const src: Source = { name: 'rss-test', kind: 'rss', url: 'https://test/feed' }
     expect(normalizeSource(src, '<rss><channel><item><title>Thing $20</title><link>javascript:alert(1)</link></item></channel></rss>', now)).toEqual([])
   })
+})
+
+it('ITAD preserves links and rejects expired or non-discounted offers (synthetic documented schema)', () => {
+  const src: Source = { name: 'IsThereAnyDeal', kind: 'itad', url: 'https://api.isthereanydeal.com/deals/v2' }
+  const offer = { title: 'Example game', deal: { shop: { name: 'GOG' }, price: { amount: 5, currency: 'USD' }, regular: { amount: 50, currency: 'USD' }, cut: 90, url: 'https://itad.link/example/?affiliate=keep', expiry: '2026-10-07T00:00:00Z' } }
+  const result = normalizeSource(src, JSON.stringify({ list: [offer, { ...offer, deal: { ...offer.deal, expiry: '2026-10-01' } }, { ...offer, deal: { ...offer.deal, cut: 0 } }] }), now)
+  expect(result).toHaveLength(1)
+  expect(result[0]).toMatchObject({ store: 'GOG', source: 'IsThereAnyDeal', price: 5, url: offer.deal.url, flag: 'chollo' })
+})
+it.each([['7', 'GOG'], ['11', 'Humble Store'], ['15', 'Fanatical']])('maps CheapShark store %s to %s', (storeID, store) => {
+  const result = normalizeSource(source('cheapshark'), JSON.stringify([{ title: 'Example', dealID: 'abc', storeID, isOnSale: '1', salePrice: '1', normalPrice: '10' }]), now)
+  expect(result[0]).toMatchObject({ source: 'CheapShark', store })
+})
+
+it('encodes CheapShark redirect IDs exactly once', () => {
+  expect(cheapSharkDealId('abc%2Bdef%3D')).toBe('abc%2Bdef%3D')
+  expect(cheapSharkDealId('abc+def=')).toBe('abc%2Bdef%3D')
 })

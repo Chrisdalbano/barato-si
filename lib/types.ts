@@ -36,6 +36,8 @@ export interface Deal {
   /** Short Spanish reasons for the flag, e.g. "92% bajo el precio de lista". */
   reasons: string[]
   /** Optional source evidence; never inferred from product review counts. */
+  /** Plain source description used as explicit pricing-error evidence. */
+  sourceText?: string
   sourceSignal?: number
   /** Original syndicated item, retained unchanged for attribution/display requirements. */
   syndication?: { attribution: string; feedUrl: string; itemXml: string; descriptionHtml: string }
@@ -48,7 +50,7 @@ export interface DealsFile {
   count: number
   /** Per-source fetch outcome, so a dead source is visible, not silent. */
   sources: { name: string; ok: boolean; count: number; error?: string; errorEs?: string }[]
-  deals: Deal[] // sorted by score, descending
+  deals: Deal[] // balanced top 30, then descending score
 }
 
 // ---- Files the job writes --------------------------------------------------

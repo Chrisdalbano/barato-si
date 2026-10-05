@@ -28,15 +28,29 @@ export async function collect(sources: Source[], read: (source: Source) => Promi
       outcomes.push({ name: source.name, ok: false, count: 0, error, errorEs: sourceErrorEs(source, error) })
     }
   }
-  const ranked = dedupe(deals).slice(0, 150)
+  const ranked = balanceRanking(dedupe(deals)).slice(0, 150)
   return { date: now.toISOString().slice(0, 10), generatedAt: now.toISOString(), count: ranked.length, sources: outcomes, deals: ranked }
+}
+
+// Alternate the best non-game and game offers; at most 15 games in the top 30
+// when 15 other offers exist. Fill shortages instead of hiding valid offers.
+export function balanceRanking(ranked: Deal[]): Deal[] {
+  const games = ranked.filter(d => /videojuegos|games/i.test(d.category || ''))
+  const other = ranked.filter(d => !/videojuegos|games/i.test(d.category || ''))
+  const top: Deal[] = []
+  for (let i = 0; i < 15; i++) {
+    if (other[i]) top.push(other[i]!)
+    if (games[i]) top.push(games[i]!)
+  }
+  const selected = new Set(top.map(d => d.id))
+  return [...top, ...ranked.filter(d => !selected.has(d.id))]
 }
 
 export function rss(file: DealsFile): string {
   const items = file.deals.slice(0, 30).map(d => d.syndication?.itemXml || `<item><title>${x(d.title)}</title><link>${x(d.url)}</link><guid isPermaLink="false">${x(d.id)}</guid><pubDate>${new Date(d.publishedAt).toUTCString()}</pubDate><description>${x(`${formatMoney(d.price)} ${d.currency}. ${d.reasons.join('. ')}. Fuente: ${d.source}`)}</description><source url="${x(d.sourceUrl)}">${x(d.source)}</source></item>`).join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dealnews="https://www.dealnews.com/ns/rss/1.0.htm" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>barato.si — chollos del día</title><link>https://barato.si/</link><description>Ofertas seleccionadas cada día. Fuente: DealNews; contenido y enlaces originales. La clasificación de barato.si es independiente.</description><language>es</language><lastBuildDate>${new Date(file.generatedAt).toUTCString()}</lastBuildDate><atom:link href="https://barato.si/feed.xml" rel="self" type="application/rss+xml"/>
+<title>barato.si — ofertas del día</title><link>https://barato.si/</link><description>Ofertas seleccionadas cada día. Contenido y enlaces originales de cada fuente. La clasificación de barato.si es independiente.</description><language>es</language><lastBuildDate>${new Date(file.generatedAt).toUTCString()}</lastBuildDate><atom:link href="https://barato.si/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}
 </channel></rss>\n`
 }
@@ -80,22 +94,22 @@ export async function writeOutputs(root: string, file: DealsFile): Promise<void>
   await atomic(join(root, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://barato.si/sitemap.xml\n')
   await atomic(join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://barato.si/</loc><lastmod>${file.generatedAt}</lastmod></url></urlset>\n`)
   await atomic(join(root, 'llms.txt'), `# barato.si — barato, sí
-Chollos y posibles errores de precio, seleccionados cada día. API JSON gratuita, sin autenticación.
+Ofertas y posibles errores de precio, seleccionados cada día. API JSON gratuita, sin autenticación.
 Actualización UTC: ${file.generatedAt}. Programación diaria: 11:00 UTC.
 
 ## Endpoints
-https://barato.si/api/deals.json — DealsFile actual, hasta 150 ofertas ordenadas por score.
+https://barato.si/api/deals.json — DealsFile actual, hasta 150 ofertas con equilibrio de categorías en las primeras 30.
 https://barato.si/api/deals/YYYY-MM-DD.json — archivo diario, últimos 30 días UTC.
 https://barato.si/api/index.json — { latest: fecha YYYY-MM-DD, days: fechas disponibles en orden descendente }.
 https://barato.si/feed.xml — RSS 2.0, hasta 30 ofertas.
 
 ## Esquema
 DealsFile: { date: string, generatedAt: ISO8601, count: number, sources: [{ name: string, ok: boolean, count: number, error?: string, errorEs?: string }], deals: Deal[] }.
-Deal: { id: string, title: string, url: string, store: string, source: string, sourceUrl: string, currency: ISO4217, price: number, listPrice: number|null, discountPct: number|null, image: string|null, category: string|null, publishedAt: ISO8601, foundAt: ISO8601, score: number (0–100), flag: "error-probable"|"chollo"|"normal", reasons: string[], sourceSignal?: number, syndication?: { attribution: string, feedUrl: string, itemXml: string, descriptionHtml: string } }.
+Deal: { id: string, title: string, url: string, store: string, source: string, sourceUrl: string, currency: ISO4217, price: number, listPrice: number|null, discountPct: number|null, image: string|null, category: string|null, publishedAt: ISO8601, foundAt: ISO8601, score: number (0–100), flag: string (clasificación interna; mostrar como Error probable, Baratísimo o Normal), reasons: string[], sourceSignal?: number, syndication?: { attribution: string, feedUrl: string, itemXml: string, descriptionHtml: string } }.
 Los precios se expresan en unidades de la moneda indicada. Un precio desconocido se omite, nunca se convierte en cero. Los porcentajes sin precio de lista no se tratan como verificados.
 
 ## Atribución y uso razonable
-Fuente activa: DealNews (https://www.dealnews.com/pages/rss.html). Conserva el contenido original de syndication y los enlaces con sus códigos; atribuye a DealNews al mostrarlo. No uses su contenido en extensiones públicas de navegador. La clasificación y sus razones son análisis independiente de barato.si.
+Fuentes activas: CheapShark (enlaces de redirección obligatorios), Steam, Epic y DealNews (https://www.dealnews.com/pages/rss.html). Conserva el contenido original de syndication y los enlaces con sus códigos; atribuye a DealNews al mostrarlo. No uses su contenido en extensiones públicas de navegador. La clasificación y sus razones son análisis independiente de barato.si.
 Cita barato.si y la fuente original. Conserva los enlaces y la atribución. Almacena la respuesta en caché; basta una consulta al día. No revendas el contenido de las fuentes ni lo uses para entrenar modelos sin permiso de sus titulares.
 Las ofertas pueden caducar y tener condiciones, cupones o requisitos de membresía. Comprueba las condiciones en la fuente. «Error probable» es una señal, no una confirmación. El idioma original de los títulos se conserva.
 `)

@@ -2,22 +2,19 @@ import { mkdtemp, mkdir, readFile, writeFile, readdir, rm } from 'node:fs/promis
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { expect, it, vi } from 'vitest'
-import { collect, rss, writeOutputs, readPrevious } from '../scripts/pipeline'
+import { collect, rss, writeOutputs, readPrevious, balanceRanking } from '../scripts/pipeline'
 import { createSourceReader } from '../scripts/network'
-import { sources } from '../scripts/sources'
+import { configuredSources, sources } from '../scripts/sources'
 import { robotsAllowed, USER_AGENT } from '../lib/robots'
 import { deal, now } from './helpers'
 
 it('runs fixtures through collection, recording every source outcome', async () => {
-  const probes = JSON.parse(await readFile(new URL('./fixtures/live-probes.json', import.meta.url), 'utf8')).results
   const file = await collect(sources, async s => {
-    if (s.disabled) throw new Error(s.disabled)
-    const key = s.name.startsWith('reddit-') ? 'reddit' : s.name
-    if (!robotsAllowed(probes[`${key}-robots`].body, s.url)) throw new Error('Blocked by robots.txt')
-    return readFile(new URL('./fixtures/dealnews.xml', import.meta.url), 'utf8')
+    if (s.kind === 'cheapshark') return JSON.stringify([{ title: 'Synthetic game', dealID: 'fixture', storeID: '7', isOnSale: '1', salePrice: '1', normalPrice: '50' }])
+    return readFile(new URL('./fixtures/' + (s.kind === 'rss' ? 'dealnews.xml' : s.kind + '.json'), import.meta.url), 'utf8')
   }, now)
   expect(file.sources).toHaveLength(sources.length)
-  expect(file.sources.filter(s => s.ok).map(s => s.name)).toEqual(['dealnews'])
+  expect(file.sources.filter(s => s.ok).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews'])
   expect(file.count).toBeGreaterThan(0)
   expect(file.count).toBe(file.deals.length)
   expect(file.sources.filter(s => !s.ok).every(s => s.error && s.errorEs)).toBe(true)
@@ -40,13 +37,13 @@ it.each([
   ['timeout', 'No se pudieron obtener las ofertas de esta fuente.'],
 ])('preserves English diagnostics and supplies Spanish visitor text: %s', async (error, errorEs) => {
   const file = await collect([sources[3]!], async () => { throw new Error(error) }, now)
-  expect(file.sources[0]).toEqual({ name: 'dealnews', ok: false, count: 0, error, errorEs })
+  expect(file.sources[0]).toEqual({ name: 'DealNews', ok: false, count: 0, error, errorEs })
 })
 
 it('round-trips Spanish accents as UTF-8 in JSON, archives, RSS and discovery text', async () => {
   const root = await mkdtemp(join(tmpdir(), 'barato-utf8-'))
   try {
-    const file = await collect([sources[1]!], async () => { throw new Error(sources[1]!.disabled) }, now)
+    const file = await collect([{ ...sources[1]!, disabled: 'Paused' }], async () => { throw new Error('Paused') }, now)
     file.deals = [deal({ title: 'Café y té', reasons: ['Ahorro de 42,54 USD'] })]
     file.count = 1
     await writeOutputs(root, file)
@@ -103,8 +100,8 @@ it('checks robots once per origin, never fetches disallowed content, and sends h
     return new Response('User-agent: *\nDisallow: /', { status: 200 })
   })
   const read = createSourceReader(mock as typeof fetch)
-  await expect(read(sources[0]!)).rejects.toThrow('Blocked by robots')
-  await expect(read(sources[0]!)).rejects.toThrow('Blocked by robots')
+  await expect(read({ ...sources[0]!, url: 'https://www.cheapshark.com/not-approved' })).rejects.toThrow('Blocked by robots')
+  await expect(read({ ...sources[0]!, url: 'https://www.cheapshark.com/not-approved' })).rejects.toThrow('Blocked by robots')
   expect(mock).toHaveBeenCalledTimes(1)
 })
 
@@ -118,6 +115,45 @@ it('fails closed on unavailable robots and makes no request for disabled sources
   const mock = vi.fn().mockRejectedValue(new Error('timeout'))
   const read = createSourceReader(mock)
   await expect(read(sources[3]!)).rejects.toThrow('timeout')
-  await expect(read(sources[1]!)).rejects.toThrow('Permission required')
+  await expect(read({ ...sources[1]!, disabled: 'Permission required' })).rejects.toThrow('Permission required')
   expect(mock).toHaveBeenCalledTimes(1)
+})
+
+it('publishes only product sources, with ITAD opt-in and no leaked key', async () => {
+  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews'])
+  const configured = configuredSources({ ITAD_API_KEY: 'test-secret' })
+  expect(configured.at(-1)?.kind).toBe('itad')
+  const file = await collect(configured, async () => { throw new Error('HTTP 403') }, now)
+  expect(JSON.stringify(file)).not.toContain('test-secret')
+})
+it.each([0, 1, 2])('uses exactly one approved endpoint request with the honest UA (%s)', async index => {
+  const mock = vi.fn(async (_url, options) => {
+    expect(options.headers['User-Agent']).toBe(USER_AGENT)
+    return new Response('{}')
+  })
+  await createSourceReader(mock)(sources[index]!)
+  expect(mock).toHaveBeenCalledTimes(1)
+  expect(mock.mock.calls[0]?.[0]).toBe(sources[index]!.url)
+})
+it('sends ITAD credentials only to the data endpoint as a header', async () => {
+  const mock = vi.fn().mockResolvedValueOnce(new Response('User-agent: *\nAllow: /')).mockResolvedValueOnce(new Response('{"list":[]}'))
+  await createSourceReader(mock)(configuredSources({ ITAD_API_KEY: 'secret' }).at(-1)!)
+  expect(mock.mock.calls[0]?.[1].headers['ITAD-API-Key']).toBeUndefined()
+  expect(mock.mock.calls[1]?.[1].headers['ITAD-API-Key']).toBe('secret')
+})
+it('balances games across sources against other offers without losing or duplicating entries', () => {
+  const games = Array.from({ length: 60 }, (_, i) => deal({ id: `g${i}`, category: 'videojuegos', source: i % 2 ? 'Steam' : 'CheapShark', score: 100 - i }))
+  const other = Array.from({ length: 40 }, (_, i) => deal({ id: `o${i}`, score: 50 - i }))
+  const result = balanceRanking([...games, ...other])
+  expect(result.slice(0, 30).filter(d => d.category === 'videojuegos')).toHaveLength(15)
+  expect(result.slice(0, 8).filter(d => !d.category)).toHaveLength(4)
+  expect(new Set(result.map(d => d.id)).size).toBe(100)
+  expect(balanceRanking(games)).toEqual(games)
+})
+it('does not generate Spain-only wording in RSS or discovery text', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'barato-wording-'))
+  try {
+    await writeOutputs(root, { date: '2026-10-05', generatedAt: now.toISOString(), count: 0, sources: [], deals: [] })
+    for (const name of ['feed.xml', 'llms.txt']) expect(await readFile(join(root, name), 'utf8')).not.toMatch(/chollo/i)
+  } finally { await rm(root, { recursive: true }) }
 })

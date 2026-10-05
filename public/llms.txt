@@ -1,19 +1,19 @@
 # barato.si — barato, sí
-Chollos y posibles errores de precio, seleccionados cada día. API JSON gratuita, sin autenticación.
-Actualización UTC: 2026-10-05T22:10:38.341Z. Programación diaria: 11:00 UTC.
+Ofertas y posibles errores de precio, seleccionados cada día. API JSON gratuita, sin autenticación.
+Actualización UTC: 2026-10-05T22:29:33.736Z. Programación diaria: 11:00 UTC.
 
 ## Endpoints
-https://barato.si/api/deals.json — DealsFile actual, hasta 150 ofertas ordenadas por score.
+https://barato.si/api/deals.json — DealsFile actual, hasta 150 ofertas con equilibrio de categorías en las primeras 30.
 https://barato.si/api/deals/YYYY-MM-DD.json — archivo diario, últimos 30 días UTC.
 https://barato.si/api/index.json — { latest: fecha YYYY-MM-DD, days: fechas disponibles en orden descendente }.
 https://barato.si/feed.xml — RSS 2.0, hasta 30 ofertas.
 
 ## Esquema
 DealsFile: { date: string, generatedAt: ISO8601, count: number, sources: [{ name: string, ok: boolean, count: number, error?: string, errorEs?: string }], deals: Deal[] }.
-Deal: { id: string, title: string, url: string, store: string, source: string, sourceUrl: string, currency: ISO4217, price: number, listPrice: number|null, discountPct: number|null, image: string|null, category: string|null, publishedAt: ISO8601, foundAt: ISO8601, score: number (0–100), flag: "error-probable"|"chollo"|"normal", reasons: string[], sourceSignal?: number, syndication?: { attribution: string, feedUrl: string, itemXml: string, descriptionHtml: string } }.
+Deal: { id: string, title: string, url: string, store: string, source: string, sourceUrl: string, currency: ISO4217, price: number, listPrice: number|null, discountPct: number|null, image: string|null, category: string|null, publishedAt: ISO8601, foundAt: ISO8601, score: number (0–100), flag: string (clasificación interna; mostrar como Error probable, Baratísimo o Normal), reasons: string[], sourceSignal?: number, syndication?: { attribution: string, feedUrl: string, itemXml: string, descriptionHtml: string } }.
 Los precios se expresan en unidades de la moneda indicada. Un precio desconocido se omite, nunca se convierte en cero. Los porcentajes sin precio de lista no se tratan como verificados.
 
 ## Atribución y uso razonable
-Fuente activa: DealNews (https://www.dealnews.com/pages/rss.html). Conserva el contenido original de syndication y los enlaces con sus códigos; atribuye a DealNews al mostrarlo. No uses su contenido en extensiones públicas de navegador. La clasificación y sus razones son análisis independiente de barato.si.
+Fuentes activas: CheapShark (enlaces de redirección obligatorios), Steam, Epic y DealNews (https://www.dealnews.com/pages/rss.html). Conserva el contenido original de syndication y los enlaces con sus códigos; atribuye a DealNews al mostrarlo. No uses su contenido en extensiones públicas de navegador. La clasificación y sus razones son análisis independiente de barato.si.
 Cita barato.si y la fuente original. Conserva los enlaces y la atribución. Almacena la respuesta en caché; basta una consulta al día. No revendas el contenido de las fuentes ni lo uses para entrenar modelos sin permiso de sus titulares.
 Las ofertas pueden caducar y tener condiciones, cupones o requisitos de membresía. Comprueba las condiciones en la fuente. «Error probable» es una señal, no una confirmación. El idioma original de los títulos se conserva.

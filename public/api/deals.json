@@ -1,82 +1,27 @@
 {
   "date": "2026-10-05",
-  "generatedAt": "2026-10-05T22:10:38.341Z",
-  "count": 36,
+  "generatedAt": "2026-10-05T22:29:33.736Z",
+  "count": 107,
   "sources": [
     {
-      "name": "cheapshark",
-      "ok": false,
-      "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested",
-      "errorEs": "La fuente no permite la consulta automática."
+      "name": "CheapShark",
+      "ok": true,
+      "count": 60
     },
     {
-      "name": "slickdeals-frontpage",
-      "ok": false,
-      "count": 0,
-      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed.",
-      "errorEs": "Fuente desactivada; pendiente de revisión."
+      "name": "Steam",
+      "ok": true,
+      "count": 10
     },
     {
-      "name": "slickdeals-popular",
-      "ok": false,
-      "count": 0,
-      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed.",
-      "errorEs": "Fuente desactivada; pendiente de revisión."
+      "name": "Epic",
+      "ok": true,
+      "count": 2
     },
     {
-      "name": "dealnews",
+      "name": "DealNews",
       "ok": true,
       "count": 36
-    },
-    {
-      "name": "reddit-deals",
-      "ok": false,
-      "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested",
-      "errorEs": "La fuente no permite la consulta automática."
-    },
-    {
-      "name": "reddit-buildapcsales",
-      "ok": false,
-      "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested",
-      "errorEs": "La fuente no permite la consulta automática."
-    },
-    {
-      "name": "reddit-GameDeals",
-      "ok": false,
-      "count": 0,
-      "error": "Blocked by robots.txt; endpoint was not requested",
-      "errorEs": "La fuente no permite la consulta automática."
-    },
-    {
-      "name": "woot",
-      "ok": false,
-      "count": 0,
-      "error": "Official API requires x-api-key; legacy /blog/feed.rss returned HTTP 404.",
-      "errorEs": "Fuente desactivada; pendiente de revisión."
-    },
-    {
-      "name": "ebay",
-      "ok": false,
-      "count": 0,
-      "error": "Legacy deals RSS returned HTTP 404; no open replacement verified.",
-      "errorEs": "Fuente desactivada; pendiente de revisión."
-    },
-    {
-      "name": "epic",
-      "ok": false,
-      "count": 0,
-      "error": "HTTP 200 in live probe, but no documented public syndication permission verified.",
-      "errorEs": "Fuente desactivada; pendiente de revisión."
-    },
-    {
-      "name": "steam",
-      "ok": false,
-      "count": 0,
-      "error": "HTTP 200 in live probe, but undocumented storefront endpoint; syndication permission unverified.",
-      "errorEs": "Fuente desactivada; pendiente de revisión."
     }
   ],
   "deals": [
@@ -89,6 +34,7 @@
       "currency": "USD",
       "store": "Macy's",
       "publishedAt": "2026-10-05T19:58:56.000Z",
+      "sourceText": "This Alfani shirt is priced at $7.46, down from $50, a savings of 85%. As a Last Act item, it's final sale with no returns or exchanges. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's Features Point collar Button-front closure Solid textured woven fabric 100% cotton Machine washable",
       "category": "Shirts",
       "image": "https://d.dlnws.com/64599/1791230327-29765522_fpx.jpeg?h=250&w=205",
       "syndication": {
@@ -98,7 +44,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230327-29765522_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Alfani shirt is priced at $7.46, down from $50, a savings of 85%. As a Last Act item, it's final sale with no returns or exchanges. Star Rewards members get free shipping over $39 (it's free to join).\"><p>This Alfani shirt is priced at $7.46, down from $50, a savings of 85%. As a Last Act item, it's final sale with no returns or exchanges. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div> <div class=\"snippet features\" title=\"Point collar Button-front closure Solid textured woven fabric 100% cotton Machine washable\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Point collar</li> <li>Button-front closure</li> <li>Solid textured woven fabric</li> <li>100% cotton</li> <li>Machine washable</li> </ul> </div>"
       },
       "id": "79f567e7eeef0d66",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 85.08,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 74,
@@ -109,31 +55,27 @@
       ]
     },
     {
-      "title": "adidas Men's Samoa Shoes for $29 + free shipping",
-      "url": "https://www.dealnews.com/adidas-Mens-Samoa-Shoes-for-29-free-shipping/22246856.html?iref=rss",
-      "sourceUrl": "https://www.dealnews.com/22246856.html?iref=rss",
-      "price": 29,
-      "listPrice": 80,
+      "title": "Great Houses of Calderia",
+      "url": "https://www.cheapshark.com/redirect?dealID=ZfvFYzi5ySvyHATPHuaQ8Y1aisMpkqD23pGikPzYgfI%3D",
+      "store": "Gamesplanet",
+      "price": 1.12,
+      "listPrice": 24.99,
       "currency": "USD",
-      "store": "eBay",
-      "publishedAt": "2026-10-05T18:44:09.000Z",
-      "category": "Shoes",
-      "image": "https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>adidas Men's Samoa Shoes for $29 + free shipping</title>\n   <link>https://www.dealnews.com/adidas-Mens-Samoa-Shoes-for-29-free-shipping/22246856.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;adidas&#x20;Men&#x27;s&#x20;Samoa&#x20;shoe&#x20;drops&#x20;to&#x20;&#x24;29&#x20;with&#x20;promo&#x20;code&#x20;&quot;COUNTDOWN20&quot;&#x20;at&#x20;checkout,&#x20;down&#x20;from&#x20;the&#x20;&#x24;80&#x20;list&#x20;price,&#x20;and&#x20;the&#x20;lowest&#x20;price&#x20;we&#x20;could&#x20;by&#x20;&#x24;26.&#x20;The&#x20;Samoa&#x20;line&#x20;debuted&#x20;in&#x20;the&#x20;1970s&#x20;as&#x20;part&#x20;of&#x20;adidas&#x27;s&#x20;&quot;Islands&#x20;Collection,&quot;&#x20;a&#x20;multi-shoe&#x20;lineup&#x20;meant&#x20;to&#x20;evoke&#x20;different&#x20;parts&#x20;of&#x20;the&#x20;globe,&#x20;before&#x20;becoming&#x20;a&#x20;streetwear&#x20;staple&#x20;in&#x20;the&#x20;&#x27;80s.&#x20;The&#x20;coupon&#x20;ends&#x20;October&#x20;11&#x20;at&#x20;11&#x3A;59&#x20;PM&#x20;EDT.\"><p>This adidas Men's Samoa shoe drops to $29 with promo code \"COUNTDOWN20\" at checkout, down from the $80 list price, and the lowest price we could by $26. The Samoa line debuted in the 1970s as part of adidas's \"Islands Collection,\" a multi-shoe lineup meant to evoke different parts of the globe, before becoming a streetwear staple in the '80s. The coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Leather&#x20;upper&#x20;with&#x20;contrast&#x20;3-Stripes&#x20;and&#x20;a&#x20;Trefoil&#x20;logo&#x20;on&#x20;the&#x20;tongue&#x20;New&#x20;with&#x20;original&#x20;box&#x20;Lace-up&#x20;closure\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Leather upper with contrast 3-Stripes and a Trefoil logo on the tongue</li> <li>New with original box</li> <li>Lace-up closure</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246856.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:44:09 -0400</pubDate>\n   <dealnews:retailer>eBay</dealnews:retailer>\n   <dealnews:expires>2026-10-11T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">29.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This adidas Men's Samoa shoe drops to $29 with promo code \"COUNTDOWN20\" at checkout, down from the $80 list price, and the lowest price we could by $26. The Samoa line debuted in the 1970s as part of adidas's \"Islands Collection,\" a multi-shoe lineup meant to evoke different parts of the globe, before becoming a streetwear staple in the '80s. The coupon ends October 11 at 11:59 PM EDT.\"><p>This adidas Men's Samoa shoe drops to $29 with promo code \"COUNTDOWN20\" at checkout, down from the $80 list price, and the lowest price we could by $26. The Samoa line debuted in the 1970s as part of adidas's \"Islands Collection,\" a multi-shoe lineup meant to evoke different parts of the globe, before becoming a streetwear staple in the '80s. The coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Leather upper with contrast 3-Stripes and a Trefoil logo on the tongue New with original box Lace-up closure\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Leather upper with contrast 3-Stripes and a Trefoil logo on the tongue</li> <li>New with original box</li> <li>Lace-up closure</li> </ul> </div>"
-      },
-      "id": "491f2983b6217419",
-      "source": "dealnews",
-      "discountPct": 63.75,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 62,
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1812910/bd6763340dffed49728cf7a1a867b408e748dd35/capsule_231x87.jpg?t=1758889157",
+      "publishedAt": "2026-10-04T22:24:34.000Z",
+      "sourceSignal": 79,
+      "id": "7528ab4095391462",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.52,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 82,
       "flag": "chollo",
       "reasons": [
-        "63,75 % bajo el precio de lista",
-        "Ahorro de 51,00 USD"
+        "95,52 % bajo el precio de lista",
+        "Ahorro de 23,87 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -145,6 +87,7 @@
       "currency": "USD",
       "store": "Amazon",
       "publishedAt": "2026-10-05T19:24:57.000Z",
+      "sourceText": "This Amazon Ember 4-Series TV is $280, down from $460. It includes HDR10+ for improved contrast and a quad-core processor with Wi-Fi 6 for faster app loading. The built-in Alexa+ remote lets you search for shows by talking naturally across your streaming apps. Buy Now at Amazon Features 4K Ultra HD resolution with HDR10+ support Quad-core processor with Wi-Fi 6 support Built-in Alexa+ voice remote Fire TV smart platform with personalized recommendations Omnisense sensors that wake the display automatically Supports Amazon Luna and Xbox Game Pass cloud gaming",
       "category": "TVs",
       "image": "https://d.dlnws.com/64599/1791228291-61btoo8tvcl-ac_sl1500.jpg?h=170&w=250",
       "syndication": {
@@ -154,7 +97,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791228291-61btoo8tvcl-ac_sl1500.jpg?h=170&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Amazon Ember 4-Series TV is $280, down from $460. It includes HDR10+ for improved contrast and a quad-core processor with Wi-Fi 6 for faster app loading. The built-in Alexa+ remote lets you search for shows by talking naturally across your streaming apps.\"><p>This Amazon Ember 4-Series TV is $280, down from $460. It includes HDR10+ for improved contrast and a quad-core processor with Wi-Fi 6 for faster app loading. The built-in Alexa+ remote lets you search for shows by talking naturally across your streaming apps. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"4K Ultra HD resolution with HDR10+ support Quad-core processor with Wi-Fi 6 support Built-in Alexa+ voice remote Fire TV smart platform with personalized recommendations Omnisense sensors that wake the display automatically Supports Amazon Luna and Xbox Game Pass cloud gaming\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>4K Ultra HD resolution with HDR10+ support</li> <li>Quad-core processor with Wi-Fi 6 support</li> <li>Built-in Alexa+ voice remote</li> <li>Fire TV smart platform with personalized recommendations</li> <li>Omnisense sensors that wake the display automatically</li> <li>Supports Amazon Luna and Xbox Game Pass cloud gaming</li> </ul> </div>"
       },
       "id": "7393576313043bde",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 39.13,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 51,
@@ -162,6 +105,31 @@
       "reasons": [
         "39,13 % bajo el precio de lista",
         "Ahorro de 180,00 USD"
+      ]
+    },
+    {
+      "title": "BURIED STARS",
+      "url": "https://www.cheapshark.com/redirect?dealID=Ty418xbRKILwqDaZMoFbpL1rSNliHpS9PV7PRmWGO24%3D",
+      "store": "Epic Games Store",
+      "price": 0,
+      "listPrice": 39.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1025960/capsule_231x87.jpg?t=1789549352",
+      "publishedAt": "2026-10-01T15:16:18.000Z",
+      "sourceSignal": 100,
+      "id": "1b6f164964e9be3a",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 100,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 81,
+      "flag": "chollo",
+      "reasons": [
+        "100 % bajo el precio de lista",
+        "Ahorro de 39,99 USD",
+        "Gratis por tiempo limitado",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -173,6 +141,7 @@
       "currency": "USD",
       "store": "Amazon",
       "publishedAt": "2026-10-05T19:36:49.000Z",
+      "sourceText": "This Keurig K-Duo is $129.99, down from $219.99. It brews both K-Cup pods and ground coffee, with a 72-oz. reservoir shared between the single-serve and carafe sides so you don't have to refill between brews. A brew-over-ice setting and programmable auto brew round out the features. Buy Now at Amazon Features Brews both K-Cup pods and ground coffee MultiStream Technology saturates grounds for fuller flavor Brew over ice setting for cold coffee and tea 72-oz. shared water reservoir for both brewing sides Brews 6, 8, 10, or 12-oz. single cups or 6, 8, 10, or 12-cup carafes Programmable auto brew can be set up to 24 hours in advance",
       "category": "Small Appliances",
       "image": "https://d.dlnws.com/64599/1791229002-717849a6v_l.jpg?h=250&w=250",
       "syndication": {
@@ -182,7 +151,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791229002-717849a6v_l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Keurig K-Duo is $129.99, down from $219.99. It brews both K-Cup pods and ground coffee, with a 72-oz. reservoir shared between the single-serve and carafe sides so you don't have to refill between brews. A brew-over-ice setting and programmable auto brew round out the features.\"><p>This Keurig K-Duo is $129.99, down from $219.99. It brews both K-Cup pods and ground coffee, with a 72-oz. reservoir shared between the single-serve and carafe sides so you don't have to refill between brews. A brew-over-ice setting and programmable auto brew round out the features. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Brews both K-Cup pods and ground coffee MultiStream Technology saturates grounds for fuller flavor Brew over ice setting for cold coffee and tea 72-oz. shared water reservoir for both brewing sides Brews 6, 8, 10, or 12-oz. single cups or 6, 8, 10, or 12-cup carafes Programmable auto brew can be set up to 24 hours in advance\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Brews both K-Cup pods and ground coffee</li> <li>MultiStream Technology saturates grounds for fuller flavor</li> <li>Brew over ice setting for cold coffee and tea</li> <li>72-oz. shared water reservoir for both brewing sides</li> <li>Brews 6, 8, 10, or 12-oz. single cups or 6, 8, 10, or 12-cup carafes</li> <li>Programmable auto brew can be set up to 24 hours in advance</li> </ul> </div>"
       },
       "id": "1a8cfa733465aa82",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 40.91,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 50,
@@ -190,6 +159,30 @@
       "reasons": [
         "40,91 % bajo el precio de lista",
         "Ahorro de 89,99 USD"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League - Digital Deluxe Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=U2ne5odE6WKyoSROQN8D2OX2aRN8CJrxoFxZ%2BktLaHg%3D",
+      "store": "IndieGala",
+      "price": 4.38,
+      "listPrice": 99.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://sttc.gamersgate.com/images/product/suicide-squad-kill-the-justice-league-digital-deluxe-edition/cover-180-c29cf2.jpg",
+      "publishedAt": "2026-10-01T15:44:11.000Z",
+      "sourceSignal": 100,
+      "id": "6d8413c74b7c033d",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.62,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 81,
+      "flag": "chollo",
+      "reasons": [
+        "95,62 % bajo el precio de lista",
+        "Ahorro de 95,61 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -201,6 +194,7 @@
       "currency": "USD",
       "store": "Macy's",
       "publishedAt": "2026-10-05T21:10:31.000Z",
+      "sourceText": "These Dockers Estes sneakers are $25.99, down from $50. It's the lowest price we found by $4. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's",
       "category": "Shoes",
       "image": "https://d.dlnws.com/64599/1791234624-34917645_fpx.jpeg?h=250&w=205",
       "syndication": {
@@ -210,7 +204,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791234624-34917645_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These Dockers Estes sneakers are $25.99, down from $50. It's the lowest price we found by $4. Star Rewards members get free shipping over $39 (it's free to join).\"><p>These Dockers Estes sneakers are $25.99, down from $50. It's the lowest price we found by $4. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>"
       },
       "id": "ff91463227acc828",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 48,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 50,
@@ -218,6 +212,30 @@
       "reasons": [
         "48 % bajo el precio de lista",
         "Ahorro de 24,00 USD"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League - Deluxe Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=7WwX02D7gjHZXVEQR%2BugfXXSpa%2BkIt17dNTq0RrSx%2BE%3D",
+      "store": "GameBillet",
+      "price": 4.46,
+      "listPrice": 99.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.greenmangaming.com/98fb0e76d36341cea0f0ca36ce9c08c6/f08e60d2766549d6b1e89e25444a00e8.jpg",
+      "publishedAt": "2026-10-01T18:58:40.000Z",
+      "sourceSignal": 100,
+      "id": "72affe35fbfb8968",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.54,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 81,
+      "flag": "chollo",
+      "reasons": [
+        "95,54 % bajo el precio de lista",
+        "Ahorro de 95,53 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -229,6 +247,7 @@
       "currency": "USD",
       "store": "snorecircle.com",
       "publishedAt": "2026-10-05T20:37:59.000Z",
+      "sourceText": "Snoring that disrupts your sleep (or your partner's) is the main problem this tackles, using muscle stimulation on the device rather than a mouthguard or nasal strip. At $89, that's $60 (40%) off the $149 list price via coupon code \"QYFPYPQGES03\". Deal ends October 15. Buy Now at snorecircle.com Features Uses TENS electrical pulse technology to target throat muscles Detects snoring sounds with bone conduction sensors Features multiple levels of intensity and sensitivity settings Provides up to 15 hours of battery life per charge Model: YA4600",
       "category": "Medicine & Medical",
       "image": "https://d.dlnws.com/64599/1790839569-draftworks_img_c13v6rd4bnvg1aonapp.jpeg?h=250&w=250",
       "syndication": {
@@ -238,7 +257,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790839569-draftworks_img_c13v6rd4bnvg1aonapp.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Snoring that disrupts your sleep (or your partner's) is the main problem this tackles, using muscle stimulation on the device rather than a mouthguard or nasal strip. At $89, that's $60 (40%) off the $149 list price via coupon code \"QYFPYPQGES03\". Deal ends October 15. \"><p>Snoring that disrupts your sleep (or your partner's) is the main problem this tackles, using muscle stimulation on the device rather than a mouthguard or nasal strip. At $89, that's $60 (40%) off the $149 list price via coupon code \"QYFPYPQGES03\". Deal ends October 15.  Buy Now at snorecircle.com</p></div> <div class=\"snippet features\" title=\"Uses TENS electrical pulse technology to target throat muscles Detects snoring sounds with bone conduction sensors Features multiple levels of intensity and sensitivity settings Provides up to 15 hours of battery life per charge Model: YA4600\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Uses TENS electrical pulse technology to target throat muscles</li> <li>Detects snoring sounds with bone conduction sensors</li> <li>Features multiple levels of intensity and sensitivity settings</li> <li>Provides up to 15 hours of battery life per charge</li> <li>Model: YA4600</li> </ul> </div>"
       },
       "id": "77590d6bcd941fa4",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 40.27,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 48,
@@ -246,6 +265,30 @@
       "reasons": [
         "40,27 % bajo el precio de lista",
         "Ahorro de 60,00 USD"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League",
+      "url": "https://www.cheapshark.com/redirect?dealID=nF9%2FdPXYPajMwowT9vhxtb%2BbzqK%2FsuFSBFt5snmLx24%3D",
+      "store": "IndieGala",
+      "price": 3.08,
+      "listPrice": 69.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/315210/capsule_231x87.jpg?t=1777940046",
+      "publishedAt": "2026-10-01T15:44:11.000Z",
+      "sourceSignal": 100,
+      "id": "1ee4e2f0c10dd990",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.6,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 80,
+      "flag": "chollo",
+      "reasons": [
+        "95,6 % bajo el precio de lista",
+        "Ahorro de 66,91 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -257,6 +300,7 @@
       "currency": "USD",
       "store": "Wayfair",
       "publishedAt": "2026-10-05T22:01:41.000Z",
+      "sourceText": "This Latitude Run sleeper sectional is priced at $500, down from $730, and includes a pull-out bed plus a storage chaise that can be configured on either side. It's available at this price in select colors (Brown Faux Leather pictured). Shipping is free. Buy Now at Wayfair Features Pull-out bed converts the sectional into a full-size sleeper Reversible chaise can be set up on either the left or right side Hidden storage compartment built into the chaise Zipper-connected armrests detach for use as extra pillows Hybrid frame with a metal pull-out structure and solid wood base Supports up to 700 lb.",
       "category": "Sofas & Couches",
       "image": "https://d.dlnws.com/64599/1791237692-80_22_l-shaped_sleeper_sectional_sofa_with_pull-out_bed_and_storage_chaise_2c_for_living_room_office.webp?h=250&w=250",
       "syndication": {
@@ -266,7 +310,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791237692-80_22_l-shaped_sleeper_sectional_sofa_with_pull-out_bed_and_storage_chaise_2c_for_living_room_office.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Latitude Run sleeper sectional is priced at $500, down from $730, and includes a pull-out bed plus a storage chaise that can be configured on either side. It's available at this price in select colors (Brown Faux Leather pictured). Shipping is free. \"><p>This Latitude Run sleeper sectional is priced at $500, down from $730, and includes a pull-out bed plus a storage chaise that can be configured on either side. It's available at this price in select colors (Brown Faux Leather pictured). Shipping is free.  Buy Now at Wayfair</p></div> <div class=\"snippet features\" title=\"Pull-out bed converts the sectional into a full-size sleeper Reversible chaise can be set up on either the left or right side Hidden storage compartment built into the chaise Zipper-connected armrests detach for use as extra pillows Hybrid frame with a metal pull-out structure and solid wood base Supports up to 700 lb.\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Pull-out bed converts the sectional into a full-size sleeper</li> <li>Reversible chaise can be set up on either the left or right side</li> <li>Hidden storage compartment built into the chaise</li> <li>Zipper-connected armrests detach for use as extra pillows</li> <li>Hybrid frame with a metal pull-out structure and solid wood base</li> <li>Supports up to 700 lb.</li> </ul> </div>"
       },
       "id": "a04023624581f45e",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 31.51,
       "foundAt": "2026-10-05T22:10:24.149Z",
       "score": 47,
@@ -274,6 +318,84 @@
       "reasons": [
         "31,51 % bajo el precio de lista",
         "Ahorro de 230,00 USD"
+      ]
+    },
+    {
+      "title": "System Shock 2: 25th Anniversary Remaster",
+      "url": "https://www.cheapshark.com/redirect?dealID=hRTjXz0QVII9SmGiVx0IyQZ%2BE%2BJg%2Ff90nJerO7lunGI%3D",
+      "store": "Epic Games Store",
+      "price": 0,
+      "listPrice": 29.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/866570/c77bb348d74fe7d28f75e1a344233f2eb286c496/capsule_231x87.jpg?t=1774275928",
+      "publishedAt": "2026-10-01T15:22:41.000Z",
+      "sourceSignal": 100,
+      "id": "4c462c09ecd09cd4",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 100,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 80,
+      "flag": "chollo",
+      "reasons": [
+        "100 % bajo el precio de lista",
+        "Ahorro de 29,99 USD",
+        "Gratis por tiempo limitado",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Blackstone 36\" Original Omnivore Griddle w/ Hard Cover for $299 + free shipping",
+      "url": "https://www.dealnews.com/Blackstone-36-Original-Omnivore-Griddle-w-Hard-Cover-for-299-free-shipping/22247142.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247142.html?iref=rss",
+      "price": 299,
+      "listPrice": 399,
+      "currency": "USD",
+      "store": "Lowe's",
+      "publishedAt": "2026-10-05T22:24:40.000Z",
+      "sourceText": "This Blackstone 36\" griddle is $100 off, bringing it down to $299 from its regular $399 price. It includes the hard cover, which normally protects the griddle plate as a separate accessory, along with four heat zones and 768 sq. in. of cooking space spread across dual folding side shelves. Shipping is free. Offer ends December 30. Buy Now at Lowe's Features 768 sq. in. of total cooking space across four independent heat zones Omnivore griddle plate with built-in wind guards for faster heat recovery Dual folding side shelves with tool hooks for extra prep space Rear grease management system for easier cleanup Includes a durable hard cover and a built-in bottle opener 4 wheels, including two locking swivel casters for mobility",
+      "category": "BBQs & Grills",
+      "image": "https://d.dlnws.com/64599/1791239073-75565561.webp?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Blackstone 36&quot; Original Omnivore Griddle w/ Hard Cover for $299 + free shipping</title>\n   <link>https://www.dealnews.com/Blackstone-36-Original-Omnivore-Griddle-w-Hard-Cover-for-299-free-shipping/22247142.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791239073-75565561.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Blackstone&#x20;36&quot;&#x20;griddle&#x20;is&#x20;&#x24;100&#x20;off,&#x20;bringing&#x20;it&#x20;down&#x20;to&#x20;&#x24;299&#x20;from&#x20;its&#x20;regular&#x20;&#x24;399&#x20;price.&#x20;It&#x20;includes&#x20;the&#x20;hard&#x20;cover,&#x20;which&#x20;normally&#x20;protects&#x20;the&#x20;griddle&#x20;plate&#x20;as&#x20;a&#x20;separate&#x20;accessory,&#x20;along&#x20;with&#x20;four&#x20;heat&#x20;zones&#x20;and&#x20;768&#x20;sq.&#x20;in.&#x20;of&#x20;cooking&#x20;space&#x20;spread&#x20;across&#x20;dual&#x20;folding&#x20;side&#x20;shelves.&#x20;Shipping&#x20;is&#x20;free.&#x20;Offer&#x20;ends&#x20;December&#x20;30.\"><p>This Blackstone 36\" griddle is $100 off, bringing it down to $299 from its regular $399 price. It includes the hard cover, which normally protects the griddle plate as a separate accessory, along with four heat zones and 768 sq. in. of cooking space spread across dual folding side shelves. Shipping is free. Offer ends December 30. Buy Now at Lowe's</p></div> <div class=\"snippet features\" title=\"768&#x20;sq.&#x20;in.&#x20;of&#x20;total&#x20;cooking&#x20;space&#x20;across&#x20;four&#x20;independent&#x20;heat&#x20;zones&#x20;Omnivore&#x20;griddle&#x20;plate&#x20;with&#x20;built-in&#x20;wind&#x20;guards&#x20;for&#x20;faster&#x20;heat&#x20;recovery&#x20;Dual&#x20;folding&#x20;side&#x20;shelves&#x20;with&#x20;tool&#x20;hooks&#x20;for&#x20;extra&#x20;prep&#x20;space&#x20;Rear&#x20;grease&#x20;management&#x20;system&#x20;for&#x20;easier&#x20;cleanup&#x20;Includes&#x20;a&#x20;durable&#x20;hard&#x20;cover&#x20;and&#x20;a&#x20;built-in&#x20;bottle&#x20;opener&#x20;4&#x20;wheels,&#x20;including&#x20;two&#x20;locking&#x20;swivel&#x20;casters&#x20;for&#x20;mobility\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>768 sq. in. of total cooking space across four independent heat zones</li> <li>Omnivore griddle plate with built-in wind guards for faster heat recovery</li> <li>Dual folding side shelves with tool hooks for extra prep space</li> <li>Rear grease management system for easier cleanup</li> <li>Includes a durable hard cover and a built-in bottle opener</li> <li>4 wheels, including two locking swivel casters for mobility</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22247142.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:24:40 -0400</pubDate>\n   <dealnews:retailer>Lowe's</dealnews:retailer>\n   <dealnews:expires>2026-12-30T23:59:00-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>BBQs &amp; Grills </dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">299.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791239073-75565561.webp?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791239073-75565561.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Blackstone 36\" griddle is $100 off, bringing it down to $299 from its regular $399 price. It includes the hard cover, which normally protects the griddle plate as a separate accessory, along with four heat zones and 768 sq. in. of cooking space spread across dual folding side shelves. Shipping is free. Offer ends December 30.\"><p>This Blackstone 36\" griddle is $100 off, bringing it down to $299 from its regular $399 price. It includes the hard cover, which normally protects the griddle plate as a separate accessory, along with four heat zones and 768 sq. in. of cooking space spread across dual folding side shelves. Shipping is free. Offer ends December 30. Buy Now at Lowe's</p></div> <div class=\"snippet features\" title=\"768 sq. in. of total cooking space across four independent heat zones Omnivore griddle plate with built-in wind guards for faster heat recovery Dual folding side shelves with tool hooks for extra prep space Rear grease management system for easier cleanup Includes a durable hard cover and a built-in bottle opener 4 wheels, including two locking swivel casters for mobility\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>768 sq. in. of total cooking space across four independent heat zones</li> <li>Omnivore griddle plate with built-in wind guards for faster heat recovery</li> <li>Dual folding side shelves with tool hooks for extra prep space</li> <li>Rear grease management system for easier cleanup</li> <li>Includes a durable hard cover and a built-in bottle opener</li> <li>4 wheels, including two locking swivel casters for mobility</li> </ul> </div>"
+      },
+      "id": "1c009c6fdb4ec064",
+      "source": "DealNews",
+      "discountPct": 25.06,
+      "foundAt": "2026-10-05T22:28:12.941Z",
+      "score": 41,
+      "flag": "normal",
+      "reasons": [
+        "25,06 % bajo el precio de lista",
+        "Ahorro de 100,00 USD"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League - Digital Deluxe Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=qABXj1mN4Hqv9P83I6qar1%2F0SUMV3%2FUrlFOLRRQ3tS0%3D",
+      "store": "Gamesplanet",
+      "price": 4.85,
+      "listPrice": 99.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://sttc.gamersgate.com/images/product/suicide-squad-kill-the-justice-league-digital-deluxe-edition/cover-180-c29cf2.jpg",
+      "publishedAt": "2026-10-01T00:49:22.000Z",
+      "sourceSignal": 100,
+      "id": "84612b7e30fe7493",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.15,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 80,
+      "flag": "chollo",
+      "reasons": [
+        "95,15 % bajo el precio de lista",
+        "Ahorro de 95,14 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -285,6 +407,7 @@
       "currency": "USD",
       "store": "Costco",
       "publishedAt": "2026-10-05T20:58:28.000Z",
+      "sourceText": "This set of four $25 IHOP gift cards carries a combined value of $100 but costs $80 at Costco. The cards don't expire and can be redeemed at more than 1,600 IHOP locations across the US and Canada, either in store or through IHOP.com and the mobile app. Delivery is via email. Buy Now at Costco Features Four separate $25 gift cards included Total value of $100 Redeemable at over 1,600 IHOP locations in the US and Canada Delivered by email, typically within 3 hours No expiration date on the gift cards Item is non-refundable",
       "category": "Gift Cards",
       "image": "https://d.dlnws.com/64599/1791233902-1711962-847-1.jpeg?h=250&w=250",
       "syndication": {
@@ -294,7 +417,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791233902-1711962-847-1.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This set of four $25 IHOP gift cards carries a combined value of $100 but costs $80 at Costco. The cards don't expire and can be redeemed at more than 1,600 IHOP locations across the US and Canada, either in store or through IHOP.com and the mobile app. Delivery is via email.\"><p>This set of four $25 IHOP gift cards carries a combined value of $100 but costs $80 at Costco. The cards don't expire and can be redeemed at more than 1,600 IHOP locations across the US and Canada, either in store or through IHOP.com and the mobile app. Delivery is via email. Buy Now at Costco</p></div> <div class=\"snippet features\" title=\"Four separate $25 gift cards included Total value of $100 Redeemable at over 1,600 IHOP locations in the US and Canada Delivered by email, typically within 3 hours No expiration date on the gift cards Item is non-refundable\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Four separate $25 gift cards included</li> <li>Total value of $100</li> <li>Redeemable at over 1,600 IHOP locations in the US and Canada</li> <li>Delivered by email, typically within 3 hours</li> <li>No expiration date on the gift cards</li> <li>Item is non-refundable</li> </ul> </div>"
       },
       "id": "1ce7de4c284083b9",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": 20,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 33,
@@ -302,6 +425,30 @@
       "reasons": [
         "20 % bajo el precio de lista",
         "Ahorro de 20,00 USD"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League",
+      "url": "https://www.cheapshark.com/redirect?dealID=m%2FsKq5YJtafrqXCHu2VvhFiT76qQsq8SFeS4CsVQzjg%3D",
+      "store": "GameBillet",
+      "price": 3.05,
+      "listPrice": 69.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/315210/capsule_231x87.jpg?t=1777940046",
+      "publishedAt": "2026-10-01T18:58:40.000Z",
+      "sourceSignal": 100,
+      "id": "85b7e26b49dda45b",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.64,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 80,
+      "flag": "chollo",
+      "reasons": [
+        "95,64 % bajo el precio de lista",
+        "Ahorro de 66,94 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -313,6 +460,7 @@
       "currency": "USD",
       "store": "Home Depot",
       "publishedAt": "2026-10-05T21:49:59.000Z",
+      "sourceText": "At $159, this Ryobi impact wrench kit is $110 off its regular price and comes with a 4.0 Ah battery and charger included. Shipping is free. Buy Now at Home Depot Features Delivers up to 1,170 ft.-lbs. of breakaway torque Brushless motor with 4 speed/mode control settings Includes a 4.0 Ah battery and 18V charger Auto Mode prevents overtightening and allows controlled removal in reverse Die cast gear case for added durability Backed by a 3-year manufacturer's warranty",
       "category": "Impact Wrenches & Drivers",
       "image": "https://d.dlnws.com/64599/1791236938-ryobi-impact-wrenches-pbliw01k1-64_600.avif?h=250&w=250",
       "syndication": {
@@ -322,13 +470,37 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791236938-ryobi-impact-wrenches-pbliw01k1-64_600.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"At $159, this Ryobi impact wrench kit is $110 off its regular price and comes with a 4.0 Ah battery and charger included. Shipping is free. \"><p>At $159, this Ryobi impact wrench kit is $110 off its regular price and comes with a 4.0 Ah battery and charger included. Shipping is free.  Buy Now at Home Depot</p></div> <div class=\"snippet features\" title=\"Delivers up to 1,170 ft.-lbs. of breakaway torque Brushless motor with 4 speed/mode control settings Includes a 4.0 Ah battery and 18V charger Auto Mode prevents overtightening and allows controlled removal in reverse Die cast gear case for added durability Backed by a 3-year manufacturer's warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Delivers up to 1,170 ft.-lbs. of breakaway torque</li> <li>Brushless motor with 4 speed/mode control settings</li> <li>Includes a 4.0 Ah battery and 18V charger</li> <li>Auto Mode prevents overtightening and allows controlled removal in reverse</li> <li>Die cast gear case for added durability</li> <li>Backed by a 3-year manufacturer's warranty</li> </ul> </div>"
       },
       "id": "1e21b80afdadf8c2",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T22:10:24.149Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Battlegrounds : The Pirate King",
+      "url": "https://www.cheapshark.com/redirect?dealID=ZgCckolMEZyYXFXOA%2F9l5Jeatla919D2YPDgsGvoL48%3D",
+      "store": "Steam",
+      "price": 0.98,
+      "listPrice": 19.98,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2907650/capsule_231x87.jpg?t=1750114974",
+      "publishedAt": "2026-10-04T23:33:32.000Z",
+      "sourceSignal": 39,
+      "id": "890ef0edc7e220a0",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 80,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 19,00 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -340,6 +512,7 @@
       "currency": "USD",
       "store": "Walmart",
       "publishedAt": "2026-10-05T20:23:18.000Z",
+      "sourceText": "Walmart offers the Marvel Men's Deadpool Palms Swim Trunks in sizes from S to 3XL. Prices start at $3.67 in 3XL for a savings of $16. Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart",
       "category": "Swim",
       "image": "https://d.dlnws.com/64599/1791231788-e12c0236-510c-4b56-8454-9be7c7bb6566-55335e188cffbc08609f9330d8d0870d.avif?h=250&w=250",
       "syndication": {
@@ -349,13 +522,37 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791231788-e12c0236-510c-4b56-8454-9be7c7bb6566-55335e188cffbc08609f9330d8d0870d.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart offers the Marvel Men's Deadpool Palms Swim Trunks in sizes from S to 3XL.  Prices start at $3.67 in 3XL for a savings of $16.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>Walmart offers the Marvel Men's Deadpool Palms Swim Trunks in sizes from S to 3XL.  Prices start at $3.67 in 3XL for a savings of $16.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
       },
       "id": "1eb0bed5740a53e5",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League - Deluxe Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=%2BRZp97Om%2B4gy2KG1x05UpBl1ihJAKS768gQ19GuyVFI%3D",
+      "store": "Fanatical",
+      "price": 4.49,
+      "listPrice": 99.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.greenmangaming.com/98fb0e76d36341cea0f0ca36ce9c08c6/f08e60d2766549d6b1e89e25444a00e8.jpg",
+      "publishedAt": "2026-10-01T00:34:41.000Z",
+      "sourceSignal": 63,
+      "id": "d5e540c0940a84b4",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.51,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 80,
+      "flag": "chollo",
+      "reasons": [
+        "95,51 % bajo el precio de lista",
+        "Ahorro de 95,50 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -367,6 +564,7 @@
       "currency": "USD",
       "store": "Walmart",
       "publishedAt": "2026-10-05T20:04:28.000Z",
+      "sourceText": "Walmart offers the Reebok Men's Windbreaker in several colors for around $13. That's a $22 savings. Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart",
       "category": "Coats",
       "image": "https://d.dlnws.com/64599/1791230661-16a8576a-6310-47a7-ab03-68ece83082a0-b4661743b163fdf74583148d85370a0c.avif?h=250&w=250",
       "syndication": {
@@ -376,13 +574,37 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230661-16a8576a-6310-47a7-ab03-68ece83082a0-b4661743b163fdf74583148d85370a0c.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart offers the Reebok Men's Windbreaker in several colors for around $13.  That's a $22 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>Walmart offers the Reebok Men's Windbreaker in several colors for around $13.  That's a $22 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
       },
       "id": "223db244069a942c",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Evil Genius 2: World Domination Deluxe Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=gvYkpm7FqORE56tniht9eMSjaaPLTxfgqmJmUyDfDPk%3D",
+      "store": "Fanatical",
+      "price": 2.39,
+      "listPrice": 59.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://sttc.gamersgate.com/images/product/evil-genius-2-world-domination-deluxe-edition/cover-180-29f112.jpg",
+      "publishedAt": "2026-10-01T08:29:25.000Z",
+      "sourceSignal": 64,
+      "id": "08415aac6a4c4110",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.02,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 79,
+      "flag": "chollo",
+      "reasons": [
+        "96,02 % bajo el precio de lista",
+        "Ahorro de 57,60 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -394,6 +616,7 @@
       "currency": "USD",
       "store": "Sweetwater",
       "publishedAt": "2026-10-05T21:05:09.000Z",
+      "sourceText": "This Soundcraft Ui24R digital mixer is $500 off at Sweetwater, bringing it down to $999 from its regular price of $1,499. Shipping is free. This deal ends October 31. Buy Now at Sweetwater Features 24-channel rackmount digital mixer 20 Studer-designed microphone preamps Built-in dual-band Wi-Fi for control via any HTML5 browser Connects up to 10 devices at once over Ethernet or Wi-Fi Effects processing from Lexicon, dbx, and DigiTech Multitrack recording of 24 channels to a USB drive",
       "category": "Musical Instruments",
       "image": "https://d.dlnws.com/64599/1791234301-651550ee27weqpbr8minvua4gwzgi21xgarv6f6m.png?h=131&w=250",
       "syndication": {
@@ -403,13 +626,37 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791234301-651550ee27weqpbr8minvua4gwzgi21xgarv6f6m.png?h=131&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Soundcraft Ui24R digital mixer is $500 off at Sweetwater, bringing it down to $999 from its regular price of $1,499. Shipping is free. This deal ends October 31.\"><p>This Soundcraft Ui24R digital mixer is $500 off at Sweetwater, bringing it down to $999 from its regular price of $1,499. Shipping is free. This deal ends October 31. Buy Now at Sweetwater</p></div> <div class=\"snippet features\" title=\"24-channel rackmount digital mixer 20 Studer-designed microphone preamps Built-in dual-band Wi-Fi for control via any HTML5 browser Connects up to 10 devices at once over Ethernet or Wi-Fi Effects processing from Lexicon, dbx, and DigiTech Multitrack recording of 24 channels to a USB drive\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>24-channel rackmount digital mixer</li> <li>20 Studer-designed microphone preamps</li> <li>Built-in dual-band Wi-Fi for control via any HTML5 browser</li> <li>Connects up to 10 devices at once over Ethernet or Wi-Fi</li> <li>Effects processing from Lexicon, dbx, and DigiTech</li> <li>Multitrack recording of 24 channels to a USB drive</li> </ul> </div>"
       },
       "id": "294f59df5cc5a94b",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Rims Racing : Ultimate Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=gLLhgkZMQCuLr8dQyDKq3a71LAK8fXViVwc5oNbLhsY%3D",
+      "store": "Fanatical",
+      "price": 2.78,
+      "listPrice": 69.51,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.greenmangaming.com/e1cdac10807b4dd78337834ab4ca1837/a21ed18dfb334b8481276f4d5a4a538b.jpg",
+      "publishedAt": "2026-10-01T08:29:21.000Z",
+      "sourceSignal": 64,
+      "id": "26dacff510829455",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 79,
+      "flag": "chollo",
+      "reasons": [
+        "96 % bajo el precio de lista",
+        "Ahorro de 66,73 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -421,6 +668,7 @@
       "currency": "USD",
       "store": "Best Buy",
       "publishedAt": "2026-10-05T20:14:10.000Z",
+      "sourceText": "Best Buy offers this Turtle Beach Rematch Core Wired Controller for $14.99. You'd pay double this price on Amazon. My Best Buy members get free shipping on all orders, and it's free to join. Buy Now at Best Buy Features Integrated audio controls on D-pad Dual rumble motors and impulse triggers 8-foot USB-C wired connection",
       "category": "Joysticks/Gamepads",
       "image": "https://d.dlnws.com/64599/1787454279-draftworks_img_7lhvc8ogv3al5klcabj.png?h=250&w=250",
       "syndication": {
@@ -430,13 +678,89 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1787454279-draftworks_img_7lhvc8ogv3al5klcabj.png?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Best Buy offers this Turtle Beach Rematch Core Wired Controller for $14.99.  You'd pay double this price on Amazon.  My Best Buy members get free shipping on all orders, and it's free to join.\"><p>Best Buy offers this Turtle Beach Rematch Core Wired Controller for $14.99.  You'd pay double this price on Amazon.  My Best Buy members get free shipping on all orders, and it's free to join. Buy Now at Best Buy</p></div> <div class=\"snippet features\" title=\"Integrated audio controls on D-pad Dual rumble motors and impulse triggers 8-foot USB-C wired connection\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Integrated audio controls on D-pad</li> <li>Dual rumble motors and impulse triggers</li> <li>8-foot USB-C wired connection</li> </ul> </div>"
       },
       "id": "379d25424ede1fa8",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "RiMS Racing : Japanese Manufacturers Deluxe Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=BnaBv1LOFpbNV238kBvrcb4ajov3UJAsFl5S97vT2X8%3D",
+      "store": "Fanatical",
+      "price": 2.38,
+      "listPrice": 59.73,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.greenmangaming.com/55e03f21efa54f19876f864fc8d57ead/7d4a7ff3d9f946bdadef4edb47f362a3.jpg",
+      "publishedAt": "2026-10-01T08:40:49.000Z",
+      "sourceSignal": 64,
+      "id": "302bcc854bbc4113",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.02,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 79,
+      "flag": "chollo",
+      "reasons": [
+        "96,02 % bajo el precio de lista",
+        "Ahorro de 57,35 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Nike Men's or Women's Rival Sprint Glam Track & Field Shoes for $22 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/Nike-Mens-or-Womens-Rival-Sprint-Glam-Track-Field-Shoes-for-22-free-shipping-w-49/22247141.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247141.html?iref=rss",
+      "price": 22,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T22:24:33.000Z",
+      "sourceText": "These Nike Men's or Women's Rival Sprint Glam Track & Field Shoes are available at Dick's Sporting Goods for an in-cart price of $21.97. That's a $30 low. ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods",
+      "category": "Shoes",
+      "image": "https://d.dlnws.com/64599/1791239065-25nikatracnkrvlsprohu_emerald_rise_black_sapphire_ghost_green.webp?h=102&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Nike Men's or Women's Rival Sprint Glam Track &amp; Field Shoes for $22 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/Nike-Mens-or-Womens-Rival-Sprint-Glam-Track-Field-Shoes-for-22-free-shipping-w-49/22247141.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791239065-25nikatracnkrvlsprohu_emerald_rise_black_sapphire_ghost_green.webp?h=102&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These&#x20;Nike&#x20;Men&#x27;s&#x20;or&#x20;Women&#x27;s&#x20;Rival&#x20;Sprint&#x20;Glam&#x20;Track&#x20;&amp;&#x20;Field&#x20;Shoes&#x20;are&#x20;available&#x20;at&#x20;Dick&#x27;s&#x20;Sporting&#x20;Goods&#x20;for&#x20;an&#x20;in-cart&#x20;price&#x20;of&#x20;&#x24;21.97. &#x20;That&#x27;s&#x20;a&#x20;&#x24;30&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>These Nike Men's or Women's Rival Sprint Glam Track & Field Shoes are available at Dick's Sporting Goods for an in-cart price of $21.97.  That's a $30 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247141.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:24:33 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T17:24:33-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">22.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791239065-25nikatracnkrvlsprohu_emerald_rise_black_sapphire_ghost_green.webp?h=102&amp;w=250\" medium=\"image\" height=\"102\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791239065-25nikatracnkrvlsprohu_emerald_rise_black_sapphire_ghost_green.webp?h=102&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These Nike Men's or Women's Rival Sprint Glam Track & Field Shoes are available at Dick's Sporting Goods for an in-cart price of $21.97.  That's a $30 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>These Nike Men's or Women's Rival Sprint Glam Track & Field Shoes are available at Dick's Sporting Goods for an in-cart price of $21.97.  That's a $30 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
+      },
+      "id": "38637eaa4f0c968a",
+      "source": "DealNews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T22:28:12.941Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League",
+      "url": "https://www.cheapshark.com/redirect?dealID=Z2ZoFheREYc2syRgg%2FB4w90EzpnMbADmsLoAhCWvhr4%3D",
+      "store": "Fanatical",
+      "price": 3.14,
+      "listPrice": 69.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/315210/capsule_231x87.jpg?t=1777940046",
+      "publishedAt": "2026-10-01T00:38:31.000Z",
+      "sourceSignal": 76,
+      "id": "48f7795bc09c1df4",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.51,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 79,
+      "flag": "chollo",
+      "reasons": [
+        "95,51 % bajo el precio de lista",
+        "Ahorro de 66,85 USD",
+        "Destacada por la comunidad"
       ]
     },
     {
@@ -448,6 +772,7 @@
       "currency": "USD",
       "store": "Men's Wearhouse",
       "publishedAt": "2026-10-05T19:56:01.000Z",
+      "sourceText": "Men's Wearhouse offers the Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt in several colors for $19.99. That's a $50 savings. Perfect Fit Rewards members get free shipping (it's free to join). Buy Now at Men's Wearhouse",
       "category": "Shirts",
       "image": "https://d.dlnws.com/64599/1791230152-product-trimmed.png?h=250&w=188",
       "syndication": {
@@ -457,13 +782,1341 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230152-product-trimmed.png?h=250&w=188' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Men's Wearhouse offers the Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt in several colors for $19.99.  That's a $50 savings.  Perfect Fit Rewards members get free shipping (it's free to join).\"><p>Men's Wearhouse offers the Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt in several colors for $19.99.  That's a $50 savings.  Perfect Fit Rewards members get free shipping (it's free to join). Buy Now at Men's Wearhouse</p></div>"
       },
       "id": "388471b213e9e474",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Suicide Squad: Kill the Justice League",
+      "url": "https://www.cheapshark.com/redirect?dealID=cefZQLjvGKTOXshTaqdtyKvglsechNWY4drsxnQSGDc%3D",
+      "store": "Gamesplanet",
+      "price": 3.43,
+      "listPrice": 69.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/315210/capsule_231x87.jpg?t=1777940046",
+      "publishedAt": "2026-10-01T00:52:19.000Z",
+      "sourceSignal": 100,
+      "id": "c8a2a92df44fbe0f",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 79,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 66,56 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Evil Genius 2: World Domination",
+      "url": "https://www.cheapshark.com/redirect?dealID=n344uClDxDUaqHVAPWj479H%2Fundz5Oa534zfDwRN%2Fg0%3D",
+      "store": "Fanatical",
+      "price": 1.59,
+      "listPrice": 39.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/700600/capsule_231x87.jpg?t=1734453187",
+      "publishedAt": "2026-10-01T08:29:26.000Z",
+      "sourceSignal": 82,
+      "id": "6641046b164a9bdb",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.02,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 78,
+      "flag": "chollo",
+      "reasons": [
+        "96,02 % bajo el precio de lista",
+        "Ahorro de 38,40 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "The Outlast Trials",
+      "url": "https://store.steampowered.com/app/1304930/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 3.99,
+      "listPrice": 39.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/65fbdba4ad0f1a7ed7a362a086c87042fa40fadc/header_alt_assets_3.jpg?t=1784123708",
+      "id": "74659558abec71a3",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 90.02,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 77,
+      "flag": "chollo",
+      "reasons": [
+        "90,02 % bajo el precio de lista",
+        "Ahorro de 36,00 USD"
+      ]
+    },
+    {
+      "title": "The Elder Scrolls V: Skyrim Special Edition",
+      "url": "https://store.steampowered.com/app/489830/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 3.99,
+      "listPrice": 39.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg?t=1786648247",
+      "id": "8f3724918a80e7c3",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 90.02,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 77,
+      "flag": "chollo",
+      "reasons": [
+        "90,02 % bajo el precio de lista",
+        "Ahorro de 36,00 USD"
+      ]
+    },
+    {
+      "title": "War Hospital - Supporter Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=7IFVUOQMTpO5xdD25CPTsz4mBtrbYX5AUZvfwmI7aH4%3D",
+      "store": "Fanatical",
+      "price": 1.58,
+      "listPrice": 39.56,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://sttc.gamersgate.com/images/product/war-hospital-supporter-edition/cover-180-c6d380.jpg",
+      "publishedAt": "2026-10-01T08:29:23.000Z",
+      "sourceSignal": 65,
+      "id": "deca79300d13ed5a",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.01,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 77,
+      "flag": "chollo",
+      "reasons": [
+        "96,01 % bajo el precio de lista",
+        "Ahorro de 37,98 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Asterix and Obelix: Heroes",
+      "url": "https://www.cheapshark.com/redirect?dealID=KaLQTBjju2iu4U%2BAGipCM58y6oI3046DSoM9SYYYeMU%3D",
+      "store": "GameBillet",
+      "price": 0.95,
+      "listPrice": 19.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2374090/capsule_231x87.jpg?t=1764149582",
+      "publishedAt": "2026-10-01T18:11:34.000Z",
+      "sourceSignal": 74,
+      "id": "1ecc53c3032e24a6",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.25,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "95,25 % bajo el precio de lista",
+        "Ahorro de 19,04 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "The Ritual",
+      "url": "https://www.cheapshark.com/redirect?dealID=qNfnwvyGf9srL9Dct4d3poaQHXcTzZ%2FiRW%2Bx6sMZjKI%3D",
+      "store": "Steam",
+      "price": 0.98,
+      "listPrice": 19.98,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3122100/capsule_231x87.jpg?t=1750114596",
+      "publishedAt": "2026-10-03T05:17:41.000Z",
+      "sourceSignal": 38,
+      "id": "323e7b1cb15781f4",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 19,00 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "WRC 7 FIA World Rally Championship",
+      "url": "https://www.cheapshark.com/redirect?dealID=Pd%2FS7Bw5RTR9qiiyOw%2BkQtnnhSRxAFJRgR7iylba9PE%3D",
+      "store": "Steam",
+      "price": 0.99,
+      "listPrice": 19.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/621830/capsule_231x87.jpg?t=1725354050",
+      "publishedAt": "2026-10-01T19:12:55.000Z",
+      "sourceSignal": 74,
+      "id": "38e6976e1b0f5a17",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.05,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "95,05 % bajo el precio de lista",
+        "Ahorro de 19,00 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Helheim Hassle",
+      "url": "https://www.cheapshark.com/redirect?dealID=kghsBLa3cVIM1q6voqfBrzSEz6hwZYhBig2Wgs%2Bm78E%3D",
+      "store": "GameBillet",
+      "price": 0.88,
+      "listPrice": 19.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1095120/capsule_231x87.jpg?t=1728990639",
+      "publishedAt": "2026-10-01T19:05:18.000Z",
+      "sourceSignal": 90,
+      "id": "56d414e45c4e5364",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.6,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "95,6 % bajo el precio de lista",
+        "Ahorro de 19,11 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Flockers",
+      "url": "https://www.cheapshark.com/redirect?dealID=M%2FwIpPRIRnuxXnnGU%2BGNFmVOWXtXQFe6fZ0zUyLK%2BqE%3D",
+      "store": "GameBillet",
+      "price": 0.84,
+      "listPrice": 19.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/260330/capsule_231x87.jpg?t=1761833738",
+      "publishedAt": "2026-10-01T18:09:33.000Z",
+      "sourceSignal": 88,
+      "id": "9eaeebbdbba3ed10",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.8,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "95,8 % bajo el precio de lista",
+        "Ahorro de 19,15 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Helheim Hassle",
+      "url": "https://www.cheapshark.com/redirect?dealID=4fPrDk9qDVxXQXzcoW8HgXfHgREGdnZxz%2F4TJhOQ8a4%3D",
+      "store": "Fanatical",
+      "price": 0.89,
+      "listPrice": 19.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1095120/capsule_231x87.jpg?t=1728990639",
+      "publishedAt": "2026-10-01T08:32:03.000Z",
+      "sourceSignal": 80,
+      "id": "bf313f50b24ed726",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.55,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "95,55 % bajo el precio de lista",
+        "Ahorro de 19,10 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Great Houses of Calderia",
+      "url": "https://www.cheapshark.com/redirect?dealID=tB%2FU3yz79BP6yEd3R1DWOSpU0%2BnsXUdHj7qvoKGq%2FmU%3D",
+      "store": "Fanatical",
+      "price": 0.99,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1812910/bd6763340dffed49728cf7a1a867b408e748dd35/capsule_231x87.jpg?t=1758889157",
+      "publishedAt": "2026-10-01T08:30:51.000Z",
+      "sourceSignal": 65,
+      "id": "d6acaa3759d23e29",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.04,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 76,
+      "flag": "chollo",
+      "reasons": [
+        "96,04 % bajo el precio de lista",
+        "Ahorro de 24,00 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Super Switch",
+      "url": "https://www.cheapshark.com/redirect?dealID=%2Fc35V7i5wri0Q6DVGelbBolgLoueRc3LqAd9Ytkh2zU%3D",
+      "store": "Steam",
+      "price": 0.84,
+      "listPrice": 16.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/521430/capsule_231x87.jpg?t=1613074226",
+      "publishedAt": "2026-10-01T21:18:11.000Z",
+      "sourceSignal": 74,
+      "id": "033bc1b7c3e1f392",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 75,
+      "flag": "chollo",
+      "reasons": [
+        "95,06 % bajo el precio de lista",
+        "Ahorro de 16,15 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "LA Cops",
+      "url": "https://www.cheapshark.com/redirect?dealID=8CnOIQ2r8g9wsHKZy1qHftWH4mJPrk5wDQzMbiN4B1A%3D",
+      "store": "GameBillet",
+      "price": 0.65,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/278810/capsule_231x87.jpg?t=1726584862",
+      "publishedAt": "2026-10-01T18:09:53.000Z",
+      "sourceSignal": 83,
+      "id": "5b396f6ed373951d",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.66,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 75,
+      "flag": "chollo",
+      "reasons": [
+        "95,66 % bajo el precio de lista",
+        "Ahorro de 14,34 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Rustic Farm Life",
+      "url": "https://www.cheapshark.com/redirect?dealID=xXEVx9zo6J99jSLfwVFO%2BY4jU940yvRCdc%2BJywCnReg%3D",
+      "store": "Epic Games Store",
+      "price": 0.74,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://cdn1.epicgames.com/spt-assets/bcfc71addda440a199c79055fd326a3f/rustic-farm-life-im9p6.png",
+      "publishedAt": "2026-09-30T22:33:33.000Z",
+      "sourceSignal": 61,
+      "id": "26e37fe3e101abe2",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 74,
+      "flag": "chollo",
+      "reasons": [
+        "95,06 % bajo el precio de lista",
+        "Ahorro de 14,25 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "The Green Light",
+      "url": "https://www.cheapshark.com/redirect?dealID=X3BLxjTtXbfVTduCnYPvAZ1g1UE9Yz8QkWvMYKK6f%2FQ%3D",
+      "store": "Humble Store",
+      "price": 0.51,
+      "listPrice": 12.75,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1962950/af76a3615c892059a8d74fddc2e761c4855baf22/capsule_231x87.jpg?t=1770198609",
+      "publishedAt": "2026-09-30T19:31:22.000Z",
+      "sourceSignal": 62,
+      "id": "5034e9514aa58276",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 74,
+      "flag": "chollo",
+      "reasons": [
+        "96 % bajo el precio de lista",
+        "Ahorro de 12,24 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "The Daedalic Armageddon Bundle",
+      "url": "https://www.cheapshark.com/redirect?dealID=P7O6uCR4pib4i8szIbn9GS6xG3j5kC17medHySydoRU%3D",
+      "store": "Fanatical",
+      "price": 3.99,
+      "listPrice": 99.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/subs/55062/capsule_231x87.jpg?t=1447457405",
+      "publishedAt": "2026-10-01T08:30:37.000Z",
+      "sourceSignal": 0,
+      "id": "6b53ba66585c236c",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.01,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 74,
+      "flag": "chollo",
+      "reasons": [
+        "96,01 % bajo el precio de lista",
+        "Ahorro de 96,00 USD"
+      ]
+    },
+    {
+      "title": "BURIED STARS",
+      "url": "https://store.epicgames.com/en-US/p/buried-stars-d7c88c",
+      "store": "Epic Games",
+      "price": 0,
+      "listPrice": 39.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "publishedAt": "2026-10-01T15:00:00.000Z",
+      "image": "https://cdn1.epicgames.com/spt-assets/e2dc55c2709641a18fc37ef7ce32cfdd/buried-stars-1j9of.jpg",
+      "id": "97b74f7598b5c398",
+      "source": "Epic",
+      "sourceUrl": "https://store-site-backend-static.ak.epicgames.com/",
+      "discountPct": 100,
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 74,
+      "flag": "chollo",
+      "reasons": [
+        "100 % bajo el precio de lista",
+        "Ahorro de 39,99 USD",
+        "Gratis por tiempo limitado"
+      ]
+    },
+    {
+      "title": "Garbage",
+      "url": "https://www.cheapshark.com/redirect?dealID=iCKul1Nfj7mm76qs8vxPeOXRWYaLdsWk9CH%2B5yy5%2BFg%3D",
+      "store": "Fanatical",
+      "price": 0.59,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1253710/capsule_231x87.jpg?t=1789741967",
+      "publishedAt": "2026-10-01T08:32:59.000Z",
+      "sourceSignal": 39,
+      "id": "b8249ad8fef09a8d",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 74,
+      "flag": "chollo",
+      "reasons": [
+        "96,06 % bajo el precio de lista",
+        "Ahorro de 14,40 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "The Black Within",
+      "url": "https://www.cheapshark.com/redirect?dealID=mvIusXluS%2FFOwQgIGAEQTWNytAnNG01xIAa61Nu4sQ8%3D",
+      "store": "Humble Store",
+      "price": 0.51,
+      "listPrice": 12.75,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2372870/capsule_231x87.jpg?t=1770196960",
+      "publishedAt": "2026-09-30T19:26:29.000Z",
+      "sourceSignal": 48,
+      "id": "1cd7b75ca7774a25",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 73,
+      "flag": "chollo",
+      "reasons": [
+        "96 % bajo el precio de lista",
+        "Ahorro de 12,24 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "GravNewton",
+      "url": "https://www.cheapshark.com/redirect?dealID=S%2BYmz0CXz%2F0%2BzQexUe3m3RCEyTlqLkWVm8rSZ9RmJUo%3D",
+      "store": "Steam",
+      "price": 0.49,
+      "listPrice": 9.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/549100/capsule_231x87.jpg?t=1722340192",
+      "publishedAt": "2026-10-01T17:16:19.000Z",
+      "sourceSignal": 48,
+      "id": "68426b034d29fc43",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 73,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 9,50 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Miner's Mettle",
+      "url": "https://www.cheapshark.com/redirect?dealID=IS4Q36wHpskHedM65xS4wtQrFph%2Bvim3R7waXua6Nrs%3D",
+      "store": "Fanatical",
+      "price": 1.12,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1058800/capsule_231x87.jpg?t=1721234837",
+      "publishedAt": "2026-09-15T09:44:39.000Z",
+      "sourceSignal": 42,
+      "id": "c322a99bee7bf518",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.52,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 73,
+      "flag": "chollo",
+      "reasons": [
+        "95,52 % bajo el precio de lista",
+        "Ahorro de 23,87 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Upstream Ante",
+      "url": "https://www.cheapshark.com/redirect?dealID=VUcGeN%2BaR6uBQa1eHPvmN3R4rjO0015GkZ8DrIbj%2Bvo%3D",
+      "store": "Steam",
+      "price": 0.74,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2940560/capsule_231x87.jpg?t=1729909036",
+      "publishedAt": "2026-10-02T14:16:15.000Z",
+      "sourceSignal": 10,
+      "id": "d98eb0d21fd4bd56",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 73,
+      "flag": "chollo",
+      "reasons": [
+        "95,06 % bajo el precio de lista",
+        "Ahorro de 14,25 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Daedalic - Gigantic Bundle",
+      "url": "https://www.cheapshark.com/redirect?dealID=2ml%2BjfDwjYASzKoPShRASejoIaFeIFBJ1Q2QJQAPv7U%3D",
+      "store": "Fanatical",
+      "price": 2.79,
+      "listPrice": 69.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/subs/76471/capsule_231x87.jpg?t=1481563053",
+      "publishedAt": "2026-10-01T08:29:39.000Z",
+      "sourceSignal": 0,
+      "id": "e74941a225a2554d",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.01,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 73,
+      "flag": "chollo",
+      "reasons": [
+        "96,01 % bajo el precio de lista",
+        "Ahorro de 67,20 USD"
+      ]
+    },
+    {
+      "title": "Aswang Detective: The Case of New York",
+      "url": "https://www.cheapshark.com/redirect?dealID=bnAbWme3CjAb99%2Bhec4FO5emnwKfMiCn0c4UXxY8Hmo%3D",
+      "store": "Steam",
+      "price": 0.74,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2197170/capsule_231x87.jpg?t=1765895987",
+      "publishedAt": "2026-10-01T23:40:42.000Z",
+      "sourceSignal": 8,
+      "id": "037f50a68ce192f3",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 72,
+      "flag": "chollo",
+      "reasons": [
+        "95,06 % bajo el precio de lista",
+        "Ahorro de 14,25 USD"
+      ]
+    },
+    {
+      "title": "Bunny Hopper",
+      "url": "https://www.cheapshark.com/redirect?dealID=a0WDbC1F9CDrHiu13gdJcn22iLQ%2BfQoFY1kqkogkMWE%3D",
+      "store": "Epic Games Store",
+      "price": 0.84,
+      "listPrice": 16.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://cdn1.epicgames.com/spt-assets/45f1a40dbbc848ecb8e3a087e7a28015/bunny-hopper-lnm6l.jpg",
+      "publishedAt": "2026-09-17T09:18:59.000Z",
+      "sourceSignal": 67,
+      "id": "7e503b5666aa85cb",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 72,
+      "flag": "chollo",
+      "reasons": [
+        "95,06 % bajo el precio de lista",
+        "Ahorro de 16,15 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Via Mortis",
+      "url": "https://www.cheapshark.com/redirect?dealID=wK4EnlIPRU8KIS%2FlRsOY0CxZZm35zqdilAVebYaokt4%3D",
+      "store": "Steam",
+      "price": 0.74,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1987550/capsule_231x87.jpg?t=1766062163",
+      "publishedAt": "2026-10-01T23:40:31.000Z",
+      "sourceSignal": 8,
+      "id": "a04a9e9f15871bc7",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 72,
+      "flag": "chollo",
+      "reasons": [
+        "95,06 % bajo el precio de lista",
+        "Ahorro de 14,25 USD"
+      ]
+    },
+    {
+      "title": "EvoluShip",
+      "url": "https://www.cheapshark.com/redirect?dealID=tPSU54Xtk5qDpV%2FiBH%2FqbSLCpeB5Unmln7mkOpUqT%2BQ%3D",
+      "store": "Steam",
+      "price": 0.49,
+      "listPrice": 9.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1937180/capsule_231x87.jpg?t=1724420751",
+      "publishedAt": "2026-10-01T17:30:33.000Z",
+      "sourceSignal": 8,
+      "id": "1e84bc914f389225",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 70,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 9,50 USD"
+      ]
+    },
+    {
+      "title": "Asteroid Core",
+      "url": "https://www.cheapshark.com/redirect?dealID=qujpOGdMsg0topytx6Kn2HyLiMgVEfvliWy8%2F0MEf0s%3D",
+      "store": "Steam",
+      "price": 0.49,
+      "listPrice": 9.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2608120/capsule_231x87.jpg?t=1724420710",
+      "publishedAt": "2026-10-01T17:29:00.000Z",
+      "sourceSignal": 8,
+      "id": "63b5cbc9103cb73f",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 70,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 9,50 USD"
+      ]
+    },
+    {
+      "title": "Cris Tales Original Soundtrack",
+      "url": "https://www.cheapshark.com/redirect?dealID=HUW8W4SaZ1sVV%2FjQ7iJsn2q7X87LZwoVYR8sAVJPz04%3D",
+      "store": "GOG",
+      "price": 0.49,
+      "listPrice": 9.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.greenmangaming.com/a4089dc596014a8bb692b1565158791b/8a59bc3531d5450db40cabfa2020aeee.jpg",
+      "publishedAt": "2026-09-24T12:40:13.000Z",
+      "sourceSignal": 38,
+      "id": "e1cf02b1bb85e36f",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 70,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 9,50 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Hyper Warehouse Simulator",
+      "url": "https://www.cheapshark.com/redirect?dealID=TCmMcMA5mm%2FEquo2aBrfZgnHHuwWRK5nDfhBZSZUI%2FI%3D",
+      "store": "Epic Games Store",
+      "price": 0.39,
+      "listPrice": 7.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://cdn1.epicgames.com/spt-assets/b3b98644340141cf8fcd4118c67fad28/hyper-warehouse-simulator-1957x.png",
+      "publishedAt": "2026-09-22T21:47:56.000Z",
+      "sourceSignal": 45,
+      "id": "2be22cfe898a285b",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.12,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 69,
+      "flag": "chollo",
+      "reasons": [
+        "95,12 % bajo el precio de lista",
+        "Ahorro de 7,60 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "The Black Within",
+      "url": "https://www.cheapshark.com/redirect?dealID=%2BRXts37PeHxK9HoyWQ8TtsiJyCCyMOarClCQJl%2FM6LE%3D",
+      "store": "GOG",
+      "price": 0.49,
+      "listPrice": 9.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2372870/capsule_231x87.jpg?t=1770196960",
+      "publishedAt": "2026-09-16T12:54:08.000Z",
+      "sourceSignal": 27,
+      "id": "4f0b3134b912b239",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 69,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 9,50 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Adventures of Astronaut Max",
+      "url": "https://www.cheapshark.com/redirect?dealID=DOtiyySUi8DMnepYHDwjCxoRnfYQYnCEFyolhz9KaGQ%3D",
+      "store": "Epic Games Store",
+      "price": 0.39,
+      "listPrice": 7.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://cdn1.epicgames.com/spt-assets/9a693d07a01942068a72fdcd5a6cdcfc/adventures-of-astronaut-max-1okbe.jpg",
+      "publishedAt": "2026-09-24T15:51:09.000Z",
+      "sourceSignal": 39,
+      "id": "54f4112856f40574",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.12,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 69,
+      "flag": "chollo",
+      "reasons": [
+        "95,12 % bajo el precio de lista",
+        "Ahorro de 7,60 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Curved Space Official Soundtrack",
+      "url": "https://www.cheapshark.com/redirect?dealID=8lLt%2B72yQTYqstJO41peBAFexOYOkPlBmYVV211Pwrs%3D",
+      "store": "GOG",
+      "price": 0.29,
+      "listPrice": 5.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.greenmangaming.com/0df7e81e8fb84e46a6ef5b097d5f3e73/d6ce7f7f97304259a17fd7b109dbdc0e.jpg",
+      "publishedAt": "2026-09-24T12:40:15.000Z",
+      "sourceSignal": 39,
+      "id": "9c1ffc5ec0d486fd",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.16,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 69,
+      "flag": "chollo",
+      "reasons": [
+        "95,16 % bajo el precio de lista",
+        "Ahorro de 5,70 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "WorldShadow",
+      "url": "https://www.cheapshark.com/redirect?dealID=FYfL0dZGBBMJAfc56bVdtg0VKCEahfhQ5xwjTdMhtR4%3D",
+      "store": "Epic Games Store",
+      "price": 0.64,
+      "listPrice": 12.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://cdn1.epicgames.com/spt-assets/20744c165f274891b26cd85006bbe428/world-shadow-uyviw.png",
+      "publishedAt": "2026-09-07T00:13:26.000Z",
+      "sourceSignal": 18,
+      "id": "cb6910faaa309780",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.07,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 69,
+      "flag": "chollo",
+      "reasons": [
+        "95,07 % bajo el precio de lista",
+        "Ahorro de 12,35 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Stronghold 3 Gold",
+      "url": "https://www.cheapshark.com/redirect?dealID=L5LaXC7q2hA6HKAQ%2BEasvCyAzNXnYdmT%2BDe50HrwiEo%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 29.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/47400/capsule_231x87.jpg?t=1758726085",
+      "publishedAt": "2026-07-28T17:17:37.000Z",
+      "sourceSignal": 0,
+      "id": "4bcde83a996c4e3c",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.37,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 68,
+      "flag": "chollo",
+      "reasons": [
+        "96,37 % bajo el precio de lista",
+        "Ahorro de 28,90 USD"
+      ]
+    },
+    {
+      "title": "The Green Light",
+      "url": "https://www.cheapshark.com/redirect?dealID=rbmtnVnnKGdKZzuZXIul%2B5kn%2B8YqZ2lejiWitMKgKIo%3D",
+      "store": "GOG",
+      "price": 0.49,
+      "listPrice": 9.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1962950/af76a3615c892059a8d74fddc2e761c4855baf22/capsule_231x87.jpg?t=1770198609",
+      "publishedAt": "2026-08-28T12:17:27.000Z",
+      "sourceSignal": 14,
+      "id": "6bcfc30720f28fa4",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.1,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 68,
+      "flag": "chollo",
+      "reasons": [
+        "95,1 % bajo el precio de lista",
+        "Ahorro de 9,50 USD",
+        "Destacada por la comunidad"
+      ]
+    },
+    {
+      "title": "Red Dead Redemption 2",
+      "url": "https://store.steampowered.com/app/1174180/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 14.99,
+      "listPrice": 59.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg?t=1759502961",
+      "id": "6fec2a9abee7af1f",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 75.01,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 68,
+      "flag": "chollo",
+      "reasons": [
+        "75,01 % bajo el precio de lista",
+        "Ahorro de 45,00 USD"
+      ]
+    },
+    {
+      "title": "Warhammer 40,000: Space Marine 2",
+      "url": "https://store.steampowered.com/app/2183900/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 14.99,
+      "listPrice": 59.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2183900/c0da5cad512f85a006abb9181cb3f45107fb0223/header_alt_assets_14.jpg?t=1790874369",
+      "id": "af13e70af065d8e4",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 75.01,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 68,
+      "flag": "chollo",
+      "reasons": [
+        "75,01 % bajo el precio de lista",
+        "Ahorro de 45,00 USD"
+      ]
+    },
+    {
+      "title": "Club Manager 2017",
+      "url": "https://www.cheapshark.com/redirect?dealID=%2FfVK%2BLWLR1uuJhbqNEr%2F24h%2FLzYxhJmcJKRfEgC32lw%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 29.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://sttc.gamersgate.com/images/product/club-manager-2017/cover-180-132eab.jpg",
+      "publishedAt": "2026-07-28T15:48:26.000Z",
+      "sourceSignal": 0,
+      "id": "b5219317493c838d",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.37,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 68,
+      "flag": "chollo",
+      "reasons": [
+        "96,37 % bajo el precio de lista",
+        "Ahorro de 28,90 USD"
+      ]
+    },
+    {
+      "title": "Sentinels of the Multiverse - Season Pass 2",
+      "url": "https://www.cheapshark.com/redirect?dealID=Ng%2BUanUPWDcJ1IVZGPNsjm4BfSsoEvq1lh0xRWSLI3k%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 29.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://cdn.fanatical.com/production/product/400x225/ddccd59e-59e0-4514-a27e-f8e35968929f.jpg",
+      "publishedAt": "2026-07-28T17:19:07.000Z",
+      "sourceSignal": 0,
+      "id": "bdd6d913d8ba4d28",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.37,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 68,
+      "flag": "chollo",
+      "reasons": [
+        "96,37 % bajo el precio de lista",
+        "Ahorro de 28,90 USD"
+      ]
+    },
+    {
+      "title": "1775: Rebellion",
+      "url": "https://www.cheapshark.com/redirect?dealID=Mv5bUBdVbELz9bvtQoJDX%2F2scke6aQFCMzsoQCEUNWs%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/422610/capsule_231x87.jpg?t=1787369695",
+      "publishedAt": "2025-08-22T17:16:28.000Z",
+      "sourceSignal": 0,
+      "id": "02f626e8621bf259",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.64,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 67,
+      "flag": "chollo",
+      "reasons": [
+        "95,64 % bajo el precio de lista",
+        "Ahorro de 23,90 USD"
+      ]
+    },
+    {
+      "title": "Age of Fear 3: The Legend",
+      "url": "https://www.cheapshark.com/redirect?dealID=BF%2FFS8Tu2r9U8Fm5nxjqPUc5lPmB7u%2BhdoVa%2Fy0k6ts%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/431700/capsule_231x87.jpg?t=1730542191",
+      "publishedAt": "2025-01-02T18:38:52.000Z",
+      "sourceSignal": 0,
+      "id": "107ee16b97cb6146",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.64,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 67,
+      "flag": "chollo",
+      "reasons": [
+        "95,64 % bajo el precio de lista",
+        "Ahorro de 23,90 USD"
+      ]
+    },
+    {
+      "title": "Planar Conquest",
+      "url": "https://www.cheapshark.com/redirect?dealID=DGRC36Prmy02TX3i6RpTTyvVz1PMS1CJAGS2GwjbcYc%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/449300/capsule_231x87.jpg?t=1782168871",
+      "publishedAt": "2026-07-28T15:48:03.000Z",
+      "sourceSignal": 0,
+      "id": "4956c7cdb2282df6",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.64,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 67,
+      "flag": "chollo",
+      "reasons": [
+        "95,64 % bajo el precio de lista",
+        "Ahorro de 23,90 USD"
+      ]
+    },
+    {
+      "title": "Paws: Pitter Patter Edition",
+      "url": "https://www.cheapshark.com/redirect?dealID=kREYY3U9v64BdyGR49%2B15OYU79epiUo3QvQO%2BZJiAYw%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://images.gog-statics.com/676a646aacdbbb862d2c15f225ea4390c02a4691c9027572a5d7389f84e84df2_product_tile_117h.webp",
+      "publishedAt": "2026-07-28T15:48:34.000Z",
+      "sourceSignal": 0,
+      "id": "f02b1900e8c28c2c",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.64,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 67,
+      "flag": "chollo",
+      "reasons": [
+        "95,64 % bajo el precio de lista",
+        "Ahorro de 23,90 USD"
+      ]
+    },
+    {
+      "title": "Sentinels of the Multiverse - Season Pass 1",
+      "url": "https://www.cheapshark.com/redirect?dealID=yi9uaQNYF70Vwmwvwx4ESFIbIG7dB5r2MepnACHPq0g%3D",
+      "store": "WinGameStore",
+      "price": 1.09,
+      "listPrice": 24.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://www.wingamestore.com/images_boxshots/master/sentinels-of-the-multiverse-season-pass-1-1550381788.jpg",
+      "publishedAt": "2026-07-28T17:19:07.000Z",
+      "sourceSignal": 0,
+      "id": "fb1acfa7242a1462",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.64,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 67,
+      "flag": "chollo",
+      "reasons": [
+        "95,64 % bajo el precio de lista",
+        "Ahorro de 23,90 USD"
+      ]
+    },
+    {
+      "title": "Asguaard",
+      "url": "https://www.cheapshark.com/redirect?dealID=K1MyHIH8RzjWZr%2FdjEB7fmgXCmF4mFwnlW2wZgCa5mc%3D",
+      "store": "Humble Store",
+      "price": 0.59,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/332380/3644b8c12f7936c45d032e0286c94d38a3d36fc1/capsule_231x87.jpg?t=1730487357",
+      "publishedAt": "2025-10-02T13:12:45.000Z",
+      "sourceSignal": 0,
+      "id": "14796333099fba18",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 66,
+      "flag": "chollo",
+      "reasons": [
+        "96,06 % bajo el precio de lista",
+        "Ahorro de 14,40 USD"
+      ]
+    },
+    {
+      "title": "3 Stars of Destiny",
+      "url": "https://www.cheapshark.com/redirect?dealID=6Aub49GWdswiskFpaRZO5RAmunYBStZzD0B4wnwhbW8%3D",
+      "store": "Humble Store",
+      "price": 0.59,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/278530/capsule_231x87.jpg?t=1723878860",
+      "publishedAt": "2025-10-02T01:15:48.000Z",
+      "sourceSignal": 0,
+      "id": "310ea705073e8880",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 66,
+      "flag": "chollo",
+      "reasons": [
+        "96,06 % bajo el precio de lista",
+        "Ahorro de 14,40 USD"
+      ]
+    },
+    {
+      "title": "Cyber Avenger",
+      "url": "https://www.cheapshark.com/redirect?dealID=l%2FF5BpsRT4wNh0cdyDv0PSWFzTvOmohwiE4KBIXimww%3D",
+      "store": "Humble Store",
+      "price": 0.71,
+      "listPrice": 17.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2606270/999f5dd68c940b281def83a4b261698afd44c442/capsule_231x87.jpg?t=1757268783",
+      "publishedAt": "2025-11-27T12:53:16.000Z",
+      "sourceSignal": 0,
+      "id": "96f5a0e8717496bd",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.05,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 66,
+      "flag": "chollo",
+      "reasons": [
+        "96,05 % bajo el precio de lista",
+        "Ahorro de 17,28 USD"
+      ]
+    },
+    {
+      "title": "The Book of Legends",
+      "url": "https://www.cheapshark.com/redirect?dealID=nlp3qDJuphBKbhB375Uh1maMvh4fQqKur9BHFfgLZqI%3D",
+      "store": "Humble Store",
+      "price": 0.59,
+      "listPrice": 14.99,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/277470/capsule_231x87.jpg?t=1730488403",
+      "publishedAt": "2025-10-02T09:07:47.000Z",
+      "sourceSignal": 0,
+      "id": "fe949ebc3dcb5ff5",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 96.06,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 66,
+      "flag": "chollo",
+      "reasons": [
+        "96,06 % bajo el precio de lista",
+        "Ahorro de 14,40 USD"
+      ]
+    },
+    {
+      "title": "Dofamine",
+      "url": "https://www.cheapshark.com/redirect?dealID=opwzftQ44yUZ3nqZsvbn%2BHWzMB4f9y%2BecA2Vbph4sYo%3D",
+      "store": "Humble Store",
+      "price": 0.65,
+      "listPrice": 13.19,
+      "currency": "USD",
+      "category": "videojuegos",
+      "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1441180/capsule_231x87.jpg?t=1746255758",
+      "publishedAt": "2025-11-27T06:19:09.000Z",
+      "sourceSignal": 0,
+      "id": "89096657e6cb66c9",
+      "source": "CheapShark",
+      "sourceUrl": "https://www.cheapshark.com/",
+      "discountPct": 95.07,
+      "foundAt": "2026-10-05T22:29:33.736Z",
+      "score": 65,
+      "flag": "chollo",
+      "reasons": [
+        "95,07 % bajo el precio de lista",
+        "Ahorro de 12,54 USD"
+      ]
+    },
+    {
+      "title": "Cyberpunk 2077",
+      "url": "https://store.steampowered.com/app/1091500/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 17.99,
+      "listPrice": 59.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/e9047d8ec47ae3d94bb8b464fb0fc9e9972b4ac7/header.jpg?t=1784714077",
+      "id": "ea0e81f8b50e5945",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 70.01,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 65,
+      "flag": "chollo",
+      "reasons": [
+        "70,01 % bajo el precio de lista",
+        "Ahorro de 42,00 USD"
+      ]
+    },
+    {
+      "title": "How to Fish",
+      "url": "https://store.steampowered.com/app/4001890/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 4.95,
+      "listPrice": 7.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4001890/45c4ddff4901e32c4b8b643e1b97d0d01898d299/header.jpg?t=1788788717",
+      "id": "6728596deb4bf7eb",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 38.05,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 39,
+      "flag": "normal",
+      "reasons": [
+        "38,05 % bajo el precio de lista",
+        "Ahorro de 3,04 USD"
+      ]
+    },
+    {
+      "title": "Resident Evil Requiem",
+      "url": "https://store.steampowered.com/app/3764200/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 48.99,
+      "listPrice": 69.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/ce5437442768e38eb575f205ab9397d0264017b0/header.jpg?t=1779840172",
+      "id": "cc352d9b0b61d27d",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 30,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 39,
+      "flag": "normal",
+      "reasons": [
+        "30 % bajo el precio de lista",
+        "Ahorro de 21,00 USD"
+      ]
+    },
+    {
+      "title": "Baldur's Gate 3",
+      "url": "https://store.steampowered.com/app/1086940/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 41.99,
+      "listPrice": 59.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1777363040",
+      "id": "d67cb5bae0425249",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 30.01,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 39,
+      "flag": "normal",
+      "reasons": [
+        "30,01 % bajo el precio de lista",
+        "Ahorro de 18,00 USD"
+      ]
+    },
+    {
+      "title": "Project Zomboid",
+      "url": "https://store.steampowered.com/app/108600/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 16.74,
+      "listPrice": 24.99,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/108600/header.jpg?t=1787740093",
+      "id": "e9b0c01a52fcafce",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 33.01,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 38,
+      "flag": "normal",
+      "reasons": [
+        "33,01 % bajo el precio de lista",
+        "Ahorro de 8,25 USD"
+      ]
+    },
+    {
+      "title": "Bodycam",
+      "url": "https://store.steampowered.com/app/2406770/",
+      "store": "Steam",
+      "currency": "USD",
+      "price": 26.65,
+      "listPrice": 33.32,
+      "category": "videojuegos",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2406770/8d2765de57931435f802fa6757ad6920aea8646a/header_alt_assets_0.jpg?t=1791014741",
+      "id": "28fceb7802f35e79",
+      "source": "Steam",
+      "sourceUrl": "https://store.steampowered.com/",
+      "discountPct": 20.02,
+      "publishedAt": "2026-10-05T22:26:56.428Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
+      "score": 30,
+      "flag": "normal",
+      "reasons": [
+        "20,02 % bajo el precio de lista",
+        "Ahorro de 6,67 USD"
       ]
     },
     {
@@ -475,6 +2128,7 @@
       "currency": "USD",
       "store": "Amazon",
       "publishedAt": "2026-10-05T20:05:31.000Z",
+      "sourceText": "This Skeri electric dirt bike drops to $540 when you apply coupon code \"MLOOUVJS\" at checkout. That’s $360 off. Free shipping applies. Buy Now at Amazon Features 3200W mid-drive motor hits 32MPH with instant torque 48V 21Ah battery provides 30-40 miles range Dual-piston hydraulic disc brakes for confident stopping Adjustable hydraulic suspension with fat tires for rough terrain 90% pre-assembled for easy setup",
       "category": "Bicycling",
       "image": "https://d.dlnws.com/64599/1790608517-draftworks_img_u301h6l8kbsh0kmmcnb.jpeg?h=250&w=231",
       "syndication": {
@@ -484,7 +2138,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790608517-draftworks_img_u301h6l8kbsh0kmmcnb.jpeg?h=250&w=231' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Skeri electric dirt bike drops to $540 when you apply coupon code \"MLOOUVJS\" at checkout. That’s $360 off. Free shipping applies.\"><p>This Skeri electric dirt bike drops to $540 when you apply coupon code \"MLOOUVJS\" at checkout. That’s $360 off. Free shipping applies. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"3200W mid-drive motor hits 32MPH with instant torque 48V 21Ah battery provides 30-40 miles range Dual-piston hydraulic disc brakes for confident stopping Adjustable hydraulic suspension with fat tires for rough terrain 90% pre-assembled for easy setup\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>3200W mid-drive motor hits 32MPH with instant torque</li> <li>48V 21Ah battery provides 30-40 miles range</li> <li>Dual-piston hydraulic disc brakes for confident stopping</li> <li>Adjustable hydraulic suspension with fat tires for rough terrain</li> <li>90% pre-assembled for easy setup</li> </ul> </div>"
       },
       "id": "3d4b6a633974618e",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -502,6 +2156,7 @@
       "currency": "USD",
       "store": "Macy's",
       "publishedAt": "2026-10-05T21:14:43.000Z",
+      "sourceText": "This Hanes robe is $17.93 at Macy's. It's a 70% savings. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's",
       "category": "Sleep & Lounge",
       "image": "https://d.dlnws.com/64599/1791234877-33456712_fpx.jpeg?h=250&w=205",
       "syndication": {
@@ -511,7 +2166,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791234877-33456712_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Hanes robe is $17.93 at Macy's. It's a 70% savings. Star Rewards members get free shipping over $39 (it's free to join).\"><p>This Hanes robe is $17.93 at Macy's. It's a 70% savings. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>"
       },
       "id": "3f7b10f9acf494ad",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -529,6 +2184,7 @@
       "currency": "USD",
       "store": "Dick's Sporting Goods",
       "publishedAt": "2026-10-05T21:41:52.000Z",
+      "sourceText": "Dick's Sporting Goods offers the adidas Women's Originals Firebird Adilenium Track Top in Better Scarlet for $25.97. That's a $64 low. ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods",
       "category": "Activewear",
       "image": "https://d.dlnws.com/64599/1791236504-product-trimmed.png?h=250&w=250",
       "syndication": {
@@ -538,7 +2194,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791236504-product-trimmed.png?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick's Sporting Goods offers the adidas Women's Originals Firebird Adilenium Track Top in Better Scarlet for $25.97.  That's a $64 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>Dick's Sporting Goods offers the adidas Women's Originals Firebird Adilenium Track Top in Better Scarlet for $25.97.  That's a $64 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
       },
       "id": "42aa3f5d8d4dbbdb",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T22:10:24.149Z",
       "score": 12,
@@ -556,6 +2212,7 @@
       "currency": "USD",
       "store": "Dick's Sporting Goods",
       "publishedAt": "2026-10-05T22:05:10.000Z",
+      "sourceText": "Dick's Sporting Goods offers the Under Armour Men's HeatGear Armour Leggings in Red/White for $14.97. That's a $25 low. ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods",
       "category": "Activewear",
       "image": "https://d.dlnws.com/64599/1791237903-20uarmhgrmrlggngsapb_red_white.webp?h=250&w=121",
       "syndication": {
@@ -565,7 +2222,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791237903-20uarmhgrmrlggngsapb_red_white.webp?h=250&w=121' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick's Sporting Goods offers the Under Armour Men's HeatGear Armour Leggings in Red/White for $14.97.  That's a $25 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>Dick's Sporting Goods offers the Under Armour Men's HeatGear Armour Leggings in Red/White for $14.97.  That's a $25 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
       },
       "id": "58657a5c517be46a",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T22:10:24.149Z",
       "score": 12,
@@ -583,6 +2240,7 @@
       "currency": "USD",
       "store": "Amazon",
       "publishedAt": "2026-10-05T20:35:18.000Z",
+      "sourceText": "Retailers, restaurants, and offices needing a standalone way to loop ads or menus will find the floor-standing build and USB/HDMI/WiFi setup handle that without extra mounting hardware.. Apply coupon code \"V1RE6KZS\" for a savings of $360. Buy Now at Amazon Features Interactive touchscreen for customer engagement Durable freestanding design for high-traffic areas Android OS with Google Apps support Split-screen multi-content playback 600 nit Ultra-Clear IPS display Model: CA-32B",
       "category": "TVs",
       "image": "https://d.dlnws.com/64599/1790270488-draftworks_img_ril93ft0g59j3bpmboj.jpeg?h=250&w=250",
       "syndication": {
@@ -592,7 +2250,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790270488-draftworks_img_ril93ft0g59j3bpmboj.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Retailers, restaurants, and offices needing a standalone way to loop ads or menus will find the floor-standing build and USB/HDMI/WiFi setup handle that without extra mounting hardware.. Apply coupon code \"V1RE6KZS\" for a savings of $360.\"><p>Retailers, restaurants, and offices needing a standalone way to loop ads or menus will find the floor-standing build and USB/HDMI/WiFi setup handle that without extra mounting hardware.. Apply coupon code \"V1RE6KZS\" for a savings of $360. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Interactive touchscreen for customer engagement Durable freestanding design for high-traffic areas Android OS with Google Apps support Split-screen multi-content playback 600 nit Ultra-Clear IPS display Model: CA-32B\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Interactive touchscreen for customer engagement</li> <li>Durable freestanding design for high-traffic areas</li> <li>Android OS with Google Apps support</li> <li>Split-screen multi-content playback</li> <li>600 nit Ultra-Clear IPS display</li> <li>Model: CA-32B</li> </ul> </div>"
       },
       "id": "62945a60810391c0",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -610,6 +2268,7 @@
       "currency": "USD",
       "store": "Dick's Sporting Goods",
       "publishedAt": "2026-10-05T21:18:07.000Z",
+      "sourceText": "Dick's Sporting Goods offers the adidas Men's Trefoil Essentials Woven Cargo Pants for $22.97. That's a $27 low. ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods",
       "category": "Pants",
       "image": "https://d.dlnws.com/64599/1791235079-25adimcasussntlswveaf_cardboard.webp?h=250&w=148",
       "syndication": {
@@ -619,7 +2278,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791235079-25adimcasussntlswveaf_cardboard.webp?h=250&w=148' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick's Sporting Goods offers the adidas Men's Trefoil Essentials Woven Cargo Pants for $22.97.  That's a $27 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>Dick's Sporting Goods offers the adidas Men's Trefoil Essentials Woven Cargo Pants for $22.97.  That's a $27 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
       },
       "id": "6664065cd3bb360c",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -629,26 +2288,27 @@
       ]
     },
     {
-      "title": "Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping",
-      "url": "https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss",
-      "sourceUrl": "https://www.dealnews.com/22246917.html?iref=rss",
-      "price": 79,
+      "title": "Signature Design by Ashley SimpleJoy Corduroy 3-Seater Sofa for $555 + free shipping",
+      "url": "https://www.dealnews.com/Signature-Design-by-Ashley-Simple-Joy-Corduroy-3-Seater-Sofa-for-555-free-shipping/22247140.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247140.html?iref=rss",
+      "price": 555,
       "listPrice": null,
       "currency": "USD",
-      "store": "Lowe's",
-      "publishedAt": "2026-10-05T19:20:54.000Z",
-      "category": "Power Saws",
-      "image": "https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T22:19:55.000Z",
+      "sourceText": "Amazon has the Signature Design by Ashley SimpleJoy Corduroy 3-Seater Sofa in Black for $554.84 after an on-page coupon. It's a $49 savings. Shipping is free. Buy Now at Amazon Features Arrives fully assembled 83\" wide, fits three people 20\" seat height and clears 32\" doorways 100% polyester corduroy cover w/ W cleaning code Three removable seat cushions w/ attached channeled backrests Platform foundation tested for 20,000 cycles",
+      "category": "Sofas & Couches",
+      "image": "https://d.dlnws.com/64599/1791238788-71xxtjz500l.jpg?h=250&w=250",
       "syndication": {
         "attribution": "DealNews",
         "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping</title>\n   <link>https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe&#x27;s&#x20;offers&#x20;the&#x20;Kobalt&#x20;24V&#x20;Variable&#x20;Speed&#x20;Brushless&#x20;Cordless&#x20;Reciprocating&#x20;Saw&#x20;for&#x20;&#x24;79. &#x20;That&#x27;s&#x20;a&#x20;&#x24;20&#x20;savings. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;14th.\"><p>Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th. Buy Now at Lowe's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246917.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:20:54 -0400</pubDate>\n   <dealnews:retailer>Lowe's</dealnews:retailer>\n   <dealnews:expires>2026-10-14T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Power Saws</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">79.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&amp;w=250\" medium=\"image\" height=\"101\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th.\"><p>Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th. Buy Now at Lowe's</p></div>"
+        "itemXml": "<item>\n   <title>Signature Design by Ashley SimpleJoy Corduroy 3-Seater Sofa for $555 + free shipping</title>\n   <link>https://www.dealnews.com/Signature-Design-by-Ashley-Simple-Joy-Corduroy-3-Seater-Sofa-for-555-free-shipping/22247140.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791238788-71xxtjz500l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Amazon&#x20;has&#x20;the&#x20;Signature&#x20;Design&#x20;by&#x20;Ashley&#x20;SimpleJoy&#x20;Corduroy&#x20;3-Seater&#x20;Sofa&#x20;in&#x20;Black&#x20;for&#x20;&#x24;554.84&#x20;after&#x20;an&#x20;on-page&#x20;coupon.&#x20;It&#x27;s&#x20;a&#x20;&#x24;49&#x20;savings.&#x20;Shipping&#x20;is&#x20;free. \"><p>Amazon has the Signature Design by Ashley SimpleJoy Corduroy 3-Seater Sofa in Black for $554.84 after an on-page coupon. It's a $49 savings. Shipping is free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Arrives&#x20;fully&#x20;assembled&#x20;83&quot;&#x20;wide,&#x20;fits&#x20;three&#x20;people&#x20;20&quot;&#x20;seat&#x20;height&#x20;and&#x20;clears&#x20;32&quot;&#x20;doorways&#x20;100&#x25;&#x20;polyester&#x20;corduroy&#x20;cover&#x20;w&#x2F;&#x20;W&#x20;cleaning&#x20;code&#x20;Three&#x20;removable&#x20;seat&#x20;cushions&#x20;w&#x2F;&#x20;attached&#x20;channeled&#x20;backrests&#x20;Platform&#x20;foundation&#x20;tested&#x20;for&#x20;20,000&#x20;cycles\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Arrives fully assembled</li> <li>83\" wide, fits three people</li> <li>20\" seat height and clears 32\" doorways</li> <li>100% polyester corduroy cover w/ W cleaning code</li> <li>Three removable seat cushions w/ attached channeled backrests</li> <li>Platform foundation tested for 20,000 cycles</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22247140.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:19:55 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T17:19:55-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Sofas &amp; Couches </dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">555.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791238788-71xxtjz500l.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791238788-71xxtjz500l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Amazon has the Signature Design by Ashley SimpleJoy Corduroy 3-Seater Sofa in Black for $554.84 after an on-page coupon. It's a $49 savings. Shipping is free. \"><p>Amazon has the Signature Design by Ashley SimpleJoy Corduroy 3-Seater Sofa in Black for $554.84 after an on-page coupon. It's a $49 savings. Shipping is free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Arrives fully assembled 83\" wide, fits three people 20\" seat height and clears 32\" doorways 100% polyester corduroy cover w/ W cleaning code Three removable seat cushions w/ attached channeled backrests Platform foundation tested for 20,000 cycles\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Arrives fully assembled</li> <li>83\" wide, fits three people</li> <li>20\" seat height and clears 32\" doorways</li> <li>100% polyester corduroy cover w/ W cleaning code</li> <li>Three removable seat cushions w/ attached channeled backrests</li> <li>Platform foundation tested for 20,000 cycles</li> </ul> </div>"
       },
-      "id": "6bd5a7f1ce95c348",
-      "source": "dealnews",
+      "id": "6d0e5c85bf18e306",
+      "source": "DealNews",
       "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
+      "foundAt": "2026-10-05T22:26:56.428Z",
       "score": 12,
       "flag": "normal",
       "reasons": [
@@ -664,6 +2324,7 @@
       "currency": "USD",
       "store": "Macy's",
       "publishedAt": "2026-10-05T20:50:52.000Z",
+      "sourceText": "Today only, Macy's offers the Campus Sutra Men's Micro-Check Chino Trousers for $26. You'd pay double this price elsewhere. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's",
       "category": "Pants",
       "image": "https://d.dlnws.com/64599/1791233444-product-trimmed.png?h=250&w=134",
       "syndication": {
@@ -673,7 +2334,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791233444-product-trimmed.png?h=250&w=134' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Today only, Macy's offers the Campus Sutra Men's Micro-Check Chino Trousers for $26. You'd pay double this price elsewhere.  Star Rewards members get free shipping over $39 (it's free to join).\"><p>Today only, Macy's offers the Campus Sutra Men's Micro-Check Chino Trousers for $26. You'd pay double this price elsewhere.  Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>"
       },
       "id": "7e72baba9b49ea9c",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -691,6 +2352,7 @@
       "currency": "USD",
       "store": "Macy's",
       "publishedAt": "2026-10-05T20:38:06.000Z",
+      "sourceText": "Macy's offers the Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest in Neo Navy for $19.46. That's a $111 savings. Star Rewards members get free shipping over $39 (it's free to join). Pickup is also available. Buy Now at Macy's",
       "category": "Clothing & Accessories",
       "image": "https://d.dlnws.com/64599/1791232679-product-trimmed.png?h=250&w=205",
       "syndication": {
@@ -700,34 +2362,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791232679-product-trimmed.png?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Macy's offers the Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest in Neo Navy for $19.46. That's a $111 savings.  Star Rewards members get free shipping over $39 (it's free to join).  Pickup is also available.\"><p>Macy's offers the Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest in Neo Navy for $19.46. That's a $111 savings.  Star Rewards members get free shipping over $39 (it's free to join).  Pickup is also available. Buy Now at Macy's</p></div>"
       },
       "id": "8c2f9050d360e734",
-      "source": "dealnews",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Precio de referencia no disponible"
-      ]
-    },
-    {
-      "title": "Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49",
-      "url": "https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss",
-      "sourceUrl": "https://www.dealnews.com/22246897.html?iref=rss",
-      "price": 18,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "Dick's Sporting Goods",
-      "publishedAt": "2026-10-05T19:09:50.000Z",
-      "category": "Sweatshirts & Hoodies",
-      "image": "https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Under&#x20;Armour&#x20;Icon&#x20;Fleece&#x20;Hoodie&#x20;is&#x20;&#x24;17.97&#x20;in&#x20;Orange&#x20;Bloc&#x20;at&#x20;Dick&#x27;s&#x20;Sporting&#x20;Goods;&#x20;Fade&#x20;Green&#x20;is&#x20;also&#x20;available&#x20;for&#x20;a&#x20;buck&#x20;more. &#x20;That&#x27;s&#x20;a&#x20;&#x24;47&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246897.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:09:50 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:09:50-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Sweatshirts &amp; Hoodies</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">18.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&amp;w=136\" medium=\"image\" height=\"250\" width=\"136\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
-      },
-      "id": "8eae9fbcbdf989f4",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -745,6 +2380,7 @@
       "currency": "USD",
       "store": "Lowe's",
       "publishedAt": "2026-10-05T19:45:22.000Z",
+      "sourceText": "Lowe's offers the Kobalt 4V Max 1/4\" Cordless Screwdriver for $19.98. MyLowe's Rewards members get free shipping (it's free to join). Deal ends November 18th. Buy Now at Lowe's",
       "category": "Power Tools",
       "image": "https://d.dlnws.com/64599/1791229445-70347418.webp?h=126&w=250",
       "syndication": {
@@ -754,34 +2390,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791229445-70347418.webp?h=126&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe's offers the Kobalt 4V Max 1/4\" Cordless Screwdriver for $19.98.  MyLowe's Rewards members get free shipping (it's free to join).  Deal ends November 18th.\"><p>Lowe's offers the Kobalt 4V Max 1/4\" Cordless Screwdriver for $19.98.  MyLowe's Rewards members get free shipping (it's free to join).  Deal ends November 18th. Buy Now at Lowe's</p></div>"
       },
       "id": "aad44e054c865556",
-      "source": "dealnews",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Precio de referencia no disponible"
-      ]
-    },
-    {
-      "title": "Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping",
-      "url": "https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss",
-      "sourceUrl": "https://www.dealnews.com/22246916.html?iref=rss",
-      "price": 45,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "Cigar Page",
-      "publishedAt": "2026-10-05T19:19:17.000Z",
-      "category": "Cigars",
-      "image": "https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping</title>\n   <link>https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Promo&#x20;code&#x20;&quot;DNSPMWP10&quot;&#x20;brings&#x20;this&#x20;Smash&#x20;Pack&#x20;sampler&#x20;to&#x20;&#x24;45,&#x20;pairing&#x20;5&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;cigars&#x20;with&#x20;5&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;cigars,&#x20;both&#x20;in&#x20;a&#x20;6&quot;&#x20;by&#x20;54&#x20;size.&#x20;The&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;debuted&#x20;in&#x20;2007&#x20;and&#x20;has&#x20;remained&#x20;one&#x20;of&#x20;the&#x20;best-selling&#x20;premium&#x20;cigars&#x20;in&#x20;the&#x20;U.S.&#x20;ever&#x20;since.&#x20;Free&#x20;shipping&#x20;is&#x20;included&#x20;on&#x20;this&#x20;order.&#x20;Coupon&#x20;ends&#x20;October&#x20;12.\"><p>Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page</p></div> <div class=\"snippet features\" title=\"Includes&#x20;5&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;cigars&#x20;and&#x20;5&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;cigars&#x20;Both&#x20;cigars&#x20;measure&#x20;6&quot;&#x20;by&#x20;54&#x20;ring&#x20;gauge&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;carries&#x20;a&#x20;91&#x20;rating&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;uses&#x20;a&#x20;Connecticut&#x20;Shade&#x20;Ecuadorian&#x20;wrapper&#x20;with&#x20;a&#x20;Nicaraguan&#x20;binder&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;uses&#x20;a&#x20;Connecticut&#x20;Ecuador&#x20;wrapper&#x20;Pack&#x20;contains&#x20;10&#x20;total&#x20;cigars\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars</li> <li>Both cigars measure 6\" by 54 ring gauge</li> <li>Montecristo White Series Toro carries a 91 rating</li> <li>Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder</li> <li>Pirates Gold Toro uses a Connecticut Ecuador wrapper</li> <li>Pack contains 10 total cigars</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246916.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:19:17 -0400</pubDate>\n   <dealnews:retailer>Cigar Page</dealnews:retailer>\n   <dealnews:expires>2026-10-12T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Cigars</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">45.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12.\"><p>Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page</p></div> <div class=\"snippet features\" title=\"Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars Both cigars measure 6\" by 54 ring gauge Montecristo White Series Toro carries a 91 rating Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder Pirates Gold Toro uses a Connecticut Ecuador wrapper Pack contains 10 total cigars\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars</li> <li>Both cigars measure 6\" by 54 ring gauge</li> <li>Montecristo White Series Toro carries a 91 rating</li> <li>Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder</li> <li>Pirates Gold Toro uses a Connecticut Ecuador wrapper</li> <li>Pack contains 10 total cigars</li> </ul> </div>"
-      },
-      "id": "b039e54b05150da0",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -799,6 +2408,7 @@
       "currency": "USD",
       "store": "Musician's Friend",
       "publishedAt": "2026-10-05T20:02:37.000Z",
+      "sourceText": "Musician's Friend offers the Squier Classic Vibe '60s Jazzmaster Electric Guitar in three colors for $379.99. You'd pay $500 elsewhere. Shipping is free. Buy Now at Musician's Friend Features maple neck Indian laurel fingerboard dual alnico single-coil pickups",
       "category": "Musical Instruments",
       "image": "https://d.dlnws.com/64599/1791230549-l66132000001000-00-2000x2000.jpg?h=250&w=250",
       "syndication": {
@@ -808,7 +2418,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230549-l66132000001000-00-2000x2000.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Musician's Friend offers the Squier Classic Vibe '60s Jazzmaster Electric Guitar in three colors for $379.99.  You'd pay $500 elsewhere.  Shipping is free.\"><p>Musician's Friend offers the Squier Classic Vibe '60s Jazzmaster Electric Guitar in three colors for $379.99.  You'd pay $500 elsewhere.  Shipping is free. Buy Now at Musician's Friend</p></div> <div class=\"snippet features\" title=\"maple neck Indian laurel fingerboard dual alnico single-coil pickups\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>maple neck</li> <li>Indian laurel fingerboard</li> <li>dual alnico single-coil pickups</li> </ul> </div>"
       },
       "id": "bee56e99360f674d",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -826,6 +2436,7 @@
       "currency": "USD",
       "store": "Amazon",
       "publishedAt": "2026-10-05T20:47:21.000Z",
+      "sourceText": "Anyone on their feet all day at work or during workouts could use the extra cushioning these provide under the heel and ball of the foot. Apply coupon code \"7NS7HGMM\" for a savings of $5. Buy Now at Amazon Features Durable high-density EVA maintains arch support Targeted shock absorption for knees and joints Breathable mesh wicks sweat for dry comfort Non-slip surface prevents insole movement Corrects alignment and relieves foot pain",
       "category": "Accessories",
       "image": "https://d.dlnws.com/64599/1780341176-draftworks_img_g6q160fecqog3kbfcgh.jpeg?h=250&w=250",
       "syndication": {
@@ -835,7 +2446,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1780341176-draftworks_img_g6q160fecqog3kbfcgh.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Anyone on their feet all day at work or during workouts could use the extra cushioning these provide under the heel and ball of the foot. Apply coupon code \"7NS7HGMM\" for a savings of $5.\"><p>Anyone on their feet all day at work or during workouts could use the extra cushioning these provide under the heel and ball of the foot. Apply coupon code \"7NS7HGMM\" for a savings of $5. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Durable high-density EVA maintains arch support Targeted shock absorption for knees and joints Breathable mesh wicks sweat for dry comfort Non-slip surface prevents insole movement Corrects alignment and relieves foot pain\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Durable high-density EVA maintains arch support</li> <li>Targeted shock absorption for knees and joints</li> <li>Breathable mesh wicks sweat for dry comfort</li> <li>Non-slip surface prevents insole movement</li> <li>Corrects alignment and relieves foot pain</li> </ul> </div>"
       },
       "id": "cfa656fad0644f41",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -853,6 +2464,7 @@
       "currency": "USD",
       "store": "Nike",
       "publishedAt": "2026-10-05T19:38:39.000Z",
+      "sourceText": "Nike offers the Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $85.97; \"Mercurial\" is also available for $88.97. That's a $64 low. Shipping is free. Buy Now at Nike",
       "category": "Shoes",
       "image": "https://d.dlnws.com/64599/1791229111-product-trimmed.png?h=120&w=250",
       "syndication": {
@@ -862,7 +2474,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791229111-product-trimmed.png?h=120&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Nike offers the Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $85.97; \"Mercurial\" is also available for $88.97.  That's a $64 low.  Shipping is free.\"><p>Nike offers the Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $85.97; \"Mercurial\" is also available for $88.97.  That's a $64 low.  Shipping is free. Buy Now at Nike</p></div>"
       },
       "id": "e379d046e6ec9a96",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 12,
@@ -880,6 +2492,7 @@
       "currency": "USD",
       "store": "Walmart",
       "publishedAt": "2026-10-05T22:08:36.000Z",
+      "sourceText": "Walmart offers the RealPlay Shot Roulette Game for $14.97. That's a $25 savings. Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart",
       "category": "Gaming & Toys",
       "image": "https://d.dlnws.com/64599/1791238108-product-trimmed.png?h=190&w=250",
       "syndication": {
@@ -889,64 +2502,10 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791238108-product-trimmed.png?h=190&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart offers the RealPlay Shot Roulette Game for $14.97.  That's a $25 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>Walmart offers the RealPlay Shot Roulette Game for $14.97.  That's a $25 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
       },
       "id": "f07cfc0e898da430",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T22:10:38.341Z",
       "score": 12,
-      "flag": "normal",
-      "reasons": [
-        "Precio de referencia no disponible"
-      ]
-    },
-    {
-      "title": "AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping",
-      "url": "https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss",
-      "sourceUrl": "https://www.dealnews.com/22246857.html?iref=rss",
-      "price": 409,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "Amazon",
-      "publishedAt": "2026-10-05T18:44:09.000Z",
-      "category": "Desktops",
-      "image": "https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;K1&#x20;mini&#x20;PC&#x20;matches&#x20;its&#x20;all-time&#x20;low&#x20;price&#x20;at&#x20;&#x24;409,&#x20;down&#x20;from&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;509.&#x20;It&#x20;packs&#x20;16GB&#x20;of&#x20;RAM&#x20;and&#x20;a&#x20;512GB&#x20;SSD&#x20;into&#x20;a&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;case&#x20;that&#x20;weighs&#x20;under&#x20;3&#x20;lb.,&#x20;and&#x20;it&#x20;can&#x20;drive&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;monitors&#x20;at&#x20;once.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD&#x20;Ryzen&#x20;5&#x20;7430U&#x20;processor&#x20;with&#x20;integrated&#x20;Radeon&#x20;graphics&#x20;16GB&#x20;DDR4&#x20;RAM,&#x20;expandable&#x20;up&#x20;to&#x20;64GB&#x20;512GB&#x20;SSD&#x20;with&#x20;two&#x20;M.2&#x20;slots&#x20;supporting&#x20;up&#x20;to&#x20;4TB&#x20;Supports&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;displays&#x20;at&#x20;60Hz&#x20;via&#x20;HDMI,&#x20;DisplayPort,&#x20;and&#x20;USB-C&#x20;Measures&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;and&#x20;weighs&#x20;2.3&#x20;lb.&#x20;Comes&#x20;with&#x20;Windows&#x20;11&#x20;Pro&#x20;pre-installed&#x20;and&#x20;a&#x20;1-year&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246857.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:44:09 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:44:09-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Desktops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">409.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD Ryzen 5 7430U processor with integrated Radeon graphics 16GB DDR4 RAM, expandable up to 64GB 512GB SSD with two M.2 slots supporting up to 4TB Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb. Comes with Windows 11 Pro pre-installed and a 1-year warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>"
-      },
-      "id": "02952e843e67f619",
-      "source": "dealnews",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 11,
-      "flag": "normal",
-      "reasons": [
-        "Precio de referencia no disponible"
-      ]
-    },
-    {
-      "title": "Vevor Rolling Garden Cart for $47 + free shipping",
-      "url": "https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss",
-      "sourceUrl": "https://www.dealnews.com/22246873.html?iref=rss",
-      "price": 47,
-      "listPrice": null,
-      "currency": "USD",
-      "store": "VEVOR",
-      "publishedAt": "2026-10-05T18:47:01.000Z",
-      "category": "Garden Tools",
-      "image": "https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250",
-      "syndication": {
-        "attribution": "DealNews",
-        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
-        "itemXml": "<item>\n   <title>Vevor Rolling Garden Cart for $47 + free shipping</title>\n   <link>https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use&#x20;promo&#x20;code&#x20;&quot;VVGG8&quot;&#x20;to&#x20;drop&#x20;the&#x20;price&#x20;on&#x20;this&#x20;Vevor&#x20;Rolling&#x20;Garden&#x20;Cart&#x20;to&#x20;&#x24;46.51,&#x20;its&#x20;best-ever&#x20;price. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb.&#x20;capacity&#x20;built-in&#x20;storage&#x20;tray&#x20;and&#x20;basket&#x20;360°&#x20;rotating&#x20;seat&#x20;&amp;&#x20;height&#x20;adjustable&#x20;up&#x20;to&#x20;3.1&quot;\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246873.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:47:01 -0400</pubDate>\n   <dealnews:retailer>VEVOR</dealnews:retailer>\n   <dealnews:expires>2026-10-15T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Garden Tools</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">47.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
-        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb. capacity built-in storage tray and basket 360° rotating seat & height adjustable up to 3.1\"\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>"
-      },
-      "id": "203c3c8235cd6151",
-      "source": "dealnews",
-      "discountPct": null,
-      "foundAt": "2026-10-05T21:35:29.338Z",
-      "score": 11,
       "flag": "normal",
       "reasons": [
         "Precio de referencia no disponible"
@@ -961,6 +2520,7 @@
       "currency": "USD",
       "store": "Walmart",
       "publishedAt": "2026-10-05T19:00:30.000Z",
+      "sourceText": "This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart. That's a $7 savings and just $1.73 a can. Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart",
       "category": "Groceries",
       "image": "https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250",
       "syndication": {
@@ -970,7 +2530,91 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
       },
       "id": "48e559405f992fc7",
-      "source": "dealnews",
+      "source": "DealNews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping",
+      "url": "https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246917.html?iref=rss",
+      "price": 79,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Lowe's",
+      "publishedAt": "2026-10-05T19:20:54.000Z",
+      "sourceText": "Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79. That's a $20 savings. Shipping is free. Deal ends October 14th. Buy Now at Lowe's",
+      "category": "Power Saws",
+      "image": "https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping</title>\n   <link>https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe&#x27;s&#x20;offers&#x20;the&#x20;Kobalt&#x20;24V&#x20;Variable&#x20;Speed&#x20;Brushless&#x20;Cordless&#x20;Reciprocating&#x20;Saw&#x20;for&#x20;&#x24;79. &#x20;That&#x27;s&#x20;a&#x20;&#x24;20&#x20;savings. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;14th.\"><p>Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th. Buy Now at Lowe's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246917.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:20:54 -0400</pubDate>\n   <dealnews:retailer>Lowe's</dealnews:retailer>\n   <dealnews:expires>2026-10-14T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Power Saws</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">79.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&amp;w=250\" medium=\"image\" height=\"101\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th.\"><p>Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th. Buy Now at Lowe's</p></div>"
+      },
+      "id": "6bd5a7f1ce95c348",
+      "source": "DealNews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246897.html?iref=rss",
+      "price": 18,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T19:09:50.000Z",
+      "sourceText": "This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more. That's a $47 low. ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods",
+      "category": "Sweatshirts & Hoodies",
+      "image": "https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Under&#x20;Armour&#x20;Icon&#x20;Fleece&#x20;Hoodie&#x20;is&#x20;&#x24;17.97&#x20;in&#x20;Orange&#x20;Bloc&#x20;at&#x20;Dick&#x27;s&#x20;Sporting&#x20;Goods;&#x20;Fade&#x20;Green&#x20;is&#x20;also&#x20;available&#x20;for&#x20;a&#x20;buck&#x20;more. &#x20;That&#x27;s&#x20;a&#x20;&#x24;47&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246897.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:09:50 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:09:50-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Sweatshirts &amp; Hoodies</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">18.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&amp;w=136\" medium=\"image\" height=\"250\" width=\"136\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
+      },
+      "id": "8eae9fbcbdf989f4",
+      "source": "DealNews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping",
+      "url": "https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22246916.html?iref=rss",
+      "price": 45,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Cigar Page",
+      "publishedAt": "2026-10-05T19:19:17.000Z",
+      "sourceText": "Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page Features Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars Both cigars measure 6\" by 54 ring gauge Montecristo White Series Toro carries a 91 rating Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder Pirates Gold Toro uses a Connecticut Ecuador wrapper Pack contains 10 total cigars",
+      "category": "Cigars",
+      "image": "https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping</title>\n   <link>https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Promo&#x20;code&#x20;&quot;DNSPMWP10&quot;&#x20;brings&#x20;this&#x20;Smash&#x20;Pack&#x20;sampler&#x20;to&#x20;&#x24;45,&#x20;pairing&#x20;5&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;cigars&#x20;with&#x20;5&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;cigars,&#x20;both&#x20;in&#x20;a&#x20;6&quot;&#x20;by&#x20;54&#x20;size.&#x20;The&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;debuted&#x20;in&#x20;2007&#x20;and&#x20;has&#x20;remained&#x20;one&#x20;of&#x20;the&#x20;best-selling&#x20;premium&#x20;cigars&#x20;in&#x20;the&#x20;U.S.&#x20;ever&#x20;since.&#x20;Free&#x20;shipping&#x20;is&#x20;included&#x20;on&#x20;this&#x20;order.&#x20;Coupon&#x20;ends&#x20;October&#x20;12.\"><p>Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page</p></div> <div class=\"snippet features\" title=\"Includes&#x20;5&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;cigars&#x20;and&#x20;5&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;cigars&#x20;Both&#x20;cigars&#x20;measure&#x20;6&quot;&#x20;by&#x20;54&#x20;ring&#x20;gauge&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;carries&#x20;a&#x20;91&#x20;rating&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;uses&#x20;a&#x20;Connecticut&#x20;Shade&#x20;Ecuadorian&#x20;wrapper&#x20;with&#x20;a&#x20;Nicaraguan&#x20;binder&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;uses&#x20;a&#x20;Connecticut&#x20;Ecuador&#x20;wrapper&#x20;Pack&#x20;contains&#x20;10&#x20;total&#x20;cigars\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars</li> <li>Both cigars measure 6\" by 54 ring gauge</li> <li>Montecristo White Series Toro carries a 91 rating</li> <li>Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder</li> <li>Pirates Gold Toro uses a Connecticut Ecuador wrapper</li> <li>Pack contains 10 total cigars</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246916.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:19:17 -0400</pubDate>\n   <dealnews:retailer>Cigar Page</dealnews:retailer>\n   <dealnews:expires>2026-10-12T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Cigars</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">45.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12.\"><p>Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page</p></div> <div class=\"snippet features\" title=\"Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars Both cigars measure 6\" by 54 ring gauge Montecristo White Series Toro carries a 91 rating Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder Pirates Gold Toro uses a Connecticut Ecuador wrapper Pack contains 10 total cigars\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars</li> <li>Both cigars measure 6\" by 54 ring gauge</li> <li>Montecristo White Series Toro carries a 91 rating</li> <li>Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder</li> <li>Pirates Gold Toro uses a Connecticut Ecuador wrapper</li> <li>Pack contains 10 total cigars</li> </ul> </div>"
+      },
+      "id": "b039e54b05150da0",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 11,
@@ -988,6 +2632,7 @@
       "currency": "USD",
       "store": "Musician's Friend",
       "publishedAt": "2026-10-05T19:04:35.000Z",
+      "sourceText": "The Epiphone Les Paul Custom Limited-Edition electric guitar is $599 at Musician's Friend. That's $200 off. Shipping is free. Buy Now at Musician's Friend Features Single-cutaway solidbody design with mahogany body and gloss finish Mahogany neck with slim profile and set-in joint Ebony fingerboard with 22 vintage-style frets and pearloid block inlays Two proprietary humbucker pickups with 3-way switch and individual volume/tone controls Tune-O-Matic bridge with stopbar tailpiece and chrome hardware 6-string, right-handed configuration; case sold separately",
       "category": "Musical Instruments",
       "image": "https://d.dlnws.com/64599/1791227068-product-trimmed.png?h=250&w=183",
       "syndication": {
@@ -997,7 +2642,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227068-product-trimmed.png?h=250&w=183' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"The Epiphone Les Paul Custom Limited-Edition electric guitar is $599 at Musician's Friend. That's $200 off. Shipping is free. \"><p>The Epiphone Les Paul Custom Limited-Edition electric guitar is $599 at Musician's Friend. That's $200 off. Shipping is free.  Buy Now at Musician's Friend</p></div> <div class=\"snippet features\" title=\"Single-cutaway solidbody design with mahogany body and gloss finish Mahogany neck with slim profile and set-in joint Ebony fingerboard with 22 vintage-style frets and pearloid block inlays Two proprietary humbucker pickups with 3-way switch and individual volume/tone controls Tune-O-Matic bridge with stopbar tailpiece and chrome hardware 6-string, right-handed configuration; case sold separately\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Single-cutaway solidbody design with mahogany body and gloss finish</li> <li>Mahogany neck with slim profile and set-in joint</li> <li>Ebony fingerboard with 22 vintage-style frets and pearloid block inlays</li> <li>Two proprietary humbucker pickups with 3-way switch and individual volume/tone controls</li> <li>Tune-O-Matic bridge with stopbar tailpiece and chrome hardware</li> <li>6-string, right-handed configuration; case sold separately</li> </ul> </div>"
       },
       "id": "f6dc05f63c1b37f3",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 11,
@@ -1015,6 +2660,7 @@
       "currency": "USD",
       "store": "Walmart",
       "publishedAt": "2026-10-05T09:46:49.000Z",
+      "sourceText": "This Joyfy 5-foot giant spider is $12 off the regular price of $24 at Walmart. Its metal-wired legs can be bent and posed, and the weather-resistant plush fur is designed to hold up for reuse across multiple Halloween seasons. Deal ends October 11. Buy Now at Walmart Features 43\" leg span Hairy black body with bright red eyes Metal wire inside legs allows posing and bending Weather-resistant plush fur for outdoor use Suitable for trees, fences, doorways, porches, or lawns",
       "category": "Seasonal/Holidays",
       "image": "https://d.dlnws.com/64599/1791193603-joyfy-5-ft-giant-spider-halloween-decorations-scary-spider-halloween-outdoor-party-decorations-props.avif?h=250&w=250",
       "syndication": {
@@ -1024,7 +2670,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791193603-joyfy-5-ft-giant-spider-halloween-decorations-scary-spider-halloween-outdoor-party-decorations-props.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Joyfy 5-foot giant spider is $12 off the regular price of $24 at Walmart. Its metal-wired legs can be bent and posed, and the weather-resistant plush fur is designed to hold up for reuse across multiple Halloween seasons. Deal ends October 11. \"><p>This Joyfy 5-foot giant spider is $12 off the regular price of $24 at Walmart. Its metal-wired legs can be bent and posed, and the weather-resistant plush fur is designed to hold up for reuse across multiple Halloween seasons. Deal ends October 11.  Buy Now at Walmart</p></div> <div class=\"snippet features\" title=\"43\" leg span Hairy black body with bright red eyes Metal wire inside legs allows posing and bending Weather-resistant plush fur for outdoor use Suitable for trees, fences, doorways, porches, or lawns\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>43\" leg span</li> <li>Hairy black body with bright red eyes</li> <li>Metal wire inside legs allows posing and bending</li> <li>Weather-resistant plush fur for outdoor use</li> <li>Suitable for trees, fences, doorways, porches, or lawns</li> </ul> </div>"
       },
       "id": "3530d6a43fc06edf",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 10,
@@ -1042,6 +2688,7 @@
       "currency": "USD",
       "store": "Cigar Page",
       "publishedAt": "2026-10-05T04:01:00.000Z",
+      "sourceText": "This deal is hard to turn down! 10 super fine, top-rated cigars hailing from two of the world's most respected makers: Rocky Patel and La Aurora. All premium long-filler, these delicious stogies are crafted entirely by hand. Top brands rated as high as 95. This collection of 10-cigars is yours for ONLY $22.99 & FREE SHIPPING to your door. No strings. Due to limited inventory, Cigar Page ask for only ONE sampler per customer, please. While supplies last. Each The Fab Collab Tenski Cigar Grip II contains 1 each of: Rocky Patel Decade Robusto (5\"x50) 95-rated La Aurora Preferidos 1903 Cameroon Toro (5.5\"x54) 93-rated Rocky Patel Number 6 Robusto (5.5\"x50) 95-rated La Aurora 107 Ecuador Toro (5.5\"x54) 91-rated Rocky Patel The Edge Corojo Toro (6\"x52) 93-rated La Aurora 115 Aniversario Toro (5.7\"x54) 89-rated Rocky Patel Twentieth Maduro Toro (6\"x52) 90-rated La Aurora Connecticut 1987 Toro (5.7\"x54) 90-rated Rocky Patel Sun Grown Toro (6.5\"x52) 91-rated La Aurora Corojo 1962 Toro (5.7\"x54) 89-rated Buy Now at Cigar Page",
       "category": "Cigars",
       "image": "https://d.dlnws.com/64599/1790948051-tenski-cigar-grip-ii-collection-oxk4.jpeg?h=250&w=250",
       "syndication": {
@@ -1051,7 +2698,7 @@
         "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790948051-tenski-cigar-grip-ii-collection-oxk4.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This deal is hard to turn down! 10 super fine, top-rated cigars hailing from two of the world's most respected makers: Rocky Patel and La Aurora. All premium long-filler, these delicious stogies are crafted entirely by hand. Top brands rated as high as 95. This collection of 10-cigars is yours for ONLY $22.99 & FREE SHIPPING to your door. No strings. Due to limited inventory, Cigar Page ask for only ONE sampler per customer, please. While supplies last. Each The Fab Collab Tenski Cigar Grip II contains 1 each of:Rocky Patel Decade Robusto (5\"x50) 95-ratedLa Aurora Preferidos 1903 Cameroon Toro (5.5\"x54) 93-ratedRocky Patel Number 6 Robusto (5.5\"x50) 95-ratedLa Aurora 107 Ecuador Toro (5.5\"x54) 91-ratedRocky Patel The Edge Corojo Toro (6\"x52) 93-ratedLa Aurora 115 Aniversario Toro (5.7\"x54) 89-ratedRocky Patel Twentieth Maduro Toro (6\"x52) 90-ratedLa Aurora Connecticut 1987 Toro (5.7\"x54) 90-ratedRocky Patel Sun Grown Toro (6.5\"x52) 91-ratedLa Aurora Corojo 1962 Toro (5.7\"x54) 89-rated\"><p>This deal is hard to turn down! 10 super fine, top-rated cigars hailing from two of the world's most respected makers: Rocky Patel and La Aurora. All premium long-filler, these delicious stogies are crafted entirely by hand. Top brands rated as high as 95. This collection of 10-cigars is yours for ONLY $22.99 & FREE SHIPPING to your door. No strings. Due to limited inventory, Cigar Page ask for only ONE sampler per customer, please. While supplies last.</p><p>Each The Fab Collab Tenski Cigar Grip II contains 1 each of:</p><ul><li><p>Rocky Patel Decade Robusto (5\"x50) 95-rated</p></li><li><p>La Aurora Preferidos 1903 Cameroon Toro (5.5\"x54) 93-rated</p></li><li><p>Rocky Patel Number 6 Robusto (5.5\"x50) 95-rated</p></li><li><p>La Aurora 107 Ecuador Toro (5.5\"x54) 91-rated</p></li><li><p>Rocky Patel The Edge Corojo Toro (6\"x52) 93-rated</p></li><li><p>La Aurora 115 Aniversario Toro (5.7\"x54) 89-rated</p></li><li><p>Rocky Patel Twentieth Maduro Toro (6\"x52) 90-rated</p></li><li><p>La Aurora Connecticut 1987 Toro (5.7\"x54) 90-rated</p></li><li><p>Rocky Patel Sun Grown Toro (6.5\"x52) 91-rated</p></li><li><p>La Aurora Corojo 1962 Toro (5.7\"x54) 89-rated</p></li></ul> Buy Now at Cigar Page</div>"
       },
       "id": "c753aa118c515eee",
-      "source": "dealnews",
+      "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
       "score": 9,

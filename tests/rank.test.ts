@@ -50,3 +50,23 @@ describe('conservative ranking', () => {
     expect(result.score).toBeLessThanOrEqual(100)
   })
 })
+
+it.each(['price error', 'price mistake', 'pricing error', 'glitch', 'mispriced', 'error de precio'])('recognizes source description evidence: %s', phrase => {
+  expect(scoreDeal(deal({ price: 30, listPrice: 50, sourceText: `The retailer has a ${phrase}.` }), now).flag).toBe('error-probable')
+  expect(scoreDeal(deal({ price: 30, listPrice: 50, sourceText: `Not a ${phrase}?` }), now).flag).toBe('normal')
+})
+it('keeps deep non-game discounts separate from probable errors', () => {
+  const result = scoreDeal(deal({ price: 25, listPrice: 100 }), now)
+  expect(result.flag).toBe('chollo')
+  expect(result.reasons).toContain('Descuento inusualmente profundo')
+  for (const category of ['videojuegos', 'clothing']) {
+    expect(scoreDeal(deal({ price: 25, listPrice: 100, category }), now).reasons).not.toContain('Descuento inusualmente profundo')
+  }
+  expect(scoreDeal(deal({ price: 10, listPrice: 40 }), now).reasons).not.toContain('Descuento inusualmente profundo')
+})
+it('never calls a giveaway or a game named Glitch a pricing error', () => {
+  const free = scoreDeal(deal({ title: 'Price error', price: 0, listPrice: 100 }), now)
+  expect(free.flag).toBe('chollo')
+  expect(free.reasons).toContain('Gratis por tiempo limitado')
+  expect(scoreDeal(deal({ title: 'Glitch', category: 'videojuegos', price: 1, listPrice: 100 }), now).flag).toBe('chollo')
+})
