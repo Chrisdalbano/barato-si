@@ -38,7 +38,7 @@ const chollos = computed(() => props.day.deals.filter(d => d.flag === 'chollo').
           <li v-for="s in day.sources" :key="s.name">
             <span class="day__src">{{ sourceName(s.name) }}</span>
             <span v-if="s.ok">{{ s.count }} ofertas</span>
-            <span v-else class="day__err">{{ s.error ?? 'sin respuesta' }}</span>
+            <span v-else class="day__err">{{ s.errorEs ?? s.error ?? 'sin respuesta' }}</span>
           </li>
         </ul>
       </details>
