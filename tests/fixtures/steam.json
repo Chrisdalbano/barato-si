@@ -1,0 +1,65 @@
+{
+  "specials": {
+    "id": "cat_specials",
+    "name": "Specials",
+    "items": [
+      {
+        "id": 1091500,
+        "type": 0,
+        "name": "Cyberpunk 2077",
+        "discounted": true,
+        "discount_percent": 70,
+        "original_price": 5999,
+        "final_price": 1799,
+        "currency": "USD",
+        "large_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/a757b56d2078be8b09a04e2ad531f1fefafaa129/capsule_616x353.jpg?t=1784714077",
+        "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/590e0988a2fb79f44d3e31e41fd4949eb76abc41/capsule_184x69.jpg?t=1784714077",
+        "windows_available": true,
+        "mac_available": true,
+        "linux_available": false,
+        "streamingvideo_available": false,
+        "discount_expiration": 1791478800,
+        "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/e9047d8ec47ae3d94bb8b464fb0fc9e9972b4ac7/header.jpg?t=1784714077",
+        "controller_support": "full"
+      },
+      {
+        "id": 1086940,
+        "type": 0,
+        "name": "Baldur's Gate 3",
+        "discounted": true,
+        "discount_percent": 30,
+        "original_price": 5999,
+        "final_price": 4199,
+        "currency": "USD",
+        "large_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1777363040",
+        "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/3dd81008e9c385caf68152450c22353f6a8abec9/capsule_184x69.jpg?t=1777363040",
+        "windows_available": true,
+        "mac_available": true,
+        "linux_available": false,
+        "streamingvideo_available": false,
+        "discount_expiration": 1791478800,
+        "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1777363040",
+        "controller_support": "full"
+      },
+      {
+        "id": 2406770,
+        "type": 0,
+        "name": "Bodycam",
+        "discounted": true,
+        "discount_percent": 20,
+        "original_price": 3332,
+        "final_price": 2665,
+        "currency": "USD",
+        "large_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2406770/022ff64a96600e5e78435cf824033d1f39fe0a16/capsule_616x353_alt_assets_0.jpg?t=1791014741",
+        "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2406770/2bc46dcf375a61a0a5626bc96aaf09e32436e8cd/capsule_184x69.jpg?t=1791014741",
+        "windows_available": true,
+        "mac_available": false,
+        "linux_available": false,
+        "streamingvideo_available": false,
+        "discount_expiration": 1791478800,
+        "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2406770/8d2765de57931435f802fa6757ad6920aea8646a/header_alt_assets_0.jpg?t=1791014741",
+        "controller_support": "full"
+      }
+    ]
+  }
+}

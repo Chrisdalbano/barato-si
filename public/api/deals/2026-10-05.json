@@ -1,0 +1,1064 @@
+{
+  "date": "2026-10-05",
+  "generatedAt": "2026-10-05T21:38:00.198Z",
+  "count": 36,
+  "sources": [
+    {
+      "name": "cheapshark",
+      "ok": false,
+      "count": 0,
+      "error": "Blocked by robots.txt; endpoint was not requested"
+    },
+    {
+      "name": "slickdeals-frontpage",
+      "ok": false,
+      "count": 0,
+      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed."
+    },
+    {
+      "name": "slickdeals-popular",
+      "ok": false,
+      "count": 0,
+      "error": "Permission required by Slickdeals terms; RSS search path also robots-disallowed."
+    },
+    {
+      "name": "dealnews",
+      "ok": true,
+      "count": 36
+    },
+    {
+      "name": "reddit-deals",
+      "ok": false,
+      "count": 0,
+      "error": "Blocked by robots.txt; endpoint was not requested"
+    },
+    {
+      "name": "reddit-buildapcsales",
+      "ok": false,
+      "count": 0,
+      "error": "Blocked by robots.txt; endpoint was not requested"
+    },
+    {
+      "name": "reddit-GameDeals",
+      "ok": false,
+      "count": 0,
+      "error": "Blocked by robots.txt; endpoint was not requested"
+    },
+    {
+      "name": "woot",
+      "ok": false,
+      "count": 0,
+      "error": "Official API requires x-api-key; legacy /blog/feed.rss returned HTTP 404."
+    },
+    {
+      "name": "ebay",
+      "ok": false,
+      "count": 0,
+      "error": "Legacy deals RSS returned HTTP 404; no open replacement verified."
+    },
+    {
+      "name": "epic",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP 200 in live probe, but no documented public syndication permission verified."
+    },
+    {
+      "name": "steam",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP 200 in live probe, but undocumented storefront endpoint; syndication permission unverified."
+    }
+  ],
+  "deals": [
+    {
+      "title": "Alfani Men's Short-Sleeve Solid Textured Shirt for $7 + free shipping w/ $39",
+      "url": "https://www.dealnews.com/Alfani-Mens-Short-Sleeve-Solid-Textured-Shirt-for-7-free-shipping-w-39/22246961.html?iref=rss",
+      "price": 7.46,
+      "listPrice": 50,
+      "currency": "USD",
+      "store": "Macy's",
+      "publishedAt": "2026-10-05T19:58:56.000Z",
+      "category": "Shirts",
+      "image": "https://d.dlnws.com/64599/1791230327-29765522_fpx.jpeg?h=250&w=205",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Alfani Men's Short-Sleeve Solid Textured Shirt for $7 + free shipping w/ $39</title>\n   <link>https://www.dealnews.com/Alfani-Mens-Short-Sleeve-Solid-Textured-Shirt-for-7-free-shipping-w-39/22246961.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791230327-29765522_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Alfani&#x20;shirt&#x20;is&#x20;priced&#x20;at&#x20;&#x24;7.46,&#x20;down&#x20;from&#x20;&#x24;50,&#x20;a&#x20;savings&#x20;of&#x20;85&#x25;.&#x20;As&#x20;a&#x20;Last&#x20;Act&#x20;item,&#x20;it&#x27;s&#x20;final&#x20;sale&#x20;with&#x20;no&#x20;returns&#x20;or&#x20;exchanges.&#x20;Star&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;over&#x20;&#x24;39&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;.\"><p>This Alfani shirt is priced at $7.46, down from $50, a savings of 85%. As a Last Act item, it's final sale with no returns or exchanges. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div> <div class=\"snippet features\" title=\"Point&#x20;collar&#x20;Button-front&#x20;closure&#x20;Solid&#x20;textured&#x20;woven&#x20;fabric&#x20;100&#x25;&#x20;cotton&#x20;Machine&#x20;washable\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Point collar</li> <li>Button-front closure</li> <li>Solid textured woven fabric</li> <li>100% cotton</li> <li>Machine washable</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246961.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:58:56 -0400</pubDate>\n   <dealnews:retailer>Macy's</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:58:56-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shirts</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">7.46</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791230327-29765522_fpx.jpeg?h=250&amp;w=205\" medium=\"image\" height=\"250\" width=\"205\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230327-29765522_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Alfani shirt is priced at $7.46, down from $50, a savings of 85%. As a Last Act item, it's final sale with no returns or exchanges. Star Rewards members get free shipping over $39 (it's free to join).\"><p>This Alfani shirt is priced at $7.46, down from $50, a savings of 85%. As a Last Act item, it's final sale with no returns or exchanges. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div> <div class=\"snippet features\" title=\"Point collar Button-front closure Solid textured woven fabric 100% cotton Machine washable\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Point collar</li> <li>Button-front closure</li> <li>Solid textured woven fabric</li> <li>100% cotton</li> <li>Machine washable</li> </ul> </div>"
+      },
+      "id": "79f567e7eeef0d66",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 85.08,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 74,
+      "flag": "chollo",
+      "reasons": [
+        "85% bajo el precio de lista",
+        "Ahorro de 42.54 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "adidas Men's Samoa Shoes for $29 + free shipping",
+      "url": "https://www.dealnews.com/adidas-Mens-Samoa-Shoes-for-29-free-shipping/22246856.html?iref=rss",
+      "price": 29,
+      "listPrice": 80,
+      "currency": "USD",
+      "store": "eBay",
+      "publishedAt": "2026-10-05T18:44:09.000Z",
+      "category": "Shoes",
+      "image": "https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>adidas Men's Samoa Shoes for $29 + free shipping</title>\n   <link>https://www.dealnews.com/adidas-Mens-Samoa-Shoes-for-29-free-shipping/22246856.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;adidas&#x20;Men&#x27;s&#x20;Samoa&#x20;shoe&#x20;drops&#x20;to&#x20;&#x24;29&#x20;with&#x20;promo&#x20;code&#x20;&quot;COUNTDOWN20&quot;&#x20;at&#x20;checkout,&#x20;down&#x20;from&#x20;the&#x20;&#x24;80&#x20;list&#x20;price,&#x20;and&#x20;the&#x20;lowest&#x20;price&#x20;we&#x20;could&#x20;by&#x20;&#x24;26.&#x20;The&#x20;Samoa&#x20;line&#x20;debuted&#x20;in&#x20;the&#x20;1970s&#x20;as&#x20;part&#x20;of&#x20;adidas&#x27;s&#x20;&quot;Islands&#x20;Collection,&quot;&#x20;a&#x20;multi-shoe&#x20;lineup&#x20;meant&#x20;to&#x20;evoke&#x20;different&#x20;parts&#x20;of&#x20;the&#x20;globe,&#x20;before&#x20;becoming&#x20;a&#x20;streetwear&#x20;staple&#x20;in&#x20;the&#x20;&#x27;80s.&#x20;The&#x20;coupon&#x20;ends&#x20;October&#x20;11&#x20;at&#x20;11&#x3A;59&#x20;PM&#x20;EDT.\"><p>This adidas Men's Samoa shoe drops to $29 with promo code \"COUNTDOWN20\" at checkout, down from the $80 list price, and the lowest price we could by $26. The Samoa line debuted in the 1970s as part of adidas's \"Islands Collection,\" a multi-shoe lineup meant to evoke different parts of the globe, before becoming a streetwear staple in the '80s. The coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Leather&#x20;upper&#x20;with&#x20;contrast&#x20;3-Stripes&#x20;and&#x20;a&#x20;Trefoil&#x20;logo&#x20;on&#x20;the&#x20;tongue&#x20;New&#x20;with&#x20;original&#x20;box&#x20;Lace-up&#x20;closure\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Leather upper with contrast 3-Stripes and a Trefoil logo on the tongue</li> <li>New with original box</li> <li>Lace-up closure</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246856.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:44:09 -0400</pubDate>\n   <dealnews:retailer>eBay</dealnews:retailer>\n   <dealnews:expires>2026-10-11T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">29.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225798-019351_09_standard.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This adidas Men's Samoa shoe drops to $29 with promo code \"COUNTDOWN20\" at checkout, down from the $80 list price, and the lowest price we could by $26. The Samoa line debuted in the 1970s as part of adidas's \"Islands Collection,\" a multi-shoe lineup meant to evoke different parts of the globe, before becoming a streetwear staple in the '80s. The coupon ends October 11 at 11:59 PM EDT.\"><p>This adidas Men's Samoa shoe drops to $29 with promo code \"COUNTDOWN20\" at checkout, down from the $80 list price, and the lowest price we could by $26. The Samoa line debuted in the 1970s as part of adidas's \"Islands Collection,\" a multi-shoe lineup meant to evoke different parts of the globe, before becoming a streetwear staple in the '80s. The coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Leather upper with contrast 3-Stripes and a Trefoil logo on the tongue New with original box Lace-up closure\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Leather upper with contrast 3-Stripes and a Trefoil logo on the tongue</li> <li>New with original box</li> <li>Lace-up closure</li> </ul> </div>"
+      },
+      "id": "491f2983b6217419",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 63.75,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 62,
+      "flag": "chollo",
+      "reasons": [
+        "64% bajo el precio de lista",
+        "Ahorro de 51.00 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "adidas Men's Run 70s 2.0 Shoes for $26 + free shipping",
+      "url": "https://www.dealnews.com/adidas-Mens-Run-70-s-2-0-Shoes-for-26-free-shipping/22246844.html?iref=rss",
+      "price": 26,
+      "listPrice": 70,
+      "currency": "USD",
+      "store": "eBay",
+      "publishedAt": "2026-10-05T18:31:38.000Z",
+      "category": "Shoes",
+      "image": "https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>adidas Men's Run 70s 2.0 Shoes for $26 + free shipping</title>\n   <link>https://www.dealnews.com/adidas-Mens-Run-70-s-2-0-Shoes-for-26-free-shipping/22246844.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These&#x20;adidas&#x20;Run&#x20;70s&#x20;2.0&#x20;shoes&#x20;drop&#x20;to&#x20;&#x24;26&#x20;via&#x20;promo&#x20;code&#x20;&quot;COUNTDOWN20&quot;&#x20;down&#x20;from&#x20;the&#x20;&#x24;70&#x20;list&#x20;price,&#x20;and&#x20;the&#x20;best&#x20;deal&#x20;we&#x20;could&#x20;find&#x20;by&#x20;&#x24;23.&#x20;Coupon&#x20;ends&#x20;October&#x20;11&#x20;at&#x20;11&#x3A;59&#x20;PM&#x20;EDT.\"><p>These adidas Run 70s 2.0 shoes drop to $26 via promo code \"COUNTDOWN20\" down from the $70 list price, and the best deal we could find by $23. Coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Lace-up&#x20;closure&#x20;Textile&#x20;upper&#x20;construction&#x20;Made&#x20;in&#x20;Vietnam&#x20;New&#x20;with&#x20;original&#x20;box&#x20;and&#x20;tags&#x20;Sold&#x20;directly&#x20;by&#x20;adidas&#x20;through&#x20;eBay\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Lace-up closure</li> <li>Textile upper construction</li> <li>Made in Vietnam</li> <li>New with original box and tags</li> <li>Sold directly by adidas through eBay</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246844.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:31:38 -0400</pubDate>\n   <dealnews:retailer>eBay</dealnews:retailer>\n   <dealnews:expires>2026-10-11T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">26.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&amp;w=250\" medium=\"image\" height=\"238\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225010-product-trimmed.jpg?h=238&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These adidas Run 70s 2.0 shoes drop to $26 via promo code \"COUNTDOWN20\" down from the $70 list price, and the best deal we could find by $23. Coupon ends October 11 at 11:59 PM EDT.\"><p>These adidas Run 70s 2.0 shoes drop to $26 via promo code \"COUNTDOWN20\" down from the $70 list price, and the best deal we could find by $23. Coupon ends October 11 at 11:59 PM EDT. Buy Now at eBay</p></div> <div class=\"snippet features\" title=\"Lace-up closure Textile upper construction Made in Vietnam New with original box and tags Sold directly by adidas through eBay\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Lace-up closure</li> <li>Textile upper construction</li> <li>Made in Vietnam</li> <li>New with original box and tags</li> <li>Sold directly by adidas through eBay</li> </ul> </div>"
+      },
+      "id": "b0c1c047e3615e13",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 62.86,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 61,
+      "flag": "chollo",
+      "reasons": [
+        "63% bajo el precio de lista",
+        "Ahorro de 44.00 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Amazon Ember 4-Series 55\" 4K UHD HDR10+ Smart TV for $280 w/ Prime + free shipping",
+      "url": "https://www.dealnews.com/Amazon-Ember-4-Series-55-4-K-UHD-HDR10-Smart-TV-for-280-w-Prime-free-shipping/22246918.html?iref=rss",
+      "price": 280,
+      "listPrice": 460,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T19:24:57.000Z",
+      "category": "TVs",
+      "image": "https://d.dlnws.com/64599/1791228291-61btoo8tvcl-ac_sl1500.jpg?h=170&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Amazon Ember 4-Series 55&quot; 4K UHD HDR10+ Smart TV for $280 w/ Prime + free shipping</title>\n   <link>https://www.dealnews.com/Amazon-Ember-4-Series-55-4-K-UHD-HDR10-Smart-TV-for-280-w-Prime-free-shipping/22246918.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791228291-61btoo8tvcl-ac_sl1500.jpg?h=170&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Amazon&#x20;Ember&#x20;4-Series&#x20;TV&#x20;is&#x20;&#x24;280,&#x20;down&#x20;from&#x20;&#x24;460.&#x20;It&#x20;includes&#x20;HDR10&#x2B;&#x20;for&#x20;improved&#x20;contrast&#x20;and&#x20;a&#x20;quad-core&#x20;processor&#x20;with&#x20;Wi-Fi&#x20;6&#x20;for&#x20;faster&#x20;app&#x20;loading.&#x20;The&#x20;built-in&#x20;Alexa&#x2B;&#x20;remote&#x20;lets&#x20;you&#x20;search&#x20;for&#x20;shows&#x20;by&#x20;talking&#x20;naturally&#x20;across&#x20;your&#x20;streaming&#x20;apps.\"><p>This Amazon Ember 4-Series TV is $280, down from $460. It includes HDR10+ for improved contrast and a quad-core processor with Wi-Fi 6 for faster app loading. The built-in Alexa+ remote lets you search for shows by talking naturally across your streaming apps. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"4K&#x20;Ultra&#x20;HD&#x20;resolution&#x20;with&#x20;HDR10&#x2B;&#x20;support&#x20;Quad-core&#x20;processor&#x20;with&#x20;Wi-Fi&#x20;6&#x20;support&#x20;Built-in&#x20;Alexa&#x2B;&#x20;voice&#x20;remote&#x20;Fire&#x20;TV&#x20;smart&#x20;platform&#x20;with&#x20;personalized&#x20;recommendations&#x20;Omnisense&#x20;sensors&#x20;that&#x20;wake&#x20;the&#x20;display&#x20;automatically&#x20;Supports&#x20;Amazon&#x20;Luna&#x20;and&#x20;Xbox&#x20;Game&#x20;Pass&#x20;cloud&#x20;gaming\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>4K Ultra HD resolution with HDR10+ support</li> <li>Quad-core processor with Wi-Fi 6 support</li> <li>Built-in Alexa+ voice remote</li> <li>Fire TV smart platform with personalized recommendations</li> <li>Omnisense sensors that wake the display automatically</li> <li>Supports Amazon Luna and Xbox Game Pass cloud gaming</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246918.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:24:57 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:24:57-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>TVs</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">280.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791228291-61btoo8tvcl-ac_sl1500.jpg?h=170&amp;w=250\" medium=\"image\" height=\"170\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791228291-61btoo8tvcl-ac_sl1500.jpg?h=170&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Amazon Ember 4-Series TV is $280, down from $460. It includes HDR10+ for improved contrast and a quad-core processor with Wi-Fi 6 for faster app loading. The built-in Alexa+ remote lets you search for shows by talking naturally across your streaming apps.\"><p>This Amazon Ember 4-Series TV is $280, down from $460. It includes HDR10+ for improved contrast and a quad-core processor with Wi-Fi 6 for faster app loading. The built-in Alexa+ remote lets you search for shows by talking naturally across your streaming apps. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"4K Ultra HD resolution with HDR10+ support Quad-core processor with Wi-Fi 6 support Built-in Alexa+ voice remote Fire TV smart platform with personalized recommendations Omnisense sensors that wake the display automatically Supports Amazon Luna and Xbox Game Pass cloud gaming\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>4K Ultra HD resolution with HDR10+ support</li> <li>Quad-core processor with Wi-Fi 6 support</li> <li>Built-in Alexa+ voice remote</li> <li>Fire TV smart platform with personalized recommendations</li> <li>Omnisense sensors that wake the display automatically</li> <li>Supports Amazon Luna and Xbox Game Pass cloud gaming</li> </ul> </div>"
+      },
+      "id": "7393576313043bde",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 39.13,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 51,
+      "flag": "chollo",
+      "reasons": [
+        "39% bajo el precio de lista",
+        "Ahorro de 180.00 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Keurig K-Duo Single Serve & Carafe Coffee Maker for $130 + free shipping",
+      "url": "https://www.dealnews.com/Keurig-K-Duo-Single-Serve-Carafe-Coffee-Maker-for-130-free-shipping/22246938.html?iref=rss",
+      "price": 130,
+      "listPrice": 219.99,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T19:36:49.000Z",
+      "category": "Small Appliances",
+      "image": "https://d.dlnws.com/64599/1791229002-717849a6v_l.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Keurig K-Duo Single Serve &amp; Carafe Coffee Maker for $130 + free shipping</title>\n   <link>https://www.dealnews.com/Keurig-K-Duo-Single-Serve-Carafe-Coffee-Maker-for-130-free-shipping/22246938.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791229002-717849a6v_l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Keurig&#x20;K-Duo&#x20;is&#x20;&#x24;129.99,&#x20;down&#x20;from&#x20;&#x24;219.99.&#x20;It&#x20;brews&#x20;both&#x20;K-Cup&#x20;pods&#x20;and&#x20;ground&#x20;coffee,&#x20;with&#x20;a&#x20;72-oz.&#x20;reservoir&#x20;shared&#x20;between&#x20;the&#x20;single-serve&#x20;and&#x20;carafe&#x20;sides&#x20;so&#x20;you&#x20;don&#x27;t&#x20;have&#x20;to&#x20;refill&#x20;between&#x20;brews.&#x20;A&#x20;brew-over-ice&#x20;setting&#x20;and&#x20;programmable&#x20;auto&#x20;brew&#x20;round&#x20;out&#x20;the&#x20;features.\"><p>This Keurig K-Duo is $129.99, down from $219.99. It brews both K-Cup pods and ground coffee, with a 72-oz. reservoir shared between the single-serve and carafe sides so you don't have to refill between brews. A brew-over-ice setting and programmable auto brew round out the features. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Brews&#x20;both&#x20;K-Cup&#x20;pods&#x20;and&#x20;ground&#x20;coffee&#x20;MultiStream&#x20;Technology&#x20;saturates&#x20;grounds&#x20;for&#x20;fuller&#x20;flavor&#x20;Brew&#x20;over&#x20;ice&#x20;setting&#x20;for&#x20;cold&#x20;coffee&#x20;and&#x20;tea&#x20;72-oz.&#x20;shared&#x20;water&#x20;reservoir&#x20;for&#x20;both&#x20;brewing&#x20;sides&#x20;Brews&#x20;6,&#x20;8,&#x20;10,&#x20;or&#x20;12-oz.&#x20;single&#x20;cups&#x20;or&#x20;6,&#x20;8,&#x20;10,&#x20;or&#x20;12-cup&#x20;carafes&#x20;Programmable&#x20;auto&#x20;brew&#x20;can&#x20;be&#x20;set&#x20;up&#x20;to&#x20;24&#x20;hours&#x20;in&#x20;advance\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Brews both K-Cup pods and ground coffee</li> <li>MultiStream Technology saturates grounds for fuller flavor</li> <li>Brew over ice setting for cold coffee and tea</li> <li>72-oz. shared water reservoir for both brewing sides</li> <li>Brews 6, 8, 10, or 12-oz. single cups or 6, 8, 10, or 12-cup carafes</li> <li>Programmable auto brew can be set up to 24 hours in advance</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246938.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:36:49 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:36:49-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Small Appliances</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">130.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791229002-717849a6v_l.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791229002-717849a6v_l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Keurig K-Duo is $129.99, down from $219.99. It brews both K-Cup pods and ground coffee, with a 72-oz. reservoir shared between the single-serve and carafe sides so you don't have to refill between brews. A brew-over-ice setting and programmable auto brew round out the features.\"><p>This Keurig K-Duo is $129.99, down from $219.99. It brews both K-Cup pods and ground coffee, with a 72-oz. reservoir shared between the single-serve and carafe sides so you don't have to refill between brews. A brew-over-ice setting and programmable auto brew round out the features. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Brews both K-Cup pods and ground coffee MultiStream Technology saturates grounds for fuller flavor Brew over ice setting for cold coffee and tea 72-oz. shared water reservoir for both brewing sides Brews 6, 8, 10, or 12-oz. single cups or 6, 8, 10, or 12-cup carafes Programmable auto brew can be set up to 24 hours in advance\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Brews both K-Cup pods and ground coffee</li> <li>MultiStream Technology saturates grounds for fuller flavor</li> <li>Brew over ice setting for cold coffee and tea</li> <li>72-oz. shared water reservoir for both brewing sides</li> <li>Brews 6, 8, 10, or 12-oz. single cups or 6, 8, 10, or 12-cup carafes</li> <li>Programmable auto brew can be set up to 24 hours in advance</li> </ul> </div>"
+      },
+      "id": "1a8cfa733465aa82",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 40.91,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 50,
+      "flag": "chollo",
+      "reasons": [
+        "41% bajo el precio de lista",
+        "Ahorro de 89.99 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Dockers Men's Estes Wax Casual Sneakers for $26 + free shipping w/ $39",
+      "url": "https://www.dealnews.com/Dockers-Mens-Estes-Wax-Casual-Sneakers-for-26-free-shipping-w-39/22247053.html?iref=rss",
+      "price": 26,
+      "listPrice": 50,
+      "currency": "USD",
+      "store": "Macy's",
+      "publishedAt": "2026-10-05T21:10:31.000Z",
+      "category": "Shoes",
+      "image": "https://d.dlnws.com/64599/1791234624-34917645_fpx.jpeg?h=250&w=205",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Dockers Men's Estes Wax Casual Sneakers for $26 + free shipping w/ $39</title>\n   <link>https://www.dealnews.com/Dockers-Mens-Estes-Wax-Casual-Sneakers-for-26-free-shipping-w-39/22247053.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791234624-34917645_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These&#x20;Dockers&#x20;Estes&#x20;sneakers&#x20;are&#x20;&#x24;25.99,&#x20;down&#x20;from&#x20;&#x24;50.&#x20;It&#x27;s&#x20;the&#x20;lowest&#x20;price&#x20;we&#x20;found&#x20;by&#x20;&#x24;4.&#x20;Star&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;over&#x20;&#x24;39&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;.\"><p>These Dockers Estes sneakers are $25.99, down from $50. It's the lowest price we found by $4. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247053.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 17:10:31 -0400</pubDate>\n   <dealnews:retailer>Macy's</dealnews:retailer>\n   <dealnews:expires>2027-01-03T16:10:31-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">26.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791234624-34917645_fpx.jpeg?h=250&amp;w=205\" medium=\"image\" height=\"250\" width=\"205\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791234624-34917645_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"These Dockers Estes sneakers are $25.99, down from $50. It's the lowest price we found by $4. Star Rewards members get free shipping over $39 (it's free to join).\"><p>These Dockers Estes sneakers are $25.99, down from $50. It's the lowest price we found by $4. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>"
+      },
+      "id": "ff91463227acc828",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 48,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 50,
+      "flag": "normal",
+      "reasons": [
+        "48% bajo el precio de lista",
+        "Ahorro de 24.00 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Snore Circle YA4600 Smart Electronic Muscle Stimulator Anti-Snoring Device for $89 + free shipping",
+      "url": "https://www.dealnews.com/products/Snore-Circle/Snore-Circle-YA4600-Smart-Electronic-Muscle-Stimulator-Anti-Snoring-Device/538832.html?iref=rss",
+      "price": 89,
+      "listPrice": 149,
+      "currency": "USD",
+      "store": "snorecircle.com",
+      "publishedAt": "2026-10-05T20:37:59.000Z",
+      "category": "Medicine & Medical",
+      "image": "https://d.dlnws.com/64599/1790839569-draftworks_img_c13v6rd4bnvg1aonapp.jpeg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Snore Circle YA4600 Smart Electronic Muscle Stimulator Anti-Snoring Device for $89 + free shipping</title>\n   <link>https://www.dealnews.com/products/Snore-Circle/Snore-Circle-YA4600-Smart-Electronic-Muscle-Stimulator-Anti-Snoring-Device/538832.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1790839569-draftworks_img_c13v6rd4bnvg1aonapp.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Snoring&#x20;that&#x20;disrupts&#x20;your&#x20;sleep&#x20;&#x28;or&#x20;your&#x20;partner&#x27;s&#x29;&#x20;is&#x20;the&#x20;main&#x20;problem&#x20;this&#x20;tackles,&#x20;using&#x20;muscle&#x20;stimulation&#x20;on&#x20;the&#x20;device&#x20;rather&#x20;than&#x20;a&#x20;mouthguard&#x20;or&#x20;nasal&#x20;strip.&#x20;At&#x20;&#x24;89,&#x20;that&#x27;s&#x20;&#x24;60&#x20;&#x28;40&#x25;&#x29;&#x20;off&#x20;the&#x20;&#x24;149&#x20;list&#x20;price&#x20;via&#x20;coupon&#x20;code&#x20;&quot;QYFPYPQGES03&quot;.&#x20;Deal&#x20;ends&#x20;October&#x20;15. \"><p>Snoring that disrupts your sleep (or your partner's) is the main problem this tackles, using muscle stimulation on the device rather than a mouthguard or nasal strip. At $89, that's $60 (40%) off the $149 list price via coupon code \"QYFPYPQGES03\". Deal ends October 15.  Buy Now at snorecircle.com</p></div> <div class=\"snippet features\" title=\"Uses&#x20;TENS&#x20;electrical&#x20;pulse&#x20;technology&#x20;to&#x20;target&#x20;throat&#x20;muscles&#x20;Detects&#x20;snoring&#x20;sounds&#x20;with&#x20;bone&#x20;conduction&#x20;sensors&#x20;Features&#x20;multiple&#x20;levels&#x20;of&#x20;intensity&#x20;and&#x20;sensitivity&#x20;settings&#x20;Provides&#x20;up&#x20;to&#x20;15&#x20;hours&#x20;of&#x20;battery&#x20;life&#x20;per&#x20;charge&#x20;Model&#x3A;&#x20;YA4600\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Uses TENS electrical pulse technology to target throat muscles</li> <li>Detects snoring sounds with bone conduction sensors</li> <li>Features multiple levels of intensity and sensitivity settings</li> <li>Provides up to 15 hours of battery life per charge</li> <li>Model: YA4600</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22231868.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:37:59 -0400</pubDate>\n   <dealnews:retailer>snorecircle.com</dealnews:retailer>\n   <dealnews:expires>2026-10-16T00:00:00-04:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Medicine &amp; Medical</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">89.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1790839569-draftworks_img_c13v6rd4bnvg1aonapp.jpeg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790839569-draftworks_img_c13v6rd4bnvg1aonapp.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Snoring that disrupts your sleep (or your partner's) is the main problem this tackles, using muscle stimulation on the device rather than a mouthguard or nasal strip. At $89, that's $60 (40%) off the $149 list price via coupon code \"QYFPYPQGES03\". Deal ends October 15. \"><p>Snoring that disrupts your sleep (or your partner's) is the main problem this tackles, using muscle stimulation on the device rather than a mouthguard or nasal strip. At $89, that's $60 (40%) off the $149 list price via coupon code \"QYFPYPQGES03\". Deal ends October 15.  Buy Now at snorecircle.com</p></div> <div class=\"snippet features\" title=\"Uses TENS electrical pulse technology to target throat muscles Detects snoring sounds with bone conduction sensors Features multiple levels of intensity and sensitivity settings Provides up to 15 hours of battery life per charge Model: YA4600\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Uses TENS electrical pulse technology to target throat muscles</li> <li>Detects snoring sounds with bone conduction sensors</li> <li>Features multiple levels of intensity and sensitivity settings</li> <li>Provides up to 15 hours of battery life per charge</li> <li>Model: YA4600</li> </ul> </div>"
+      },
+      "id": "77590d6bcd941fa4",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 40.27,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 48,
+      "flag": "chollo",
+      "reasons": [
+        "40% bajo el precio de lista",
+        "Ahorro de 60.00 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "AceMagic X3 Ryzen 7 H 255 Radeon 780M Mini Gaming PC for $575 + free shipping",
+      "url": "https://www.dealnews.com/Ace-Magic-X3-Ryzen-7-H-255-Radeon-780-M-Mini-Gaming-PC-for-575-free-shipping/22246855.html?iref=rss",
+      "price": 575,
+      "listPrice": 638.99,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T18:42:08.000Z",
+      "category": "Desktops",
+      "image": "https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>AceMagic X3 Ryzen 7 H 255 Radeon 780M Mini Gaming PC for $575 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-X3-Ryzen-7-H-255-Radeon-780-M-Mini-Gaming-PC-for-575-free-shipping/22246855.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;X3&#x20;mini&#x20;PC&#x20;hits&#x20;its&#x20;all-time&#x20;low&#x20;price&#x20;of&#x20;&#x24;575,&#x20;down&#x20;from&#x20;&#x24;638.99.&#x20;The&#x20;build&#x20;pairs&#x20;16GB&#x20;of&#x20;RAM&#x20;with&#x20;a&#x20;1TB&#x20;SSD&#x20;that&#x20;can&#x20;be&#x20;expanded&#x20;up&#x20;to&#x20;4TB,&#x20;and&#x20;includes&#x20;triple&#x20;display&#x20;support&#x20;through&#x20;DP2.0,&#x20;HDMI&#x20;2.1,&#x20;and&#x20;USB4&#x20;Type-C.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This AceMagic X3 mini PC hits its all-time low price of $575, down from $638.99. The build pairs 16GB of RAM with a 1TB SSD that can be expanded up to 4TB, and includes triple display support through DP2.0, HDMI 2.1, and USB4 Type-C. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD&#x20;Ryzen&#x20;7&#x20;H&#x20;255&#x20;processor&#x20;running&#x20;up&#x20;to&#x20;4.9GHz&#x20;AMD&#x20;Radeon&#x20;780M&#x20;integrated&#x20;graphics&#x20;16GB&#x20;LPDDR5&#x20;RAM&#x20;and&#x20;1TB&#x20;NVMe&#x20;PCIe&#x20;4.0&#x20;SSD,&#x20;expandable&#x20;up&#x20;to&#x20;4TB&#x20;Supports&#x20;triple&#x20;display&#x20;output&#x20;via&#x20;DP2.0,&#x20;HDMI&#x20;2.1,&#x20;and&#x20;USB4&#x20;Type-C&#x20;up&#x20;to&#x20;4K@120Hz&#x20;Wi-Fi&#x20;6E&#x20;and&#x20;Bluetooth&#x20;5.2&#x20;connectivity&#x20;2-year&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 7 H 255 processor running up to 4.9GHz</li> <li>AMD Radeon 780M integrated graphics</li> <li>16GB LPDDR5 RAM and 1TB NVMe PCIe 4.0 SSD, expandable up to 4TB</li> <li>Supports triple display output via DP2.0, HDMI 2.1, and USB4 Type-C up to 4K@120Hz</li> <li>Wi-Fi 6E and Bluetooth 5.2 connectivity</li> <li>2-year warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246855.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:42:08 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:42:08-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Desktops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">575.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225722-71p299qgdjl.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic X3 mini PC hits its all-time low price of $575, down from $638.99. The build pairs 16GB of RAM with a 1TB SSD that can be expanded up to 4TB, and includes triple display support through DP2.0, HDMI 2.1, and USB4 Type-C. It ships for free. \"><p>This AceMagic X3 mini PC hits its all-time low price of $575, down from $638.99. The build pairs 16GB of RAM with a 1TB SSD that can be expanded up to 4TB, and includes triple display support through DP2.0, HDMI 2.1, and USB4 Type-C. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD Ryzen 7 H 255 processor running up to 4.9GHz AMD Radeon 780M integrated graphics 16GB LPDDR5 RAM and 1TB NVMe PCIe 4.0 SSD, expandable up to 4TB Supports triple display output via DP2.0, HDMI 2.1, and USB4 Type-C up to 4K@120Hz Wi-Fi 6E and Bluetooth 5.2 connectivity 2-year warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 7 H 255 processor running up to 4.9GHz</li> <li>AMD Radeon 780M integrated graphics</li> <li>16GB LPDDR5 RAM and 1TB NVMe PCIe 4.0 SSD, expandable up to 4TB</li> <li>Supports triple display output via DP2.0, HDMI 2.1, and USB4 Type-C up to 4K@120Hz</li> <li>Wi-Fi 6E and Bluetooth 5.2 connectivity</li> <li>2-year warranty</li> </ul> </div>"
+      },
+      "id": "4f51edcd55c182c9",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 10.01,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 30,
+      "flag": "normal",
+      "reasons": [
+        "10% bajo el precio de lista",
+        "Ahorro de 63.99 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "AceMagic AX15 15.6\" Intel N95 16GB RAM 512GB SSD Laptop for $313 + free shipping",
+      "url": "https://www.dealnews.com/Ace-Magic-AX15-15-6-Intel-N95-16-GB-RAM-512-GB-SSD-Laptop-for-313-free-shipping/22246854.html?iref=rss",
+      "price": 313,
+      "listPrice": 329.99,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T18:38:20.000Z",
+      "category": "Laptops",
+      "image": "https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>AceMagic AX15 15.6&quot; Intel N95 16GB RAM 512GB SSD Laptop for $313 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-AX15-15-6-Intel-N95-16-GB-RAM-512-GB-SSD-Laptop-for-313-free-shipping/22246854.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;laptop&#x20;comes&#x20;to&#x20;&#x24;313.49&#x20;after&#x20;an&#x20;on-page&#x20;coupon&#x20;is&#x20;applied,&#x20;down&#x20;from&#x20;&#x24;329.99.&#x20;It&#x20;pairs&#x20;16GB&#x20;of&#x20;RAM&#x20;with&#x20;a&#x20;512GB&#x20;SSD&#x20;that&#x20;can&#x20;be&#x20;swapped&#x20;for&#x20;up&#x20;to&#x20;2TB&#x20;of&#x20;storage,&#x20;giving&#x20;it&#x20;more&#x20;upgrade&#x20;room&#x20;than&#x20;many&#x20;laptops&#x20;in&#x20;this&#x20;price&#x20;range.&#x20;The&#x20;metal&#x20;shell&#x20;and&#x20;180-degree&#x20;hinge&#x20;add&#x20;some&#x20;durability&#x20;features&#x20;not&#x20;always&#x20;found&#x20;at&#x20;this&#x20;price&#x20;point.\"><p>This AceMagic laptop comes to $313.49 after an on-page coupon is applied, down from $329.99. It pairs 16GB of RAM with a 512GB SSD that can be swapped for up to 2TB of storage, giving it more upgrade room than many laptops in this price range. The metal shell and 180-degree hinge add some durability features not always found at this price point. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Intel&#x20;12th&#x20;Gen&#x20;quad-core&#x20;processor&#x20;up&#x20;to&#x20;3.4GHz&#x20;16GB&#x20;DDR4&#x20;RAM&#x20;&amp;&#x20;512GB&#x20;SSD&#x20;storage&#x20;Supports&#x20;storage&#x20;expansion&#x20;up&#x20;to&#x20;2TB&#x20;SSD&#x20;&amp;&#x20;128GB&#x20;microSD&#x20;card&#x20;Thin-bezel&#x20;FHD&#x20;display&#x20;w&#x2F;&#x20;180°&#x20;hinge&#x20;Metal&#x20;shell&#x20;construction&#x20;WiFi&#x20;802.11ac,&#x20;Bluetooth&#x20;5.0,&#x20;USB&#x20;3.2,&#x20;USB-C&#x20;ports\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Intel 12th Gen quad-core processor up to 3.4GHz</li> <li>16GB DDR4 RAM & 512GB SSD storage</li> <li>Supports storage expansion up to 2TB SSD & 128GB microSD card</li> <li>Thin-bezel FHD display w/ 180° hinge</li> <li>Metal shell construction</li> <li>WiFi 802.11ac, Bluetooth 5.0, USB 3.2, USB-C ports</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246854.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:38:20 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:38:20-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Laptops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">313.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225494-71zgrkasr5l.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic laptop comes to $313.49 after an on-page coupon is applied, down from $329.99. It pairs 16GB of RAM with a 512GB SSD that can be swapped for up to 2TB of storage, giving it more upgrade room than many laptops in this price range. The metal shell and 180-degree hinge add some durability features not always found at this price point.\"><p>This AceMagic laptop comes to $313.49 after an on-page coupon is applied, down from $329.99. It pairs 16GB of RAM with a 512GB SSD that can be swapped for up to 2TB of storage, giving it more upgrade room than many laptops in this price range. The metal shell and 180-degree hinge add some durability features not always found at this price point. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Intel 12th Gen quad-core processor up to 3.4GHz 16GB DDR4 RAM & 512GB SSD storage Supports storage expansion up to 2TB SSD & 128GB microSD card Thin-bezel FHD display w/ 180° hinge Metal shell construction WiFi 802.11ac, Bluetooth 5.0, USB 3.2, USB-C ports\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Intel 12th Gen quad-core processor up to 3.4GHz</li> <li>16GB DDR4 RAM & 512GB SSD storage</li> <li>Supports storage expansion up to 2TB SSD & 128GB microSD card</li> <li>Thin-bezel FHD display w/ 180° hinge</li> <li>Metal shell construction</li> <li>WiFi 802.11ac, Bluetooth 5.0, USB 3.2, USB-C ports</li> </ul> </div>"
+      },
+      "id": "a1a9156ab8d41679",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": 5.15,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 23,
+      "flag": "normal",
+      "reasons": [
+        "5% bajo el precio de lista",
+        "Ahorro de 16.99 USD",
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping",
+      "url": "https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss",
+      "price": 409,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T18:44:09.000Z",
+      "category": "Desktops",
+      "image": "https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>AceMagic K1 AMD Ryzen 5 7430U Mini PC Desktop for $409 + free shipping</title>\n   <link>https://www.dealnews.com/Ace-Magic-K1-AMD-Ryzen-5-7430-U-Mini-PC-Desktop-for-409-free-shipping/22246857.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;AceMagic&#x20;K1&#x20;mini&#x20;PC&#x20;matches&#x20;its&#x20;all-time&#x20;low&#x20;price&#x20;at&#x20;&#x24;409,&#x20;down&#x20;from&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;509.&#x20;It&#x20;packs&#x20;16GB&#x20;of&#x20;RAM&#x20;and&#x20;a&#x20;512GB&#x20;SSD&#x20;into&#x20;a&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;case&#x20;that&#x20;weighs&#x20;under&#x20;3&#x20;lb.,&#x20;and&#x20;it&#x20;can&#x20;drive&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;monitors&#x20;at&#x20;once.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD&#x20;Ryzen&#x20;5&#x20;7430U&#x20;processor&#x20;with&#x20;integrated&#x20;Radeon&#x20;graphics&#x20;16GB&#x20;DDR4&#x20;RAM,&#x20;expandable&#x20;up&#x20;to&#x20;64GB&#x20;512GB&#x20;SSD&#x20;with&#x20;two&#x20;M.2&#x20;slots&#x20;supporting&#x20;up&#x20;to&#x20;4TB&#x20;Supports&#x20;up&#x20;to&#x20;three&#x20;4K&#x20;displays&#x20;at&#x20;60Hz&#x20;via&#x20;HDMI,&#x20;DisplayPort,&#x20;and&#x20;USB-C&#x20;Measures&#x20;5&quot;&#x20;x&#x20;5&quot;&#x20;x&#x20;1.6&quot;&#x20;and&#x20;weighs&#x20;2.3&#x20;lb.&#x20;Comes&#x20;with&#x20;Windows&#x20;11&#x20;Pro&#x20;pre-installed&#x20;and&#x20;a&#x20;1-year&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246857.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:44:09 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:44:09-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Desktops</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">409.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225843-61evcuh4rll.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free. \"><p>This AceMagic K1 mini PC matches its all-time low price at $409, down from its regular price of $509. It packs 16GB of RAM and a 512GB SSD into a 5\" x 5\" x 1.6\" case that weighs under 3 lb., and it can drive up to three 4K monitors at once. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"AMD Ryzen 5 7430U processor with integrated Radeon graphics 16GB DDR4 RAM, expandable up to 64GB 512GB SSD with two M.2 slots supporting up to 4TB Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb. Comes with Windows 11 Pro pre-installed and a 1-year warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>AMD Ryzen 5 7430U processor with integrated Radeon graphics</li> <li>16GB DDR4 RAM, expandable up to 64GB</li> <li>512GB SSD with two M.2 slots supporting up to 4TB</li> <li>Supports up to three 4K displays at 60Hz via HDMI, DisplayPort, and USB-C</li> <li>Measures 5\" x 5\" x 1.6\" and weighs 2.3 lb.</li> <li>Comes with Windows 11 Pro pre-installed and a 1-year warranty</li> </ul> </div>"
+      },
+      "id": "02952e843e67f619",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "IHOP Four $25 Gift Cards ($100 Value) for $80 + email delivery",
+      "url": "https://www.dealnews.com/IHOP-Four-25-Gift-Cards-100-Value-for-80-email-delivery/22247035.html?iref=rss",
+      "price": 80,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Costco",
+      "publishedAt": "2026-10-05T20:58:28.000Z",
+      "category": "Gift Cards",
+      "image": "https://d.dlnws.com/64599/1791233902-1711962-847-1.jpeg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>IHOP Four $25 Gift Cards ($100 Value) for $80 + email delivery</title>\n   <link>https://www.dealnews.com/IHOP-Four-25-Gift-Cards-100-Value-for-80-email-delivery/22247035.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791233902-1711962-847-1.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;set&#x20;of&#x20;four&#x20;&#x24;25&#x20;IHOP&#x20;gift&#x20;cards&#x20;carries&#x20;a&#x20;combined&#x20;value&#x20;of&#x20;&#x24;100&#x20;but&#x20;costs&#x20;&#x24;80&#x20;at&#x20;Costco.&#x20;The&#x20;cards&#x20;don&#x27;t&#x20;expire&#x20;and&#x20;can&#x20;be&#x20;redeemed&#x20;at&#x20;more&#x20;than&#x20;1,600&#x20;IHOP&#x20;locations&#x20;across&#x20;the&#x20;US&#x20;and&#x20;Canada,&#x20;either&#x20;in&#x20;store&#x20;or&#x20;through&#x20;IHOP.com&#x20;and&#x20;the&#x20;mobile&#x20;app.&#x20;Delivery&#x20;is&#x20;via&#x20;email.\"><p>This set of four $25 IHOP gift cards carries a combined value of $100 but costs $80 at Costco. The cards don't expire and can be redeemed at more than 1,600 IHOP locations across the US and Canada, either in store or through IHOP.com and the mobile app. Delivery is via email. Buy Now at Costco</p></div> <div class=\"snippet features\" title=\"Four&#x20;separate&#x20;&#x24;25&#x20;gift&#x20;cards&#x20;included&#x20;Total&#x20;value&#x20;of&#x20;&#x24;100&#x20;Redeemable&#x20;at&#x20;over&#x20;1,600&#x20;IHOP&#x20;locations&#x20;in&#x20;the&#x20;US&#x20;and&#x20;Canada&#x20;Delivered&#x20;by&#x20;email,&#x20;typically&#x20;within&#x20;3&#x20;hours&#x20;No&#x20;expiration&#x20;date&#x20;on&#x20;the&#x20;gift&#x20;cards&#x20;Item&#x20;is&#x20;non-refundable\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Four separate $25 gift cards included</li> <li>Total value of $100</li> <li>Redeemable at over 1,600 IHOP locations in the US and Canada</li> <li>Delivered by email, typically within 3 hours</li> <li>No expiration date on the gift cards</li> <li>Item is non-refundable</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22247035.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:58:28 -0400</pubDate>\n   <dealnews:retailer>Costco</dealnews:retailer>\n   <dealnews:expires>2027-01-03T15:58:28-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Gift Cards</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">80.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791233902-1711962-847-1.jpeg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791233902-1711962-847-1.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This set of four $25 IHOP gift cards carries a combined value of $100 but costs $80 at Costco. The cards don't expire and can be redeemed at more than 1,600 IHOP locations across the US and Canada, either in store or through IHOP.com and the mobile app. Delivery is via email.\"><p>This set of four $25 IHOP gift cards carries a combined value of $100 but costs $80 at Costco. The cards don't expire and can be redeemed at more than 1,600 IHOP locations across the US and Canada, either in store or through IHOP.com and the mobile app. Delivery is via email. Buy Now at Costco</p></div> <div class=\"snippet features\" title=\"Four separate $25 gift cards included Total value of $100 Redeemable at over 1,600 IHOP locations in the US and Canada Delivered by email, typically within 3 hours No expiration date on the gift cards Item is non-refundable\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Four separate $25 gift cards included</li> <li>Total value of $100</li> <li>Redeemable at over 1,600 IHOP locations in the US and Canada</li> <li>Delivered by email, typically within 3 hours</li> <li>No expiration date on the gift cards</li> <li>Item is non-refundable</li> </ul> </div>"
+      },
+      "id": "1ce7de4c284083b9",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Marvel Men's Deadpool Palms Swim Trunks for $4 + free shipping w/ $35",
+      "url": "https://www.dealnews.com/Marvel-Mens-Deadpool-Palms-Swim-Trunks-for-4-free-shipping-w-35/22246999.html?iref=rss",
+      "price": 4,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Walmart",
+      "publishedAt": "2026-10-05T20:23:18.000Z",
+      "category": "Swim",
+      "image": "https://d.dlnws.com/64599/1791231788-e12c0236-510c-4b56-8454-9be7c7bb6566-55335e188cffbc08609f9330d8d0870d.avif?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Marvel Men's Deadpool Palms Swim Trunks for $4 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Marvel-Mens-Deadpool-Palms-Swim-Trunks-for-4-free-shipping-w-35/22246999.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791231788-e12c0236-510c-4b56-8454-9be7c7bb6566-55335e188cffbc08609f9330d8d0870d.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart&#x20;offers&#x20;the&#x20;Marvel&#x20;Men&#x27;s&#x20;Deadpool&#x20;Palms&#x20;Swim&#x20;Trunks&#x20;in&#x20;sizes&#x20;from&#x20;S&#x20;to&#x20;3XL. &#x20;Prices&#x20;start&#x20;at&#x20;&#x24;3.67&#x20;in&#x20;3XL&#x20;for&#x20;a&#x20;savings&#x20;of&#x20;&#x24;16. &#x20;Choose&#x20;pickup&#x20;or&#x20;spend&#x20;&#x24;35&#x20;to&#x20;avoid&#x20;the&#x20;&#x24;6.99&#x20;shipping&#x20;charge.\"><p>Walmart offers the Marvel Men's Deadpool Palms Swim Trunks in sizes from S to 3XL.  Prices start at $3.67 in 3XL for a savings of $16.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246999.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:23:18 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2027-01-03T15:23:18-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Swim</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">4.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791231788-e12c0236-510c-4b56-8454-9be7c7bb6566-55335e188cffbc08609f9330d8d0870d.avif?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791231788-e12c0236-510c-4b56-8454-9be7c7bb6566-55335e188cffbc08609f9330d8d0870d.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart offers the Marvel Men's Deadpool Palms Swim Trunks in sizes from S to 3XL.  Prices start at $3.67 in 3XL for a savings of $16.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>Walmart offers the Marvel Men's Deadpool Palms Swim Trunks in sizes from S to 3XL.  Prices start at $3.67 in 3XL for a savings of $16.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
+      },
+      "id": "1eb0bed5740a53e5",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Vevor Rolling Garden Cart for $47 + free shipping",
+      "url": "https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss",
+      "price": 47,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "VEVOR",
+      "publishedAt": "2026-10-05T18:47:01.000Z",
+      "category": "Garden Tools",
+      "image": "https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Vevor Rolling Garden Cart for $47 + free shipping</title>\n   <link>https://www.dealnews.com/products/Vevor/Vevor-Rolling-Garden-Cart/540602.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use&#x20;promo&#x20;code&#x20;&quot;VVGG8&quot;&#x20;to&#x20;drop&#x20;the&#x20;price&#x20;on&#x20;this&#x20;Vevor&#x20;Rolling&#x20;Garden&#x20;Cart&#x20;to&#x20;&#x24;46.51,&#x20;its&#x20;best-ever&#x20;price. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb.&#x20;capacity&#x20;built-in&#x20;storage&#x20;tray&#x20;and&#x20;basket&#x20;360°&#x20;rotating&#x20;seat&#x20;&amp;&#x20;height&#x20;adjustable&#x20;up&#x20;to&#x20;3.1&quot;\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246873.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:47:01 -0400</pubDate>\n   <dealnews:retailer>VEVOR</dealnews:retailer>\n   <dealnews:expires>2026-10-15T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Garden Tools</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">47.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225838-us_2fkydhyzyzxyzkutjpe001v0_2foriginal_img-v3_2frolling-garden-seat-m100-1-2.webp?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th.\"><p>Use promo code \"VVGG8\" to drop the price on this Vevor Rolling Garden Cart to $46.51, its best-ever price.  Shipping is free.  Deal ends October 15th. Buy Now at VEVOR</p></div> <div class=\"snippet features\" title=\"300-lb. capacity built-in storage tray and basket 360° rotating seat & height adjustable up to 3.1\"\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>300-lb. capacity</li> <li>built-in storage tray and basket</li> <li>360° rotating seat & height adjustable up to 3.1\"</li> </ul> </div>"
+      },
+      "id": "203c3c8235cd6151",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Reebok Men's Windbreaker for $13 + free shipping w/ $35",
+      "url": "https://www.dealnews.com/Reebok-Mens-Windbreaker-for-13-free-shipping-w-35/22246978.html?iref=rss",
+      "price": 13,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Walmart",
+      "publishedAt": "2026-10-05T20:04:28.000Z",
+      "category": "Coats",
+      "image": "https://d.dlnws.com/64599/1791230661-16a8576a-6310-47a7-ab03-68ece83082a0-b4661743b163fdf74583148d85370a0c.avif?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Reebok Men's Windbreaker for $13 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Reebok-Mens-Windbreaker-for-13-free-shipping-w-35/22246978.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791230661-16a8576a-6310-47a7-ab03-68ece83082a0-b4661743b163fdf74583148d85370a0c.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart&#x20;offers&#x20;the&#x20;Reebok&#x20;Men&#x27;s&#x20;Windbreaker&#x20;in&#x20;several&#x20;colors&#x20;for&#x20;around&#x20;&#x24;13. &#x20;That&#x27;s&#x20;a&#x20;&#x24;22&#x20;savings. &#x20;Choose&#x20;pickup&#x20;or&#x20;spend&#x20;&#x24;35&#x20;to&#x20;avoid&#x20;the&#x20;&#x24;6.99&#x20;shipping&#x20;charge.\"><p>Walmart offers the Reebok Men's Windbreaker in several colors for around $13.  That's a $22 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246978.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:04:28 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2027-01-03T15:04:28-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Coats</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">13.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791230661-16a8576a-6310-47a7-ab03-68ece83082a0-b4661743b163fdf74583148d85370a0c.avif?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230661-16a8576a-6310-47a7-ab03-68ece83082a0-b4661743b163fdf74583148d85370a0c.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Walmart offers the Reebok Men's Windbreaker in several colors for around $13.  That's a $22 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>Walmart offers the Reebok Men's Windbreaker in several colors for around $13.  That's a $22 savings.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
+      },
+      "id": "223db244069a942c",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Soundcraft Ui24R 24-channel Remote-controlled Digital Mixer for $999 + free shipping",
+      "url": "https://www.dealnews.com/Soundcraft-Ui24-R-24-channel-Remote-controlled-Digital-Mixer-for-999-free-shipping/22247051.html?iref=rss",
+      "price": 999,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Sweetwater",
+      "publishedAt": "2026-10-05T21:05:09.000Z",
+      "category": "Musical Instruments",
+      "image": "https://d.dlnws.com/64599/1791234301-651550ee27weqpbr8minvua4gwzgi21xgarv6f6m.png?h=131&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Soundcraft Ui24R 24-channel Remote-controlled Digital Mixer for $999 + free shipping</title>\n   <link>https://www.dealnews.com/Soundcraft-Ui24-R-24-channel-Remote-controlled-Digital-Mixer-for-999-free-shipping/22247051.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791234301-651550ee27weqpbr8minvua4gwzgi21xgarv6f6m.png?h=131&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Soundcraft&#x20;Ui24R&#x20;digital&#x20;mixer&#x20;is&#x20;&#x24;500&#x20;off&#x20;at&#x20;Sweetwater,&#x20;bringing&#x20;it&#x20;down&#x20;to&#x20;&#x24;999&#x20;from&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;1,499.&#x20;Shipping&#x20;is&#x20;free.&#x20;This&#x20;deal&#x20;ends&#x20;October&#x20;31.\"><p>This Soundcraft Ui24R digital mixer is $500 off at Sweetwater, bringing it down to $999 from its regular price of $1,499. Shipping is free. This deal ends October 31. Buy Now at Sweetwater</p></div> <div class=\"snippet features\" title=\"24-channel&#x20;rackmount&#x20;digital&#x20;mixer&#x20;20&#x20;Studer-designed&#x20;microphone&#x20;preamps&#x20;Built-in&#x20;dual-band&#x20;Wi-Fi&#x20;for&#x20;control&#x20;via&#x20;any&#x20;HTML5&#x20;browser&#x20;Connects&#x20;up&#x20;to&#x20;10&#x20;devices&#x20;at&#x20;once&#x20;over&#x20;Ethernet&#x20;or&#x20;Wi-Fi&#x20;Effects&#x20;processing&#x20;from&#x20;Lexicon,&#x20;dbx,&#x20;and&#x20;DigiTech&#x20;Multitrack&#x20;recording&#x20;of&#x20;24&#x20;channels&#x20;to&#x20;a&#x20;USB&#x20;drive\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>24-channel rackmount digital mixer</li> <li>20 Studer-designed microphone preamps</li> <li>Built-in dual-band Wi-Fi for control via any HTML5 browser</li> <li>Connects up to 10 devices at once over Ethernet or Wi-Fi</li> <li>Effects processing from Lexicon, dbx, and DigiTech</li> <li>Multitrack recording of 24 channels to a USB drive</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22247051.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 17:05:09 -0400</pubDate>\n   <dealnews:retailer>Sweetwater</dealnews:retailer>\n   <dealnews:expires>2026-10-31T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Musical Instruments</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">999.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791234301-651550ee27weqpbr8minvua4gwzgi21xgarv6f6m.png?h=131&amp;w=250\" medium=\"image\" height=\"131\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791234301-651550ee27weqpbr8minvua4gwzgi21xgarv6f6m.png?h=131&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Soundcraft Ui24R digital mixer is $500 off at Sweetwater, bringing it down to $999 from its regular price of $1,499. Shipping is free. This deal ends October 31.\"><p>This Soundcraft Ui24R digital mixer is $500 off at Sweetwater, bringing it down to $999 from its regular price of $1,499. Shipping is free. This deal ends October 31. Buy Now at Sweetwater</p></div> <div class=\"snippet features\" title=\"24-channel rackmount digital mixer 20 Studer-designed microphone preamps Built-in dual-band Wi-Fi for control via any HTML5 browser Connects up to 10 devices at once over Ethernet or Wi-Fi Effects processing from Lexicon, dbx, and DigiTech Multitrack recording of 24 channels to a USB drive\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>24-channel rackmount digital mixer</li> <li>20 Studer-designed microphone preamps</li> <li>Built-in dual-band Wi-Fi for control via any HTML5 browser</li> <li>Connects up to 10 devices at once over Ethernet or Wi-Fi</li> <li>Effects processing from Lexicon, dbx, and DigiTech</li> <li>Multitrack recording of 24 channels to a USB drive</li> </ul> </div>"
+      },
+      "id": "294f59df5cc5a94b",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Turtle Beach Rematch Core Wired Controller for Xbox and PC for $15 + free shipping",
+      "url": "https://www.dealnews.com/products/Turtle-Beach/Turtle-Beach-Rematch-Core-Wired-Controller-for-Xbox-and-PC/523735.html?iref=rss",
+      "price": 15,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Best Buy",
+      "publishedAt": "2026-10-05T20:14:10.000Z",
+      "category": "Joysticks/Gamepads",
+      "image": "https://d.dlnws.com/64599/1787454279-draftworks_img_7lhvc8ogv3al5klcabj.png?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Turtle Beach Rematch Core Wired Controller for Xbox and PC for $15 + free shipping</title>\n   <link>https://www.dealnews.com/products/Turtle-Beach/Turtle-Beach-Rematch-Core-Wired-Controller-for-Xbox-and-PC/523735.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1787454279-draftworks_img_7lhvc8ogv3al5klcabj.png?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Best&#x20;Buy&#x20;offers&#x20;this&#x20;Turtle&#x20;Beach&#x20;Rematch&#x20;Core&#x20;Wired&#x20;Controller&#x20;for&#x20;&#x24;14.99. &#x20;You&#x27;d&#x20;pay&#x20;double&#x20;this&#x20;price&#x20;on&#x20;Amazon. &#x20;My&#x20;Best&#x20;Buy&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;on&#x20;all&#x20;orders,&#x20;and&#x20;it&#x27;s&#x20;free&#x20;to&#x20;join.\"><p>Best Buy offers this Turtle Beach Rematch Core Wired Controller for $14.99.  You'd pay double this price on Amazon.  My Best Buy members get free shipping on all orders, and it's free to join. Buy Now at Best Buy</p></div> <div class=\"snippet features\" title=\"Integrated&#x20;audio&#x20;controls&#x20;on&#x20;D-pad&#x20;Dual&#x20;rumble&#x20;motors&#x20;and&#x20;impulse&#x20;triggers&#x20;8-foot&#x20;USB-C&#x20;wired&#x20;connection\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Integrated audio controls on D-pad</li> <li>Dual rumble motors and impulse triggers</li> <li>8-foot USB-C wired connection</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246979.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:14:10 -0400</pubDate>\n   <dealnews:retailer>Best Buy</dealnews:retailer>\n   <dealnews:expires>2027-01-03T15:14:10-05:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Joysticks/Gamepads</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">15.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1787454279-draftworks_img_7lhvc8ogv3al5klcabj.png?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1787454279-draftworks_img_7lhvc8ogv3al5klcabj.png?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Best Buy offers this Turtle Beach Rematch Core Wired Controller for $14.99.  You'd pay double this price on Amazon.  My Best Buy members get free shipping on all orders, and it's free to join.\"><p>Best Buy offers this Turtle Beach Rematch Core Wired Controller for $14.99.  You'd pay double this price on Amazon.  My Best Buy members get free shipping on all orders, and it's free to join. Buy Now at Best Buy</p></div> <div class=\"snippet features\" title=\"Integrated audio controls on D-pad Dual rumble motors and impulse triggers 8-foot USB-C wired connection\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Integrated audio controls on D-pad</li> <li>Dual rumble motors and impulse triggers</li> <li>8-foot USB-C wired connection</li> </ul> </div>"
+      },
+      "id": "379d25424ede1fa8",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt for $20 + free shipping",
+      "url": "https://www.dealnews.com/Awearness-Kenneth-Cole-Mens-Slim-Fit-Sharkskin-Covered-Placket-Dress-Shirt-for-20-free-shipping/22246960.html?iref=rss",
+      "price": 20,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Men's Wearhouse",
+      "publishedAt": "2026-10-05T19:56:01.000Z",
+      "category": "Shirts",
+      "image": "https://d.dlnws.com/64599/1791230152-product-trimmed.png?h=250&w=188",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt for $20 + free shipping</title>\n   <link>https://www.dealnews.com/Awearness-Kenneth-Cole-Mens-Slim-Fit-Sharkskin-Covered-Placket-Dress-Shirt-for-20-free-shipping/22246960.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791230152-product-trimmed.png?h=250&w=188' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Men&#x27;s&#x20;Wearhouse&#x20;offers&#x20;the&#x20;Awearness&#x20;Kenneth&#x20;Cole&#x20;Men&#x27;s&#x20;Slim&#x20;Fit&#x20;Sharkskin&#x20;Covered&#x20;Placket&#x20;Dress&#x20;Shirt&#x20;in&#x20;several&#x20;colors&#x20;for&#x20;&#x24;19.99. &#x20;That&#x27;s&#x20;a&#x20;&#x24;50&#x20;savings. &#x20;Perfect&#x20;Fit&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;.\"><p>Men's Wearhouse offers the Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt in several colors for $19.99.  That's a $50 savings.  Perfect Fit Rewards members get free shipping (it's free to join). Buy Now at Men's Wearhouse</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246960.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:56:01 -0400</pubDate>\n   <dealnews:retailer>Men's Wearhouse</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:56:01-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shirts</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">20.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791230152-product-trimmed.png?h=250&amp;w=188\" medium=\"image\" height=\"250\" width=\"188\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230152-product-trimmed.png?h=250&w=188' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Men's Wearhouse offers the Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt in several colors for $19.99.  That's a $50 savings.  Perfect Fit Rewards members get free shipping (it's free to join).\"><p>Men's Wearhouse offers the Awearness Kenneth Cole Men's Slim Fit Sharkskin Covered Placket Dress Shirt in several colors for $19.99.  That's a $50 savings.  Perfect Fit Rewards members get free shipping (it's free to join). Buy Now at Men's Wearhouse</p></div>"
+      },
+      "id": "388471b213e9e474",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Skeri 3200W Electric Dirt Bike for $540 + free shipping",
+      "url": "https://www.dealnews.com/Skeri-3200-W-Electric-Dirt-Bike-for-540-free-shipping/22223228.html?iref=rss",
+      "price": 539.99,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T20:05:31.000Z",
+      "category": "Bicycling",
+      "image": "https://d.dlnws.com/64599/1790608517-draftworks_img_u301h6l8kbsh0kmmcnb.jpeg?h=250&w=231",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Skeri 3200W Electric Dirt Bike for $540 + free shipping</title>\n   <link>https://www.dealnews.com/Skeri-3200-W-Electric-Dirt-Bike-for-540-free-shipping/22223228.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1790608517-draftworks_img_u301h6l8kbsh0kmmcnb.jpeg?h=250&w=231' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Skeri&#x20;electric&#x20;dirt&#x20;bike&#x20;drops&#x20;to&#x20;&#x24;540&#x20;when&#x20;you&#x20;apply&#x20;coupon&#x20;code&#x20;&quot;MLOOUVJS&quot;&#x20;at&#x20;checkout.&#x20;That’s&#x20;&#x24;360&#x20;off.&#x20;Free&#x20;shipping&#x20;applies.\"><p>This Skeri electric dirt bike drops to $540 when you apply coupon code \"MLOOUVJS\" at checkout. That’s $360 off. Free shipping applies. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"3200W&#x20;mid-drive&#x20;motor&#x20;hits&#x20;32MPH&#x20;with&#x20;instant&#x20;torque&#x20;48V&#x20;21Ah&#x20;battery&#x20;provides&#x20;30-40&#x20;miles&#x20;range&#x20;Dual-piston&#x20;hydraulic&#x20;disc&#x20;brakes&#x20;for&#x20;confident&#x20;stopping&#x20;Adjustable&#x20;hydraulic&#x20;suspension&#x20;with&#x20;fat&#x20;tires&#x20;for&#x20;rough&#x20;terrain&#x20;90&#x25;&#x20;pre-assembled&#x20;for&#x20;easy&#x20;setup\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>3200W mid-drive motor hits 32MPH with instant torque</li> <li>48V 21Ah battery provides 30-40 miles range</li> <li>Dual-piston hydraulic disc brakes for confident stopping</li> <li>Adjustable hydraulic suspension with fat tires for rough terrain</li> <li>90% pre-assembled for easy setup</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22223228.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:05:31 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2026-10-06T00:00:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Bicycling</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">539.99</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1790608517-draftworks_img_u301h6l8kbsh0kmmcnb.jpeg?h=250&amp;w=231\" medium=\"image\" height=\"250\" width=\"231\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790608517-draftworks_img_u301h6l8kbsh0kmmcnb.jpeg?h=250&w=231' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Skeri electric dirt bike drops to $540 when you apply coupon code \"MLOOUVJS\" at checkout. That’s $360 off. Free shipping applies.\"><p>This Skeri electric dirt bike drops to $540 when you apply coupon code \"MLOOUVJS\" at checkout. That’s $360 off. Free shipping applies. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"3200W mid-drive motor hits 32MPH with instant torque 48V 21Ah battery provides 30-40 miles range Dual-piston hydraulic disc brakes for confident stopping Adjustable hydraulic suspension with fat tires for rough terrain 90% pre-assembled for easy setup\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>3200W mid-drive motor hits 32MPH with instant torque</li> <li>48V 21Ah battery provides 30-40 miles range</li> <li>Dual-piston hydraulic disc brakes for confident stopping</li> <li>Adjustable hydraulic suspension with fat tires for rough terrain</li> <li>90% pre-assembled for easy setup</li> </ul> </div>"
+      },
+      "id": "3d4b6a633974618e",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Hanes Men's Adjustable Plush Robe for $18 + free shipping w/ $39",
+      "url": "https://www.dealnews.com/Hanes-Mens-Adjustable-Plush-Robe-for-18-free-shipping-w-39/22247054.html?iref=rss",
+      "price": 18,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Macy's",
+      "publishedAt": "2026-10-05T21:14:43.000Z",
+      "category": "Sleep & Lounge",
+      "image": "https://d.dlnws.com/64599/1791234877-33456712_fpx.jpeg?h=250&w=205",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Hanes Men's Adjustable Plush Robe for $18 + free shipping w/ $39</title>\n   <link>https://www.dealnews.com/Hanes-Mens-Adjustable-Plush-Robe-for-18-free-shipping-w-39/22247054.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791234877-33456712_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Hanes&#x20;robe&#x20;is&#x20;&#x24;17.93&#x20;at&#x20;Macy&#x27;s.&#x20;It&#x27;s&#x20;a&#x20;70&#x25;&#x20;savings.&#x20;Star&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;over&#x20;&#x24;39&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;.\"><p>This Hanes robe is $17.93 at Macy's. It's a 70% savings. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247054.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 17:14:43 -0400</pubDate>\n   <dealnews:retailer>Macy's</dealnews:retailer>\n   <dealnews:expires>2027-01-03T16:14:43-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Sleep &amp; Lounge</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">18.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791234877-33456712_fpx.jpeg?h=250&amp;w=205\" medium=\"image\" height=\"250\" width=\"205\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791234877-33456712_fpx.jpeg?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Hanes robe is $17.93 at Macy's. It's a 70% savings. Star Rewards members get free shipping over $39 (it's free to join).\"><p>This Hanes robe is $17.93 at Macy's. It's a 70% savings. Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>"
+      },
+      "id": "3f7b10f9acf494ad",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Great Value Bacon Luncheon Meat 12-oz. Can 12-Pack for $21 + free shipping w/ $35",
+      "url": "https://www.dealnews.com/Great-Value-Bacon-Luncheon-Meat-12-oz-Can-12-Pack-for-21-free-shipping-w-35/22246877.html?iref=rss",
+      "price": 21,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Walmart",
+      "publishedAt": "2026-10-05T19:00:30.000Z",
+      "category": "Groceries",
+      "image": "https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Great Value Bacon Luncheon Meat 12-oz. Can 12-Pack for $21 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Great-Value-Bacon-Luncheon-Meat-12-oz-Can-12-Pack-for-21-free-shipping-w-35/22246877.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;12-pack&#x20;of&#x20;Great&#x20;Value&#x20;Bacon&#x20;Luncheon&#x20;Meat&#x20;is&#x20;&#x24;20.74&#x20;at&#x20;Walmart. &#x20;That&#x27;s&#x20;a&#x20;&#x24;7&#x20;savings&#x20;and&#x20;just&#x20;&#x24;1.73&#x20;a&#x20;can. &#x20;Choose&#x20;pickup&#x20;or&#x20;spend&#x20;&#x24;35&#x20;to&#x20;avoid&#x20;the&#x20;&#x24;6.99&#x20;shipping&#x20;charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246877.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:00:30 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:00:30-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Groceries</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">21.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&amp;w=250\" medium=\"image\" height=\"114\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791226822-product-trimmed.png?h=114&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge.\"><p>This 12-pack of Great Value Bacon Luncheon Meat is $20.74 at Walmart.  That's a $7 savings and just $1.73 a can.  Choose pickup or spend $35 to avoid the $6.99 shipping charge. Buy Now at Walmart</p></div>"
+      },
+      "id": "48e559405f992fc7",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Jaszdot 32\" Digital Signage Display for $539.40 + free shipping",
+      "url": "https://www.dealnews.com/products/Jaszdot/Jaszdot-32-Digital-Signage-Display/537735.html?iref=rss",
+      "price": 539.4,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T20:35:18.000Z",
+      "category": "TVs",
+      "image": "https://d.dlnws.com/64599/1790270488-draftworks_img_ril93ft0g59j3bpmboj.jpeg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Jaszdot 32&quot; Digital Signage Display for $539.40 + free shipping</title>\n   <link>https://www.dealnews.com/products/Jaszdot/Jaszdot-32-Digital-Signage-Display/537735.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1790270488-draftworks_img_ril93ft0g59j3bpmboj.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Retailers,&#x20;restaurants,&#x20;and&#x20;offices&#x20;needing&#x20;a&#x20;standalone&#x20;way&#x20;to&#x20;loop&#x20;ads&#x20;or&#x20;menus&#x20;will&#x20;find&#x20;the&#x20;floor-standing&#x20;build&#x20;and&#x20;USB&#x2F;HDMI&#x2F;WiFi&#x20;setup&#x20;handle&#x20;that&#x20;without&#x20;extra&#x20;mounting&#x20;hardware..&#x20;Apply&#x20;coupon&#x20;code&#x20;&quot;V1RE6KZS&quot;&#x20;for&#x20;a&#x20;savings&#x20;of&#x20;&#x24;360.\"><p>Retailers, restaurants, and offices needing a standalone way to loop ads or menus will find the floor-standing build and USB/HDMI/WiFi setup handle that without extra mounting hardware.. Apply coupon code \"V1RE6KZS\" for a savings of $360. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Interactive&#x20;touchscreen&#x20;for&#x20;customer&#x20;engagement&#x20;Durable&#x20;freestanding&#x20;design&#x20;for&#x20;high-traffic&#x20;areas&#x20;Android&#x20;OS&#x20;with&#x20;Google&#x20;Apps&#x20;support&#x20;Split-screen&#x20;multi-content&#x20;playback&#x20;600&#x20;nit&#x20;Ultra-Clear&#x20;IPS&#x20;display&#x20;Model&#x3A;&#x20;CA-32B\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Interactive touchscreen for customer engagement</li> <li>Durable freestanding design for high-traffic areas</li> <li>Android OS with Google Apps support</li> <li>Split-screen multi-content playback</li> <li>600 nit Ultra-Clear IPS display</li> <li>Model: CA-32B</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22212707.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:35:18 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-02-01T00:00:00-05:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>TVs</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">539.40</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1790270488-draftworks_img_ril93ft0g59j3bpmboj.jpeg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790270488-draftworks_img_ril93ft0g59j3bpmboj.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Retailers, restaurants, and offices needing a standalone way to loop ads or menus will find the floor-standing build and USB/HDMI/WiFi setup handle that without extra mounting hardware.. Apply coupon code \"V1RE6KZS\" for a savings of $360.\"><p>Retailers, restaurants, and offices needing a standalone way to loop ads or menus will find the floor-standing build and USB/HDMI/WiFi setup handle that without extra mounting hardware.. Apply coupon code \"V1RE6KZS\" for a savings of $360. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Interactive touchscreen for customer engagement Durable freestanding design for high-traffic areas Android OS with Google Apps support Split-screen multi-content playback 600 nit Ultra-Clear IPS display Model: CA-32B\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Interactive touchscreen for customer engagement</li> <li>Durable freestanding design for high-traffic areas</li> <li>Android OS with Google Apps support</li> <li>Split-screen multi-content playback</li> <li>600 nit Ultra-Clear IPS display</li> <li>Model: CA-32B</li> </ul> </div>"
+      },
+      "id": "62945a60810391c0",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "adidas Men's Trefoil Essentials Woven Cargo Pants for $23 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/adidas-Mens-Trefoil-Essentials-Woven-Cargo-Pants-for-23-free-shipping-w-49/22247071.html?iref=rss",
+      "price": 23,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T21:18:07.000Z",
+      "category": "Pants",
+      "image": "https://d.dlnws.com/64599/1791235079-25adimcasussntlswveaf_cardboard.webp?h=250&w=148",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>adidas Men's Trefoil Essentials Woven Cargo Pants for $23 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/adidas-Mens-Trefoil-Essentials-Woven-Cargo-Pants-for-23-free-shipping-w-49/22247071.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791235079-25adimcasussntlswveaf_cardboard.webp?h=250&w=148' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick&#x27;s&#x20;Sporting&#x20;Goods&#x20;offers&#x20;the&#x20;adidas&#x20;Men&#x27;s&#x20;Trefoil&#x20;Essentials&#x20;Woven&#x20;Cargo&#x20;Pants&#x20;for&#x20;&#x24;22.97. &#x20;That&#x27;s&#x20;a&#x20;&#x24;27&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>Dick's Sporting Goods offers the adidas Men's Trefoil Essentials Woven Cargo Pants for $22.97.  That's a $27 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247071.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 17:18:07 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T16:18:07-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Pants</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">23.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791235079-25adimcasussntlswveaf_cardboard.webp?h=250&amp;w=148\" medium=\"image\" height=\"250\" width=\"148\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791235079-25adimcasussntlswveaf_cardboard.webp?h=250&w=148' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Dick's Sporting Goods offers the adidas Men's Trefoil Essentials Woven Cargo Pants for $22.97.  That's a $27 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>Dick's Sporting Goods offers the adidas Men's Trefoil Essentials Woven Cargo Pants for $22.97.  That's a $27 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
+      },
+      "id": "6664065cd3bb360c",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping",
+      "url": "https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss",
+      "price": 79,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Lowe's",
+      "publishedAt": "2026-10-05T19:20:54.000Z",
+      "category": "Power Saws",
+      "image": "https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw (Tool Only) for $79 + free shipping</title>\n   <link>https://www.dealnews.com/Kobalt-24-V-Variable-Speed-Brushless-Cordless-Reciprocating-Saw-Tool-Only-for-79-free-shipping/22246917.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe&#x27;s&#x20;offers&#x20;the&#x20;Kobalt&#x20;24V&#x20;Variable&#x20;Speed&#x20;Brushless&#x20;Cordless&#x20;Reciprocating&#x20;Saw&#x20;for&#x20;&#x24;79. &#x20;That&#x27;s&#x20;a&#x20;&#x24;20&#x20;savings. &#x20;Shipping&#x20;is&#x20;free. &#x20;Deal&#x20;ends&#x20;October&#x20;14th.\"><p>Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th. Buy Now at Lowe's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246917.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:20:54 -0400</pubDate>\n   <dealnews:retailer>Lowe's</dealnews:retailer>\n   <dealnews:expires>2026-10-14T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Power Saws</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">79.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&amp;w=250\" medium=\"image\" height=\"101\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791228081-product-trimmed.png?h=101&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th.\"><p>Lowe's offers the Kobalt 24V Variable Speed Brushless Cordless Reciprocating Saw for $79.  That's a $20 savings.  Shipping is free.  Deal ends October 14th. Buy Now at Lowe's</p></div>"
+      },
+      "id": "6bd5a7f1ce95c348",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "HDX 2.5-Qt. Tough Storage Tote for 6 for $9.96 + free shipping w/ $25",
+      "url": "https://www.dealnews.com/HDX-2-5-Qt-Tough-Storage-Tote-for-6-for-9-96-free-shipping-w-25/22246853.html?iref=rss",
+      "price": 9.96,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Home Depot",
+      "publishedAt": "2026-10-05T18:35:26.000Z",
+      "category": "Tool Storage & Organization",
+      "image": "https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>HDX 2.5-Qt. Tough Storage Tote for 6 for $9.96 + free shipping w/ $25</title>\n   <link>https://www.dealnews.com/HDX-2-5-Qt-Tough-Storage-Tote-for-6-for-9-96-free-shipping-w-25/22246853.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Add&#x20;six&#x20;of&#x20;these&#x20;HDX&#x20;2.5-Qt.&#x20;Tough&#x20;Storage&#x20;Totes&#x20;to&#x20;cart&#x20;to&#x20;see&#x20;the&#x20;price&#x20;drop&#x20;to&#x20;just&#x20;&#x24;9.96.&#x20;That&#x20;works&#x20;out&#x20;to&#x20;just&#x20;&#x24;1.66&#x20;each&#x20;instead&#x20;of&#x20;their&#x20;regular&#x20;price&#x20;of&#x20;&#x24;2.48.&#x20;Shipping&#x20;adds&#x20;&#x24;2.99&#x20;or&#x20;is&#x20;free&#x20;over&#x20;&#x24;25. &#x20;Pickup&#x20;is&#x20;also&#x20;available.\"><p>Add six of these HDX 2.5-Qt. Tough Storage Totes to cart to see the price drop to just $9.96. That works out to just $1.66 each instead of their regular price of $2.48. Shipping adds $2.99 or is free over $25.  Pickup is also available. Buy Now at Home Depot</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246853.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:35:26 -0400</pubDate>\n   <dealnews:retailer>Home Depot</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:35:26-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Tool Storage &amp; Organization</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">9.96</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225318-hdx-storage-bins-999-2qt-hdx-64_1000.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Add six of these HDX 2.5-Qt. Tough Storage Totes to cart to see the price drop to just $9.96. That works out to just $1.66 each instead of their regular price of $2.48. Shipping adds $2.99 or is free over $25.  Pickup is also available.\"><p>Add six of these HDX 2.5-Qt. Tough Storage Totes to cart to see the price drop to just $9.96. That works out to just $1.66 each instead of their regular price of $2.48. Shipping adds $2.99 or is free over $25.  Pickup is also available. Buy Now at Home Depot</p></div>"
+      },
+      "id": "6ca6e4b743c279c2",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Campus Sutra Men's Micro-Check Chino Trousers for $26 + free shipping w/ $39",
+      "url": "https://www.dealnews.com/Campus-Sutra-Mens-Micro-Check-Chino-Trousers-for-26-free-shipping-w-39/22247034.html?iref=rss",
+      "price": 26,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Macy's",
+      "publishedAt": "2026-10-05T20:50:52.000Z",
+      "category": "Pants",
+      "image": "https://d.dlnws.com/64599/1791233444-product-trimmed.png?h=250&w=134",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Campus Sutra Men's Micro-Check Chino Trousers for $26 + free shipping w/ $39</title>\n   <link>https://www.dealnews.com/Campus-Sutra-Mens-Micro-Check-Chino-Trousers-for-26-free-shipping-w-39/22247034.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791233444-product-trimmed.png?h=250&w=134' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Today&#x20;only,&#x20;Macy&#x27;s&#x20;offers&#x20;the&#x20;Campus&#x20;Sutra&#x20;Men&#x27;s&#x20;Micro-Check&#x20;Chino&#x20;Trousers&#x20;for&#x20;&#x24;26.&#x20;You&#x27;d&#x20;pay&#x20;double&#x20;this&#x20;price&#x20;elsewhere. &#x20;Star&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;over&#x20;&#x24;39&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;.\"><p>Today only, Macy's offers the Campus Sutra Men's Micro-Check Chino Trousers for $26. You'd pay double this price elsewhere.  Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247034.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:50:52 -0400</pubDate>\n   <dealnews:retailer>Macy's</dealnews:retailer>\n   <dealnews:expires>2026-10-06T03:00:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Pants</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">26.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791233444-product-trimmed.png?h=250&amp;w=134\" medium=\"image\" height=\"250\" width=\"134\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791233444-product-trimmed.png?h=250&w=134' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Today only, Macy's offers the Campus Sutra Men's Micro-Check Chino Trousers for $26. You'd pay double this price elsewhere.  Star Rewards members get free shipping over $39 (it's free to join).\"><p>Today only, Macy's offers the Campus Sutra Men's Micro-Check Chino Trousers for $26. You'd pay double this price elsewhere.  Star Rewards members get free shipping over $39 (it's free to join). Buy Now at Macy's</p></div>"
+      },
+      "id": "7e72baba9b49ea9c",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest for $19 + free shipping w/ $39",
+      "url": "https://www.dealnews.com/Alfani-Mens-Welded-Alfatech-Contrast-Trim-Full-Zip-Vest-for-19-free-shipping-w-39/22247016.html?iref=rss",
+      "price": 19,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Macy's",
+      "publishedAt": "2026-10-05T20:38:06.000Z",
+      "category": "Clothing & Accessories",
+      "image": "https://d.dlnws.com/64599/1791232679-product-trimmed.png?h=250&w=205",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest for $19 + free shipping w/ $39</title>\n   <link>https://www.dealnews.com/Alfani-Mens-Welded-Alfatech-Contrast-Trim-Full-Zip-Vest-for-19-free-shipping-w-39/22247016.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791232679-product-trimmed.png?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Macy&#x27;s&#x20;offers&#x20;the&#x20;Alfani&#x20;Men&#x27;s&#x20;Welded&#x20;Alfatech&#x20;Contrast-Trim&#x20;Full-Zip&#x20;Vest&#x20;in&#x20;Neo&#x20;Navy&#x20;for&#x20;&#x24;19.46.&#x20;That&#x27;s&#x20;a&#x20;&#x24;111&#x20;savings. &#x20;Star&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;over&#x20;&#x24;39&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;. &#x20;Pickup&#x20;is&#x20;also&#x20;available.\"><p>Macy's offers the Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest in Neo Navy for $19.46. That's a $111 savings.  Star Rewards members get free shipping over $39 (it's free to join).  Pickup is also available. Buy Now at Macy's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247016.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:38:06 -0400</pubDate>\n   <dealnews:retailer>Macy's</dealnews:retailer>\n   <dealnews:expires>2027-01-03T15:38:06-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Clothing &amp; Accessories</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">19.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791232679-product-trimmed.png?h=250&amp;w=205\" medium=\"image\" height=\"250\" width=\"205\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791232679-product-trimmed.png?h=250&w=205' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Macy's offers the Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest in Neo Navy for $19.46. That's a $111 savings.  Star Rewards members get free shipping over $39 (it's free to join).  Pickup is also available.\"><p>Macy's offers the Alfani Men's Welded Alfatech Contrast-Trim Full-Zip Vest in Neo Navy for $19.46. That's a $111 savings.  Star Rewards members get free shipping over $39 (it's free to join).  Pickup is also available. Buy Now at Macy's</p></div>"
+      },
+      "id": "8c2f9050d360e734",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss",
+      "price": 18,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T19:09:50.000Z",
+      "category": "Sweatshirts & Hoodies",
+      "image": "https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Under Armour Men's Icon Fleece Hoodie for $18 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/Under-Armour-Mens-Icon-Fleece-Hoodie-for-18-free-shipping-w-49/22246897.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Under&#x20;Armour&#x20;Icon&#x20;Fleece&#x20;Hoodie&#x20;is&#x20;&#x24;17.97&#x20;in&#x20;Orange&#x20;Bloc&#x20;at&#x20;Dick&#x27;s&#x20;Sporting&#x20;Goods;&#x20;Fade&#x20;Green&#x20;is&#x20;also&#x20;available&#x20;for&#x20;a&#x20;buck&#x20;more. &#x20;That&#x27;s&#x20;a&#x20;&#x24;47&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246897.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:09:50 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:09:50-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Sweatshirts &amp; Hoodies</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">18.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&amp;w=136\" medium=\"image\" height=\"250\" width=\"136\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227383-22uarmssntlflchdxapt_orange_bloc_light_heather-orange_bloc.webp?h=250&w=136' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>This Under Armour Icon Fleece Hoodie is $17.97 in Orange Bloc at Dick's Sporting Goods; Fade Green is also available for a buck more.  That's a $47 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
+      },
+      "id": "8eae9fbcbdf989f4",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Kobalt 4V Max 1/4\" Cordless Screwdriver for $20 + free shipping",
+      "url": "https://www.dealnews.com/products/Kobalt/Kobalt-4-V-Max-1-4-Cordless-Screwdriver/540621.html?iref=rss",
+      "price": 20,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Lowe's",
+      "publishedAt": "2026-10-05T19:45:22.000Z",
+      "category": "Power Tools",
+      "image": "https://d.dlnws.com/64599/1791229445-70347418.webp?h=126&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Kobalt 4V Max 1/4&quot; Cordless Screwdriver for $20 + free shipping</title>\n   <link>https://www.dealnews.com/products/Kobalt/Kobalt-4-V-Max-1-4-Cordless-Screwdriver/540621.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791229445-70347418.webp?h=126&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe&#x27;s&#x20;offers&#x20;the&#x20;Kobalt&#x20;4V&#x20;Max&#x20;1&#x2F;4&quot;&#x20;Cordless&#x20;Screwdriver&#x20;for&#x20;&#x24;19.98. &#x20;MyLowe&#x27;s&#x20;Rewards&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;&#x28;it&#x27;s&#x20;free&#x20;to&#x20;join&#x29;. &#x20;Deal&#x20;ends&#x20;November&#x20;18th.\"><p>Lowe's offers the Kobalt 4V Max 1/4\" Cordless Screwdriver for $19.98.  MyLowe's Rewards members get free shipping (it's free to join).  Deal ends November 18th. Buy Now at Lowe's</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246940.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:45:22 -0400</pubDate>\n   <dealnews:retailer>Lowe's</dealnews:retailer>\n   <dealnews:expires>2026-11-18T23:59:00-05:00</dealnews:expires>\n   <dealnews:dealType>product</dealnews:dealType>\n   <dealnews:category>Power Tools</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">20.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791229445-70347418.webp?h=126&amp;w=250\" medium=\"image\" height=\"126\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791229445-70347418.webp?h=126&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Lowe's offers the Kobalt 4V Max 1/4\" Cordless Screwdriver for $19.98.  MyLowe's Rewards members get free shipping (it's free to join).  Deal ends November 18th.\"><p>Lowe's offers the Kobalt 4V Max 1/4\" Cordless Screwdriver for $19.98.  MyLowe's Rewards members get free shipping (it's free to join).  Deal ends November 18th. Buy Now at Lowe's</p></div>"
+      },
+      "id": "aad44e054c865556",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping",
+      "url": "https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss",
+      "price": 45,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Cigar Page",
+      "publishedAt": "2026-10-05T19:19:17.000Z",
+      "category": "Cigars",
+      "image": "https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Montecristo White vs. Pirates Gold 10-Cigar Smash Pack for $45 + free shipping</title>\n   <link>https://www.dealnews.com/Montecristo-White-vs-Pirates-Gold-10-Cigar-Smash-Pack-for-45-free-shipping/22246916.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Promo&#x20;code&#x20;&quot;DNSPMWP10&quot;&#x20;brings&#x20;this&#x20;Smash&#x20;Pack&#x20;sampler&#x20;to&#x20;&#x24;45,&#x20;pairing&#x20;5&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;cigars&#x20;with&#x20;5&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;cigars,&#x20;both&#x20;in&#x20;a&#x20;6&quot;&#x20;by&#x20;54&#x20;size.&#x20;The&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;debuted&#x20;in&#x20;2007&#x20;and&#x20;has&#x20;remained&#x20;one&#x20;of&#x20;the&#x20;best-selling&#x20;premium&#x20;cigars&#x20;in&#x20;the&#x20;U.S.&#x20;ever&#x20;since.&#x20;Free&#x20;shipping&#x20;is&#x20;included&#x20;on&#x20;this&#x20;order.&#x20;Coupon&#x20;ends&#x20;October&#x20;12.\"><p>Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page</p></div> <div class=\"snippet features\" title=\"Includes&#x20;5&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;cigars&#x20;and&#x20;5&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;cigars&#x20;Both&#x20;cigars&#x20;measure&#x20;6&quot;&#x20;by&#x20;54&#x20;ring&#x20;gauge&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;carries&#x20;a&#x20;91&#x20;rating&#x20;Montecristo&#x20;White&#x20;Series&#x20;Toro&#x20;uses&#x20;a&#x20;Connecticut&#x20;Shade&#x20;Ecuadorian&#x20;wrapper&#x20;with&#x20;a&#x20;Nicaraguan&#x20;binder&#x20;Pirates&#x20;Gold&#x20;Toro&#x20;uses&#x20;a&#x20;Connecticut&#x20;Ecuador&#x20;wrapper&#x20;Pack&#x20;contains&#x20;10&#x20;total&#x20;cigars\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars</li> <li>Both cigars measure 6\" by 54 ring gauge</li> <li>Montecristo White Series Toro carries a 91 rating</li> <li>Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder</li> <li>Pirates Gold Toro uses a Connecticut Ecuador wrapper</li> <li>Pack contains 10 total cigars</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246916.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:19:17 -0400</pubDate>\n   <dealnews:retailer>Cigar Page</dealnews:retailer>\n   <dealnews:expires>2026-10-12T23:59:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Cigars</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">45.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227950-kp-smh0018-a_5.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12.\"><p>Promo code \"DNSPMWP10\" brings this Smash Pack sampler to $45, pairing 5 Montecristo White Series Toro cigars with 5 Pirates Gold Toro cigars, both in a 6\" by 54 size. The Montecristo White Series Toro debuted in 2007 and has remained one of the best-selling premium cigars in the U.S. ever since. Free shipping is included on this order. Coupon ends October 12. Buy Now at Cigar Page</p></div> <div class=\"snippet features\" title=\"Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars Both cigars measure 6\" by 54 ring gauge Montecristo White Series Toro carries a 91 rating Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder Pirates Gold Toro uses a Connecticut Ecuador wrapper Pack contains 10 total cigars\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Includes 5 Montecristo White Series Toro cigars and 5 Pirates Gold Toro cigars</li> <li>Both cigars measure 6\" by 54 ring gauge</li> <li>Montecristo White Series Toro carries a 91 rating</li> <li>Montecristo White Series Toro uses a Connecticut Shade Ecuadorian wrapper with a Nicaraguan binder</li> <li>Pirates Gold Toro uses a Connecticut Ecuador wrapper</li> <li>Pack contains 10 total cigars</li> </ul> </div>"
+      },
+      "id": "b039e54b05150da0",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Squier Classic Vibe '60s Jazzmaster Electric Guitar for $380 + free shipping",
+      "url": "https://www.dealnews.com/Squier-Classic-Vibe-60-s-Jazzmaster-Electric-Guitar-for-380-free-shipping/22246977.html?iref=rss",
+      "price": 380,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Musician's Friend",
+      "publishedAt": "2026-10-05T20:02:37.000Z",
+      "category": "Musical Instruments",
+      "image": "https://d.dlnws.com/64599/1791230549-l66132000001000-00-2000x2000.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Squier Classic Vibe '60s Jazzmaster Electric Guitar for $380 + free shipping</title>\n   <link>https://www.dealnews.com/Squier-Classic-Vibe-60-s-Jazzmaster-Electric-Guitar-for-380-free-shipping/22246977.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791230549-l66132000001000-00-2000x2000.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Musician&#x27;s&#x20;Friend&#x20;offers&#x20;the&#x20;Squier&#x20;Classic&#x20;Vibe&#x20;&#x27;60s&#x20;Jazzmaster&#x20;Electric&#x20;Guitar&#x20;in&#x20;three&#x20;colors&#x20;for&#x20;&#x24;379.99. &#x20;You&#x27;d&#x20;pay&#x20;&#x24;500&#x20;elsewhere. &#x20;Shipping&#x20;is&#x20;free.\"><p>Musician's Friend offers the Squier Classic Vibe '60s Jazzmaster Electric Guitar in three colors for $379.99.  You'd pay $500 elsewhere.  Shipping is free. Buy Now at Musician's Friend</p></div> <div class=\"snippet features\" title=\"maple&#x20;neck&#x20;Indian&#x20;laurel&#x20;fingerboard&#x20;dual&#x20;alnico&#x20;single-coil&#x20;pickups\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>maple neck</li> <li>Indian laurel fingerboard</li> <li>dual alnico single-coil pickups</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246977.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:02:37 -0400</pubDate>\n   <dealnews:retailer>Musician's Friend</dealnews:retailer>\n   <dealnews:expires>2027-01-03T15:02:37-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Musical Instruments</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">380.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791230549-l66132000001000-00-2000x2000.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791230549-l66132000001000-00-2000x2000.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Musician's Friend offers the Squier Classic Vibe '60s Jazzmaster Electric Guitar in three colors for $379.99.  You'd pay $500 elsewhere.  Shipping is free.\"><p>Musician's Friend offers the Squier Classic Vibe '60s Jazzmaster Electric Guitar in three colors for $379.99.  You'd pay $500 elsewhere.  Shipping is free. Buy Now at Musician's Friend</p></div> <div class=\"snippet features\" title=\"maple neck Indian laurel fingerboard dual alnico single-coil pickups\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>maple neck</li> <li>Indian laurel fingerboard</li> <li>dual alnico single-coil pickups</li> </ul> </div>"
+      },
+      "id": "bee56e99360f674d",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Dreamust Shock-Absorbing Shoe Insoles for $5 + free shipping w/ Prime",
+      "url": "https://www.dealnews.com/Dreamust-Shock-Absorbing-Shoe-Insoles-for-5-free-shipping-w-Prime/22203454.html?iref=rss",
+      "price": 4.99,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T20:47:21.000Z",
+      "category": "Accessories",
+      "image": "https://d.dlnws.com/64599/1780341176-draftworks_img_g6q160fecqog3kbfcgh.jpeg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Dreamust Shock-Absorbing Shoe Insoles for $5 + free shipping w/ Prime</title>\n   <link>https://www.dealnews.com/Dreamust-Shock-Absorbing-Shoe-Insoles-for-5-free-shipping-w-Prime/22203454.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1780341176-draftworks_img_g6q160fecqog3kbfcgh.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Anyone&#x20;on&#x20;their&#x20;feet&#x20;all&#x20;day&#x20;at&#x20;work&#x20;or&#x20;during&#x20;workouts&#x20;could&#x20;use&#x20;the&#x20;extra&#x20;cushioning&#x20;these&#x20;provide&#x20;under&#x20;the&#x20;heel&#x20;and&#x20;ball&#x20;of&#x20;the&#x20;foot.&#x20;Apply&#x20;coupon&#x20;code&#x20;&quot;7NS7HGMM&quot;&#x20;for&#x20;a&#x20;savings&#x20;of&#x20;&#x24;5.\"><p>Anyone on their feet all day at work or during workouts could use the extra cushioning these provide under the heel and ball of the foot. Apply coupon code \"7NS7HGMM\" for a savings of $5. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Durable&#x20;high-density&#x20;EVA&#x20;maintains&#x20;arch&#x20;support&#x20;Targeted&#x20;shock&#x20;absorption&#x20;for&#x20;knees&#x20;and&#x20;joints&#x20;Breathable&#x20;mesh&#x20;wicks&#x20;sweat&#x20;for&#x20;dry&#x20;comfort&#x20;Non-slip&#x20;surface&#x20;prevents&#x20;insole&#x20;movement&#x20;Corrects&#x20;alignment&#x20;and&#x20;relieves&#x20;foot&#x20;pain\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Durable high-density EVA maintains arch support</li> <li>Targeted shock absorption for knees and joints</li> <li>Breathable mesh wicks sweat for dry comfort</li> <li>Non-slip surface prevents insole movement</li> <li>Corrects alignment and relieves foot pain</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22203454.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 16:47:21 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2026-11-01T00:00:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Accessories</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">4.99</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1780341176-draftworks_img_g6q160fecqog3kbfcgh.jpeg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1780341176-draftworks_img_g6q160fecqog3kbfcgh.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Anyone on their feet all day at work or during workouts could use the extra cushioning these provide under the heel and ball of the foot. Apply coupon code \"7NS7HGMM\" for a savings of $5.\"><p>Anyone on their feet all day at work or during workouts could use the extra cushioning these provide under the heel and ball of the foot. Apply coupon code \"7NS7HGMM\" for a savings of $5. Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Durable high-density EVA maintains arch support Targeted shock absorption for knees and joints Breathable mesh wicks sweat for dry comfort Non-slip surface prevents insole movement Corrects alignment and relieves foot pain\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Durable high-density EVA maintains arch support</li> <li>Targeted shock absorption for knees and joints</li> <li>Breathable mesh wicks sweat for dry comfort</li> <li>Non-slip surface prevents insole movement</li> <li>Corrects alignment and relieves foot pain</li> </ul> </div>"
+      },
+      "id": "cfa656fad0644f41",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $86 + free shipping",
+      "url": "https://www.dealnews.com/Nike-Mens-or-Womens-Air-Max-90-Tiempo-Shoes-for-86-free-shipping/22246939.html?iref=rss",
+      "price": 86,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Nike",
+      "publishedAt": "2026-10-05T19:38:39.000Z",
+      "category": "Shoes",
+      "image": "https://d.dlnws.com/64599/1791229111-product-trimmed.png?h=120&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Nike Men's or Women's Air Max 90 &quot;Tiempo&quot; Shoes for $86 + free shipping</title>\n   <link>https://www.dealnews.com/Nike-Mens-or-Womens-Air-Max-90-Tiempo-Shoes-for-86-free-shipping/22246939.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791229111-product-trimmed.png?h=120&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Nike&#x20;offers&#x20;the&#x20;Nike&#x20;Men&#x27;s&#x20;or&#x20;Women&#x27;s&#x20;Air&#x20;Max&#x20;90&#x20;&quot;Tiempo&quot;&#x20;Shoes&#x20;for&#x20;&#x24;85.97;&#x20;&quot;Mercurial&quot;&#x20;is&#x20;also&#x20;available&#x20;for&#x20;&#x24;88.97. &#x20;That&#x27;s&#x20;a&#x20;&#x24;64&#x20;low. &#x20;Shipping&#x20;is&#x20;free.\"><p>Nike offers the Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $85.97; \"Mercurial\" is also available for $88.97.  That's a $64 low.  Shipping is free. Buy Now at Nike</p></div>]]></description>\n   <guid>https://www.dealnews.com/22246939.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:38:39 -0400</pubDate>\n   <dealnews:retailer>Nike</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:38:39-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shoes</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">86.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791229111-product-trimmed.png?h=120&amp;w=250\" medium=\"image\" height=\"120\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791229111-product-trimmed.png?h=120&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"Nike offers the Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $85.97; \"Mercurial\" is also available for $88.97.  That's a $64 low.  Shipping is free.\"><p>Nike offers the Nike Men's or Women's Air Max 90 \"Tiempo\" Shoes for $85.97; \"Mercurial\" is also available for $88.97.  That's a $64 low.  Shipping is free. Buy Now at Nike</p></div>"
+      },
+      "id": "e379d046e6ec9a96",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Epiphone Les Paul Custom Limited-Edition Electric Guitar for $599 + free shipping",
+      "url": "https://www.dealnews.com/Epiphone-Les-Paul-Custom-Limited-Edition-Electric-Guitar-for-599-free-shipping/22246896.html?iref=rss",
+      "price": 599,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Musician's Friend",
+      "publishedAt": "2026-10-05T19:04:35.000Z",
+      "category": "Musical Instruments",
+      "image": "https://d.dlnws.com/64599/1791227068-product-trimmed.png?h=250&w=183",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Epiphone Les Paul Custom Limited-Edition Electric Guitar for $599 + free shipping</title>\n   <link>https://www.dealnews.com/Epiphone-Les-Paul-Custom-Limited-Edition-Electric-Guitar-for-599-free-shipping/22246896.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791227068-product-trimmed.png?h=250&w=183' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"The&#x20;Epiphone&#x20;Les&#x20;Paul&#x20;Custom&#x20;Limited-Edition&#x20;electric&#x20;guitar&#x20;is&#x20;&#x24;599&#x20;at&#x20;Musician&#x27;s&#x20;Friend.&#x20;That&#x27;s&#x20;&#x24;200&#x20;off.&#x20;Shipping&#x20;is&#x20;free. \"><p>The Epiphone Les Paul Custom Limited-Edition electric guitar is $599 at Musician's Friend. That's $200 off. Shipping is free.  Buy Now at Musician's Friend</p></div> <div class=\"snippet features\" title=\"Single-cutaway&#x20;solidbody&#x20;design&#x20;with&#x20;mahogany&#x20;body&#x20;and&#x20;gloss&#x20;finish&#x20;Mahogany&#x20;neck&#x20;with&#x20;slim&#x20;profile&#x20;and&#x20;set-in&#x20;joint&#x20;Ebony&#x20;fingerboard&#x20;with&#x20;22&#x20;vintage-style&#x20;frets&#x20;and&#x20;pearloid&#x20;block&#x20;inlays&#x20;Two&#x20;proprietary&#x20;humbucker&#x20;pickups&#x20;with&#x20;3-way&#x20;switch&#x20;and&#x20;individual&#x20;volume&#x2F;tone&#x20;controls&#x20;Tune-O-Matic&#x20;bridge&#x20;with&#x20;stopbar&#x20;tailpiece&#x20;and&#x20;chrome&#x20;hardware&#x20;6-string,&#x20;right-handed&#x20;configuration;&#x20;case&#x20;sold&#x20;separately\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Single-cutaway solidbody design with mahogany body and gloss finish</li> <li>Mahogany neck with slim profile and set-in joint</li> <li>Ebony fingerboard with 22 vintage-style frets and pearloid block inlays</li> <li>Two proprietary humbucker pickups with 3-way switch and individual volume/tone controls</li> <li>Tune-O-Matic bridge with stopbar tailpiece and chrome hardware</li> <li>6-string, right-handed configuration; case sold separately</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246896.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 15:04:35 -0400</pubDate>\n   <dealnews:retailer>Musician's Friend</dealnews:retailer>\n   <dealnews:expires>2027-01-03T14:04:35-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Musical Instruments</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">599.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791227068-product-trimmed.png?h=250&amp;w=183\" medium=\"image\" height=\"250\" width=\"183\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791227068-product-trimmed.png?h=250&w=183' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"The Epiphone Les Paul Custom Limited-Edition electric guitar is $599 at Musician's Friend. That's $200 off. Shipping is free. \"><p>The Epiphone Les Paul Custom Limited-Edition electric guitar is $599 at Musician's Friend. That's $200 off. Shipping is free.  Buy Now at Musician's Friend</p></div> <div class=\"snippet features\" title=\"Single-cutaway solidbody design with mahogany body and gloss finish Mahogany neck with slim profile and set-in joint Ebony fingerboard with 22 vintage-style frets and pearloid block inlays Two proprietary humbucker pickups with 3-way switch and individual volume/tone controls Tune-O-Matic bridge with stopbar tailpiece and chrome hardware 6-string, right-handed configuration; case sold separately\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Single-cutaway solidbody design with mahogany body and gloss finish</li> <li>Mahogany neck with slim profile and set-in joint</li> <li>Ebony fingerboard with 22 vintage-style frets and pearloid block inlays</li> <li>Two proprietary humbucker pickups with 3-way switch and individual volume/tone controls</li> <li>Tune-O-Matic bridge with stopbar tailpiece and chrome hardware</li> <li>6-string, right-handed configuration; case sold separately</li> </ul> </div>"
+      },
+      "id": "f6dc05f63c1b37f3",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Haunted Hill Farm 5.9-Foot Reaper w/ Ghost Halloween Animatronic for $84 + free shipping",
+      "url": "https://www.dealnews.com/Haunted-Hill-Farm-5-9-Foot-Reaper-w-Ghost-Halloween-Animatronic-for-84-free-shipping/22246852.html?iref=rss",
+      "price": 84,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Amazon",
+      "publishedAt": "2026-10-05T18:33:39.000Z",
+      "category": "Seasonal/Holidays",
+      "image": "https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Haunted Hill Farm 5.9-Foot Reaper w/ Ghost Halloween Animatronic for $84 + free shipping</title>\n   <link>https://www.dealnews.com/Haunted-Hill-Farm-5-9-Foot-Reaper-w-Ghost-Halloween-Animatronic-for-84-free-shipping/22246852.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Haunted&#x20;Hill&#x20;Farm&#x20;animatronic&#x20;is&#x20;&#x24;36&#x20;off&#x20;its&#x20;regular&#x20;price&#x20;of&#x20;&#x24;120&#x20;and&#x20;is&#x20;at&#x20;its&#x20;all-time&#x20;low&#x20;on&#x20;Amazon.&#x20;Standing&#x20;nearly&#x20;6&#x20;feet&#x20;tall,&#x20;it&#x20;includes&#x20;sound-activated&#x20;movement,&#x20;glowing&#x20;red&#x20;eyes,&#x20;and&#x20;moaning&#x20;sound&#x20;effects&#x20;for&#x20;haunted&#x20;house&#x20;displays.&#x20;It&#x20;ships&#x20;for&#x20;free. \"><p>This Haunted Hill Farm animatronic is $36 off its regular price of $120 and is at its all-time low on Amazon. Standing nearly 6 feet tall, it includes sound-activated movement, glowing red eyes, and moaning sound effects for haunted house displays. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Stands&#x20;5&#x20;ft&#x20;11&#x20;in&#x20;tall&#x20;Sound-activated&#x20;vertical&#x20;raising&#x20;motion&#x20;Red&#x20;LED&#x20;glowing&#x20;eyes&#x20;Emits&#x20;low&#x20;moaning&#x20;sounds&#x20;when&#x20;triggered&#x20;Battery&#x20;powered&#x20;1-year&#x20;limited&#x20;manufacturer&#x20;warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Stands 5 ft 11 in tall</li> <li>Sound-activated vertical raising motion</li> <li>Red LED glowing eyes</li> <li>Emits low moaning sounds when triggered</li> <li>Battery powered</li> <li>1-year limited manufacturer warranty</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246852.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 14:33:39 -0400</pubDate>\n   <dealnews:retailer>Amazon</dealnews:retailer>\n   <dealnews:expires>2027-01-03T13:33:39-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Seasonal/Holidays</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">84.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791225214-61e4mtsyuql.jpg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Haunted Hill Farm animatronic is $36 off its regular price of $120 and is at its all-time low on Amazon. Standing nearly 6 feet tall, it includes sound-activated movement, glowing red eyes, and moaning sound effects for haunted house displays. It ships for free. \"><p>This Haunted Hill Farm animatronic is $36 off its regular price of $120 and is at its all-time low on Amazon. Standing nearly 6 feet tall, it includes sound-activated movement, glowing red eyes, and moaning sound effects for haunted house displays. It ships for free.  Buy Now at Amazon</p></div> <div class=\"snippet features\" title=\"Stands 5 ft 11 in tall Sound-activated vertical raising motion Red LED glowing eyes Emits low moaning sounds when triggered Battery powered 1-year limited manufacturer warranty\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>Stands 5 ft 11 in tall</li> <li>Sound-activated vertical raising motion</li> <li>Red LED glowing eyes</li> <li>Emits low moaning sounds when triggered</li> <li>Battery powered</li> <li>1-year limited manufacturer warranty</li> </ul> </div>"
+      },
+      "id": "08ebcbd35895df74",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 11,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "Joyfy 5-Foot Giant Halloween Spider for $12 + free shipping w/ $35",
+      "url": "https://www.dealnews.com/Joyfy-5-Foot-Giant-Halloween-Spider-for-12-free-shipping-w-35/22246098.html?iref=rss",
+      "price": 11.69,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Walmart",
+      "publishedAt": "2026-10-05T09:46:49.000Z",
+      "category": "Seasonal/Holidays",
+      "image": "https://d.dlnws.com/64599/1791193603-joyfy-5-ft-giant-spider-halloween-decorations-scary-spider-halloween-outdoor-party-decorations-props.avif?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Joyfy 5-Foot Giant Halloween Spider for $12 + free shipping w/ $35</title>\n   <link>https://www.dealnews.com/Joyfy-5-Foot-Giant-Halloween-Spider-for-12-free-shipping-w-35/22246098.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791193603-joyfy-5-ft-giant-spider-halloween-decorations-scary-spider-halloween-outdoor-party-decorations-props.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Joyfy&#x20;5-foot&#x20;giant&#x20;spider&#x20;is&#x20;&#x24;12&#x20;off&#x20;the&#x20;regular&#x20;price&#x20;of&#x20;&#x24;24&#x20;at&#x20;Walmart.&#x20;Its&#x20;metal-wired&#x20;legs&#x20;can&#x20;be&#x20;bent&#x20;and&#x20;posed,&#x20;and&#x20;the&#x20;weather-resistant&#x20;plush&#x20;fur&#x20;is&#x20;designed&#x20;to&#x20;hold&#x20;up&#x20;for&#x20;reuse&#x20;across&#x20;multiple&#x20;Halloween&#x20;seasons.&#x20;Deal&#x20;ends&#x20;October&#x20;11. \"><p>This Joyfy 5-foot giant spider is $12 off the regular price of $24 at Walmart. Its metal-wired legs can be bent and posed, and the weather-resistant plush fur is designed to hold up for reuse across multiple Halloween seasons. Deal ends October 11.  Buy Now at Walmart</p></div> <div class=\"snippet features\" title=\"43&quot;&#x20;leg&#x20;span&#x20;Hairy&#x20;black&#x20;body&#x20;with&#x20;bright&#x20;red&#x20;eyes&#x20;Metal&#x20;wire&#x20;inside&#x20;legs&#x20;allows&#x20;posing&#x20;and&#x20;bending&#x20;Weather-resistant&#x20;plush&#x20;fur&#x20;for&#x20;outdoor&#x20;use&#x20;Suitable&#x20;for&#x20;trees,&#x20;fences,&#x20;doorways,&#x20;porches,&#x20;or&#x20;lawns\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>43\" leg span</li> <li>Hairy black body with bright red eyes</li> <li>Metal wire inside legs allows posing and bending</li> <li>Weather-resistant plush fur for outdoor use</li> <li>Suitable for trees, fences, doorways, porches, or lawns</li> </ul> </div>]]></description>\n   <guid>https://www.dealnews.com/22246098.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 05:46:49 -0400</pubDate>\n   <dealnews:retailer>Walmart</dealnews:retailer>\n   <dealnews:expires>2026-10-12T03:01:00-04:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Seasonal/Holidays</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">11.69</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791193603-joyfy-5-ft-giant-spider-halloween-decorations-scary-spider-halloween-outdoor-party-decorations-props.avif?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791193603-joyfy-5-ft-giant-spider-halloween-decorations-scary-spider-halloween-outdoor-party-decorations-props.avif?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Joyfy 5-foot giant spider is $12 off the regular price of $24 at Walmart. Its metal-wired legs can be bent and posed, and the weather-resistant plush fur is designed to hold up for reuse across multiple Halloween seasons. Deal ends October 11. \"><p>This Joyfy 5-foot giant spider is $12 off the regular price of $24 at Walmart. Its metal-wired legs can be bent and posed, and the weather-resistant plush fur is designed to hold up for reuse across multiple Halloween seasons. Deal ends October 11.  Buy Now at Walmart</p></div> <div class=\"snippet features\" title=\"43\" leg span Hairy black body with bright red eyes Metal wire inside legs allows posing and bending Weather-resistant plush fur for outdoor use Suitable for trees, fences, doorways, porches, or lawns\"> <div class=\"content-section-header\">Features</div> <ul class=\"content-section-list\"> <li>43\" leg span</li> <li>Hairy black body with bright red eyes</li> <li>Metal wire inside legs allows posing and bending</li> <li>Weather-resistant plush fur for outdoor use</li> <li>Suitable for trees, fences, doorways, porches, or lawns</li> </ul> </div>"
+      },
+      "id": "3530d6a43fc06edf",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 10,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    },
+    {
+      "title": "The Fab Collab Tenski Cigar Grip II for $23 + free shipping",
+      "url": "https://www.dealnews.com/The-Fab-Collab-Tenski-Cigar-Grip-II-for-23-free-shipping/22234724.html?iref=rss",
+      "price": 22.99,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Cigar Page",
+      "publishedAt": "2026-10-05T04:01:00.000Z",
+      "category": "Cigars",
+      "image": "https://d.dlnws.com/64599/1790948051-tenski-cigar-grip-ii-collection-oxk4.jpeg?h=250&w=250",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title> The Fab Collab Tenski Cigar Grip II for $23 + free shipping</title>\n   <link>https://www.dealnews.com/The-Fab-Collab-Tenski-Cigar-Grip-II-for-23-free-shipping/22234724.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1790948051-tenski-cigar-grip-ii-collection-oxk4.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;deal&#x20;is&#x20;hard&#x20;to&#x20;turn&#x20;down!&#x20;10&#x20;super&#x20;fine,&#x20;top-rated&#x20;cigars&#x20;hailing&#x20;from&#x20;two&#x20;of&#x20;the&#x20;world&#x27;s&#x20;most&#x20;respected&#x20;makers&#x3A;&#x20;Rocky&#x20;Patel&#x20;and&#x20;La&#x20;Aurora.&#x20;All&#x20;premium&#x20;long-filler,&#x20;these&#x20;delicious&#x20;stogies&#x20;are&#x20;crafted&#x20;entirely&#x20;by&#x20;hand.&#x20;Top&#x20;brands&#x20;rated&#x20;as&#x20;high&#x20;as&#x20;95.&#x20;This&#x20;collection&#x20;of&#x20;10-cigars&#x20;is&#x20;yours&#x20;for&#x20;ONLY&#x20;&#x24;22.99&#x20;&amp;&#x20;FREE&#x20;SHIPPING&#x20;to&#x20;your&#x20;door.&#x20;No&#x20;strings.&#x20;Due&#x20;to&#x20;limited&#x20;inventory,&#x20;Cigar&#x20;Page&#x20;ask&#x20;for&#x20;only&#x20;ONE&#x20;sampler&#x20;per&#x20;customer,&#x20;please.&#x20;While&#x20;supplies&#x20;last.&#x20;Each&#x20;The&#x20;Fab&#x20;Collab&#x20;Tenski&#x20;Cigar&#x20;Grip&#x20;II&#x20;contains&#x20;1&#x20;each&#x20;of&#x3A;Rocky&#x20;Patel&#x20;Decade&#x20;Robusto&#x20;&#x28;5&quot;x50&#x29;&#x20;95-ratedLa&#x20;Aurora&#x20;Preferidos&#x20;1903&#x20;Cameroon&#x20;Toro&#x20;&#x28;5.5&quot;x54&#x29;&#x20;93-ratedRocky&#x20;Patel&#x20;Number&#x20;6&#x20;Robusto&#x20;&#x28;5.5&quot;x50&#x29;&#x20;95-ratedLa&#x20;Aurora&#x20;107&#x20;Ecuador&#x20;Toro&#x20;&#x28;5.5&quot;x54&#x29;&#x20;91-ratedRocky&#x20;Patel&#x20;The&#x20;Edge&#x20;Corojo&#x20;Toro&#x20;&#x28;6&quot;x52&#x29;&#x20;93-ratedLa&#x20;Aurora&#x20;115&#x20;Aniversario&#x20;Toro&#x20;&#x28;5.7&quot;x54&#x29;&#x20;89-ratedRocky&#x20;Patel&#x20;Twentieth&#x20;Maduro&#x20;Toro&#x20;&#x28;6&quot;x52&#x29;&#x20;90-ratedLa&#x20;Aurora&#x20;Connecticut&#x20;1987&#x20;Toro&#x20;&#x28;5.7&quot;x54&#x29;&#x20;90-ratedRocky&#x20;Patel&#x20;Sun&#x20;Grown&#x20;Toro&#x20;&#x28;6.5&quot;x52&#x29;&#x20;91-ratedLa&#x20;Aurora&#x20;Corojo&#x20;1962&#x20;Toro&#x20;&#x28;5.7&quot;x54&#x29;&#x20;89-rated\"><p>This deal is hard to turn down! 10 super fine, top-rated cigars hailing from two of the world's most respected makers: Rocky Patel and La Aurora. All premium long-filler, these delicious stogies are crafted entirely by hand. Top brands rated as high as 95. This collection of 10-cigars is yours for ONLY $22.99 & FREE SHIPPING to your door. No strings. Due to limited inventory, Cigar Page ask for only ONE sampler per customer, please. While supplies last.</p><p>Each The Fab Collab Tenski Cigar Grip II contains 1 each of:</p><ul><li><p>Rocky Patel Decade Robusto (5\"x50) 95-rated</p></li><li><p>La Aurora Preferidos 1903 Cameroon Toro (5.5\"x54) 93-rated</p></li><li><p>Rocky Patel Number 6 Robusto (5.5\"x50) 95-rated</p></li><li><p>La Aurora 107 Ecuador Toro (5.5\"x54) 91-rated</p></li><li><p>Rocky Patel The Edge Corojo Toro (6\"x52) 93-rated</p></li><li><p>La Aurora 115 Aniversario Toro (5.7\"x54) 89-rated</p></li><li><p>Rocky Patel Twentieth Maduro Toro (6\"x52) 90-rated</p></li><li><p>La Aurora Connecticut 1987 Toro (5.7\"x54) 90-rated</p></li><li><p>Rocky Patel Sun Grown Toro (6.5\"x52) 91-rated</p></li><li><p>La Aurora Corojo 1962 Toro (5.7\"x54) 89-rated</p></li></ul> Buy Now at Cigar Page</div>]]></description>\n   <guid>https://www.dealnews.com/22234724.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 00:01:00 -0400</pubDate>\n   <dealnews:retailer>Cigar Page</dealnews:retailer>\n   <dealnews:expires>2027-01-02T23:01:00-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Cigars</dealnews:category>\n   <dealnews:staffPick>false</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">22.99</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1790948051-tenski-cigar-grip-ii-collection-oxk4.jpeg?h=250&amp;w=250\" medium=\"image\" height=\"250\" width=\"250\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1790948051-tenski-cigar-grip-ii-collection-oxk4.jpeg?h=250&w=250' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This deal is hard to turn down! 10 super fine, top-rated cigars hailing from two of the world's most respected makers: Rocky Patel and La Aurora. All premium long-filler, these delicious stogies are crafted entirely by hand. Top brands rated as high as 95. This collection of 10-cigars is yours for ONLY $22.99 & FREE SHIPPING to your door. No strings. Due to limited inventory, Cigar Page ask for only ONE sampler per customer, please. While supplies last. Each The Fab Collab Tenski Cigar Grip II contains 1 each of:Rocky Patel Decade Robusto (5\"x50) 95-ratedLa Aurora Preferidos 1903 Cameroon Toro (5.5\"x54) 93-ratedRocky Patel Number 6 Robusto (5.5\"x50) 95-ratedLa Aurora 107 Ecuador Toro (5.5\"x54) 91-ratedRocky Patel The Edge Corojo Toro (6\"x52) 93-ratedLa Aurora 115 Aniversario Toro (5.7\"x54) 89-ratedRocky Patel Twentieth Maduro Toro (6\"x52) 90-ratedLa Aurora Connecticut 1987 Toro (5.7\"x54) 90-ratedRocky Patel Sun Grown Toro (6.5\"x52) 91-ratedLa Aurora Corojo 1962 Toro (5.7\"x54) 89-rated\"><p>This deal is hard to turn down! 10 super fine, top-rated cigars hailing from two of the world's most respected makers: Rocky Patel and La Aurora. All premium long-filler, these delicious stogies are crafted entirely by hand. Top brands rated as high as 95. This collection of 10-cigars is yours for ONLY $22.99 & FREE SHIPPING to your door. No strings. Due to limited inventory, Cigar Page ask for only ONE sampler per customer, please. While supplies last.</p><p>Each The Fab Collab Tenski Cigar Grip II contains 1 each of:</p><ul><li><p>Rocky Patel Decade Robusto (5\"x50) 95-rated</p></li><li><p>La Aurora Preferidos 1903 Cameroon Toro (5.5\"x54) 93-rated</p></li><li><p>Rocky Patel Number 6 Robusto (5.5\"x50) 95-rated</p></li><li><p>La Aurora 107 Ecuador Toro (5.5\"x54) 91-rated</p></li><li><p>Rocky Patel The Edge Corojo Toro (6\"x52) 93-rated</p></li><li><p>La Aurora 115 Aniversario Toro (5.7\"x54) 89-rated</p></li><li><p>Rocky Patel Twentieth Maduro Toro (6\"x52) 90-rated</p></li><li><p>La Aurora Connecticut 1987 Toro (5.7\"x54) 90-rated</p></li><li><p>Rocky Patel Sun Grown Toro (6.5\"x52) 91-rated</p></li><li><p>La Aurora Corojo 1962 Toro (5.7\"x54) 89-rated</p></li></ul> Buy Now at Cigar Page</div>"
+      },
+      "id": "c753aa118c515eee",
+      "source": "dealnews",
+      "sourceUrl": "https://www.dealnews.com/?rss=1&sort=time",
+      "discountPct": null,
+      "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 9,
+      "flag": "normal",
+      "reasons": [
+        "Publicada en las últimas 24 h"
+      ]
+    }
+  ]
+}

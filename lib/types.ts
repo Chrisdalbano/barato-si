@@ -34,6 +34,10 @@ export interface Deal {
   flag: DealFlag
   /** Short Spanish reasons for the flag, e.g. "92% bajo el precio de lista". */
   reasons: string[]
+  /** Optional source evidence; never inferred from product review counts. */
+  sourceSignal?: number
+  /** Original syndicated item, retained unchanged for attribution/display requirements. */
+  syndication?: { attribution: string; feedUrl: string; itemXml: string; descriptionHtml: string }
 }
 
 export interface DealsFile {

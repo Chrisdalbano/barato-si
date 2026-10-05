@@ -9,7 +9,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
-    "test": "vitest run"
+    "test": "vitest run",
+    "deals": "node --experimental-strip-types scripts/fetch-deals.mjs",
+    "typecheck:lib": "tsc -p scripts/tsconfig.json"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",

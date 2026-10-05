@@ -1,0 +1,4 @@
+export type { Deal, DealFlag, DealsFile } from './types.ts'
+export { parsePrices } from './prices.ts'
+export { scoreDeal } from './rank.ts'
+export { dedupe } from './dedupe.ts'
