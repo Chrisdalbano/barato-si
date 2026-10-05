@@ -44,6 +44,7 @@ const isActive = (to: string) => (route.path.replace(/\/+$/, '') || '/') === to
           <a href="/feed.xml">RSS</a>
           <a href="/llms.txt">llms.txt</a>
           <span>Hecho por <a href="https://chrisdalbano.com" rel="noopener">Chris D'Albano</a></span>
+          <span>El dominio barato.si está en venta. <a href="https://chrisdalbano.com" rel="noopener">Escríbeme</a>.</span>
         </p>
       </div>
     </footer>
