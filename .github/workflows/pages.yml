@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
+      - run: rm -f package-lock.json && npm install --no-audit --no-fund  # lockfile is generated on Windows and lacks Linux native bindings
       - run: npm run deals
       - run: npm test
       - run: npm run typecheck:lib
