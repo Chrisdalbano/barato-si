@@ -1,7 +1,7 @@
 {
   "date": "2026-10-05",
-  "generatedAt": "2026-10-05T22:39:54.042Z",
-  "count": 108,
+  "generatedAt": "2026-10-05T22:40:19.697Z",
+  "count": 109,
   "sources": [
     {
       "name": "CheapShark",
@@ -21,7 +21,7 @@
     {
       "name": "DealNews",
       "ok": true,
-      "count": 37
+      "count": 38
     }
   ],
   "deals": [
@@ -71,7 +71,7 @@
       "discountPct": 95.52,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 82,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,52 % bajo el precio de lista",
         "Ahorro de 23,87 USD",
@@ -496,7 +496,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 80,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 19,00 USD",
@@ -924,7 +924,7 @@
       "discountPct": 95.25,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,25 % bajo el precio de lista",
         "Ahorro de 19,04 USD",
@@ -948,7 +948,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 19,00 USD",
@@ -972,7 +972,7 @@
       "discountPct": 95.05,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,05 % bajo el precio de lista",
         "Ahorro de 19,00 USD",
@@ -996,7 +996,7 @@
       "discountPct": 95.6,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,6 % bajo el precio de lista",
         "Ahorro de 19,11 USD",
@@ -1020,7 +1020,7 @@
       "discountPct": 95.8,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,8 % bajo el precio de lista",
         "Ahorro de 19,15 USD",
@@ -1044,7 +1044,7 @@
       "discountPct": 95.55,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,55 % bajo el precio de lista",
         "Ahorro de 19,10 USD",
@@ -1068,7 +1068,7 @@
       "discountPct": 96.04,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 76,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,04 % bajo el precio de lista",
         "Ahorro de 24,00 USD",
@@ -1092,7 +1092,7 @@
       "discountPct": 95.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 75,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,06 % bajo el precio de lista",
         "Ahorro de 16,15 USD",
@@ -1116,7 +1116,7 @@
       "discountPct": 95.66,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 75,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,66 % bajo el precio de lista",
         "Ahorro de 14,34 USD",
@@ -1140,7 +1140,7 @@
       "discountPct": 95.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 74,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,06 % bajo el precio de lista",
         "Ahorro de 14,25 USD",
@@ -1164,7 +1164,7 @@
       "discountPct": 96,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 74,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96 % bajo el precio de lista",
         "Ahorro de 12,24 USD",
@@ -1234,7 +1234,7 @@
       "discountPct": 96.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 74,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,06 % bajo el precio de lista",
         "Ahorro de 14,40 USD",
@@ -1258,7 +1258,7 @@
       "discountPct": 96,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 73,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96 % bajo el precio de lista",
         "Ahorro de 12,24 USD",
@@ -1282,7 +1282,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 73,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 9,50 USD",
@@ -1306,7 +1306,7 @@
       "discountPct": 95.52,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 73,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,52 % bajo el precio de lista",
         "Ahorro de 23,87 USD",
@@ -1330,7 +1330,7 @@
       "discountPct": 95.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 73,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,06 % bajo el precio de lista",
         "Ahorro de 14,25 USD",
@@ -1377,7 +1377,7 @@
       "discountPct": 95.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 72,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,06 % bajo el precio de lista",
         "Ahorro de 14,25 USD"
@@ -1400,7 +1400,7 @@
       "discountPct": 95.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 72,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,06 % bajo el precio de lista",
         "Ahorro de 16,15 USD",
@@ -1424,7 +1424,7 @@
       "discountPct": 95.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 72,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,06 % bajo el precio de lista",
         "Ahorro de 14,25 USD"
@@ -1447,7 +1447,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 70,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 9,50 USD"
@@ -1470,7 +1470,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 70,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 9,50 USD"
@@ -1493,7 +1493,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 70,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 9,50 USD",
@@ -1517,7 +1517,7 @@
       "discountPct": 95.12,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 69,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,12 % bajo el precio de lista",
         "Ahorro de 7,60 USD",
@@ -1541,7 +1541,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 69,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 9,50 USD",
@@ -1565,7 +1565,7 @@
       "discountPct": 95.12,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 69,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,12 % bajo el precio de lista",
         "Ahorro de 7,60 USD",
@@ -1589,7 +1589,7 @@
       "discountPct": 95.16,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 69,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,16 % bajo el precio de lista",
         "Ahorro de 5,70 USD",
@@ -1613,7 +1613,7 @@
       "discountPct": 95.07,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 69,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,07 % bajo el precio de lista",
         "Ahorro de 12,35 USD",
@@ -1637,7 +1637,7 @@
       "discountPct": 96.37,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 68,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,37 % bajo el precio de lista",
         "Ahorro de 28,90 USD"
@@ -1660,7 +1660,7 @@
       "discountPct": 95.1,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 68,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,1 % bajo el precio de lista",
         "Ahorro de 9,50 USD",
@@ -1728,7 +1728,7 @@
       "discountPct": 96.37,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 68,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,37 % bajo el precio de lista",
         "Ahorro de 28,90 USD"
@@ -1751,7 +1751,7 @@
       "discountPct": 96.37,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 68,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,37 % bajo el precio de lista",
         "Ahorro de 28,90 USD"
@@ -1774,7 +1774,7 @@
       "discountPct": 95.64,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 67,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,64 % bajo el precio de lista",
         "Ahorro de 23,90 USD"
@@ -1797,7 +1797,7 @@
       "discountPct": 95.64,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 67,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,64 % bajo el precio de lista",
         "Ahorro de 23,90 USD"
@@ -1820,7 +1820,7 @@
       "discountPct": 95.64,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 67,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,64 % bajo el precio de lista",
         "Ahorro de 23,90 USD"
@@ -1843,7 +1843,7 @@
       "discountPct": 95.64,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 67,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,64 % bajo el precio de lista",
         "Ahorro de 23,90 USD"
@@ -1866,7 +1866,7 @@
       "discountPct": 95.64,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 67,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,64 % bajo el precio de lista",
         "Ahorro de 23,90 USD"
@@ -1889,7 +1889,7 @@
       "discountPct": 96.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 66,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,06 % bajo el precio de lista",
         "Ahorro de 14,40 USD"
@@ -1912,7 +1912,7 @@
       "discountPct": 96.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 66,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,06 % bajo el precio de lista",
         "Ahorro de 14,40 USD"
@@ -1935,7 +1935,7 @@
       "discountPct": 96.05,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 66,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,05 % bajo el precio de lista",
         "Ahorro de 17,28 USD"
@@ -1958,7 +1958,7 @@
       "discountPct": 96.06,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 66,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "96,06 % bajo el precio de lista",
         "Ahorro de 14,40 USD"
@@ -1981,7 +1981,7 @@
       "discountPct": 95.07,
       "foundAt": "2026-10-05T22:29:33.736Z",
       "score": 65,
-      "flag": "chollo",
+      "flag": "normal",
       "reasons": [
         "95,07 % bajo el precio de lista",
         "Ahorro de 12,54 USD"
@@ -2393,6 +2393,34 @@
       "source": "DealNews",
       "discountPct": null,
       "foundAt": "2026-10-05T21:35:29.338Z",
+      "score": 12,
+      "flag": "normal",
+      "reasons": [
+        "Precio de referencia no disponible"
+      ]
+    },
+    {
+      "title": "Nike Men's Tailored Performance Dri-Fit Golf Wind Shirt for $26 + free shipping w/ $49",
+      "url": "https://www.dealnews.com/Nike-Mens-Tailored-Performance-Dri-Fit-Golf-Wind-Shirt-for-26-free-shipping-w-49/22247161.html?iref=rss",
+      "sourceUrl": "https://www.dealnews.com/22247161.html?iref=rss",
+      "price": 26,
+      "listPrice": null,
+      "currency": "USD",
+      "store": "Dick's Sporting Goods",
+      "publishedAt": "2026-10-05T22:38:22.000Z",
+      "sourceText": "This Nike wind shirt is $25.97 at Dick's Sporting Goods in Steam. That's a $68 low. ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods",
+      "category": "Shirts",
+      "image": "https://d.dlnws.com/64599/1791239894-product-trimmed.png?h=250&w=160",
+      "syndication": {
+        "attribution": "DealNews",
+        "feedUrl": "https://www.dealnews.com/?rss=1&sort=time",
+        "itemXml": "<item>\n   <title>Nike Men's Tailored Performance Dri-Fit Golf Wind Shirt for $26 + free shipping w/ $49</title>\n   <link>https://www.dealnews.com/Nike-Mens-Tailored-Performance-Dri-Fit-Golf-Wind-Shirt-for-26-free-shipping-w-49/22247161.html?iref=rss</link>\n   <description><![CDATA[<img src='https://d.dlnws.com/64599/1791239894-product-trimmed.png?h=250&w=160' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This&#x20;Nike&#x20;wind&#x20;shirt&#x20;is&#x20;&#x24;25.97&#x20;at&#x20;Dick&#x27;s&#x20;Sporting&#x20;Goods&#x20;in&#x20;Steam.&#x20;That&#x27;s&#x20;a&#x20;&#x24;68&#x20;low. &#x20;ScoreCard&#x20;members&#x20;get&#x20;free&#x20;shipping&#x20;with&#x20;orders&#x20;of&#x20;&#x24;49&#x20;or&#x20;more.&#x20;&#x28;Not&#x20;a&#x20;member?&#x20;It&#x27;s&#x20;free&#x20;to&#x20;join.&#x29;&#x20;Pickup&#x20;may&#x20;also&#x20;be&#x20;available.\"><p>This Nike wind shirt is $25.97 at Dick's Sporting Goods in Steam. That's a $68 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>]]></description>\n   <guid>https://www.dealnews.com/22247161.html?iref=rss</guid>\n   <pubDate>Mon, 05 Oct 2026 18:38:22 -0400</pubDate>\n   <dealnews:retailer>Dick's Sporting Goods</dealnews:retailer>\n   <dealnews:expires>2027-01-03T17:38:22-05:00</dealnews:expires>\n   <dealnews:dealType>deal</dealnews:dealType>\n   <dealnews:category>Shirts</dealnews:category>\n   <dealnews:staffPick>true</dealnews:staffPick>\n   <dealnews:price currency=\"USD\">26.00</dealnews:price>\n   <media:content url=\"https://d.dlnws.com/64599/1791239894-product-trimmed.png?h=250&amp;w=160\" medium=\"image\" height=\"250\" width=\"160\"/>\n  </item>",
+        "descriptionHtml": "<img src='https://d.dlnws.com/64599/1791239894-product-trimmed.png?h=250&w=160' style='float: left;vertical-align: top;margin: 0 8px 8px 0'><div class=\"snippet summary\" title=\"This Nike wind shirt is $25.97 at Dick's Sporting Goods in Steam. That's a $68 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available.\"><p>This Nike wind shirt is $25.97 at Dick's Sporting Goods in Steam. That's a $68 low.  ScoreCard members get free shipping with orders of $49 or more. (Not a member? It's free to join.) Pickup may also be available. Buy Now at Dick's Sporting Goods</p></div>"
+      },
+      "id": "9e05c2a5a85b4327",
+      "source": "DealNews",
+      "discountPct": null,
+      "foundAt": "2026-10-05T22:40:19.697Z",
       "score": 12,
       "flag": "normal",
       "reasons": [

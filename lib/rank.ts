@@ -24,7 +24,7 @@ export function scoreDeal(d: Omit<Deal, 'score' | 'flag' | 'reasons'>, now: Date
   const promotion = game || clothing || d.price === 0 || /videojuegos|games|clothing|shirts|shoes|activewear|apparel/i.test(d.category || '') || /\b(?:giveaway|clearance|liquidaci[oó]n|free to keep)\b/i.test(d.title)
   const extreme = comparable && d.listPrice! > 40 && d.price <= d.listPrice! * .15 && pct >= 85 && !promotion
   const deep = comparable && d.listPrice! > 40 && pct >= 75 && !promotion
-  const flag = d.price < 0 || !Number.isFinite(d.price) ? 'normal' : d.price === 0 ? 'chollo' : (explicit && !game) || extreme ? 'error-probable' : pct >= (game ? 85 : 50) || (!game && comparable && saved >= 40 && pct >= 30) || d.price === 0 ? 'chollo' : 'normal'
+  const flag = d.price < 0 || !Number.isFinite(d.price) ? 'normal' : d.price === 0 ? 'chollo' : (explicit && !game) || extreme ? 'error-probable' : (game ? pct >= 90 && d.listPrice! >= 30 : pct >= 50) || (!game && comparable && saved >= 40 && pct >= 30) || d.price === 0 ? 'chollo' : 'normal'
   const reasons: string[] = []
   if (explicit && flag === 'error-probable') reasons.push('La fuente indica un posible error')
   if (deep && flag === 'chollo') reasons.push('Descuento inusualmente profundo')
