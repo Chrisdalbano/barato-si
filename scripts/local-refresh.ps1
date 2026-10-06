@@ -2,20 +2,30 @@
 # techbargains.com (Cloudflare) challenges GitHub's runner IPs but not this one.
 # Pulls, collects, commits the data and pushes; the Pages workflow then deploys
 # and, finding Techbargains blocked, carries these offers over (see NOTES.md).
-$ErrorActionPreference = 'Stop'
-Set-Location "$PSScriptRoot\.."
-$log = Join-Path $PSScriptRoot '..\data\local-refresh.log'
+# Git writes progress to stderr, which PowerShell 5.1 would treat as an error,
+# so every command runs through cmd.exe and is judged by its exit code only.
+$ErrorActionPreference = 'Continue'
+$repo = Resolve-Path "$PSScriptRoot\.."
+Set-Location $repo
+$log = Join-Path $repo 'data\local-refresh.log'
+function Step($label, $cmd) {
+  "--- $label" | Out-File -Append -Encoding utf8 $log
+  $out = cmd /c "$cmd 2>&1"
+  $out | Out-File -Append -Encoding utf8 $log
+  if ($LASTEXITCODE -ne 0) { throw "$label failed ($LASTEXITCODE)" }
+}
 "=== $(Get-Date -Format o)" | Out-File -Append -Encoding utf8 $log
 try {
-  git pull --rebase origin main 2>&1 | Out-File -Append -Encoding utf8 $log
-  npm.cmd run deals 2>&1 | Out-File -Append -Encoding utf8 $log
-  git add public data/classify-cache.json
-  git diff --cached --quiet
+  Step 'pull' 'git pull --rebase --autostash origin main'
+  Step 'deals' 'npm.cmd run deals'
+  Step 'stage' 'git add public data/classify-cache.json'
+  cmd /c 'git diff --cached --quiet' | Out-Null
   if ($LASTEXITCODE -ne 0) {
-    git commit -q -m 'chore: refresh deals (local run)' 2>&1 | Out-File -Append -Encoding utf8 $log
-    git push origin main 2>&1 | Out-File -Append -Encoding utf8 $log
-  }
+    Step 'commit' 'git commit -q -m "chore: refresh deals (local run)"'
+    Step 'push' 'git push origin main'
+  } else { "nothing to commit" | Out-File -Append -Encoding utf8 $log }
   "ok" | Out-File -Append -Encoding utf8 $log
 } catch {
   "FAILED: $_" | Out-File -Append -Encoding utf8 $log
+  exit 1
 }
