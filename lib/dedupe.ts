@@ -7,6 +7,10 @@ export function canonicalUrl(value: string): string {
     u.protocol = 'https:'
     u.hostname = u.hostname.replace(/^www\./, '')
     u.hash = ''
+    if (u.hostname === 'store.steampowered.com') {
+      const product = /^\/(app|sub|bundle)\/(\d+)/.exec(u.pathname)
+      if (product) { u.pathname = `/${product[1]}/${product[2]}/`; u.search = '' }
+    }
     for (const key of [...u.searchParams.keys()]) if (/^(utm_.+|fbclid|gclid|iref|ref|ref_)$/i.test(key)) u.searchParams.delete(key)
     u.searchParams.sort()
     u.pathname = u.pathname.replace(/\/$/, '') || '/'
@@ -30,10 +34,28 @@ function tokens(title: string): string[] {
 
 export function dedupe(deals: Deal[]): Deal[] {
   const result: Deal[] = []
-  for (const d of [...deals].sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))) {
+  const gogTitles = new Map<string, Set<string>>()
+  for (const d of deals) {
+    const identity = productIdentity(d)
+    if (!identity?.startsWith('gog:')) continue
+    const title = d.title.trim().toLowerCase()
+    if (!gogTitles.has(title)) gogTitles.set(title, new Set())
+    gogTitles.get(title)!.add(identity)
+  }
+  // CheapShark has no GOG slug. Resolve exact, unambiguous titles against real
+  // catalog slugs in this run, without constructing a guessed merchant URL.
+  const identityOf = (d: Deal) => {
+    const identity = productIdentity(d)
+    const matches = d.store === 'GOG' ? gogTitles.get(d.title.trim().toLowerCase()) : undefined
+    return identity || (matches?.size === 1 ? [...matches][0] : null)
+  }
+  for (const d of deals.map(d => ({ ...d })).sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))) {
     const url = canonicalUrl(d.url)
     const words = new Set(tokens(d.title))
-    const duplicate = result.some(other => {
+    const duplicate = result.find(other => {
+      const identity = identityOf(d)
+      if (d.currency === other.currency && identity && identity === identityOf(other)) return true
+      if (d.currency === other.currency && d.ai?.product && other.ai?.product && d.ai.product.toLowerCase() === other.ai.product.toLowerCase() && closePrice(d, other)) return true
       if (url && url === canonicalUrl(other.url)) return true
       if (d.currency !== other.currency || Math.abs(d.price - other.price) > .02) return false
       const theirs = new Set(tokens(other.title))
@@ -44,6 +66,30 @@ export function dedupe(deals: Deal[]): Deal[] {
       return intersection / (words.size + theirs.size - intersection) >= .88
     })
     if (!duplicate) result.push(d)
+    else {
+      const sameProduct = identityOf(d) && identityOf(d) === identityOf(duplicate)
+      const preferNew = sameProduct && (closePrice(d, duplicate) ? direct(d) && !direct(duplicate) : d.price < duplicate.price)
+      const kept = preferNew ? d : duplicate, dropped = preferNew ? duplicate : d
+      kept.image ||= dropped.image
+      kept.storeUrl ||= dropped.storeUrl
+      if (preferNew) result[result.indexOf(duplicate)] = kept
+    }
   }
-  return result
+  return result.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
+}
+
+const direct = (d: Deal) => ['Steam', 'GOG'].includes(d.source)
+const closePrice = (a: Deal, b: Deal) => Math.abs(a.price - b.price) <= Math.max(a.price, b.price) * .02
+function productIdentity(d: Deal): string | null {
+  for (const link of [d.storeUrl, d.url]) {
+    if (!link) continue
+    try {
+      const u = new URL(link)
+      const steam = u.hostname === 'store.steampowered.com' && /^\/app\/(\d+)/.exec(u.pathname)
+      if (steam) return 'steam:' + steam[1]
+      const gog = /^(www\.)?gog.com$/.test(u.hostname) && /\/game\/([^/]+)/.exec(u.pathname)
+      if (gog) return 'gog:' + gog[1]
+    } catch {}
+  }
+  return null
 }

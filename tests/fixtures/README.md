@@ -1,13 +1,20 @@
 # Source fixtures
 
-Captured locally on 2026-10-05 using Node 22 built-in fetch and the production bot User-Agent.
+Live fixtures use Node 22 fetch with `barato.si deals bot; +https://barato.si/llms.txt`. They are offline test inputs, never fallback production offers. No merchant product pages were fetched.
 
-- `dealnews.xml`: three unmodified RSS items from https://www.dealnews.com/?rss=1&sort=time; the channel wrapper is shortened. Attribution: DealNews. Original descriptions and referral links are preserved.
-- `dealnews-roundups.xml`: unmodified items from that same live feed, including sale roundups which must not turn into single-product pricing errors.
-- `steam.json`: first three specials from https://store.steampowered.com/api/featuredcategories?cc=us&l=english. Other response categories removed.
-- `epic.json`: three complete elements from https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale=en-US&country=US&allowCountries=US (active, future, inactive); other elements removed.
-- `live-probes.json`: actual robots responses, HTTP statuses, redirect destinations and short response prefixes. These are evidence of access failures, not fabricated deal responses.
+Captured October 6, 2026:
 
-Steam and Epic fixtures test dormant adapters; neither source is enabled for production without verified syndication permission. CheapShark and all three Reddit endpoints were **not fetched** because their live robots rules disallow them. Slickdeals search RSS is also disallowed; its legacy RSS entry point redirects to FeedBurner, whose robots endpoint returned HTML. Woot's old RSS and eBay's old feed returned 404. No successful live deal fixture can honestly be supplied for those sources. Tests instead replay their real policy/transport outcomes and separately exercise synthetic, explicitly labelled adapter edge cases. No product pages were fetched.
+- `steam-search.json`: five original anchor rows from the first 100-row Steam search page; other HTML removed. Search metadata is retained.
+- `gog.json`: three catalog products, retaining ID, slug, title, type, cover, exact money fields, and storeLink. Other product fields and catalog filters removed. A returned cover URL was checked with HEAD and returned HTTP 200.
+- `techbargains.xml`: six original RSS 0.91 items, including a roundup, from a live 600-item feed. Only the channel wrapper is shortened. Item titles, merchant links, attribution GUIDs, and descriptions/images remain original.
+- `bestbuy.json` and `woot.json`: explicitly synthetic schema fixtures, including invalid-price and variant-range cases. Neither authenticated API was contacted. Woot's shape and `/feed/All?page=1` path follow https://developer.woot.com/.
 
-Source permission references and interpretation are recorded in root NOTES.md. These fixtures are offline tests, never fallback offers on the live site.
+Retained October 5 fixtures:
+
+- `dealnews.xml`: three unmodified RSS items from the recent-deals feed; shortened channel wrapper, original descriptions, and referral links. Attribution: DealNews.
+- `dealnews-roundups.xml`: original DealNews items covering roundup filtering and a structured clothing price.
+- `steam.json`: three original featured specials, other response categories removed.
+- `epic.json`: three complete elements covering active, upcoming, and inactive promotions.
+- `live-probes.json`: historical policy/transport observations, not current source configuration. Older blocked-source conclusions were superseded by the owner's exact endpoint approvals and October 6 probes documented in NOTES.md.
+
+CheapShark and ITAD edge cases remain clearly synthetic inline tests. Legacy disabled-source adapter tests are offline compatibility checks and do not enable those sources.

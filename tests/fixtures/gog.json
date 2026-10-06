@@ -1,0 +1,71 @@
+{
+  "pages": 58,
+  "products": [
+    {
+      "id": "1211776926",
+      "slug": "dead_age_1_2_bundle",
+      "title": "Dead Age 1 + 2 Bundle",
+      "productType": "pack",
+      "coverHorizontal": "https://images.gog-statics.com/5a4a5c397cdce1d6336ff3676f7f0272200c2b7beb2682a4650538994ccba82d.png",
+      "price": {
+        "final": "$1.49",
+        "base": "$29.59",
+        "discount": "-95%",
+        "finalMoney": {
+          "amount": "1.49",
+          "currency": "USD",
+          "discount": "28.10"
+        },
+        "baseMoney": {
+          "amount": "29.59",
+          "currency": "USD"
+        }
+      },
+      "storeLink": "https://www.gog.com/en/game/dead_age_1_2_bundle"
+    },
+    {
+      "id": "1859396546",
+      "slug": "leisure_suit_larry_wet_dreams_dont_dry",
+      "title": "Leisure Suit Larry - Wet Dreams Don't Dry",
+      "productType": "game",
+      "coverHorizontal": "https://images.gog-statics.com/6f61168b72ccb1e0486ac3d8c5a086d955becb0d94a8fc7ce67dfba04facb220.png",
+      "price": {
+        "final": "$1.49",
+        "base": "$29.99",
+        "discount": "-95%",
+        "finalMoney": {
+          "amount": "1.49",
+          "currency": "USD",
+          "discount": "28.50"
+        },
+        "baseMoney": {
+          "amount": "29.99",
+          "currency": "USD"
+        }
+      },
+      "storeLink": "https://www.gog.com/en/game/leisure_suit_larry_wet_dreams_dont_dry"
+    },
+    {
+      "id": "2147483119",
+      "slug": "leisure_suit_larry_wet_dreams_dry_twice",
+      "title": "Leisure Suit Larry - Wet Dreams Dry Twice",
+      "productType": "game",
+      "coverHorizontal": "https://images.gog-statics.com/8d2015dcbd26ccca3a8324433bb609b490818de043079265acee8ceedcf794b2.png",
+      "price": {
+        "final": "$1.75",
+        "base": "$34.99",
+        "discount": "-95%",
+        "finalMoney": {
+          "amount": "1.75",
+          "currency": "USD",
+          "discount": "33.24"
+        },
+        "baseMoney": {
+          "amount": "34.99",
+          "currency": "USD"
+        }
+      },
+      "storeLink": "https://www.gog.com/en/game/leisure_suit_larry_wet_dreams_dry_twice"
+    }
+  ]
+}

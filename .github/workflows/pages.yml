@@ -4,6 +4,7 @@ on:
     branches: [main]
   schedule:
     - cron: '0 11 * * *'
+    - cron: '0 23 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -18,6 +19,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,6 +31,12 @@ jobs:
           cache: npm
       - run: rm -f package-lock.json && npm install --no-audit --no-fund  # lockfile is generated on Windows and lacks Linux native bindings
       - run: npm run deals
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          ITAD_API_KEY: ${{ secrets.ITAD_API_KEY }}
+          BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+          WOOT_API_KEY: ${{ secrets.WOOT_API_KEY }}
       - run: npm test
       - run: npm run typecheck:lib
       - uses: actions/configure-pages@v5
@@ -37,7 +45,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/api public/feed.xml public/llms.txt public/robots.txt public/sitemap.xml
+          git add data/ public/api public/errors.xml public/feed.xml public/llms.txt public/robots.txt public/sitemap.xml
           if ! git diff --cached --quiet; then
             git commit -m 'chore: refresh daily deals [skip ci]'
             git push origin HEAD:main

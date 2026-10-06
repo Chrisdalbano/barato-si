@@ -11,10 +11,10 @@ import { deal, now } from './helpers'
 it('runs fixtures through collection, recording every source outcome', async () => {
   const file = await collect(sources, async s => {
     if (s.kind === 'cheapshark') return JSON.stringify([{ title: 'Synthetic game', dealID: 'fixture', storeID: '7', isOnSale: '1', salePrice: '1', normalPrice: '50' }])
-    return readFile(new URL('./fixtures/' + (s.kind === 'rss' ? 'dealnews.xml' : s.kind + '.json'), import.meta.url), 'utf8')
+    return readFile(new URL('./fixtures/' + (s.kind === 'rss' ? (s.name === 'Techbargains' ? 'techbargains.xml' : 'dealnews.xml') : s.kind + '.json'), import.meta.url), 'utf8')
   }, now)
   expect(file.sources).toHaveLength(sources.length)
-  expect(file.sources.filter(s => s.ok).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews'])
+  expect(file.sources.filter(s => s.ok).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews', 'GOG', 'Techbargains'])
   expect(file.count).toBeGreaterThan(0)
   expect(file.count).toBe(file.deals.length)
   expect(file.sources.filter(s => !s.ok).every(s => s.error && s.errorEs)).toBe(true)
@@ -24,7 +24,7 @@ it('runs fixtures through collection, recording every source outcome', async () 
 it('fails soft even when every source is down', async () => {
   const file = await collect(sources, async () => { throw new Error('offline') }, now)
   expect(file.count).toBe(0)
-  expect(file.sources.every(s => !s.ok && s.error === 'offline')).toBe(true)
+  expect(file.sources.every(s => !s.ok && !!s.errorEs)).toBe(true)
   expect(file.sources.every(s => s.errorEs)).toBe(true)
 })
 
@@ -35,9 +35,9 @@ it.each([
   ['Invalid or unsafe syndication XML', 'La fuente devolvió datos que no se pudieron interpretar.'],
   ['HTTP 503', 'No se pudieron obtener las ofertas de esta fuente.'],
   ['timeout', 'No se pudieron obtener las ofertas de esta fuente.'],
-])('preserves English diagnostics and supplies Spanish visitor text: %s', async (error, errorEs) => {
+])('supplies safe Spanish visitor text: %s', async (error, errorEs) => {
   const file = await collect([sources[3]!], async () => { throw new Error(error) }, now)
-  expect(file.sources[0]).toEqual({ name: 'DealNews', ok: false, count: 0, error, errorEs })
+  expect(file.sources[0]).toMatchObject({ name: 'DealNews', ok: false, count: 0, error: errorEs, errorEs, requests: 1, direct: false })
 })
 
 it('round-trips Spanish accents as UTF-8 in JSON, archives, RSS and discovery text', async () => {
@@ -66,15 +66,15 @@ it('preserves first-seen dates when an offer disappears for a day', async () => 
     await writeFile(join(root, 'api/deals.json'), JSON.stringify({ deals: [] }))
     const old = deal({ foundAt: '2026-10-03T00:00:00Z' })
     await writeFile(join(root, 'api/deals/2026-10-03.json'), JSON.stringify({ deals: [old] }))
-    expect(await readPrevious(root)).toEqual([old])
+    expect(await readPrevious(root, now)).toMatchObject([{ ...old, history: { days: 1, minPrice: old.price, maxPrice: old.price, firstSeen: old.foundAt } }])
   } finally { await rm(root, { recursive: true }) }
 })
 
-it('caps the ranked output at 150', async () => {
-  const raw = '<rss><channel>' + Array.from({ length: 175 }, (_, n) => `<item><title>Unique product model ${n} $5</title><link>https://shop.test/${n}</link></item>`).join('') + '</channel></rss>'
+it('caps the ranked output at 400', async () => {
+  const raw = '<rss><channel>' + Array.from({ length: 425 }, (_, n) => `<item><title>Unique product model ${n} $5</title><link>https://shop.test/${n}</link></item>`).join('') + '</channel></rss>'
   const file = await collect([{ name: 'test', kind: 'rss', url: 'https://test/rss' }], async () => raw, now)
-  expect(file.count).toBe(150)
-  expect(file.sources[0]?.count).toBe(175)
+  expect(file.count).toBe(400)
+  expect(file.sources[0]?.count).toBe(425)
 })
 
 it('writes exact API paths, escapes RSS, and keeps a 30 UTC day window', async () => {
@@ -114,13 +114,13 @@ it.each([403, 429, 500, 301])('fails soft for HTTP %s without retrying or follow
 it('fails closed on unavailable robots and makes no request for disabled sources', async () => {
   const mock = vi.fn().mockRejectedValue(new Error('timeout'))
   const read = createSourceReader(mock)
-  await expect(read(sources[3]!)).rejects.toThrow('timeout')
+  await expect(read(sources[3]!)).rejects.toThrow('No se pudo consultar la fuente.')
   await expect(read({ ...sources[1]!, disabled: 'Permission required' })).rejects.toThrow('Permission required')
   expect(mock).toHaveBeenCalledTimes(1)
 })
 
 it('publishes only product sources, with ITAD opt-in and no leaked key', async () => {
-  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews'])
+  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews', 'GOG', 'Techbargains'])
   const configured = configuredSources({ ITAD_API_KEY: 'test-secret' })
   expect(configured.at(-1)?.kind).toBe('itad')
   const file = await collect(configured, async () => { throw new Error('HTTP 403') }, now)

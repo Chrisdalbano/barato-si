@@ -1,3 +1,7 @@
+import { categorize } from './categorize.ts'
+import { merchant, storeDomain, httpsImage } from './stores.ts'
+import { roundup } from './errors.ts'
+import { steamSearch, gogCatalog, bestBuyProducts } from './store-adapters.ts'
 import { cheapSharkStores } from './cheapshark-stores.ts'
 import type { Deal } from './types.ts'
 import { parsePrices } from './prices.ts'
@@ -5,8 +9,8 @@ import { discount, scoreDeal } from './rank.ts'
 import { canonicalUrl, dealId } from './dedupe.ts'
 import { decodeEntities, feedItems, plainText, tag } from './feeds.ts'
 
-export type SourceKind = 'cheapshark' | 'rss' | 'reddit' | 'woot' | 'epic' | 'steam' | 'itad'
-export interface Source { name: string; url: string; kind: SourceKind; disabled?: string; apiKey?: string }
+export type SourceKind = 'cheapshark' | 'rss' | 'reddit' | 'woot' | 'epic' | 'steam' | 'itad' | 'steam-search' | 'gog' | 'bestbuy'
+export interface Source { name: string; url: string; kind: SourceKind; disabled?: string; apiKey?: string; direct?: boolean; pages?: { url: string; kind?: SourceKind }[] }
 type Row = Record<string, any>
 const number = (v: unknown): number | null => (typeof v === 'number' || typeof v === 'string' && v.trim() !== '') && Number.isFinite(Number(v)) && Number(v) >= 0 ? Number(v) : null
 const date = (v: unknown, fallback: string): string => typeof v === 'string' && Number.isFinite(Date.parse(v)) ? new Date(v).toISOString() : fallback
@@ -28,23 +32,25 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
     const base = {
       ...row, id, title: row.title.trim(), url: row.url, source: source.name, sourceUrl: safeUrl(row.sourceUrl) || new URL('/', source.url).href,
       store: row.store || source.name, currency: row.currency || 'USD', price: row.price,
-      listPrice, discountPct: discount(row.price, listPrice), image: safeUrl(row.image), category: row.category || null,
+      listPrice, discountPct: discount(row.price, listPrice), image: httpsImage(row.image), category: categorize(row.title, row.category || null, row.store || source.name),
+      storeUrl: row.storeUrl || (source.direct || ['steam', 'steam-search', 'gog', 'epic', 'bestbuy', 'woot'].includes(source.kind) ? row.url : null),
+      storeDomain: row.storeDomain || storeDomain(row.store || source.name),
       publishedAt: date(row.publishedAt, old?.publishedAt || stamp), foundAt: old?.foundAt || stamp,
-    } as Omit<Deal, 'score' | 'flag' | 'reasons'>
+    } as Omit<Deal, 'score' | 'flag' | 'reasons' | 'errorScore' | 'errorSignals'>
     output.push({ ...base, ...scoreDeal(base, now) })
   }
   if (source.kind === 'rss') {
     for (const item of feedItems(raw)) {
       const title = tag(item, 'title')
       if (/\b(?:expired|sold out|dead deal)\b/i.test(title)) continue
-      if (/\b(?:up to|from|starting at)\s*(?:[$€£]|\d)|\b(?:sitewide|storewide|buy one get)\b/i.test(title)) continue
+      if (roundup(title)) continue
       const expires = tag(item, 'dealnews:expires')
       if (expires && Date.parse(expires) <= now.getTime()) continue
       const descriptionHtml = tag(item, 'description')
       const titlePrices = parsePrices(title)
       // A roundup's description can contain several unrelated products and list prices.
       if (titlePrices.price === null) continue
-      const parsed = parsePrices(title + ' ' + plainText(descriptionHtml))
+      const parsed = source.name === 'Techbargains' ? titlePrices : parsePrices(title + ' ' + plainText(descriptionHtml))
       const structured = tag(item, 'dealnews:price')
       const currency = /<dealnews:price[^>]*currency="([A-Z]{3})"/.exec(item)?.[1] || parsed.currency
       const price = structured ? number(structured) : titlePrices.price
@@ -54,18 +60,21 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
       const sourceUrl = [tag(item, 'guid'), url].find(candidate => safeUrl(candidate)
         && new URL(candidate).hostname === new URL(source.url).hostname && candidate !== source.url)
       add({ title, url, sourceUrl, price, listPrice: parsed.currency === currency ? parsed.listPrice : null, currency,
-        store: tag(item, 'dealnews:retailer') || source.name, publishedAt: tag(item, 'pubDate') || tag(item, 'updated'),
+        store: tag(item, 'dealnews:retailer') || source.name,
+        ...(source.name === 'Techbargains' && safeUrl(url) ? { ...merchant(url), storeUrl: url } : {}), publishedAt: tag(item, 'pubDate') || tag(item, 'updated'),
         sourceText: plainText(descriptionHtml),
         category: tag(item, 'dealnews:category') || null,
-        image: decodeEntities(/<media:content[^>]+url="([^"]+)"/.exec(item)?.[1] || '') || null,
+        image: decodeEntities(/<media:content[^>]+url="([^"]+)"/.exec(item)?.[1] || '') || (source.name === 'Techbargains' ? /<img[^>]+src=["']([^"']+)/i.exec(descriptionHtml)?.[1] : null),
         sourceSignal: number(tag(item, 'slickdeals:score')) ?? undefined,
-        ...(source.name.toLowerCase() === 'dealnews' ? { syndication: { attribution: 'DealNews', feedUrl: source.url, itemXml: item, descriptionHtml } } : {}),
+        ...(source.name.toLowerCase() === 'dealnews' ? { syndication: { attribution: 'DealNews', feedUrl: source.url, itemUrl: url, itemXml: item, descriptionHtml } } : {}),
       })
     }
     return output
   }
   const data = JSON.parse(raw)
-  let rows: Row[]
+  const adapter = source.kind === 'steam-search' ? steamSearch : source.kind === 'gog' ? gogCatalog : source.kind === 'bestbuy' ? bestBuyProducts : null
+  if (adapter) { for (const row of adapter(data)) add(row); return output }
+  let rows: Row[] = []
   switch (source.kind) {
     case 'cheapshark': rows = data; break
     case 'reddit': rows = data?.data?.children?.map((x: Row) => x.data); break
@@ -80,6 +89,7 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
     if (source.kind === 'cheapshark') {
       if (!cheapSharkStores[r.storeID] || r.isOnSale !== '1' || !r.dealID || typeof r.title !== 'string') continue
       add({ title: r.title, url: `https://www.cheapshark.com/redirect?dealID=${cheapSharkDealId(r.dealID)}`, store: cheapSharkStores[r.storeID],
+        storeUrl: r.storeID === '1' && /^\d+$/.test(String(r.steamAppID)) ? `https://store.steampowered.com/app/${r.steamAppID}/` : null,
         price: number(r.salePrice), listPrice: number(r.normalPrice), currency: 'USD', category: 'videojuegos', image: r.thumb,
         publishedAt: number(r.lastChange) !== null ? new Date(Number(r.lastChange) * 1000).toISOString() : undefined,
         sourceSignal: number(r.dealRating) !== null ? Number(r.dealRating) * 10 : undefined })
@@ -111,7 +121,7 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
         publishedAt: number(r.created_utc) !== null ? new Date(r.created_utc * 1000).toISOString() : undefined, sourceSignal: number(r.score) ?? undefined })
     } else if (source.kind === 'woot') {
       if (r.IsSoldOut || typeof r.Title !== 'string' || Date.parse(r.EndDate) <= now.getTime() || r.SalePrice?.Minimum !== r.SalePrice?.Maximum) continue
-      add({ title: r.Title, url: r.Url, store: 'Woot', price: number(r.SalePrice?.Minimum), listPrice: number(r.ListPrice?.Minimum), currency: 'USD', publishedAt: r.StartDate, image: r.Photo })
+      add({ title: r.Title, url: r.Url, store: 'Woot', price: number(r.SalePrice?.Minimum), listPrice: number(r.ListPrice?.Minimum), currency: 'USD', publishedAt: r.StartDate, image: r.Photo, category: Array.isArray(r.Categories) ? r.Categories.join(' ') : null })
     }
   }
   return output

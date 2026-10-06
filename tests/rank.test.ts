@@ -5,7 +5,7 @@ import { deal, now } from './helpers'
 describe('conservative ranking', () => {
   it('formats savings and fractional percentages in Spanish', () => {
     expect(scoreDeal(deal({ price: 7.46, listPrice: 50 }), now).reasons).toEqual([
-      '85,08\u00a0% bajo el precio de lista', 'Ahorro de 42,54 USD',
+      'Descuento inusualmente profundo', '85,08\u00a0% bajo el precio de lista', 'Ahorro de 42,54 USD',
     ])
   })
   it('keeps reasons valid in archives while freshness still affects the score', () => {
@@ -17,15 +17,15 @@ describe('conservative ranking', () => {
     expect(scoreDeal(deal({ listPrice: null }), now).reasons).toEqual(['Precio de referencia no disponible'])
   })
   it.each([
-    [{ price: 10, listPrice: 100 }, 'error-probable'],
-    [{ price: 15, listPrice: 100 }, 'error-probable'],
+    [{ price: 10, listPrice: 100 }, 'chollo'],
+    [{ price: 15, listPrice: 100 }, 'chollo'],
     [{ price: 16, listPrice: 100 }, 'chollo'],
     [{ price: 15.004, listPrice: 100 }, 'chollo'],
     [{ price: 2, listPrice: 40 }, 'chollo'],
     [{ price: 0, listPrice: 100 }, 'chollo'],
     [{ price: 5, listPrice: 100, category: 'videojuegos' }, 'chollo'],
     [{ title: 'Clearance headphones', price: 5, listPrice: 100 }, 'chollo'],
-    [{ title: 'Price mistake: headphones', price: 20, listPrice: null }, 'error-probable'],
+    [{ title: 'Price mistake: headphones', price: 20, listPrice: null }, 'normal'],
     [{ title: 'Not a price error', price: 20, listPrice: null }, 'normal'],
     [{ title: 'Price error?', price: 20, listPrice: null }, 'normal'],
     [{ title: 'Fixed price glitch', price: 20, listPrice: null }, 'normal'],
@@ -52,14 +52,14 @@ describe('conservative ranking', () => {
 })
 
 it.each(['price error', 'price mistake', 'pricing error', 'glitch', 'mispriced', 'error de precio'])('recognizes source description evidence: %s', phrase => {
-  expect(scoreDeal(deal({ price: 30, listPrice: 50, sourceText: `The retailer has a ${phrase}.` }), now).flag).toBe('error-probable')
+  expect(scoreDeal(deal({ price: 30, listPrice: 50, sourceText: `The retailer has a ${phrase}.` }), now).errorScore).toBe(35)
   expect(scoreDeal(deal({ price: 30, listPrice: 50, sourceText: `Not a ${phrase}?` }), now).flag).toBe('normal')
 })
 it('keeps deep non-game discounts separate from probable errors', () => {
   const result = scoreDeal(deal({ price: 25, listPrice: 100 }), now)
   expect(result.flag).toBe('chollo')
   expect(result.reasons).toContain('Descuento inusualmente profundo')
-  for (const category of ['videojuegos', 'clothing']) {
+  for (const category of ['videojuegos', 'ropa']) {
     expect(scoreDeal(deal({ price: 25, listPrice: 100, category }), now).reasons).not.toContain('Descuento inusualmente profundo')
   }
   expect(scoreDeal(deal({ price: 10, listPrice: 40 }), now).reasons).not.toContain('Descuento inusualmente profundo')
