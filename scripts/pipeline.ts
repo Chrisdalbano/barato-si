@@ -13,6 +13,29 @@ interface CollectOptions {
   sourceTimeout?: number; runTimeout?: number; signal?: AbortSignal
   env?: Record<string, string | undefined>; cache?: ClassifyCache; fetcher?: typeof fetch
   onCache?: (cache: ClassifyCache) => void
+  /** The currently published file, so a source blocked this run can carry its recent offers over. */
+  latest?: Pick<DealsFile, 'generatedAt' | 'sources' | 'deals'>
+  /** Max age of `latest` for carry-over, ms. Default 14 h. */
+  reuseWindow?: number
+}
+const clock = (iso: string) => new Date(iso).toISOString().slice(11, 16) + ' UTC'
+// A publisher that challenges the CI runner's IP (Cloudflare) but answers the
+// owner's machine would otherwise vanish twice a day. Carry its offers from the
+// published file when that run is recent, and say so in the outcome. The age is
+// measured from the ORIGINAL fetch, so carry-overs cannot chain past the window.
+function carryOver(outcomes: SourceOutcome[], deals: Deal[], latest: CollectOptions['latest'], now: Date, window: number): void {
+  if (!latest) return
+  for (const o of outcomes) {
+    if (o.ok || o.count > 0) continue
+    const origin = latest.sources.find(s => s.name === o.name)?.reusedFrom || latest.generatedAt
+    const age = now.getTime() - Date.parse(origin)
+    if (!(age >= 0 && age <= window)) continue
+    const kept = latest.deals.filter(d => d.source === o.name)
+    if (!kept.length) continue
+    deals.push(...kept.map(d => ({ ...d, errorSignals: [...d.errorSignals], reasons: [...d.reasons] })))
+    o.ok = true; o.count = kept.length; o.reusedFrom = origin
+    o.errorEs = `Ofertas reutilizadas de la actualización de las ${clock(origin)}: la fuente no respondió esta vez.`
+  }
 }
 function failure(source: Source, e: unknown, timedOut: boolean): string {
   if (timedOut) return 'Se agotó el tiempo disponible para esta fuente.'
@@ -70,6 +93,7 @@ export async function collect(sources: Source[], read: (source: Source, context?
       if (r.status === 'fulfilled') { deals.push(...r.value.deals); outcomes.push(r.value.outcome) }
       else outcomes.push({ name: sources[i]!.name, ok: false, count: 0, requests: 0, ms: 0, direct: !!sources[i]!.direct, error: 'Source task rejected', errorEs: 'No se pudo consultar la fuente.' })
     })
+    carryOver(outcomes, deals, options.latest, now, options.reuseWindow ?? 14 * 3600000)
     const old = new Map(previous.map(d => [d.id, d]))
     for (const d of deals) {
       const history = old.get(d.id)?.history

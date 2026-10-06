@@ -101,3 +101,20 @@ it('rejects oversized output before replacing current data', async () => {
     expect(await readFile(join(root, 'api/deals.json'), 'utf8')).toBe('previous')
   } finally { await rm(root, { recursive: true }) }
 })
+
+it('carries a blocked source over from a recent published file, visibly, and never past the window', async () => {
+  const kept = [deal({ id: 'tb1', source: 'Techbargains', title: 'Laptop for $499 (was $1,099)', price: 499, listPrice: 1099 }), deal({ id: 'tb2', source: 'Techbargains', url: 'https://shop.test/2' })]
+  const stranger = deal({ id: 'dn1', source: 'DealNews' })
+  const src = { name: 'Techbargains', kind: 'rss' as const, url: 'https://www.techbargains.com/rss.xml' }
+  const blocked = async () => { throw new Error('robots.txt unavailable') }
+  const recent = { generatedAt: new Date(now.getTime() - 3600000).toISOString(), sources: [{ name: 'Techbargains', ok: true, count: 2 }], deals: [...kept, stranger] }
+  const file = await collect([src], blocked, now, [], { latest: recent })
+  expect(file.sources[0]).toMatchObject({ name: 'Techbargains', ok: true, count: 2, reusedFrom: recent.generatedAt, error: 'robots.txt unavailable' })
+  expect(file.sources[0]!.errorEs).toContain('reutilizadas')
+  expect(file.deals.map(d => d.id).sort()).toEqual(['tb1', 'tb2'])
+  // The age is measured from the original fetch: a carried file cannot be carried again past 14 h.
+  const chained = { ...recent, generatedAt: new Date(now.getTime() - 3600000).toISOString(), sources: [{ name: 'Techbargains', ok: true, count: 2, reusedFrom: new Date(now.getTime() - 15 * 3600000).toISOString() }] }
+  expect((await collect([src], blocked, now, [], { latest: chained })).sources[0]).toMatchObject({ ok: false, count: 0 })
+  const stale = { ...recent, generatedAt: new Date(now.getTime() - 15 * 3600000).toISOString() }
+  expect((await collect([src], blocked, now, [], { latest: stale })).sources[0]).toMatchObject({ ok: false, count: 0 })
+})

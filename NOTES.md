@@ -86,6 +86,15 @@ Daily deal/raw archives retain today plus 29 prior UTC days. Existing v1 archive
 
 The workflow runs at 11:00 and 23:00 UTC, with a 15-minute build-job timeout. It maps LLM, ITAD, Best Buy, and Woot secrets into the deals step and commits `data/`, generated APIs, and both RSS feeds. Its existing push/deploy behavior was not invoked locally.
 
+## Blocked-from-CI sources and the local refresh (2026-10-06, owner)
+
+techbargains.com sits behind Cloudflare and challenges GitHub's runner IPs (HTTP 403, `cf-mitigated: challenge`, verified from a workflow step), while the same request from the owner's PC gets HTTP 200. Two measures:
+
+- **Carry-over** (`carryOver` in scripts/pipeline.ts): when a source fails with zero offers and the currently published deals.json is less than 14 hours old, its offers for that source are carried into this run, re-scored, and the outcome says so: `ok: true`, `reusedFrom: <generatedAt of the original fetch>`, Spanish `errorEs` "Ofertas reutilizadas de la actualización de las HH:MM UTC…", English `error` with the real failure. The age is measured from the original fetch, so carry-overs never chain past the window. Only the published 400 are available to carry, which is why the local run should come first.
+- **Local run** (`scripts/local-refresh.ps1`, Windows scheduled tasks "barato.si refresh AM/PM" at 06:35 and 18:35 local): pull, `npm run deals`, commit `public/` + `data/classify-cache.json`, push. The push triggers the Pages workflow, whose own collection then carries Techbargains over. Log at `data/local-refresh.log` (ignored). If the PC is off, CI publishes without Techbargains and says so.
+
+Also restored: `SourceOutcome.error` is the English diagnostic again (`errorEs` stays generic Spanish); keyed sources still publish a fixed string. `balanceRanking` now interleaves games and other offers through the whole 400-item list (a pure score sort had published 385 games).
+
 ## Live run and validation
 
 Generated 2026-10-06T23:07:17.594Z by a real npm run deals run. All six configured sources succeeded. 1443 normalized offers across 16 data requests; 400 published after dedupe and the 400-item cap. Classifier: not configured (no local key); classifier field omitted. All 400/400 published items have HTTPS images. Main JSON: 326,107 bytes, below 700 KB. The balanced first 30 contain 15 games and 15 other offers.

@@ -30,10 +30,6 @@ jobs:
           node-version: '22'
           cache: npm
       - run: rm -f package-lock.json && npm install --no-audit --no-fund  # lockfile is generated on Windows and lacks Linux native bindings
-      - name: Probe techbargains from the runner (temporary)
-        run: |
-          curl -sS -o /dev/null -D - -A 'barato.si deals bot; +https://barato.si/llms.txt' --max-time 20 https://www.techbargains.com/robots.txt || echo "curl exit $?"
-          curl -sS -o /dev/null -D - -A 'barato.si deals bot; +https://barato.si/llms.txt' --max-time 20 https://www.techbargains.com/rss.xml | head -12 || echo "curl exit $?"
       - run: npm run deals
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}

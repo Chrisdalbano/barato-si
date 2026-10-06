@@ -115,6 +115,13 @@ export interface SourceOutcome {
   ms?: number
   /** First-party store API/feed (true) or an aggregator/deal publisher (false). */
   direct?: boolean
+  /**
+   * Set when the source failed this run and its offers were carried over from a
+   * previous run less than 14 hours old (generatedAt of that run). Happens when a
+   * publisher's bot protection blocks the CI runner but not the owner's machine.
+   * `ok` is true and `count` is the carried count; `errorEs` says so in Spanish.
+   */
+  reusedFrom?: string
   error?: string
   errorEs?: string
 }
