@@ -7,6 +7,8 @@ const props = defineProps<{
   currency: string
   discountPct: number | null
   lead?: boolean
+  /** No count-down: grid cards and error cards render the final price at once. */
+  still?: boolean
 }>()
 
 const free = computed(() => props.price <= 0)
@@ -25,7 +27,7 @@ let stop: (() => void) | undefined
 let observer: IntersectionObserver | undefined
 
 onMounted(() => {
-  if (!hasList.value || !root.value) return
+  if (props.still || !hasList.value || !root.value) return
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   const from = props.listPrice as number
   armed.value = true

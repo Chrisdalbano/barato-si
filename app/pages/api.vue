@@ -48,8 +48,11 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
     <section class="doc__sec" aria-labelledby="sch">
       <h2 id="sch">Esquema</h2>
       <p class="doc__note">
-        Cada archivo es un <code>DealsFile</code>: <code>{ date, generatedAt, count, sources[], deals[] }</code>.
-        <code>sources</code> dice qué fuentes respondieron y cuáles no, para que una fuente caída no pase desapercibida.
+        Cada archivo es un <code>DealsFile</code>: <code>{{ FILE_FIELDS }}</code>.
+        <code>version</code> vale <code>2</code> desde el 6 de octubre de 2026 y falta en los archivos anteriores.
+        <code>sources</code> dice qué fuentes respondieron y cuáles no, y <code>direct</code> marca las que son la propia tienda,
+        para que una fuente caída no pase desapercibida. <code>classifier</code> dice si el modelo corrió y cuántas ofertas clasificó,
+        para que un fallo del modelo no se confunda con «no había candidatas».
         Cada elemento de <code>deals</code> es un <code>Deal</code>:
       </p>
       <table class="tbl tbl--schema">
@@ -62,6 +65,12 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
           </tr>
         </tbody>
       </table>
+      <p class="doc__note">
+        Cambio en v2: <code>syndication.itemXml</code> (el XML original de cada elemento del feed) ya no viaja en
+        <code>deals.json</code>. Está en <code>/api/raw/YYYY-MM-DD.json</code>, un archivo por día, para quien necesite
+        la atribución completa. Los campos nuevos (<code>storeUrl</code>, <code>errorScore</code>, <code>history</code>, <code>ai</code>…)
+        son opcionales o tienen un valor por defecto: el código que leía v1 sigue funcionando.
+      </p>
     </section>
 
     <section class="doc__sec prose" aria-labelledby="fair">

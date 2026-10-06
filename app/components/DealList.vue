@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { AnimatePresence, MotionConfig, motion } from 'motion-v'
 import type { DealView } from '~/composables/useDeals'
-import { SORTS } from '~/composables/useDealFilters'
 
 const props = defineProps<{ deals: DealView[]; generatedAt: string; leadId?: string; shownAbove?: string[] }>()
 
@@ -15,6 +14,14 @@ const rank = computed(() => new Map(props.deals.map((d, i) => [d.id, i + 1])))
 // them from the default view only. Any filter shows the full matching set.
 const above = computed(() => new Set([props.leadId, ...(props.shownAbove ?? [])].filter(Boolean)))
 const shown = computed(() => (f.active.value || !above.value.size ? f.results.value : f.results.value.filter(d => !above.value.has(d.id))))
+
+// Up to 400 deals: render in chunks of 60. Any filter, sort or view change
+// starts again from the first chunk.
+const CHUNK = 60
+const limit = ref(CHUNK)
+watch(() => [f.flag.value, f.store.value, f.category.value, f.min.value, f.text.value, f.direct.value, f.sort.value, f.view.value], () => { limit.value = CHUNK })
+const visible = computed(() => shown.value.slice(0, limit.value))
+const remaining = computed(() => Math.max(0, shown.value.length - limit.value))
 
 // "hace 3 horas" is measured from generation time in the prerendered HTML,
 // then from the reader's clock once the page is live.
@@ -65,7 +72,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         <span>Categoría</span>
         <select :value="f.category.value" @change="f.set({ cat: ($event.target as HTMLSelectElement).value || null })">
           <option value="">Todas ({{ f.categories.value.length }})</option>
-          <option v-for="[name, n] in f.categories.value" :key="name" :value="name">{{ name }} ({{ n }})</option>
+          <option v-for="[name, n] in f.categories.value" :key="name" :value="name">{{ categoryLabel(name) }} ({{ n }})</option>
         </select>
       </label>
 
@@ -81,20 +88,37 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         <input v-model="search" type="search" placeholder="televisor, adidas, Steam…" autocomplete="off">
       </label>
 
+      <!-- Shown only when it narrows the list: some deals link straight to the store, not all. -->
+      <fieldset v-if="f.directCount.value && f.directCount.value < deals.length" class="filters__group">
+        <legend>Enlace</legend>
+        <button
+          type="button" class="seg" :aria-pressed="f.direct.value"
+          @click="f.set({ directas: f.direct.value ? null : '1' })"
+        >Solo tiendas directas <span class="seg__n">{{ f.directCount.value }}</span></button>
+      </fieldset>
+
       <fieldset class="filters__group">
         <legend>Orden</legend>
         <button
-          v-for="o in SORTS" :key="o.key" type="button" class="seg"
+          v-for="o in f.sorts.value" :key="o.key" type="button" class="seg"
           :aria-pressed="f.sort.value === o.key" @click="f.set({ orden: o.key })"
         >{{ o.label }}</button>
       </fieldset>
+
+      <fieldset class="filters__group filters__view">
+        <legend>Vista</legend>
+        <button type="button" class="seg" :aria-pressed="f.view.value === 'cuadricula'" @click="f.set({ vista: null })">Cuadrícula</button>
+        <button type="button" class="seg" :aria-pressed="f.view.value === 'lista'" @click="f.set({ vista: 'lista' })">Lista</button>
+      </fieldset>
     </form>
 
-    <MotionConfig reduced-motion="user">
+    <DealGrid v-if="f.view.value === 'cuadricula'" :deals="visible" :ranks="rank" :now="now" />
+
+    <MotionConfig v-else reduced-motion="user">
       <ol class="list__items">
         <AnimatePresence :initial="false">
           <motion.li
-            v-for="(d, i) in shown" :key="d.id" layout="position" class="list__item"
+            v-for="(d, i) in visible" :key="d.id" layout="position" class="list__item"
             :style="{ '--i': Math.min(i, 12) }"
             :initial="{ opacity: 0 }" :animate="{ opacity: 1 }" :exit="{ opacity: 0, transition: { duration: 0.15 } }"
             :transition="{ layout: { duration: 0.45, ease }, opacity: { duration: 0.25 } }"
@@ -104,6 +128,13 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         </AnimatePresence>
       </ol>
     </MotionConfig>
+
+    <p v-if="remaining" class="list__more">
+      <button type="button" class="seg" @click="limit += CHUNK">
+        Mostrar {{ Math.min(CHUNK, remaining) }} más
+      </button>
+      <span class="list__shown">{{ visible.length }} de {{ shown.length }}</span>
+    </p>
 
     <div v-if="!shown.length" class="list__empty">
       <template v-if="deals.length && f.active.value">
@@ -145,6 +176,10 @@ select:focus-visible, input:focus-visible { outline: 2px solid var(--accent-lead
 /* Transform only: if animations are paused (background tab, screenshot bots) rows stay readable. */
 @keyframes settle { from { transform: translateY(14px); } }
 
+.filters__view { margin-left: auto; }
+.list__more { display: flex; align-items: baseline; gap: 16px; margin: 24px 0 0; }
+.list__shown { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--fg-secondary); font-variant-numeric: tabular-nums; }
+
 .list__empty { padding: 40px 0; border-top: 1px solid var(--border); color: var(--fg-secondary); }
 .list__empty p { margin: 0 0 12px; font-size: 1.125rem; color: var(--fg-primary); }
 
@@ -154,6 +189,7 @@ select:focus-visible, input:focus-visible { outline: 2px solid var(--accent-lead
 @media (max-width: 640px) {
   .filters { gap: 14px 16px; }
   .filters__field:not(.filters__search) { flex: 1 1 40%; }
+  .filters__view { margin-left: 0; }
   select { max-width: none; width: 100%; }
 }
 </style>

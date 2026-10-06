@@ -4,11 +4,13 @@ import type { DayView } from '~/composables/useDeals'
 // The ruled dateline under a day's title: the date, the figures that have
 // something behind them (never a zero), when it was generated, and one quiet
 // line of sources. A source that failed gets a short mention, not its error.
-const props = defineProps<{ day: DayView; showDate?: boolean }>()
+const props = withDefaults(defineProps<{ day: DayView; showDate?: boolean; errorsHref?: string }>(), { errorsHref: '/errores' })
 
 const total = computed(() => props.day.deals.length)
 const bargains = computed(() => props.day.deals.filter(d => d.flag === 'chollo').length)
 const errors = computed(() => props.day.deals.filter(d => d.flag === 'error-probable').length)
+// With no probable errors, the suspects behind /errores (errorScore >= 40) still get a figure.
+const suspects = computed(() => (errors.value ? 0 : props.day.deals.filter(d => d.errorScore >= 40).length))
 const sources = computed(() => sourcesLine(props.day.sources))
 </script>
 
@@ -18,7 +20,10 @@ const sources = computed(() => sourcesLine(props.day.sources))
       <time v-if="showDate" class="strip__date" :datetime="day.date">{{ formatDay(day.date) }}</time>
       <span v-if="total" class="strip__fig">{{ plural(total, 'oferta', 'ofertas') }}</span>
       <span v-if="bargains" class="strip__fig">{{ plural(bargains, 'baratísima', 'baratísimas') }}</span>
-      <a v-if="errors" class="strip__fig strip__fig--err" href="#errores">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</a>
+      <!-- In the archive the figure jumps to the day's own section; on today's page it opens /errores. -->
+      <a v-if="errors && errorsHref.startsWith('#')" class="strip__fig strip__fig--err" :href="errorsHref">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</a>
+      <NuxtLink v-else-if="errors" class="strip__fig strip__fig--err" :to="errorsHref">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</NuxtLink>
+      <NuxtLink v-else-if="suspects && !errorsHref.startsWith('#')" class="strip__fig strip__fig--err" :to="errorsHref">{{ plural(suspects, 'precio sospechoso', 'precios sospechosos') }}</NuxtLink>
       <span class="strip__time">Actualizado <time :datetime="day.generatedAt">{{ formatGenerated(day.generatedAt) }}</time></span>
     </p>
     <p v-if="sources.working || sources.quiet" class="strip__src">

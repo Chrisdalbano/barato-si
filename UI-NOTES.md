@@ -204,3 +204,29 @@ Not patched. These are notes only.
 - **Favicon in Inter.** The favicon's "b" renders in Arial wherever Inter is not installed. Converting it to a path would fix that.
 - **Error-section prominence on real data.** The real data during this pass had no probable errors, so the section has only been seen with the fixture.
 - **Share of "Baratísimo".** 71 of 107 deals carry the flag, which dilutes the label. That is a ranking matter for the pipeline, not patched here.
+
+## 2026-10-06: v2 UI (images, grid, price errors, store links)
+
+### What changed
+
+- **Data layer.** `toView()` / `toDealView()` in `useDeals.ts` is the one place v2 fields are normalized with defaults (`errorScore ?? 0`, `errorSignals ?? []`, `storeUrl`/`storeDomain`/`image ?? null`, `ai`/`history` optional, non-https images dropped). It also adds a view-only `direct` (has `storeUrl`, or its source outcome says `direct: true`). `syndication`, `sourceText`, `sourceSignal`, `foundAt` and the model's `product`/`model` still never reach the payload. v1 files render unchanged.
+- **Pictures.** `DealImage`: fixed frame (4:3 cards, 16:9 lead), `object-fit: contain` on the surface plate (never cropped), `width`/`height`, lazy, `referrerpolicy="no-referrer"`. On paper the image multiplies into the plate so white product backdrops disappear. Missing or failed image shows the store's domain in mono on the plate (`storeMark()`: `storeDomain`, else the `storeUrl` host, else the store name; never the aggregator host). Failures before hydration are caught on mount.
+- **Grid.** `DealGrid` + `DealCard`: `<ol>` of ruled cells, `repeat(auto-fill, minmax(240px, 1fr))` (two columns on phones), `content-visibility: auto`. Cards render the final price (`DealPrice still`): no count-down on 400 cards; the CSS settle-in runs on the first 12 only. `?vista=cuadricula|lista` toggles (grid default, list = the existing `DealRow`, now with a small thumbnail). Both views render 60 at a time with "Mostrar 60 más"; any filter, sort or view change starts again at 60.
+- **Store links.** `linkFor(deal) = storeUrl ?? url` everywhere (title, picture, button, JSON-LD). The action always reads "Ver en <store>"; "vía <source>" stays in the meta line, linked to `sourceUrl`.
+- **Filters.** Category labels in Spanish (`CATEGORY_LABEL`, unknown strings pass through), "Solo tiendas directas" (`?directas=1`, shown only when it narrows the list), sort "Sospecha" (`errorScore`, shown only when some deal has one). Still no empty options.
+- **Price errors.** New `/errores` ("Cazador de errores de precio"): reads `/api/errors.json`; when missing, falls back to `deals.json` filtered to `errorScore >= 40`. At build time the file is pulled with `import.meta.glob`, which resolves to nothing instead of failing the build when the file is absent. `ErrorCard` shows picture, price vs list, `ErrorMeter` (mono number plus a thin ruled bar, `role="meter"`), the signals as a ruled list (strongest first, bold), the model note under "modelo · 78 %", the history line ("Visto desde el 3 oct, mínimo 99 US$."), then "Ver en <store>" and "vía <source>". Filters `?min=40|55|70` and `?cat=`, read after mount.
+- **Home.** `ErrorWatch` is now a 2-3 column grid of up to 6 error cards for `flag === 'error-probable'`. With no 70+ it shows the top 6 at 55+ titled "Sospechosas" with its own note. Either way there is a "Todos los sospechosos →" link. The strip figure links to `/errores` ("N posibles errores de precio", or "N precios sospechosos" at 40+ when there are none). In the archive it still jumps to the day's own `#errores`.
+- **Lead.** 16:9 picture above the big price in the left column, text and "Ver en <store>" on the right.
+- **Shell and API copy.** Nav gains "Errores"; footer gains "RSS de errores"; `errors.xml` is a second RSS alternate in `nuxt.config.ts`. `ENDPOINTS`/`SCHEMA` cover `storeUrl`, `storeDomain`, `errorScore`, `errorSignals`, `ai`, `history`, `image`, `/api/errors.json`, `/errors.xml`, `/api/raw/YYYY-MM-DD.json`; the API page explains `version`, `classifier`, `sources[].direct`, and that `syndication.itemXml` moved to `/api/raw/`. The curl example now reads `errors.json`.
+
+### Verified
+
+- `npx.cmd nuxt typecheck`: exit 0. Because it prints nothing, also checked that `npx.cmd vue-tsc --noEmit -p .nuxt/tsconfig.app.json` catches a planted error (probe file, deleted) and passes clean.
+- `npx.cmd nuxt generate`: succeeds against the current v2 `public/api/deals.json` (400 deals, all with images, 359 with `storeUrl`, max `errorScore` 25, `errors.json` present and empty). `index.html` has 60 grid cards with `<img>`, "Mostrar 60 más", "Solo tiendas directas 359"; `/errores/index.html` shows the empty state, because today has no suspects.
+- Error cards on a fixture copy in a scratch directory (not this repo): (A) with `errors.json` holding 86/72/58/44 deals, and (B) with no `errors.json` and only 62/57/41. A: home section "Posibles errores de precio" with two cards and meters; `/errores` has 4 wide cards, the signals, "modelo · 78 %", the history line, the min-score and category filters, and the domain fallback for a null image and a broken image URL. B: home "Sospechosas" (62, 57), strip "3 precios sospechosos", `/errores` 3 cards from the fallback.
+- Real Chrome (served copy of the fixture build): lead, error grid and deal grid look right at 1568px wide; list toggle, "Mostrar 60 más", the direct-stores toggle and the reset to 60 on a view change all work; no console messages. 390px iframes: `/`, `/errores`, `/?vista=lista` and `/archivo?dia=2026-10-06` have no horizontal overflow (the list view's "Ver en <store>" overflowed at first and now wraps).
+
+### Not verified
+
+- Night variant with images (multiply is switched off there; not looked at).
+- The real `errors.json` with real entries (none today); the fixture covers the shape.

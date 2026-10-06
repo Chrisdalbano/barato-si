@@ -3,13 +3,13 @@ import type { DayView } from '~/composables/useDeals'
 
 // A past day's heading in the archive: the date set large, then the same
 // ruled strip as the home page.
-defineProps<{ day: DayView; level?: 1 | 2 }>()
+defineProps<{ day: DayView; level?: 1 | 2; errorsHref?: string }>()
 </script>
 
 <template>
   <header class="day">
     <component :is="level === 1 ? 'h1' : 'h2'" class="day__date">{{ formatDay(day.date) }}</component>
-    <DayStrip :day="day" />
+    <DayStrip :day="day" :errors-href="errorsHref" />
   </header>
 </template>
 

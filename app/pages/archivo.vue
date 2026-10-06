@@ -17,8 +17,6 @@ const router = useRouter()
 const selected = ref('')
 const day = ref<DayView | null>(null)
 const state = ref<'idle' | 'loading' | 'error'>('idle')
-const now = ref(0)
-const ranks = computed(() => new Map((day.value?.deals ?? []).map((d, i) => [d.id, i + 1])))
 const errors = computed(() => (day.value?.deals ?? []).filter(d => d.flag === 'error-probable'))
 
 async function load(date: string) {
@@ -35,7 +33,6 @@ async function load(date: string) {
 }
 
 onMounted(() => {
-  now.value = Date.now()
   watch(() => route.query.dia, (d) => {
     const date = String(Array.isArray(d) ? d[0] : d ?? '')
     if (date !== selected.value || !day.value) load(date)
@@ -77,8 +74,8 @@ function pick(date: string) {
       No se pudo cargar <code>/api/deals/{{ selected }}.json</code>. Puede que ese día ya no esté en el archivo.
     </p>
     <template v-else-if="day">
-      <DayHeader :day="day" :level="2" />
-      <ErrorWatch v-if="errors.length" :deals="errors" :ranks="ranks" :now="now" :level="3" />
+      <DayHeader :day="day" :level="2" errors-href="#errores" />
+      <ErrorWatch v-if="errors.length" :deals="errors" :level="3" :more="false" />
       <DealList
         v-if="day.deals.length" :key="day.date" :deals="day.deals" :generated-at="day.generatedAt"
         :shown-above="errors.map(d => d.id)"

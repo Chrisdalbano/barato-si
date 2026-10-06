@@ -2,6 +2,7 @@
 const route = useRoute()
 const nav = [
   { to: '/', label: 'Hoy' },
+  { to: '/errores', label: 'Errores' },
   { to: '/archivo', label: 'Archivo' },
   { to: '/api', label: 'API' },
 ]
@@ -42,6 +43,7 @@ const isActive = (to: string) => (route.path.replace(/\/+$/, '') || '/') === to
         <p class="foot__links">
           <a href="/api/deals.json">deals.json</a>
           <a href="/feed.xml">RSS</a>
+          <a href="/errors.xml">RSS de errores</a>
           <a href="/llms.txt">llms.txt</a>
           <span>Hecho por <a href="https://chrisdalbano.com" rel="noopener">Chris D'Albano</a></span>
           <span>El dominio barato.si está en venta. <a href="https://chrisdalbano.com" rel="noopener">Escríbeme</a>.</span>

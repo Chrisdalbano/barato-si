@@ -44,6 +44,7 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · las rebajas del día', href: 'https://barato.si/feed.xml' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · posibles errores de precio', href: 'https://barato.si/errors.xml' },
         { rel: 'alternate', type: 'application/json', title: 'barato.si API', href: 'https://barato.si/api/deals.json' },
         { rel: 'alternate', hreflang: 'es', href: 'https://barato.si/' },
         { rel: 'alternate', hreflang: 'x-default', href: 'https://barato.si/' },

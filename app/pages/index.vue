@@ -7,10 +7,17 @@ const lead = computed(() => day.value?.deals[0])
 const now = ref(Date.parse(day.value?.generatedAt ?? '') || 0)
 onMounted(() => { now.value = Date.now() })
 
-// Rank = place in the file's order, shared by every section.
-const ranks = computed(() => new Map((day.value?.deals ?? []).map((d, i) => [d.id, i + 1])))
-// Probable price errors get their own section; the lead is already shown large.
-const errors = computed(() => (day.value?.deals ?? []).filter(d => d.flag === 'error-probable' && d.id !== lead.value?.id))
+// Probable price errors get their own section of evidence cards (up to 6;
+// /errores has the rest). The lead is already shown large. With no 70+ today,
+// the top candidates at 55+ show instead, labelled "Sospechosas".
+const watch6 = computed(() => {
+  const rest = (day.value?.deals ?? []).filter(d => d.id !== lead.value?.id)
+  const probable = rest.filter(d => d.flag === 'error-probable').sort((a, b) => b.errorScore - a.errorScore)
+  if (probable.length) return { suspects: false, total: probable.length, deals: probable.slice(0, 6) }
+  const near = rest.filter(d => d.errorScore >= 55).sort((a, b) => b.errorScore - a.errorScore)
+  return { suspects: true, total: near.length, deals: near.slice(0, 6) }
+})
+const errors = computed(() => watch6.value.deals)
 
 useHead({
   link: [{ rel: 'canonical', href: `${SITE}/` }],
@@ -43,7 +50,8 @@ useHead(() => {
         item: {
           '@type': 'Offer',
           name: deal.title,
-          url: deal.url,
+          url: linkFor(deal),
+          ...(deal.image ? { image: deal.image } : {}),
           price: deal.price.toFixed(2),
           priceCurrency: deal.currency,
           seller: { '@type': 'Organization', name: deal.store },
@@ -66,7 +74,7 @@ useHead(() => {
     <Masthead :day="day" />
     <template v-if="day">
       <LeadDeal v-if="lead" :deal="lead" :now="now" />
-      <ErrorWatch v-if="errors.length" :deals="errors" :ranks="ranks" :now="now" />
+      <ErrorWatch v-if="errors.length" :deals="errors" :total="watch6.total" :suspects="watch6.suspects" />
       <DealList
         v-if="day.deals.length" :deals="day.deals" :generated-at="day.generatedAt"
         :lead-id="lead?.id" :shown-above="errors.map(d => d.id)"
