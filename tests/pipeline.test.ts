@@ -148,6 +148,8 @@ it('balances games across sources against other offers without losing or duplica
   expect(result.slice(0, 30).filter(d => d.category === 'videojuegos')).toHaveLength(15)
   expect(result.slice(0, 8).filter(d => !d.category)).toHaveLength(4)
   expect(new Set(result.map(d => d.id)).size).toBe(100)
+  // Interleaving continues past the top 30: every non-game offer lands in the first 80.
+  expect(result.slice(0, 80).filter(d => !d.category)).toHaveLength(40)
   expect(balanceRanking(games)).toEqual(games)
 })
 it('does not generate Spain-only wording in RSS or discovery text', async () => {

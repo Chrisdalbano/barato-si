@@ -78,16 +78,19 @@ export async function collect(sources: Source[], read: (source: Source, context?
   } finally { clearTimeout(runTimer) }
 }
 
-// Alternate the best non-game and game offers; at most 15 games in the top 30
-// when 15 other offers exist. Fill shortages instead of hiding valid offers.
+// Alternate the best non-game and game offers through the WHOLE list, not just
+// the top 30: with a 400-item cap and 90%-off games being routine, a pure score
+// sort published 385 games and 15 other items (2026-10-06). Interleaving keeps
+// the cap roughly half games, half everything else, which is where price
+// errors live. Shortages fill from the other pool instead of hiding offers.
 export function balanceRanking(ranked: Deal[]): Deal[] {
-  const games = ranked.filter(d => /videojuegos|games/i.test(d.category || ''))
-  const other = ranked.filter(d => !/videojuegos|games/i.test(d.category || ''))
-  const top: Deal[] = []
-  for (let i = 0; i < 15; i++) {
-    if (other[i]) top.push(other[i]!)
-    if (games[i]) top.push(games[i]!)
+  const isGame = (d: Deal) => /videojuegos|games/i.test(d.category || '')
+  const games = ranked.filter(isGame)
+  const other = ranked.filter(d => !isGame(d))
+  const out: Deal[] = []
+  for (let i = 0; i < Math.max(games.length, other.length); i++) {
+    if (other[i]) out.push(other[i]!)
+    if (games[i]) out.push(games[i]!)
   }
-  const selected = new Set(top.map(d => d.id))
-  return [...top, ...ranked.filter(d => !selected.has(d.id))]
+  return out
 }
