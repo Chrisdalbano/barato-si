@@ -25,6 +25,6 @@ export async function run(): Promise<void> {
   await writeFile(cachePath + '.tmp', JSON.stringify(cache) + '\n')
   await rename(cachePath + '.tmp', cachePath)
   console.log(file.classifier ? 'Clasificador: ' + (file.classifier.ok ? 'completado' : 'falló; se aplicaron reglas') : 'Clasificador: no configurado')
-  for (const source of file.sources) console.log(`${source.name}: ${source.ok ? `${source.count} ofertas; ${source.requests} consultas; ${source.ms} ms` : source.errorEs}`)
+  for (const source of file.sources) console.log(`${source.name}: ${source.ok ? `${source.count} ofertas; ${source.requests} consultas; ${source.ms} ms` : `${source.errorEs} [${source.error}]`}`)
   console.log(`${file.count} ofertas guardadas para ${file.date}`)
 }

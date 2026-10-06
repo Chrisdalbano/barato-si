@@ -25,6 +25,14 @@ function failure(source: Source, e: unknown, timedOut: boolean): string {
   if (/schema|XML|JSON/i.test(message)) return 'La fuente devolvió datos que no se pudieron interpretar.'
   return 'No se pudieron obtener las ofertas de esta fuente.'
 }
+// English diagnostic for operators (published in `error`, printed by the CLI).
+// Keyed sources never expose their message: a provider may echo the credential.
+function diagnostic(source: Source, e: unknown, timedOut: boolean): string {
+  if (timedOut) return 'Source deadline exceeded'
+  if (source.apiKey) return 'Protected API failure'
+  const message = e instanceof Error ? e.message : 'Unknown source failure'
+  return message.replace(/\s+/g, ' ').slice(0, 200)
+}
 export async function collect(sources: Source[], read: (source: Source, context?: RequestContext) => Promise<string>, now: Date, previous: Deal[] = [], options: CollectOptions = {}): Promise<DealsFile> {
   const run = new AbortController()
   const runTimer = setTimeout(() => run.abort(), options.runTimeout ?? 240000)
@@ -36,7 +44,7 @@ export async function collect(sources: Source[], read: (source: Source, context?
       const timer = setTimeout(() => controller.abort(), options.sourceTimeout ?? 45000)
       const signal = AbortSignal.any([runSignal, controller.signal])
       const found: Deal[] = []
-      let requests = 0, error: string | undefined
+      let requests = 0, error: string | undefined, errorEs: string | undefined
       try {
         for (const page of source.pages || [{ url: source.url }]) {
           signal.throwIfAborted()
@@ -52,15 +60,15 @@ export async function collect(sources: Source[], read: (source: Source, context?
             found.push(...offers)
           } finally { if (!counted && !(read as typeof read & { tracksRequests?: boolean }).tracksRequests) requests++ }
         }
-      } catch (e) { error = failure(source, e, signal.aborted) }
+      } catch (e) { errorEs = failure(source, e, signal.aborted); error = diagnostic(source, e, signal.aborted) }
       finally { clearTimeout(timer) }
-      const outcome: SourceOutcome = { name: source.name, ok: !error, count: found.length, requests, ms: Date.now() - start, direct: !!source.direct, ...(error ? { error, errorEs: error } : {}) }
+      const outcome: SourceOutcome = { name: source.name, ok: !error, count: found.length, requests, ms: Date.now() - start, direct: !!source.direct, ...(error ? { error, errorEs } : {}) }
       return { deals: found, outcome }
     }))
     const deals: Deal[] = [], outcomes: SourceOutcome[] = []
     settled.forEach((r, i) => {
       if (r.status === 'fulfilled') { deals.push(...r.value.deals); outcomes.push(r.value.outcome) }
-      else outcomes.push({ name: sources[i]!.name, ok: false, count: 0, requests: 0, ms: 0, direct: !!sources[i]!.direct, error: 'No se pudo consultar la fuente.', errorEs: 'No se pudo consultar la fuente.' })
+      else outcomes.push({ name: sources[i]!.name, ok: false, count: 0, requests: 0, ms: 0, direct: !!sources[i]!.direct, error: 'Source task rejected', errorEs: 'No se pudo consultar la fuente.' })
     })
     const old = new Map(previous.map(d => [d.id, d]))
     for (const d of deals) {

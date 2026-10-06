@@ -23,9 +23,9 @@ it('isolates slow and throwing sources, returns completed pages and records sour
     expect(read).toHaveBeenCalledTimes(3)
     expect(file.deals).toHaveLength(1)
     expect(file.sources[0]).toMatchObject({ ok: false, ms: 45000, requests: 1, count: 0, errorEs: 'Se agotó el tiempo disponible para esta fuente.' })
-    expect(file.sources[1]?.ok).toBe(false)
+    // Unkeyed sources publish their English diagnostic (operators need the HTTP status); Spanish text stays generic.
+    expect(file.sources[1]).toMatchObject({ ok: false, error: 'secret diagnostic', errorEs: 'No se pudieron obtener las ofertas de esta fuente.' })
     expect(file.sources[2]).toMatchObject({ ok: true, count: 1, requests: 1 })
-    expect(JSON.stringify(file)).not.toContain('secret diagnostic')
     expect(vi.getTimerCount()).toBe(0)
   } finally { vi.useRealTimers() }
 })

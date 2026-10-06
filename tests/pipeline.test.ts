@@ -37,7 +37,7 @@ it.each([
   ['timeout', 'No se pudieron obtener las ofertas de esta fuente.'],
 ])('supplies safe Spanish visitor text: %s', async (error, errorEs) => {
   const file = await collect([sources[3]!], async () => { throw new Error(error) }, now)
-  expect(file.sources[0]).toMatchObject({ name: 'DealNews', ok: false, count: 0, error: errorEs, errorEs, requests: 1, direct: false })
+  expect(file.sources[0]).toMatchObject({ name: 'DealNews', ok: false, count: 0, error, errorEs, requests: 1, direct: false })
 })
 
 it('round-trips Spanish accents as UTF-8 in JSON, archives, RSS and discovery text', async () => {
