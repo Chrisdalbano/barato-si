@@ -39,9 +39,7 @@ watch(() => props.src, () => { failed.value = false })
 <style scoped>
 .frame { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; background: var(--bg-surface); overflow: hidden; }
 .frame--wide { aspect-ratio: 16 / 9; }
-.frame img { width: 100%; height: 100%; object-fit: contain; padding: 6%; mix-blend-mode: multiply; }
-/* Multiply melts white product backdrops into the paper plate; on night it would darken them. */
-:global(html[data-variant="night"]) .frame img { mix-blend-mode: normal; }
+.frame img { width: 100%; height: 100%; object-fit: contain; padding: 6%; mix-blend-mode: var(--image-blend, normal); }
 .frame__mark {
   max-width: 88%; font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.02em;
   color: var(--fg-muted); text-align: center; overflow-wrap: anywhere;

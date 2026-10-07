@@ -21,6 +21,9 @@ html, html[data-variant="paper"] {
   --accent-lead: var(--p-cobalt); --accent-lead-foreground: var(--p-paper);
   --border: var(--p-paper-border); --border-strong: var(--p-paper-border-strong);
   --link-fg: var(--accent-lead);
+  /* Multiply melts white product backdrops into the paper plate. Night sets it back to normal:
+     multiply on a dark plate would swallow the picture (the scoped :global override never applied). */
+  --image-blend: multiply;
 }
 html[data-variant="night"] {
   color-scheme: dark;
@@ -29,4 +32,5 @@ html[data-variant="night"] {
   --accent-lead: var(--p-orange); --accent-lead-foreground: var(--p-night);
   --border: var(--p-night-border); --border-strong: var(--p-night-border-strong);
   --link-fg: var(--accent-lead);
+  --image-blend: normal;
 }
