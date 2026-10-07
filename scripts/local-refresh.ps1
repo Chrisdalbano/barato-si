@@ -16,7 +16,16 @@ function Step($label, $cmd) {
 }
 "=== $(Get-Date -Format o)" | Out-File -Append -Encoding utf8 $log
 try {
-  Step 'pull' 'git pull --rebase --autostash origin main'
+  # Generated files are committed by this task AND by CI, so a rebase can
+  # conflict on them. The run that is about to happen regenerates them anyway:
+  # keep whichever side and move on.
+  cmd /c 'git pull --rebase --autostash origin main 2>&1' | Out-File -Append -Encoding utf8 $log
+  if ($LASTEXITCODE -ne 0) {
+    cmd /c 'git checkout --theirs -- public data 2>&1' | Out-File -Append -Encoding utf8 $log
+    cmd /c 'git add public data 2>&1' | Out-File -Append -Encoding utf8 $log
+    $env:GIT_EDITOR = 'true'
+    Step 'rebase-continue' 'git rebase --continue'
+  }
   Step 'deals' 'npm.cmd run deals'
   Step 'stage' 'git add public data/classify-cache.json'
   cmd /c 'git diff --cached --quiet' | Out-Null
