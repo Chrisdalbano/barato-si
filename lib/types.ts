@@ -15,7 +15,7 @@ export type DealFlag =
 /** Coarse Spanish category the pipeline assigns. Sources use many vocabularies; this one is ours. */
 export type DealCategory =
   | 'videojuegos' | 'informatica' | 'electronica' | 'hogar' | 'cocina' | 'herramientas'
-  | 'ropa' | 'deporte' | 'juguetes' | 'belleza' | 'alimentacion' | 'software' | 'otros'
+  | 'ropa' | 'deporte' | 'juguetes' | 'belleza' | 'alimentacion' | 'software' | 'servicios' | 'otros'
 
 export interface Deal {
   /** Stable across days for the same offer (hash of canonical URL). */

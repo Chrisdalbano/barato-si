@@ -145,11 +145,12 @@ it('balances games across sources against other offers without losing or duplica
   const games = Array.from({ length: 60 }, (_, i) => deal({ id: `g${i}`, category: 'videojuegos', source: i % 2 ? 'Steam' : 'CheapShark', score: 100 - i }))
   const other = Array.from({ length: 40 }, (_, i) => deal({ id: `o${i}`, score: 50 - i }))
   const result = balanceRanking([...games, ...other])
-  expect(result.slice(0, 30).filter(d => d.category === 'videojuegos')).toHaveLength(15)
-  expect(result.slice(0, 8).filter(d => !d.category)).toHaveLength(4)
+  // Three other offers, then one game, all the way down; games fill in once the other pool is spent.
+  expect(result.slice(0, 32).filter(d => d.category === 'videojuegos')).toHaveLength(8)
+  expect(result.slice(0, 3).every(d => !d.category)).toBe(true)
+  expect(result[3]?.category).toBe('videojuegos')
   expect(new Set(result.map(d => d.id)).size).toBe(100)
-  // Interleaving continues past the top 30: every non-game offer lands in the first 80.
-  expect(result.slice(0, 80).filter(d => !d.category)).toHaveLength(40)
+  expect(result.slice(0, 54).filter(d => !d.category)).toHaveLength(40)
   expect(balanceRanking(games)).toEqual(games)
 })
 it('does not generate Spain-only wording in RSS or discovery text', async () => {

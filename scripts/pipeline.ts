@@ -110,19 +110,20 @@ export async function collect(sources: Source[], read: (source: Source, context?
   } finally { clearTimeout(runTimer) }
 }
 
-// Alternate the best non-game and game offers through the WHOLE list, not just
-// the top 30: with a 400-item cap and 90%-off games being routine, a pure score
-// sort published 385 games and 15 other items (2026-10-06). Interleaving keeps
-// the cap roughly half games, half everything else, which is where price
-// errors live. Shortages fill from the other pool instead of hiding offers.
+// Games are the boring part (owner, 2026-10-07): 90%-off games are routine and
+// price errors live elsewhere. Publish three non-game offers for every game,
+// so the 400-item cap holds about 100 games. Shortages fill from the other
+// pool instead of hiding offers; a games-only list is returned unchanged.
+export const GAMES_EVERY = 4
 export function balanceRanking(ranked: Deal[]): Deal[] {
   const isGame = (d: Deal) => /videojuegos|games/i.test(d.category || '')
   const games = ranked.filter(isGame)
   const other = ranked.filter(d => !isGame(d))
   const out: Deal[] = []
-  for (let i = 0; i < Math.max(games.length, other.length); i++) {
-    if (other[i]) out.push(other[i]!)
-    if (games[i]) out.push(games[i]!)
+  let o = 0, g = 0
+  while (o < other.length || g < games.length) {
+    for (let k = 0; k < GAMES_EVERY - 1 && o < other.length; k++) out.push(other[o++]!)
+    if (g < games.length) out.push(games[g++]!)
   }
   return out
 }

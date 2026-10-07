@@ -1,23 +1,30 @@
 import type { DealCategory } from './types.ts'
 
-export const categories: DealCategory[] = ['videojuegos', 'informatica', 'electronica', 'hogar', 'cocina', 'herramientas', 'ropa', 'deporte', 'juguetes', 'belleza', 'alimentacion', 'software', 'otros']
+export const categories: DealCategory[] = ['videojuegos', 'informatica', 'electronica', 'hogar', 'cocina', 'herramientas', 'ropa', 'deporte', 'juguetes', 'belleza', 'alimentacion', 'software', 'servicios', 'otros']
+
+// Ordered: the first matching rule wins, so specific product words sit above
+// broad ones (a "solar generator" is electronics, a "generator" is a tool; a
+// "kids' tablet" is a toy before it is a tablet). Built from the titles that
+// landed in "otros" on 2026-10-06 (109 of 400), mostly Amazon via Techbargains.
 const rules: [DealCategory, RegExp][] = [
-  ['informatica', /\b(laptop|notebook|computer|computers|RTX|GPU|graphics card|SSD|monitor|router|MacBook|desktop|hard drive)\b/i],
-  ['cocina', /\b(air fryer|blender|cookware|Keurig|knife set|kitchen|coffee maker)\b/i],
-  ['alimentacion', /\b(coffee pods|snacks?|protein|K-cups|groceries|food|gourmet)\b/i],
-  ['herramientas', /\b(drill|saw|tool set|tools|DeWalt|Milwaukee)\b/i],
-  ['electronica', /\b(TV|television|headphones?|earbuds?|speaker|camera|phone|iPhone|tablet|iPad|smartwatch|electronics|OLED|lens)\b/i],
-  ['hogar', /\b(vacuum|mattress|sofa|lamp|bedding|home|garden|furniture)\b/i],
-  ['ropa', /\b(shirt|shoes|jacket|jeans|sneakers|dress|clothing|apparel|pants|socks|activewear)\b/i],
-  ['deporte', /\b(bike|treadmill|dumbbell|golf|sports?|fitness)\b/i],
-  ['juguetes', /\b(LEGO|doll|Nerf|puzzle|toys)\b/i],
-  ['belleza', /\b(shampoo|razor|skincare|perfume|beauty)\b/i],
-  ['software', /\b(Windows|Office|antivirus|VPN|software)\b/i],
+  ['videojuegos', /(Nintendo Switch|PlayStation|PS[45]|Xbox|video game|Steam Deck)/i],
+  ['servicios', /\b(gift ?card|e-?gift|membership|subscription|e-?degree|online course|bundle of courses|lifetime access|digital subscription|magazine|newspaper|streaming|trial)\b/i],
+  ['software', /\b(Windows 1[01]|Microsoft 365|Office 20\d\d|antivirus|VPN|software|license key|Adobe|Norton|McAfee|cloud storage|Parallels|CleanMyMac)\b/i],
+  ['juguetes', /\b(LEGO|dolls?|Barbie|Nerf|puzzles?|toys?|playset|action figures?|Hot Wheels|Funko|board game|card game|plush|Play-?Doh|marble run|Toniebox|Fisher-?Price|Melissa & Doug|Hatchimals|Squishmallows?|Magna-?Tiles|Thames & Kosmos|kids'? (?:tablet|camera|watch|headphones|drawing)|for kids|children'?s)\b/i],
+  ['informatica', /\b(laptops?|notebooks?|Chromebook|MacBook|computers?|desktop|all-in-one|mini PC|gaming PC|RTX|GPU|graphics card|CPU|processor|Ryzen|Core i\d|Core Ultra|motherboard|RAM|DDR\d|SSD|NVMe|HDD|hard drive|external drive|flash drive|micro ?SDX?C|SD card|memory card|monitors?|routers?|mesh wi-?fi|modem|ethernet|network switch|NAS|keyboards?|mouse|mice|trackpad|webcam|docking station|USB hub|printers?|ink cartridge|toner|scanner|case fans?|PWM fans?|power supply|PSU|UPS|surge protector|microphone|signage display|label maker|laptop stand|tablet stand)\b/i],
+  ['electronica', /\b(TVs?|television|headphones?|earbuds?|earphones|speakers?|soundbar|subwoofer|turntable|record player|receiver|cameras?|camcorder|lens|phones?|smartphone|iPhone|Galaxy|Pixel \d|OnePlus|tablets?|iPad|Kindle|e-?readers?|smartwatch|Apple Watch|Garmin|Fitbit|OLED|QLED|projector|AirPods|chargers?|charging|power bank|USB-C|cables?|batteries|battery|LED strip|light strip|smart (?:plug|display|bulb|doorbell|lock|thermostat|garage|speaker|home|wi-?fi)|Echo|Alexa|Nest|Ring|Blink|Arlo|Wyze|Eufy|VR|XR|AR glasses|Quest|headset|hearing aids?|dash ?cam|trackers?|AirTags?|drone|GPS|walkie|radio|flashlights?|headlamp|portable power station|solar generator|EcoFlow|Jackery|Bluetti|Anker|hygrometer|thermometer|sensor|audio|Bluetooth|wireless|e-?bike battery|calculator|digital frame|streaming stick|Fire TV|Roku|Chromecast|Apple TV|controller|gamepad|stylus|Apple Pencil)\b/i],
+  ['herramientas', /\b(drills?|saws?|chainsaw|sander|grinder|wrench|screwdrivers?|tool ?(?:set|kit|box|organizer|chest)|hand tools|power tools?|DeWalt|Milwaukee|Makita|Ryobi|Craftsman|WORX|EGO|Greenworks|SKIL|Bosch|Black\+Decker|pressure washer|air compressor|ladder|workbench|tape measure|multimeter|breaker finder|outlet tester|socket set|pliers|hammer|impact (?:driver|wrench)|leaf blower|string trimmer|edger|hedge trimmer|lawn ?mower|shop vac|welder|generator|nail gun|jump starter|tire inflator|OBD2|car (?:vacuum|jack|cleaning)|tire)\b/i],
+  ['alimentacion', /\b(coffee pods|K-?cups|snacks?|protein (?:bars?|powder|shake)|groceries|grocery|food|gourmet|soda|energy drink|Celsius|drinks?|sparkling water|ramen|noodles?|cereal|candy|chocolate|cookies|chips|beef|chicken|pork|salmon|tea|juice|pet food|dog food|cat food|treats|vitamins?|supplements?|gummies|creatine|electrolytes|Gatorade|Coke|Pepsi|oz \(\d+-Pack\)|\d+-Pack\) \$)\b/i],
+  ['cocina', /\b(air fryer|blender|cookware|pans?|pots?|skillet|Dutch oven|knife|knives|Keurig|Nespresso|coffee|espresso|kettle|toaster|microwave|oven|Instant Pot|pressure cooker|slow cooker|stand mixer|hand mixer|food processor|juicer|kitchen|mugs?|tumblers?|water bottle|Stanley|Yeti|Hydro Flask|cutting board|bakeware|dinnerware|utensils?|rice cooker|waffle|ice maker|griddle|grills?|smoker|Blackstone|Traeger|Pit Boss|Weber|Ninja|Cuisinart|KitchenAid|Vitamix|dish (?:soap|spray|rack)|food storage|lunch box|cooler|refrigerator|freezer|mini fridge|wine)\b/i],
+  ['belleza', /\b(shampoo|conditioner|razors?|shaver|beard trimmer|skincare|serum|moisturizer|sunscreen|perfume|cologne|fragrance|makeup|mascara|lipstick|foundation|beauty|hair ?dryer|straightener|curling|body wash|lotion|deodorant|toothpaste|toothbrush|Sonicare|Oral-B|teeth whitening|nail|red light therapy|hair growth|skin scrubber|pore|facial|massager|heated neck|hand soap|cosmetics|Olay|Neutrogena|CeraVe|Dove|Irish Spring|Gillette)\b/i],
+  ['deporte', /\b(bikes?|bicycle|e-?bike|scooter|treadmill|dumbbells?|kettlebell|weights?|weight bench|yoga|golf|tennis|pickleball|basketball|football|soccer|baseball|fishing|camping|tent|sleeping bag|hiking|fitness|workout|exercise|rower|elliptical|grip strengthener|exoskeleton|massage gun|resistance bands?|hunting|kayak|paddle|skis?|snowboard|helmet|trampoline|punching bag|jump rope|insoles?|running)\b/i],
+  ['ropa', /\b(shirts?|tee|t-shirts?|polos?|shoes|sneakers|boots|sandals|slippers|jackets?|coats?|hoodies?|sweaters?|sweatshirt|jeans|pants|shorts|dress|skirt|leggings|bras?|underwear|boxer briefs?|boxers|briefs|socks|hats?|caps?|beanie|gloves|scarf|belt|sunglasses|clothing|apparel|activewear|sportswear|Nike|adidas|Levi'?s|Under Armour|Columbia|North Face|Calvin Klein|Lacoste|Hanes|Fruit of the Loom|Crocs|Skechers|New Balance|Puma|Reebok|Carhartt|backpack|duffel|luggage|suitcase|tote|handbag|shoulder bag|wallet|watch for)\b/i],
+  ['hogar', /\b(vacuum|robot vac|mattress|pillows?|sofa|couch|chairs?|tables?|desks?|lamps?|lighting|lights?|bedding|sheets|comforter|blanket|towels?|curtains?|rugs?|furniture|storage (?:bin|box|bag)|bins?|organizer|shelf|shelving|cabinet|fans?|tower fan|heater|air purifier|humidifier|dehumidifier|air conditioner|AC unit|cleaner|descaler|deodorizer|soap|detergent|laundry|trash|garbage|umbrella|patio|outdoor|garden|lawn|fertilizer|planter|artificial (?:tree|plant)|fire pit|bath|shower|toilet|home|household|cord cover|hangers?|washing machine|dryer|bottle washer|sterilizer|baby|stroller|crib|car seat|diapers?|wipes|humidor|candles?|frame|decor|mirror|doormat|cushion|smart lock|doorbell|security (?:camera|system)|safe|flashlight|clock|thermostat|books?|DVD|Blu-ray)\b/i],
 ]
 export function categorize(title: string, sourceCategory: string | null, store: string): DealCategory {
-  if (/^(Steam|GOG|Epic(?: Games(?: Store)?)?|CheapShark|IsThereAnyDeal|IndieGala|Fanatical|Humble(?: Store)?|GreenManGaming|Gamesplanet|GameBillet)$/i.test(store) || /videojuegos|video games|PC games/i.test(sourceCategory || '')) return 'videojuegos'
+  if (/^(Steam|GOG|Epic(?: Games(?: Store)?)?|CheapShark|IsThereAnyDeal|IndieGala|Fanatical|Humble(?: Store)?|GreenManGaming|Gamesplanet|GameBillet|WinGameStore|Digitalkeysbox(?:\.com)?|2game|Voidu|DLGamer|Noctre|Dreamgame|AllYouPlay|JoyBuggy|Gamesload)$/i.test(store) || /videojuegos|video games|PC games/i.test(sourceCategory || '')) return 'videojuegos'
   if (categories.includes(sourceCategory as DealCategory)) return sourceCategory as DealCategory
   // Specific product words beat broad publisher labels such as Electronics.
   return rules.find(([, re]) => re.test(title))?.[0]
-    || (categories.includes(sourceCategory as DealCategory) ? sourceCategory as DealCategory : rules.find(([, re]) => re.test(sourceCategory || ''))?.[0]) || 'otros'
+    || rules.find(([, re]) => re.test(sourceCategory || ''))?.[0] || 'otros'
 }

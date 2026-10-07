@@ -44,6 +44,11 @@ it.each([
   ['Alfani shirt', null, "Macy's", 'ropa'], ['Golf balls', null, 'Amazon', 'deporte'],
   ['LEGO set', null, 'Amazon', 'juguetes'], ['Skincare', null, 'Amazon', 'belleza'],
   ['Coffee pods', null, 'Amazon', 'alimentacion'], ['VPN', null, 'Amazon', 'software'],
-  ['Mystery object', null, 'Amazon', 'otros'], ['Office simulator', null, 'Steam', 'videojuegos'],
+  ['Mystery object', null, 'Amazon', 'otros'], ['Unlocked Samsung Galaxy S26 Ultra 256GB Android Smartphone', null, 'Amazon', 'electronica'],
+  ['EcoFlow Delta 3 Portable Solar Generator', null, 'Amazon', 'electronica'], ['PowerSmart 144cc Gas Push Lawn Mower', null, 'Walmart', 'herramientas'],
+  ['Samsonite Weekender Duffel', null, 'Amazon', 'ropa'], ['DoorDash $50 eGift Card', null, 'Amazon', 'servicios'],
+  ['Toniebox 2 Audio Player Disney Bundle', null, 'Amazon', 'juguetes'], ['Breville Barista Express Espresso Machine', null, 'Amazon', 'cocina'],
+  ['Philips Sonicare Electric Toothbrush', null, 'Amazon', 'belleza'], ['Diet Coke 12oz Soda (12-Pack)', null, 'Amazon', 'alimentacion'],
+  ['Sterilite 27-Gallon Storage Bin (6-Pack)', null, 'Walmart', 'hogar'], ['Apple Magic Keyboard with Numeric Keypad', null, 'Amazon', 'informatica'], ['Office simulator', null, 'Steam', 'videojuegos'],
   ['Something', 'Computers & Tablets', 'Best Buy', 'informatica'], ['Something', 'Clothing', 'Target', 'ropa'],
 ])('categorizes %s', (title, category, store, expected) => expect(categorize(title!, category, store!)).toBe(expected))

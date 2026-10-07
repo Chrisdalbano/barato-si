@@ -41,6 +41,7 @@ export const CATEGORY_LABEL: Record<string, string> = {
   belleza: 'Belleza',
   alimentacion: 'Alimentación',
   software: 'Software',
+  servicios: 'Servicios',
   otros: 'Otros',
 }
 export function categoryLabel(value: string): string {
