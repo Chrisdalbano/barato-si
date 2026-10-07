@@ -84,3 +84,15 @@ it('bounds an unresponsive provider with a 45-second timeout', async () => {
     expect(fetcher).toHaveBeenCalledTimes(1)
   } finally { vi.useRealTimers() }
 })
+
+it('applies cached verdicts without a key and says so; never calls a provider', async () => {
+  const fetcher = vi.fn()
+  const d = deal({ id: 'cached', price: 99, listPrice: 1199 })
+  const ai = { product: 'Laptop', category: 'informatica' as const, verdict: 'error' as const, confidence: 0.9, note: 'Parece un error.', model: 'm' }
+  const cache = { cached: { price: 99, date: now.toISOString(), ai }, stale: { price: 50, date: now.toISOString(), ai } }
+  const result = await classify([d, deal({ id: 'stale', price: 60 })], {}, now, cache, fetcher)
+  expect(fetcher).not.toHaveBeenCalled()
+  expect(result.deals[0]?.ai).toEqual(ai)
+  expect(result.deals[1]?.ai).toBeUndefined()
+  expect(result.classifier).toEqual({ model: 'cache', ok: true, classified: 0, cached: 1 })
+})

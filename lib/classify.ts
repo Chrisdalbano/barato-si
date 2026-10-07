@@ -33,7 +33,19 @@ export async function classify(deals: Deal[], env: Record<string, string | undef
     } catch { /* Discard malformed cache records just like malformed provider batches. */ }
   }
   const key = env.LLM_API_KEY
-  if (!key) return { deals, cache: pruned }
+  if (!key) {
+    // No provider here (the CI runner has no key), but verdicts produced elsewhere
+    // (the owner's scheduled run commits data/classify-cache.json) still apply when
+    // the price is unchanged. The outcome says they came from the cache.
+    let cached = 0
+    const reused = deals.map(d => {
+      const saved = pruned[d.id]
+      if (!saved || saved.price !== d.price) return d
+      cached++
+      return { ...d, ai: saved.ai }
+    })
+    return { deals: reused, cache: pruned, ...(cached ? { classifier: { model: 'cache', ok: true, classified: 0, cached } } : {}) }
+  }
   const models = [env.LLM_MODEL || defaultModel, ...(env.LLM_FALLBACK_MODELS ?? fallbackModels).split(',').map(m => m.trim()).filter(Boolean)]
   const status: NonNullable<DealsFile['classifier']> = { model: models[0]!, ok: true, classified: 0, cached: 0 }
   const result = deals.map(d => ({ ...d }))
