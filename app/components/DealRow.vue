@@ -15,18 +15,25 @@ defineProps<{ deal: DealView; rank: number; now: number; hideFlag?: boolean }>()
       <h3 class="row__title">
         <a :href="linkFor(deal)" rel="noopener" target="_blank">{{ deal.title }}</a>
       </h3>
-      <DealMeta :deal="deal" :now="now" />
+      <DealMeta :deal="deal" :now="now" :hide-source="!deal.direct" />
     </div>
     <div class="row__side">
       <DealPrice :price="deal.price" :list-price="deal.listPrice" :currency="deal.currency" :discount-pct="deal.discountPct" />
-      <a class="row__go" :href="linkFor(deal)" rel="noopener" target="_blank">
-        Ver en {{ deal.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(deal)) }})</span> <span aria-hidden="true">&rarr;</span>
-      </a>
+      <div class="row__action">
+        <a class="row__go" :href="linkFor(deal)" rel="noopener" target="_blank">
+          Ver en {{ deal.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(deal)) }})</span> <span aria-hidden="true">&rarr;</span>
+        </a>
+        <span v-if="deal.direct" class="row__route">directo</span>
+        <span v-else class="row__route">vía <a :href="deal.sourceUrl" rel="noopener" target="_blank">{{ sourceName(deal.source) }}</a></span>
+      </div>
     </div>
   </article>
 </template>
 
 <style scoped>
+.row__action { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; min-width: 0; overflow-wrap: anywhere; }
+.row__route { color: var(--fg-secondary); font-size: 0.75rem; }
+.row__route a { color: inherit; text-underline-offset: 2px; }
 .row {
   display: grid; grid-template-columns: 3.25rem 6rem minmax(0, 1fr) minmax(11rem, auto);
   gap: 8px 24px; padding: 22px 0; border-top: 1px solid var(--border);

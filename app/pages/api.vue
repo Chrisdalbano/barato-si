@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'API · barato.si',
-  description: 'API JSON y RSS gratis con las mayores rebajas y los posibles errores de precio del día. Sin clave. Se actualiza a diario sobre las 11:00 UTC.',
+  description: 'API JSON y RSS gratis con las mayores rebajas y los posibles errores de precio del día. Sin clave. Se actualiza cada tres horas.',
   ogTitle: 'API · barato.si',
   ogDescription: 'Las rebajas del día en JSON y RSS. Gratis, sin clave, archivos estáticos.',
   ogUrl: `${SITE}/api`,
@@ -32,7 +32,7 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
         </tbody>
       </table>
       <p class="doc__note">
-        Actualización: diaria, sobre las 11:00 UTC (GitHub puede retrasarla un rato). El campo
+        Actualización: cada tres horas (GitHub puede retrasarla un rato). El campo
         <code>generatedAt</code> dice cuándo se generó cada archivo.
       </p>
     </section>

@@ -5,7 +5,7 @@
       <h2 id="api-title" class="teaser__title">Los mismos datos, en JSON.</h2>
       <p>
         Todo lo que ves aquí sale de un archivo estático que cualquiera puede leer. Sin clave, sin registro.
-        Se regenera una vez al día, sobre las 11:00 UTC.
+        Se regenera cada tres horas.
       </p>
       <ul class="teaser__eps">
         <li v-for="e in ENDPOINTS.slice(0, 4)" :key="e.path"><code>{{ e.path }}</code></li>

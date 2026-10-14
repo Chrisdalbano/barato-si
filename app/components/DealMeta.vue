@@ -3,7 +3,7 @@ import type { DealView } from '~/composables/useDeals'
 
 // Publisher facts (store, time, attribution) and barato.si's own analysis,
 // kept visibly apart: the reasons and score are ours, not DealNews text.
-defineProps<{ deal: DealView; now: number; hideAnalysis?: boolean }>()
+defineProps<{ deal: DealView; now: number; hideAnalysis?: boolean; hideSource?: boolean }>()
 </script>
 
 <template>
@@ -12,8 +12,8 @@ defineProps<{ deal: DealView; now: number; hideAnalysis?: boolean }>()
       <span class="meta__store">{{ deal.store }}</span>
       <span aria-hidden="true">&middot;</span>
       <time :datetime="deal.publishedAt">{{ formatAgo(deal.publishedAt, now) }}</time>
-      <span aria-hidden="true">&middot;</span>
-      <span>vía <a :href="deal.sourceUrl" rel="noopener" target="_blank">{{ sourceName(deal.source) }}</a></span>
+      <span v-if="!hideSource" aria-hidden="true">&middot;</span>
+      <span v-if="!hideSource">vía <a :href="deal.sourceUrl" rel="noopener" target="_blank">{{ sourceName(deal.source) }}</a></span>
     </p>
     <div v-if="!hideAnalysis" class="meta__analysis">
       <span class="meta__label">barato.si</span>

@@ -110,16 +110,21 @@ export async function collect(sources: Source[], read: (source: Source, context?
   } finally { clearTimeout(runTimer) }
 }
 
-// Games are the boring part (owner, 2026-10-07): 90%-off games are routine and
-// price errors live elsewhere. Publish three non-game offers for every game,
-// so the 400-item cap holds about 100 games. Shortages fill from the other
-// pool instead of hiding offers; a games-only list is returned unchanged.
-export const GAMES_EVERY = 4
+// The editorial order of deals.json (owner, 2026-10-07 and 2026-10-14): the
+// hunt for price errors comes first, games come last. Candidates at
+// errorScore >= ERROR_CANDIDATE lead, strongest first, whatever their category
+// (games cap at 15, so in practice none qualify). Then seven non-game offers
+// for every game, so the 400-item cap holds about 50 games. Shortages fill from
+// the other pool instead of hiding offers; a games-only list is returned unchanged.
+export const ERROR_CANDIDATE = 40
+export const GAMES_EVERY = 8
 export function balanceRanking(ranked: Deal[]): Deal[] {
   const isGame = (d: Deal) => /videojuegos|games/i.test(d.category || '')
-  const games = ranked.filter(isGame)
-  const other = ranked.filter(d => !isGame(d))
-  const out: Deal[] = []
+  const candidates = ranked.filter(d => d.errorScore >= ERROR_CANDIDATE).sort((a, b) => b.errorScore - a.errorScore || b.score - a.score)
+  const rest = ranked.filter(d => d.errorScore < ERROR_CANDIDATE)
+  const games = rest.filter(isGame)
+  const other = rest.filter(d => !isGame(d))
+  const out: Deal[] = [...candidates]
   let o = 0, g = 0
   while (o < other.length || g < games.length) {
     for (let k = 0; k < GAMES_EVERY - 1 && o < other.length; k++) out.push(other[o++]!)

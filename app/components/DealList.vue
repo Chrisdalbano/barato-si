@@ -2,10 +2,10 @@
 import { AnimatePresence, MotionConfig, motion } from 'motion-v'
 import type { DealView } from '~/composables/useDeals'
 
-const props = defineProps<{ deals: DealView[]; generatedAt: string; leadId?: string; shownAbove?: string[] }>()
+const props = defineProps<{ deals: DealView[]; generatedAt: string; leadId?: string; shownAbove?: string[]; hideGames?: boolean }>()
 
 const deals = computed(() => props.deals)
-const f = useDealFilters(deals)
+const f = useDealFilters(deals, computed(() => !!props.hideGames))
 
 // Rank is the deal's place in the day's file order (the editorial ranking), whatever the current sort.
 const rank = computed(() => new Map(props.deals.map((d, i) => [d.id, i + 1])))
@@ -19,7 +19,7 @@ const shown = computed(() => (f.active.value || !above.value.size ? f.results.va
 // starts again from the first chunk.
 const CHUNK = 60
 const limit = ref(CHUNK)
-watch(() => [f.flag.value, f.store.value, f.category.value, f.min.value, f.text.value, f.direct.value, f.sort.value, f.view.value], () => { limit.value = CHUNK })
+watch(() => [f.flag.value, f.store.value, f.category.value, f.min.value, f.max.value, f.fresh.value, f.games.value, f.text.value, f.direct.value, f.sort.value, f.view.value], () => { limit.value = CHUNK })
 const visible = computed(() => shown.value.slice(0, limit.value))
 const remaining = computed(() => Math.max(0, shown.value.length - limit.value))
 
@@ -37,6 +37,8 @@ watch(search, (v) => {
   timer = setTimeout(() => f.set({ q: v.trim() || null }), 220)
 })
 
+onUnmounted(() => clearTimeout(timer))
+
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 </script>
 
@@ -45,22 +47,26 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
     <div class="list__head">
       <h2 id="list-title" class="list__title">Todas las ofertas</h2>
       <p class="list__count" aria-live="polite">
-        {{ f.results.value.length }} de {{ deals.length }}
+        {{ visible.length }} de {{ shown.length }}
       </p>
     </div>
 
     <form class="filters" role="search" @submit.prevent>
       <!-- Only filters with something behind them: no zero options, no one-item lists. -->
-      <fieldset v-if="f.flags.value.length" class="filters__group">
+      <fieldset v-if="f.flags.value.length || (hideGames && f.gamesCount.value) || f.flag.value" class="filters__group">
         <legend>Tipo</legend>
         <button type="button" class="seg" :aria-pressed="!f.flag.value" @click="f.set({ tipo: null })">Todas</button>
         <button
           v-for="o in f.flags.value" :key="o.flag" type="button" class="seg"
           :aria-pressed="f.flag.value === o.flag" @click="f.set({ tipo: o.query })"
         >{{ o.label }} <span class="seg__n">{{ o.count }}</span></button>
+        <button v-if="hideGames && f.gamesCount.value" type="button" class="seg"
+          :aria-pressed="f.games.value || f.category.value === 'videojuegos'"
+          @click="f.set({ juegos: f.games.value || f.category.value === 'videojuegos' ? null : '1', ...(f.category.value === 'videojuegos' ? { cat: null } : {}) })"
+        >Videojuegos <span class="seg__n">{{ f.gamesCount.value }}</span></button>
       </fieldset>
 
-      <label v-if="f.stores.value.length > 1" class="filters__field">
+      <label v-if="f.stores.value.length > 1 || f.store.value" class="filters__field">
         <span>Tienda</span>
         <select :value="f.store.value" @change="f.set({ tienda: ($event.target as HTMLSelectElement).value || null })">
           <option value="">Todas ({{ f.stores.value.length }})</option>
@@ -68,7 +74,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         </select>
       </label>
 
-      <label v-if="f.categories.value.length > 1" class="filters__field">
+      <label v-if="f.categories.value.length > 1 || f.category.value" class="filters__field">
         <span>Categoría</span>
         <select :value="f.category.value" @change="f.set({ cat: ($event.target as HTMLSelectElement).value || null })">
           <option value="">Todas ({{ f.categories.value.length }})</option>
@@ -76,12 +82,26 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         </select>
       </label>
 
-      <label v-if="f.mins.value.length > 1" class="filters__field">
+      <label v-if="f.mins.value.length > 1 || f.min.value" class="filters__field">
         <span>Descuento mínimo</span>
         <select :value="String(f.min.value)" @change="f.set({ min: Number(($event.target as HTMLSelectElement).value) || null })">
           <option v-for="m in f.mins.value" :key="m" :value="String(m)">{{ m ? `${m} %` : 'Cualquiera' }}</option>
         </select>
       </label>
+
+      <label v-if="f.maxes.value.length || f.max.value !== null" class="filters__field">
+        <span>Precio máximo</span>
+        <select :value="f.max.value === null ? '' : String(f.max.value)" aria-describedby="price-scope" @change="f.set({ max: ($event.target as HTMLSelectElement).value || null })">
+          <option value="">Sin límite</option>
+          <option v-if="f.max.value !== null && !f.maxes.value.includes(f.max.value)" :value="String(f.max.value)">{{ f.max.value }}</option>
+          <option v-for="m in f.maxes.value" :key="m" :value="String(m)">{{ m }}</option>
+        </select>
+        <small id="price-scope">USD, EUR y GBP, sin conversión. Otras monedas sin límite.</small>
+      </label>
+      <fieldset v-if="f.showFresh.value || f.fresh.value" class="filters__group">
+        <legend>Antigüedad</legend>
+        <button type="button" class="seg" :aria-pressed="f.fresh.value" @click="f.set({ nuevas: f.fresh.value ? null : '1' })">Nuevas hoy <span class="seg__n">{{ f.freshCount.value }}</span></button>
+      </fieldset>
 
       <label class="filters__field filters__search">
         <span>Buscar</span>
@@ -89,7 +109,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
       </label>
 
       <!-- Shown only when it narrows the list: some deals link straight to the store, not all. -->
-      <fieldset v-if="f.directCount.value && f.directCount.value < deals.length" class="filters__group">
+      <fieldset v-if="f.showDirect.value || f.direct.value" class="filters__group">
         <legend>Enlace</legend>
         <button
           type="button" class="seg" :aria-pressed="f.direct.value"
@@ -110,6 +130,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         <button type="button" class="seg" :aria-pressed="f.view.value === 'cuadricula'" @click="f.set({ vista: null })">Cuadrícula</button>
         <button type="button" class="seg" :aria-pressed="f.view.value === 'lista'" @click="f.set({ vista: 'lista' })">Lista</button>
       </fieldset>
+      <button v-if="f.active.value" type="button" class="seg" @click="f.reset()">Quitar filtros</button>
     </form>
 
     <DealGrid v-if="f.view.value === 'cuadricula'" :deals="visible" :ranks="rank" :now="now" />
@@ -141,7 +162,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
         <p>Nada con estos filtros.</p>
         <button type="button" class="seg" @click="f.reset()">Quitar filtros</button>
       </template>
-      <p v-else-if="deals.length">Todo lo de este día ya está arriba.</p>
+      <p v-else-if="deals.length">No hay más ofertas con esta selección.</p>
       <p v-else>Ese día no hubo nada barato de verdad.</p>
     </div>
   </section>
@@ -158,7 +179,8 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 .filters legend, .filters__field > span { display: block; margin-bottom: 6px; padding: 0; font-size: 0.75rem; color: var(--fg-secondary); }
 .filters__group { display: flex; flex-wrap: wrap; }
 .filters__group legend { width: 100%; }
-.filters__field { display: grid; }
+.filters__field { display: grid; min-width: 0; max-width: 100%; }
+.filters__field small { max-width: 16rem; margin-top: 6px; color: var(--fg-secondary); font-size: 0.75rem; }
 .filters__search { flex: 1 1 14rem; }
 select, input[type="search"] {
   height: 38px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 0;

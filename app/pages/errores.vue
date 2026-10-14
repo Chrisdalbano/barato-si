@@ -12,7 +12,7 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/errores` }] })
 const data = await useErrors()
 const all = computed(() => data.value?.deals ?? [])
 
-// Filters live in the query string (?min=40|55|70&cat=), read after mount so
+// Filters live in the query string (?min=40|55|70&cat=&tienda=), read after mount so
 // the prerendered HTML is always the default view.
 const route = useRoute()
 const router = useRouter()
@@ -24,6 +24,7 @@ const min = computed<number>(() => {
   const n = Number(one(query.value.min))
   return (ERROR_LEVELS as readonly number[]).includes(n) ? n : ERROR_LEVELS[0]
 })
+const store = computed(() => one(query.value.tienda))
 const category = computed(() => one(query.value.cat))
 
 function set(patch: Record<string, string | number | null>) {
@@ -40,9 +41,10 @@ function set(patch: Record<string, string | number | null>) {
 const levels = computed(() => ERROR_LEVELS
   .map(l => ({ level: l as number, count: all.value.filter(d => d.errorScore >= l).length }))
   .filter(o => o.count))
-const categories = computed(() => tally(all.value.filter(d => d.errorScore >= min.value).map(d => d.category)))
-const shown = computed(() => all.value.filter(d => d.errorScore >= min.value && (!category.value || d.category === category.value)))
-const filtered = computed(() => min.value !== ERROR_LEVELS[0] || !!category.value)
+const categories = computed(() => tally(all.value.filter(d => d.errorScore >= min.value && (!store.value || d.store === store.value)).map(d => d.category)))
+const stores = computed(() => tally(all.value.filter(d => d.errorScore >= min.value && (!category.value || d.category === category.value)).map(d => d.store)))
+const shown = computed(() => all.value.filter(d => d.errorScore >= min.value && (!category.value || d.category === category.value) && (!store.value || d.store === store.value)))
+const filtered = computed(() => min.value !== ERROR_LEVELS[0] || !!category.value || !!store.value)
 </script>
 
 <template>
@@ -54,6 +56,7 @@ const filtered = computed(() => min.value !== ERROR_LEVELS[0] || !!category.valu
         Los precios de hoy que parecen un fallo de la tienda, de más a menos sospechoso, con las señales que lo sugieren.
         Es una suposición automática: la tienda puede corregir el precio o no respetarlo.
       </p>
+      <p class="hunt__refresh">El índice se actualiza cada tres horas.</p>
       <p v-if="data" class="hunt__strip">
         <time :datetime="data.date">{{ formatDay(data.date) }}</time>
         <span v-if="all.length">{{ plural(all.length, 'precio sospechoso', 'precios sospechosos') }}</span>
@@ -71,11 +74,18 @@ const filtered = computed(() => min.value !== ERROR_LEVELS[0] || !!category.valu
             :aria-pressed="min === o.level" @click="set({ min: o.level })"
           >{{ o.level }} <span class="seg__n">{{ o.count }}</span></button>
         </fieldset>
-        <label v-if="categories.length > 1" class="hunt__field">
+        <label v-if="categories.length > 1 || category" class="hunt__field">
           <span>Categoría</span>
           <select :value="category" @change="set({ cat: ($event.target as HTMLSelectElement).value || null })">
             <option value="">Todas ({{ categories.length }})</option>
             <option v-for="[name, n] in categories" :key="name" :value="name">{{ categoryLabel(name) }} ({{ n }})</option>
+          </select>
+        </label>
+        <label v-if="stores.length > 1 || store" class="hunt__field">
+          <span>Tienda</span>
+          <select :value="store" @change="set({ tienda: ($event.target as HTMLSelectElement).value || null })">
+            <option value="">Todas ({{ stores.length }})</option>
+            <option v-for="[name, n] in stores" :key="name" :value="name">{{ name }} ({{ n }})</option>
           </select>
         </label>
         <p class="hunt__count" aria-live="polite">{{ shown.length }} de {{ all.length }}</p>
@@ -90,7 +100,7 @@ const filtered = computed(() => min.value !== ERROR_LEVELS[0] || !!category.valu
       </div>
       <div v-if="!shown.length" class="hunt__empty">
         <p>Nada con estos filtros.</p>
-        <button v-if="filtered" type="button" class="seg" @click="set({ min: null, cat: null })">Quitar filtros</button>
+        <button v-if="filtered" type="button" class="seg" @click="set({ min: null, cat: null, tienda: null })">Quitar filtros</button>
       </div>
     </section>
 
@@ -126,9 +136,10 @@ const filtered = computed(() => min.value !== ERROR_LEVELS[0] || !!category.valu
 .hunt__filters legend, .hunt__field > span { display: block; margin-bottom: 6px; padding: 0; font-size: 0.75rem; color: var(--fg-secondary); }
 .hunt__group { display: flex; flex-wrap: wrap; }
 .hunt__group legend { width: 100%; }
-.hunt__field { display: grid; }
+.hunt__field { display: grid; min-width: 0; max-width: 100%; }
+.hunt__refresh { color: var(--fg-secondary); font-size: 0.875rem; }
 .hunt__field select {
-  height: 38px; padding: 0 28px 0 10px; max-width: 16rem; border: 1px solid var(--border-strong); border-radius: 0;
+  min-width: 0; width: 100%; height: 38px; padding: 0 28px 0 10px; max-width: 16rem; border: 1px solid var(--border-strong); border-radius: 0;
   background: var(--bg-canvas); color: var(--fg-primary); font: inherit; font-size: 0.9375rem;
 }
 .hunt__count { margin: 0 0 0 auto; font-family: var(--font-mono); font-size: 0.875rem; color: var(--fg-secondary); font-variant-numeric: tabular-nums; }

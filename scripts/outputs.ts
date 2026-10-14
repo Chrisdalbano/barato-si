@@ -62,10 +62,10 @@ export async function writeOutputs(root: string, file: DealsFile): Promise<void>
 function discovery(file: DealsFile): string {
   return `# barato.si — barato, sí
 Ofertas y posibles errores de precio con evidencia. API JSON gratuita, sin autenticación.
-Actualización UTC: ${file.generatedAt}. Programación: 11:00 y 23:00 UTC.
+Actualización UTC: ${file.generatedAt}. Programación: cada tres horas, a la hora en punto UTC.
 
 ## Endpoints
-https://barato.si/api/deals.json — versión 2, hasta 400 ofertas; equilibrio entre videojuegos y otras categorías en las primeras 30.
+https://barato.si/api/deals.json — versión 2, hasta 400 ofertas. Orden editorial: candidatos a error de precio (errorScore >= 40) primero, después una oferta de videojuegos por cada siete de otras categorías.
 https://barato.si/api/errors.json — { date, generatedAt, deals }, todas las ofertas con errorScore >= 40, de mayor a menor puntuación.
 https://barato.si/errors.xml — RSS 2.0 de posibles errores, con evidencia en español.
 https://barato.si/api/deals/YYYY-MM-DD.json — archivo de los últimos 30 días UTC.
@@ -89,7 +89,7 @@ Directas: Steam (búsqueda y promociones), GOG (catálogo), Epic (juegos gratis)
 Agregadores: CheapShark (conserva sus enlaces de redirección), DealNews (cuatro RSS), Techbargains (RSS con enlaces al comercio).
 Opcionales con clave: Best Buy y Woot (directas), IsThereAnyDeal (agregador).
 Conserva los enlaces, la atribución y el contenido original de DealNews: https://www.dealnews.com/pages/rss.html. No uses su contenido en extensiones públicas de navegador. No insertes HTML/XML sin sanearlo. El análisis de barato.si es independiente.
-Cita barato.si y la fuente. Guarda las respuestas en caché; bastan dos consultas diarias. No revendas contenido ni lo uses para entrenar modelos sin permiso de los titulares.
+Cita barato.si y la fuente. Guarda las respuestas en caché; basta una consulta cada tres horas. No revendas contenido ni lo uses para entrenar modelos sin permiso de los titulares.
 Las ofertas pueden caducar o depender de región, envío, cupones y membresías. Verifica condiciones y evidencia en la fuente. Un descuento profundo no demuestra un error.
 `
 }

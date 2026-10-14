@@ -230,3 +230,29 @@ Not patched. These are notes only.
 
 - Night variant with images (multiply is switched off there; not looked at).
 - The real `errors.json` with real entries (none today); the fixture covers the shape.
+
+
+## 2026-10-14: games aside, smarter filters
+
+### What changed
+
+- Home passes hideGames to DealList. The default list excludes videojuegos before pagination, independently of file order. Lead and error section remain unchanged; archive lists retain their previous default. The Videojuegos N button includes games through ?juegos=1; explicit cat=videojuegos also includes them. Counts now mean rendered cards out of matching list entries, after removing entries already shown above in the default view.
+- Pure app/utils/filters.ts owns query parsing, filtering, sorting and facet derivation. useDealFilters retains reactive URL wiring and the after-mount guard. Default sorting preserves file order; readable and legacy tipo links still work.
+- max= is an inclusive ceiling. Suggested buckets (25/50/100/250/500/1000) require a supported-currency offer below and above the limit. USD/EUR/GBP are compared in their own units; other currencies remain visible. The control explains this. Zero is a valid shared ceiling; malformed, negative and infinite values are ignored.
+- nuevas=1 means no history. Price, freshness, direct-link, flag and minimum-discount options appear only when they narrow the applicable set. Facets respect other selections and ignore their own selection. Active controls remain available to clear; reset clears juegos/max/nuevas too. Pagination resets for the new keys. tienda/cat/min/q/orden/directas/vista remain shareable.
+- DealCard and DealRow show directo beside direct actions, or a linked vía <source> beside indirect actions. DealMeta suppresses the moved credit, keeping one attribution per card. Hostnames remain screen-reader text. No new remote icons or network calls.
+- /errores adds tienda alongside category and suspicion level; store/category counts respect one another. A three-hour refresh note follows its lede. Home empty state, API copy and ApiTeaser also say every three hours.
+- Existing scoped styles and tokens retained; filter fields shrink and action markers wrap. Edited files use CRLF. No pipeline, contract, dependency or generated-data source files were edited; no commit was made.
+
+### Verified
+
+- npm test: 13 files, 218 tests passed (exit 0), including 8 new UI filter tests. The first sandbox attempt failed before tests because esbuild could not read ancestor directories; the permitted elevated retry passed.
+- npx nuxt typecheck: exit 0. Additional npx vue-tsc --noEmit -p .nuxt/tsconfig.app.json: exit 0. npm run typecheck:lib: exit 0.
+- npx nuxt generate: exit 0; 10 routes prerendered, no EBUSY. Warnings concern Nuxt external cache-driver resolution and unused h3 imports.
+- Read .output/public/index.html and mapped each card rank back to the input deal: 60 cards, zero videojuegos. Games chip: Videojuegos 100; count: 60 de 299 (lead excluded). JSON-LD parses and retains WebSite plus ItemList with 10 offers. No itemXml or descriptionHtml in home HTML.
+- rg search for 11:00, 23:00 and dos veces al día in app: no matches.
+
+### Not verified
+
+- Browser interaction, live hydration and phone-width overflow measurement: verification was attempted, but the browser tool reports no available browsers. Responsive wrapping was reviewed in source only.
+- Live /errores store/category interaction with real candidates, animations, and the concurrently revised pipeline output. Tests use synthetic deals and the build uses the current checked-in data.

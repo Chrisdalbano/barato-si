@@ -3,7 +3,7 @@ import type { DealView } from '~/composables/useDeals'
 
 // One cell of the review grid: picture, flag line, title, price, then where it
 // is sold and the way out. The primary link is the store; the source keeps its
-// "vía" credit in the meta line.
+// linked credit once: beside indirect actions, otherwise in the meta line.
 defineProps<{ deal: DealView; rank: number; now: number }>()
 </script>
 
@@ -25,16 +25,23 @@ defineProps<{ deal: DealView; rank: number; now: number }>()
         :price="deal.price" :list-price="deal.listPrice" :currency="deal.currency" :discount-pct="deal.discountPct"
       />
       <div class="card__foot">
-        <DealMeta :deal="deal" :now="now" hide-analysis />
-        <a class="card__go" :href="linkFor(deal)" rel="noopener" target="_blank">
-          Ver en {{ deal.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(deal)) }})</span> <span aria-hidden="true">&rarr;</span>
-        </a>
+        <DealMeta :deal="deal" :now="now" :hide-source="!deal.direct" hide-analysis />
+        <div class="card__action">
+          <a class="card__go" :href="linkFor(deal)" rel="noopener" target="_blank">
+            Ver en {{ deal.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(deal)) }})</span> <span aria-hidden="true">&rarr;</span>
+          </a>
+          <span class="card__route" v-if="deal.direct">directo</span>
+          <span class="card__route" v-else>vía <a :href="deal.sourceUrl" rel="noopener" target="_blank">{{ sourceName(deal.source) }}</a></span>
+        </div>
       </div>
     </div>
   </article>
 </template>
 
 <style scoped>
+.card__action { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; min-width: 0; overflow-wrap: anywhere; }
+.card__route { color: var(--fg-secondary); font-size: 0.75rem; }
+.card__route a { color: inherit; text-underline-offset: 2px; }
 .card { display: grid; grid-template-rows: auto 1fr; height: 100%; }
 .card__pic { display: block; }
 .card__body { display: grid; grid-template-rows: auto auto auto 1fr; gap: 10px; padding: 14px 16px 18px; min-width: 0; }

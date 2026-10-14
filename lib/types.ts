@@ -134,8 +134,9 @@ export interface DealsFile {
   /** Per-source fetch outcome, so a dead source is visible, not silent. */
   sources: SourceOutcome[]
   /**
-   * Ordered: a balanced top 30 (non-game / game alternating), then descending score.
-   * Up to 400 deals. The UI does its own sorting/filtering; the order here is the editorial default.
+   * Editorial order (scripts/pipeline.ts balanceRanking): price-error candidates
+   * (errorScore >= 40) first, strongest first; then score order with one game for
+   * every seven non-game offers. Up to 400 deals. The UI does its own sorting/filtering.
    */
   deals: Deal[]
   /**

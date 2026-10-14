@@ -77,13 +77,13 @@ useHead(() => {
       <ErrorWatch v-if="errors.length" :deals="errors" :total="watch6.total" :suspects="watch6.suspects" />
       <DealList
         v-if="day.deals.length" :deals="day.deals" :generated-at="day.generatedAt"
-        :lead-id="lead?.id" :shown-above="errors.map(d => d.id)"
+        hide-games :lead-id="lead?.id" :shown-above="errors.map(d => d.id)"
       />
       <section v-else class="calm">
         <p class="calm__big">Hoy, nada barato de verdad.</p>
         <p>
           Ninguna oferta pasó el filtro, o las fuentes no respondieron. No rellenamos el hueco con ofertas viejas.
-          Vuelve mañana después de las 11:00 UTC, o mira el <NuxtLink to="/archivo">archivo</NuxtLink>.
+          El índice se actualiza cada tres horas. Mira también el <NuxtLink to="/archivo">archivo</NuxtLink>.
         </p>
       </section>
     </template>

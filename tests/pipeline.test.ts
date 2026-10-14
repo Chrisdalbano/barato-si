@@ -145,13 +145,28 @@ it('balances games across sources against other offers without losing or duplica
   const games = Array.from({ length: 60 }, (_, i) => deal({ id: `g${i}`, category: 'videojuegos', source: i % 2 ? 'Steam' : 'CheapShark', score: 100 - i }))
   const other = Array.from({ length: 40 }, (_, i) => deal({ id: `o${i}`, score: 50 - i }))
   const result = balanceRanking([...games, ...other])
-  // Three other offers, then one game, all the way down; games fill in once the other pool is spent.
-  expect(result.slice(0, 32).filter(d => d.category === 'videojuegos')).toHaveLength(8)
-  expect(result.slice(0, 3).every(d => !d.category)).toBe(true)
-  expect(result[3]?.category).toBe('videojuegos')
+  // Seven other offers, then one game, all the way down; games fill in once the other pool is spent.
+  expect(result.slice(0, 32).filter(d => d.category === 'videojuegos')).toHaveLength(4)
+  expect(result.slice(0, 7).every(d => !d.category)).toBe(true)
+  expect(result[7]?.category).toBe('videojuegos')
   expect(new Set(result.map(d => d.id)).size).toBe(100)
-  expect(result.slice(0, 54).filter(d => !d.category)).toHaveLength(40)
+  expect(result.slice(0, 45).filter(d => !d.category)).toHaveLength(40)
+  expect(result.slice(45).every(d => d.category === 'videojuegos')).toBe(true)
   expect(balanceRanking(games)).toEqual(games)
+})
+it('leads with price-error candidates, strongest first, before any balancing', () => {
+  const games = Array.from({ length: 10 }, (_, i) => deal({ id: `g${i}`, category: 'videojuegos', score: 100 - i }))
+  const other = Array.from({ length: 10 }, (_, i) => deal({ id: `o${i}`, score: 90 - i }))
+  const weak = deal({ id: 'weak', score: 10, errorScore: 45, category: 'hogar' })
+  const strong = deal({ id: 'strong', score: 5, errorScore: 80, category: 'electronica' })
+  const result = balanceRanking([...games, ...other, weak, strong])
+  expect(result.slice(0, 2).map(d => d.id)).toEqual(['strong', 'weak'])
+  expect(result.slice(2, 9).every(d => !d.category)).toBe(true)
+  expect(result[9]?.category).toBe('videojuegos')
+  expect(result).toHaveLength(22)
+  // A 39 is not a candidate and keeps its place in the balanced order.
+  const near = deal({ id: 'near', score: 1, errorScore: 39 })
+  expect(balanceRanking([...other, near]).at(-1)?.id).toBe('near')
 })
 it('does not generate Spain-only wording in RSS or discovery text', async () => {
   const root = await mkdtemp(join(tmpdir(), 'barato-wording-'))
