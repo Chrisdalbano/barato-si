@@ -3,8 +3,9 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 11 * * *'
-    - cron: '0 23 * * *'
+    # Every three hours. Price errors are corrected within hours, so a twice-a-day
+    # index missed most of them. The owner's PC also pushes at 06:35/18:35 local.
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -21,15 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: npm
-      - run: rm -f package-lock.json && npm install --no-audit --no-fund  # lockfile is generated on Windows and lacks Linux native bindings
+      # The committed lockfile is the only resolution CI performs. It is made on
+      # Windows, so scripts/lockfile-platforms.mjs adds the Linux bindings npm
+      # leaves out; this check fails early with instructions when it was skipped.
+      - run: node scripts/lockfile-platforms.mjs --check
+      - run: npm ci --no-audit --no-fund
       - run: npm run deals
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
@@ -47,7 +52,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/ public/api public/errors.xml public/feed.xml public/llms.txt public/robots.txt public/sitemap.xml
           if ! git diff --cached --quiet; then
-            git commit -m 'chore: refresh daily deals [skip ci]'
+            git commit -m 'chore: refresh deals [skip ci]'
             git push origin HEAD:main
           fi
       - uses: actions/upload-pages-artifact@v3
