@@ -1,6 +1,6 @@
 # barato.si — barato, sí
 Ofertas y posibles errores de precio con evidencia. API JSON gratuita, sin autenticación.
-Actualización UTC: 2026-10-17T22:59:52.609Z. Programación: cada tres horas, a la hora en punto UTC.
+Actualización UTC: 2026-10-18T04:14:51.057Z. Programación: cada tres horas, a la hora en punto UTC.
 
 ## Endpoints
 https://barato.si/api/deals.json — versión 2, hasta 400 ofertas. Orden editorial: candidatos a error de precio (errorScore >= 40) primero, después una oferta de videojuegos por cada siete de otras categorías.
