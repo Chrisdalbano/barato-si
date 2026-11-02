@@ -256,3 +256,63 @@ Not patched. These are notes only.
 
 - Browser interaction, live hydration and phone-width overflow measurement: verification was attempted, but the browser tool reports no available browsers. Responsive wrapping was reviewed in source only.
 - Live /errores store/category interaction with real candidates, animations, and the concurrently revised pipeline output. Tests use synthetic deals and the build uses the current checked-in data.
+
+## 2026-11-02: v3 front end (evidence first, serious filtering, table view)
+
+The owner read the site as unserious. The home page now leads with price evidence, the default list is direct links with games off, and the deal list is a filterable table. Design contract in `docs/V3-DESIGN.md`.
+
+### What changed
+
+- **Removed:** `LeadDeal`, `DealRow`, `DealMeta`, `DealPrice` (and its count-down), `ErrorCard`, `ErrorWatch`, `DealList`. Nothing in `app/` imports `motion-v` any more; it is still in `package.json` for the operator to drop.
+- **`toView()`** stays the one place for defaults. `normalizeReference()` in `utils/deal.ts` gives a v1/v2 row with a list price a `list` reference, because that is what a list price is. No list price means no reference. An unknown `kind` counts as the weakest. `direct` comes from the file when present, else the old heuristic. `normalizeGate()` drops a malformed gate.
+- **Evidence is drawn three ways**, so it survives without colour: the row's left rule (3px solid, 1px solid, 1px dashed), the reference's underline (thick accent, thin, dashed and muted), the depth figure's weight (bold accent, semibold, regular muted). The classes are global in `main.css`: `ref--*`, `evi--*`, `depth--*`.
+- **Strength tiers:** `fuerte` = ledger, cross-store. `media` = curated, source-previous. `debil` = list. `ninguna` = no reference. `byEvidence()` sorts by tier, then `errorScore`, so a seller's claim at 69 never sits above an observed price at 45.
+- **Fixed wording:** a `list` reference always reads "Precio de lista del vendedor, sin verificar", whatever the file says. A `source-previous` reference always reads "Precio anterior según <quien lo reporta>".
+- **Home:** smaller masthead, `EvidenceBoard` (top 6 candidates at `errorScore >= 40`, or one calm line), `DealExplorer`, `GateReport`, a smaller `ApiTeaser`.
+- **`DealExplorer`:** search, sort and view above the results. `FilterPanel` is one DOM node: sticky side panel above 1100px, drawer below (`useDrawer`: focus in, Tab kept inside, Escape closes, focus returns, scroll locked). The drawer applies filters live; "Aplicar · ver N" closes it. There is no staged draft, so the counts are always true.
+- **`DealTable`:** sticky header, sort buttons inside `th` with `aria-sort`. Age is sorted by publication time, so newest first reports as ascending age. Columns with nothing behind them (brand and interest on old archives) drop out. A container query folds brand, store and age under the title below 900px, and folds rows into blocks below 620px.
+- **`HistoryMark` is a range with a tick, not a sparkline.** `history` carries only `minPrice`, `maxPrice` and `days`, so a line would invent points. It renders nothing when there is no range.
+- **`/errores`:** grouped under strength headings, every signal on its own line, the cancellation and heuristic note at the top. `?min=` keeps its old meaning on this page; `?evidencia=` is new.
+- **`GateReport`:** `gateSummary()` takes `publication-cap` out of `rejected` and out of the reason list. Those offers passed the filter and the list was full, so they get their own line. Today the pipeline adds capped rows to `rejected` and also to `low-value` (`scripts/pipeline.ts`); when it moves to the new slug, this copy is already right.
+- **Grid card:** shows only "Posible error de precio", not "Baratísimo", which sat on most cards and said nothing.
+
+### Query keys
+
+Old keys still work: `tipo`, `tienda`, `cat`, `min`, `q`, `orden`, `directas`, `juegos`, `max`, `nuevas`, `vista` (`lista` now means the table).
+
+New keys: `marca` (repeated), `tienda` (repeated), `desde`, `evidencia` (repeated), `interes`, `error`, `intermediarios`, `elegida`, `corroborada`, `dir`.
+
+On the home page `min` means depth against the reference, with the declared discount as the fallback. `tipo` is accepted and removable but no longer offered.
+
+### Verified
+
+- `npx nuxt typecheck`: exit 0. `npx vue-tsc --noEmit -p .nuxt/tsconfig.app.json`: clean.
+- `npx nuxt generate`: exit 0 on the real v3 `public/api/deals.json`, 10 routes. See the build-dir note below.
+- Vitest with a scratch config: 37 tests pass, `tests/ui-filters.test.ts` (8, unchanged) and `app/utils/filters.test.ts` (29, new). The repo's `include` is `tests/**`, so the new file does not run under `npm test` until it is moved or the include grows.
+- Headless Chrome over CDP with real viewport emulation, on served copies, screenshots read:
+  - Fixture with candidates: paper at 1440px and 390px, night at 1440px.
+  - Fixture with no candidates: paper at 1440px, night at 390px.
+  - 1120px and 900px widths; grid at 1440px and 390px; `/errores` at both widths; the real v3 build at both widths.
+  - v1 archive (2026-10-05): screenshot at 1440px, no `NaN` or `undefined`, no brand or interest column; no gate block and no overflow at 390px.
+  - v2 archive (2026-10-20): 60 rows at 1440px; no `NaN` or `undefined` and no overflow at 390px.
+- Driven through the DOM on those copies:
+  - Default list: direct only, no games. Facets, multi-store, counts following other selections, column sort both ways, `aria-sort`, removing one active filter, "Quitar todo", the middleman toggle and back.
+  - Reload from a shared URL restores checkboxes and sort. Old keys restore too.
+  - Enter on a focused header sorts. The drawer's count, Escape, focus return and apply action.
+  - No horizontal overflow at 390px, 900px, 1120px or 1440px. Sticky header at `top: 0` for every column.
+- No console errors or uncaught exceptions in any scenario. Production Vue does not report hydration mismatches there, so this does not rule one out.
+
+### Not verified
+
+- A real phone. 390px was emulated.
+- Tab order walked key by key. The Tab trap in the drawer was not exercised; Enter and Escape were.
+- Phone at night with candidates. Night at 390px was seen with none.
+- Night has no reader-facing switch. It was checked by setting `data-variant` by hand, as there is no toggle or `prefers-color-scheme` rule.
+- The final ranking. The operator is changing it, so the order on screen was not judged.
+- `ledger` and `curated` rows on real candidates. Real data had one candidate, `source-previous`. The other kinds were seen on the fixture only.
+- Link previews for the changed title and description.
+
+### Worth knowing
+
+- **Build dir.** With a `.nuxt` already present, `nuxt generate` builds under `node_modules/.cache/nuxt/.nuxt`. In this worktree that path crosses the junction, the server bundle gets `C:/…` imports, and every route fails with "Received protocol 'c:'". Delete `.nuxt` first, then generate. CI has no junction and is not affected.
+- **Techbargains images fail.** The URL tested returned 403 to curl and the same images failed to load in Chrome, so those rows show no picture in the table and the store domain in the grid. CamelCamelCamel rows carry no image at all. Not worked around.

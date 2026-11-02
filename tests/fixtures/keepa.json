@@ -1,0 +1,29 @@
+{
+  "deals": {
+    "dr": [
+      {
+        "asin": "B012345678",
+        "title": "ASUS monitor",
+        "current": [
+          9999
+        ],
+        "deltaLast": [
+          1000
+        ],
+        "avg": [
+          [
+            10999
+          ]
+        ],
+        "image": []
+      },
+      {
+        "asin": "B012345679",
+        "title": "Unavailable",
+        "current": [
+          -1
+        ]
+      }
+    ]
+  }
+}

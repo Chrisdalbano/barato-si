@@ -41,7 +41,7 @@ export function createSourceReader(fetcher: typeof fetch = fetch, timeout = 2000
       combined.throwIfAborted()
       onRequest?.()
       return await bounded((async () => {
-        const response = await fetcher(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'application/json, application/rss+xml, text/plain;q=0.9', ...headers }, redirect: 'manual', signal: combined })
+        const response = await fetcher(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'application/json, application/rss+xml, text/html;q=0.8, text/plain;q=0.9', ...headers }, redirect: 'manual', signal: combined })
         if (response.status >= 300 && response.status < 400) { await response.body?.cancel(); throw new Error('Redirect refused') }
         if (Number(response.headers.get('content-length')) > 4_000_000) { await response.body?.cancel(); throw new Error('Response exceeds 4 MB limit') }
         const chunks: Uint8Array[] = []
@@ -87,7 +87,8 @@ export function createSourceReader(fetcher: typeof fetch = fetch, timeout = 2000
       const headers: Record<string, string> = {}
       const url = new URL(source.url)
       if (source.apiKey) {
-        if (source.kind === 'bestbuy') url.searchParams.set('apiKey', source.apiKey)
+        if (source.kind === 'keepa') url.searchParams.set('key', source.apiKey)
+        else if (source.kind === 'bestbuy') url.searchParams.set('apiKey', source.apiKey)
         else headers[source.kind === 'woot' ? 'x-api-key' : 'ITAD-API-Key'] = source.apiKey
       }
       const retry = source.direct && source.kind !== 'rss'

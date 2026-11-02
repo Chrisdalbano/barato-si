@@ -1,4 +1,9 @@
-import type { Deal, DealsFile, SourceOutcome } from '../lib/types.ts'
+import { categorize } from '../lib/categorize.ts'
+import { productKey, brandOf, isDirect } from '../lib/identity.ts'
+import { emptyLedger, mergeLedger, ledgerHistory } from '../lib/ledger.ts'
+import { resolveReference, type CuratedPrice } from '../lib/reference.ts'
+import { applyGate, diversify, isGame, rankValue } from '../lib/interest.ts'
+import type { Deal, DealsFile, SourceOutcome, PriceLedger } from '../lib/types.ts'
 import { normalizeSource, type Source } from '../lib/normalize.ts'
 import { dedupe } from '../lib/dedupe.ts'
 import { scoreDeal } from '../lib/rank.ts'
@@ -12,6 +17,9 @@ export { writeOutputs, rss } from './outputs.ts'
 interface CollectOptions {
   sourceTimeout?: number; runTimeout?: number; signal?: AbortSignal
   env?: Record<string, string | undefined>; cache?: ClassifyCache; fetcher?: typeof fetch
+  ledger?: PriceLedger; curated?: CuratedPrice[]
+  onLedger?: (ledger: PriceLedger) => void
+  onCollected?: (offers: Deal[]) => void
   onCache?: (cache: ClassifyCache) => void
   /** The currently published file, so a source blocked this run can carry its recent offers over. */
   latest?: Pick<DealsFile, 'generatedAt' | 'sources' | 'deals'>
@@ -93,42 +101,55 @@ export async function collect(sources: Source[], read: (source: Source, context?
       if (r.status === 'fulfilled') { deals.push(...r.value.deals); outcomes.push(r.value.outcome) }
       else outcomes.push({ name: sources[i]!.name, ok: false, count: 0, requests: 0, ms: 0, direct: !!sources[i]!.direct, error: 'Source task rejected', errorEs: 'No se pudo consultar la fuente.' })
     })
+    const fresh = [...deals]
+    const ledger = options.ledger || emptyLedger(now)
+    options.onLedger?.(mergeLedger(ledger, fresh, now))
     carryOver(outcomes, deals, options.latest, now, options.reuseWindow ?? 14 * 3600000)
     const old = new Map(previous.map(d => [d.id, d]))
+    const seenIn = new Map<string, Set<string>>()
     for (const d of deals) {
-      const history = old.get(d.id)?.history
+      d.productKey = productKey(d)
+      const key = d.productKey + ':' + d.currency
+      if (!seenIn.has(key)) seenIn.set(key, new Set())
+      seenIn.get(key)!.add(d.source)
+    }
+    for (const d of deals) {
+      d.category = categorize(d.title, d.category, d.store)
+      d.productKey = productKey(d)
+      d.brand = brandOf(d.title)
+      d.direct = isDirect(d)
+      d.seenIn = [...seenIn.get(d.productKey + ':' + d.currency)!]
+      d.reference = resolveReference(d, deals, ledger, options.curated || [], now)
+      d.referenceDiscountPct = d.reference ? Math.max(0, Math.round((1-d.price/d.reference.price)*10000)/100) : null
+      const history = options.ledger ? ledgerHistory(d, ledger, now) : old.get(d.id)?.history
+      delete d.history
       if (history) d.history = history
       Object.assign(d, scoreDeal(d, now, history))
     }
     const classified = await classify(dedupe(deals), options.env || {}, now, options.cache, options.fetcher, runSignal)
     options.onCache?.(classified.cache)
     const all = dedupe(classified.deals.map(d => ({ ...d, ...scoreDeal(d, now) })))
-    const ranked = balanceRanking(all).slice(0, 400)
-    const file: DealsFile = { version: 2, date: now.toISOString().slice(0, 10), generatedAt: now.toISOString(), count: ranked.length, sources: outcomes, deals: ranked, ...(classified.classifier ? { classifier: classified.classifier } : {}) }
-    retainCollected(file, all)
+    options.onCollected?.(fresh)
+    const { kept, gate } = applyGate(all)
+    const ranked = balanceRanking(kept, now).slice(0, 250)
+    const capped = kept.length - ranked.length
+    gate.rejected += capped
+    if (capped) gate.byReason['publication-cap'] = capped
+    gate.published = ranked.length
+    const file: DealsFile = { version: 3, gate, date: now.toISOString().slice(0, 10), generatedAt: now.toISOString(), count: ranked.length, sources: outcomes, deals: ranked, ...(classified.classifier ? { classifier: classified.classifier } : {}) }
+    retainCollected(file, kept)
     return file
   } finally { clearTimeout(runTimer) }
 }
 
-// The editorial order of deals.json (owner, 2026-10-07 and 2026-10-14): the
-// hunt for price errors comes first, games come last. Candidates at
-// errorScore >= ERROR_CANDIDATE lead, strongest first, whatever their category
-// (games cap at 15, so in practice none qualify). Then seven non-game offers
-// for every game, so the 400-item cap holds about 50 games. Shortages fill from
-// the other pool instead of hiding offers; a games-only list is returned unchanged.
+// Candidates first; direct merchant links before intermediaries; games always last.
 export const ERROR_CANDIDATE = 40
-export const GAMES_EVERY = 8
-export function balanceRanking(ranked: Deal[]): Deal[] {
-  const isGame = (d: Deal) => /videojuegos|games/i.test(d.category || '')
-  const candidates = ranked.filter(d => d.errorScore >= ERROR_CANDIDATE).sort((a, b) => b.errorScore - a.errorScore || b.score - a.score)
-  const rest = ranked.filter(d => d.errorScore < ERROR_CANDIDATE)
-  const games = rest.filter(isGame)
-  const other = rest.filter(d => !isGame(d))
-  const out: Deal[] = [...candidates]
-  let o = 0, g = 0
-  while (o < other.length || g < games.length) {
-    for (let k = 0; k < GAMES_EVERY - 1 && o < other.length; k++) out.push(other[o++]!)
-    if (g < games.length) out.push(games[g++]!)
-  }
-  return out
+export function balanceRanking(ranked: Deal[], now = new Date()): Deal[] {
+  const value = new Map(ranked.map(d => [d.id, rankValue(d, now)]))
+  const candidate = (d: Deal) => !isGame(d) && d.errorScore >= ERROR_CANDIDATE
+  const lead = ranked.filter(candidate).sort((a, b) => b.errorScore - a.errorScore || value.get(b.id)! - value.get(a.id)! || a.id.localeCompare(b.id))
+  const byValue = (a: Deal, b: Deal) => Number(!!b.direct) - Number(!!a.direct) || value.get(b.id)! - value.get(a.id)! || b.score - a.score || a.id.localeCompare(b.id)
+  const rest = ranked.filter(d => !candidate(d) && !isGame(d)).sort(byValue)
+  const games = ranked.filter(isGame).sort(byValue)
+  return [...lead, ...diversify(rest), ...games]
 }

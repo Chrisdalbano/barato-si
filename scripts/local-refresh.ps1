@@ -21,18 +21,21 @@ try {
   # keep whichever side and move on.
   cmd /c 'git pull --rebase --autostash origin main 2>&1' | Out-File -Append -Encoding utf8 $log
   if ($LASTEXITCODE -ne 0) {
-    cmd /c 'git checkout --theirs -- public data 2>&1' | Out-File -Append -Encoding utf8 $log
-    cmd /c 'git add public data 2>&1' | Out-File -Append -Encoding utf8 $log
+    cmd /c 'git checkout --theirs -- public data/classify-cache.json data/price-ledger.json 2>&1' | Out-File -Append -Encoding utf8 $log
+    cmd /c 'git add public data/classify-cache.json data/price-ledger.json 2>&1' | Out-File -Append -Encoding utf8 $log
     $env:GIT_EDITOR = 'true'
     Step 'rebase-continue' 'git rebase --continue'
   }
   Step 'deals' 'npm.cmd run deals'
-  Step 'stage' 'git add public data/classify-cache.json'
+  Step 'stage' 'git add public data/classify-cache.json data/price-ledger.json'
   cmd /c 'git diff --cached --quiet' | Out-Null
   if ($LASTEXITCODE -ne 0) {
     Step 'commit' 'git commit -q -m "chore: refresh deals (local run)"'
     Step 'push' 'git push origin main'
   } else { "nothing to commit" | Out-File -Append -Encoding utf8 $log }
+  $boardCmd = Join-Path $repo 'data\private\board-cmd.json'
+  if (Test-Path $boardCmd) { $env:BARATO_BOARD_CMD = (Get-Content -Raw $boardCmd).Trim() }
+  try { Step 'private-watch' 'node --experimental-strip-types scripts/watch.ts' } catch { "WATCH FAILED: $_" | Out-File -Append -Encoding utf8 $log }
   "ok" | Out-File -Append -Encoding utf8 $log
 } catch {
   "FAILED: $_" | Out-File -Append -Encoding utf8 $log

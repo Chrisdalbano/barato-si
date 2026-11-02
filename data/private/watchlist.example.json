@@ -1,0 +1,12 @@
+[
+  {
+    "name": "DGX Spark 128GB",
+    "title": "\\bDGX\\s+Spark\\b.*\\b128\\s*GB\\b",
+    "maxPrice": 4000
+  },
+  {
+    "name": "GB10 64GB",
+    "title": "\\bGB10\\b.*\\b64\\s*GB\\b",
+    "maxPrice": 3000
+  }
+]

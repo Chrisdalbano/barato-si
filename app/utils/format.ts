@@ -76,6 +76,16 @@ export function formatAgo(iso: string, now: number): string {
   return rel.format(Math.round(hours / 24), 'day')
 }
 
+/** Compact age for the table: "<1 h", "5 h", "3 d". */
+export function formatAgeShort(iso: string, now: number): string {
+  const t = Date.parse(iso)
+  if (!Number.isFinite(t) || !Number.isFinite(now)) return '—'
+  const hours = Math.floor((now - t) / 3600000)
+  if (hours < 1) return '<1 h'
+  if (hours < 48) return `${hours} h`
+  return `${Math.floor(hours / 24)} d`
+}
+
 export function hostOf(url: string): string {
   try { return new URL(url).hostname.replace(/^www\./, '') } catch { return '' }
 }

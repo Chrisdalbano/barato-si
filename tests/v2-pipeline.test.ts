@@ -8,7 +8,7 @@ import { deal, now } from './helpers'
 import type { Source } from '../lib/normalize'
 
 const source = (name: string): Source => ({ name, kind: 'rss', url: `https://${name}.test/rss` })
-const raw = '<rss><channel><item><title>Laptop $99 (was $1199)</title><link>https://shop.test/laptop</link></item></channel></rss>'
+const raw = '<rss><channel><item><title>Lenovo Laptop $99 (was $1199)</title><link>https://shop.test/laptop</link></item></channel></rss>'
 it('isolates slow and throwing sources, returns completed pages and records source deadlines', async () => {
   vi.useFakeTimers()
   try {
@@ -103,7 +103,7 @@ it('rejects oversized output before replacing current data', async () => {
 })
 
 it('carries a blocked source over from a recent published file, visibly, and never past the window', async () => {
-  const kept = [deal({ id: 'tb1', source: 'Techbargains', title: 'Laptop for $499 (was $1,099)', price: 499, listPrice: 1099 }), deal({ id: 'tb2', source: 'Techbargains', url: 'https://shop.test/2' })]
+  const kept = [deal({ id: 'tb1', source: 'Techbargains', title: 'Lenovo Laptop for $499 (was $1,099)', price: 499, listPrice: 1099 }), deal({ id: 'tb2', source: 'Techbargains', title: 'Sony headphones', category: 'electronica', url: 'https://shop.test/2' })]
   const stranger = deal({ id: 'dn1', source: 'DealNews' })
   const src = { name: 'Techbargains', kind: 'rss' as const, url: 'https://www.techbargains.com/rss.xml' }
   const blocked = async () => { throw new Error('robots.txt unavailable') }

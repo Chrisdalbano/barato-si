@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'API · barato.si',
-  description: 'API JSON y RSS gratis con las mayores rebajas y los posibles errores de precio del día. Sin clave. Se actualiza cada tres horas.',
+  description: 'API JSON y RSS gratis con los precios del día, su referencia y los posibles errores de precio. Sin clave. Se actualiza cada tres horas.',
   ogTitle: 'API · barato.si',
-  ogDescription: 'Las rebajas del día en JSON y RSS. Gratis, sin clave, archivos estáticos.',
+  ogDescription: 'Los precios del día y su evidencia, en JSON y RSS. Gratis, sin clave, archivos estáticos.',
   ogUrl: `${SITE}/api`,
 })
 useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
@@ -15,8 +15,8 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
       <p class="eyebrow">API</p>
       <h1 class="doc__title">Barato, sí. También en JSON<span class="doc__dot" aria-hidden="true">.</span></h1>
       <p class="doc__lede">
-        barato.si es un archivo JSON que se regenera cada día, con una web encima. La API es gratis, no pide clave
-        y son archivos estáticos: guárdalos en caché y con una consulta al día basta.
+        barato.si es un archivo JSON que se regenera cada tres horas, con una web encima. La API es gratis, no pide clave
+        y son archivos estáticos: guárdalos en caché y no consultes más a menudo que eso.
       </p>
     </header>
 
@@ -49,10 +49,11 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
       <h2 id="sch">Esquema</h2>
       <p class="doc__note">
         Cada archivo es un <code>DealsFile</code>: <code>{{ FILE_FIELDS }}</code>.
-        <code>version</code> vale <code>2</code> desde el 6 de octubre de 2026 y falta en los archivos anteriores.
+        <code>version</code> vale <code>3</code> desde noviembre de 2026, <code>2</code> desde el 6 de octubre de 2026 y falta en los archivos anteriores.
         <code>sources</code> dice qué fuentes respondieron y cuáles no, y <code>direct</code> marca las que son la propia tienda,
         para que una fuente caída no pase desapercibida. <code>classifier</code> dice si el modelo corrió y cuántas ofertas clasificó,
         para que un fallo del modelo no se confunda con «no había candidatas».
+        <code>gate</code> (v3) es <code>{ considered, published, rejected, byReason }</code>: cuántas ofertas se miraron, cuántas se publicaron y por qué se rechazó el resto.
         Cada elemento de <code>deals</code> es un <code>Deal</code>:
       </p>
       <table class="tbl tbl--schema">
@@ -70,6 +71,11 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
         <code>deals.json</code>. Está en <code>/api/raw/YYYY-MM-DD.json</code>, un archivo por día, para quien necesite
         la atribución completa. Los campos nuevos (<code>storeUrl</code>, <code>errorScore</code>, <code>history</code>, <code>ai</code>…)
         son opcionales o tienen un valor por defecto: el código que leía v1 sigue funcionando.
+      </p>
+      <p class="doc__note">
+        Cambio en v3: <code>reference</code> sustituye a <code>listPrice</code> como medida de lo que suele costar un producto, y dice de dónde sale.
+        Con <code>kind: "list"</code> la referencia es solo lo que dice el vendedor: trátala como la evidencia más débil.
+        Los archivos anteriores no traen estos campos; la web los trata como un precio de lista cuando lo hay. <code>url</code>, <code>storeUrl</code> y <code>listPrice</code> no cambian de significado.
       </p>
     </section>
 
@@ -95,10 +101,10 @@ useHead({ link: [{ rel: 'canonical', href: `${SITE}/api` }] })
 </template>
 
 <style scoped>
-.doc__head { padding: clamp(40px, 6vw, 88px) 0 clamp(28px, 4vw, 48px); max-width: 60rem; }
-.doc__title { margin: 8px 0 20px; font-size: clamp(2.25rem, 6vw, 4.75rem); line-height: 0.98; font-weight: 600; letter-spacing: -0.045em; }
+.doc__head { padding: clamp(20px, 3vw, 36px) 0 clamp(20px, 3vw, 32px); max-width: 60rem; }
+.doc__title { margin: 6px 0 12px; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1; font-weight: 600; letter-spacing: -0.045em; }
 .doc__dot { color: var(--accent-lead); }
-.doc__lede { margin: 0; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--fg-secondary); max-width: var(--container-max-prose); }
+.doc__lede { margin: 0; font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--fg-secondary); max-width: var(--container-max-prose); }
 .doc__sec { padding: clamp(28px, 4vw, 48px) 0; border-top: 2px solid var(--fg-primary); }
 .doc__sec h2 { margin: 0 0 20px; font-size: clamp(1.375rem, 2.6vw, 1.875rem); letter-spacing: -0.03em; font-weight: 600; }
 .doc__note { max-width: var(--container-max-prose); color: var(--fg-secondary); font-size: 0.9375rem; }

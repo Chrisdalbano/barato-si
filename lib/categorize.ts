@@ -7,8 +7,9 @@ export const categories: DealCategory[] = ['videojuegos', 'informatica', 'electr
 // "kids' tablet" is a toy before it is a tablet). Built from the titles that
 // landed in "otros" on 2026-10-06 (109 of 400), mostly Amazon via Techbargains.
 const rules: [DealCategory, RegExp][] = [
-  ['videojuegos', /(Nintendo Switch|PlayStation|PS[45]|Xbox|video game|Steam Deck)/i],
+  ['videojuegos', /\b(Nintendo Switch|PlayStation|PS[45]|Xbox|video game|Steam Deck)\b/i],
   ['servicios', /\b(gift ?card|e-?gift|membership|subscription|e-?degree|online course|bundle of courses|lifetime access|digital subscription|magazine|newspaper|streaming|trial)\b/i],
+  ['informatica', /\b(?:laptops?|notebooks?|mini PC|desktop computer|DGX Spark|GB10)\b/i],
   ['software', /\b(Windows 1[01]|Microsoft 365|Office 20\d\d|antivirus|VPN|software|license key|Adobe|Norton|McAfee|cloud storage|Parallels|CleanMyMac)\b/i],
   ['juguetes', /\b(LEGO|dolls?|Barbie|Nerf|puzzles?|toys?|playset|action figures?|Hot Wheels|Funko|board game|card game|plush|Play-?Doh|marble run|Toniebox|Fisher-?Price|Melissa & Doug|Hatchimals|Squishmallows?|Magna-?Tiles|Thames & Kosmos|kids'? (?:tablet|camera|watch|headphones|drawing)|for kids|children'?s)\b/i],
   ['informatica', /\b(laptops?|notebooks?|Chromebook|MacBook|computers?|desktop|all-in-one|mini PC|gaming PC|RTX|GPU|graphics card|CPU|processor|Ryzen|Core i\d|Core Ultra|motherboard|RAM|DDR\d|SSD|NVMe|HDD|hard drive|external drive|flash drive|micro ?SDX?C|SD card|memory card|monitors?|routers?|mesh wi-?fi|modem|ethernet|network switch|NAS|keyboards?|mouse|mice|trackpad|webcam|docking station|USB hub|printers?|ink cartridge|toner|scanner|case fans?|PWM fans?|power supply|PSU|UPS|surge protector|microphone|signage display|label maker|laptop stand|tablet stand)\b/i],

@@ -3,3 +3,8 @@ export { parsePrices } from './prices.ts'
 export { scoreDeal } from './rank.ts'
 export { dedupe } from './dedupe.ts'
 export { categorize } from './categorize.ts'
+
+export { productKey, brandOf } from './identity.ts'
+export { mergeLedger, seedLedger, pruneLedger } from './ledger.ts'
+export { resolveReference } from './reference.ts'
+export { interestOf, applyGate } from './interest.ts'

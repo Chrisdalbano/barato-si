@@ -1,3 +1,4 @@
+import { asinFrom, productKey, brandOf, isDirect } from './identity.ts'
 import { categorize } from './categorize.ts'
 import { merchant, storeDomain, httpsImage } from './stores.ts'
 import { roundup } from './errors.ts'
@@ -9,7 +10,7 @@ import { discount, scoreDeal } from './rank.ts'
 import { canonicalUrl, dealId } from './dedupe.ts'
 import { decodeEntities, feedItems, plainText, tag } from './feeds.ts'
 
-export type SourceKind = 'cheapshark' | 'rss' | 'reddit' | 'woot' | 'epic' | 'steam' | 'itad' | 'steam-search' | 'gog' | 'bestbuy'
+export type SourceKind = 'cheapshark' | 'rss' | 'reddit' | 'woot' | 'epic' | 'steam' | 'itad' | 'steam-search' | 'gog' | 'bestbuy' | 'camelcamelcamel' | 'shopify' | 'keepa'
 export interface Source { name: string; url: string; kind: SourceKind; disabled?: string; apiKey?: string; direct?: boolean; pages?: { url: string; kind?: SourceKind }[] }
 type Row = Record<string, any>
 const number = (v: unknown): number | null => (typeof v === 'number' || typeof v === 'string' && v.trim() !== '') && Number.isFinite(Number(v)) && Number(v) >= 0 ? Number(v) : null
@@ -37,7 +38,26 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
       storeDomain: row.storeDomain || storeDomain(row.store || source.name),
       publishedAt: date(row.publishedAt, old?.publishedAt || stamp), foundAt: old?.foundAt || stamp,
     } as Omit<Deal, 'score' | 'flag' | 'reasons' | 'errorScore' | 'errorSignals'>
+    base.productKey = productKey(base)
+    base.brand = brandOf(base.title)
+    base.direct = isDirect(base)
+    base.seenIn = [source.name]
     output.push({ ...base, ...scoreDeal(base, now) })
+  }
+  if (source.kind === 'camelcamelcamel') {
+    for (const item of feedItems(raw)) {
+      const title = tag(item, 'title'), sourceUrl = tag(item, 'link')
+      const asin = asinFrom(sourceUrl)
+      const match = /^(.*?) - down ([\d.]+)% \(\$[\d,.]+\) to \$([\d,.]+) from \$([\d,.]+)\s*$/.exec(title)
+      if (!match || !asin) continue
+      const price = number(match[3]!.replace(/,/g, '')), from = number(match[4]!.replace(/,/g, ''))
+      if (price === null || !from || from <= price || Math.abs((1-price/from)*100-Number(match[2])) > .2) continue
+      const url = 'https://www.amazon.com/dp/' + asin
+      add({ title: match[1]!, url, storeUrl: url, sourceUrl, store: 'Amazon', storeDomain: 'amazon.com', price, currency: 'USD',
+        publishedAt: tag(item,'pubDate'), reference: { price: from, kind: 'source-previous', asOf: stamp.slice(0,10), note: 'Precio anterior comunicado por CamelCamelCamel' },
+        image: /<img[^>]+src=["']([^"']+)/i.exec(tag(item,'description'))?.[1] })
+    }
+    return output
   }
   if (source.kind === 'rss') {
     for (const item of feedItems(raw)) {
@@ -66,12 +86,42 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
         category: tag(item, 'dealnews:category') || null,
         image: decodeEntities(/<media:content[^>]+url="([^"]+)"/.exec(item)?.[1] || '') || (source.name === 'Techbargains' ? /<img[^>]+src=["']([^"']+)/i.exec(descriptionHtml)?.[1] : null),
         sourceSignal: number(tag(item, 'slickdeals:score')) ?? undefined,
+        staffPick: /^(?:true|1|yes)$/i.test(tag(item, 'dealnews:staffPick')),
         ...(source.name.toLowerCase() === 'dealnews' ? { syndication: { attribution: 'DealNews', feedUrl: source.url, itemUrl: url, itemXml: item, descriptionHtml } } : {}),
       })
     }
     return output
   }
   const data = JSON.parse(raw)
+  if (source.kind === 'shopify') {
+    if (!Array.isArray(data?.products)) throw new Error('Unexpected shopify response schema')
+    const origin = new URL(source.url).origin
+    for (const p of data.products) {
+      if (typeof p.title !== 'string' || !/^[a-z0-9-]+$/i.test(p.handle) || !Array.isArray(p.variants)) continue
+      // One comparable offer per handle: cheapest available configuration, with its exact title.
+      const region = (v: Row) => /(?:^|[\s/（(])(?:US|USA|United States)(?:$|[\s/（(])/i.test(v.title || '')
+      const hasRegions = p.variants.some((v: Row) => /(?:^|[\s/（(])(?:US|USA|EU|UK|AU|JP)(?:$|[\s/（(])/i.test(v.title || ''))
+      const variants = p.variants.filter((v: Row) => v.available === true && number(v.price) !== null && (!hasRegions || region(v))).sort((a: Row,b: Row) => Number(a.price)-Number(b.price))
+      const v = variants[0]
+      if (!v) continue
+      const url = origin + '/products/' + p.handle
+      add({ title: p.title + (v.title && v.title !== 'Default Title' ? ' — ' + String(v.title).replace(/\s*\/\s*(?:US|USA|United States)\s*$/i, '') : ''), url, storeUrl: url, sourceUrl: url,
+        store: source.name, storeDomain: new URL(origin).hostname, price: number(v.price), listPrice: number(v.compare_at_price), currency: 'USD',
+        image: p.images?.find((i: Row) => i.variant_ids?.includes(v.id))?.src || p.images?.[0]?.src, category: p.product_type || null, publishedAt: p.published_at })
+    }
+    return output
+  }
+  if (source.kind === 'keepa') {
+    // https://keepa.com/api-docs/deal-object.html: deals.dr, current[0] = Amazon USD cents.
+    if (!Array.isArray(data?.deals?.dr)) throw new Error('Unexpected keepa response schema')
+    for (const r of data.deals.dr) {
+      if (!/^[A-Z0-9]{10}$/.test(r.asin) || typeof r.title !== 'string' || !Number.isInteger(r.current?.[0]) || r.current[0] < 0) continue
+      const url = 'https://www.amazon.com/dp/' + r.asin
+      add({ title: plainText(r.title), url, storeUrl: url, store: 'Amazon', storeDomain: 'amazon.com', sourceUrl: 'https://keepa.com/#!product/1-' + r.asin,
+        price: r.current[0]/100, currency: 'USD' })
+    }
+    return output
+  }
   const adapter = source.kind === 'steam-search' ? steamSearch : source.kind === 'gog' ? gogCatalog : source.kind === 'bestbuy' ? bestBuyProducts : null
   if (adapter) { for (const row of adapter(data)) add(row); return output }
   let rows: Row[] = []

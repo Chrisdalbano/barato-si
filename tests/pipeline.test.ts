@@ -70,10 +70,11 @@ it('preserves first-seen dates when an offer disappears for a day', async () => 
   } finally { await rm(root, { recursive: true }) }
 })
 
-it('caps the ranked output at 400', async () => {
-  const raw = '<rss><channel>' + Array.from({ length: 425 }, (_, n) => `<item><title>Unique product model ${n} $5</title><link>https://shop.test/${n}</link></item>`).join('') + '</channel></rss>'
+it('caps eligible ranked output at 250', async () => {
+  const raw = '<rss><channel>' + Array.from({ length: 425 }, (_, n) => `<item><title>Lenovo laptop model ${n} $50</title><link>https://shop.test/${n}</link></item>`).join('') + '</channel></rss>'
   const file = await collect([{ name: 'test', kind: 'rss', url: 'https://test/rss' }], async () => raw, now)
-  expect(file.count).toBe(400)
+  expect(file.count).toBe(250)
+  expect(file.gate!.considered).toBe(file.gate!.published + file.gate!.rejected)
   expect(file.sources[0]?.count).toBe(425)
 })
 
@@ -120,7 +121,7 @@ it('fails closed on unavailable robots and makes no request for disabled sources
 })
 
 it('publishes only product sources, with ITAD opt-in and no leaked key', async () => {
-  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews', 'GOG', 'Techbargains'])
+  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews', 'GOG', 'Techbargains', 'Minisforum', 'GMKtec', 'AOOSTAR', 'CamelCamelCamel'])
   const configured = configuredSources({ ITAD_API_KEY: 'test-secret' })
   expect(configured.at(-1)?.kind).toBe('itad')
   const file = await collect(configured, async () => { throw new Error('HTTP 403') }, now)
@@ -141,14 +142,14 @@ it('sends ITAD credentials only to the data endpoint as a header', async () => {
   expect(mock.mock.calls[0]?.[1].headers['ITAD-API-Key']).toBeUndefined()
   expect(mock.mock.calls[1]?.[1].headers['ITAD-API-Key']).toBe('secret')
 })
-it('balances games across sources against other offers without losing or duplicating entries', () => {
+it('places games last without losing or duplicating entries', () => {
   const games = Array.from({ length: 60 }, (_, i) => deal({ id: `g${i}`, category: 'videojuegos', source: i % 2 ? 'Steam' : 'CheapShark', score: 100 - i }))
   const other = Array.from({ length: 40 }, (_, i) => deal({ id: `o${i}`, score: 50 - i }))
   const result = balanceRanking([...games, ...other])
-  // Seven other offers, then one game, all the way down; games fill in once the other pool is spent.
-  expect(result.slice(0, 32).filter(d => d.category === 'videojuegos')).toHaveLength(4)
+  // All non-game offers precede the games.
+  expect(result.slice(0, 40).filter(d => d.category === 'videojuegos')).toHaveLength(0)
   expect(result.slice(0, 7).every(d => !d.category)).toBe(true)
-  expect(result[7]?.category).toBe('videojuegos')
+  expect(result[40]?.category).toBe('videojuegos')
   expect(new Set(result.map(d => d.id)).size).toBe(100)
   expect(result.slice(0, 45).filter(d => !d.category)).toHaveLength(40)
   expect(result.slice(45).every(d => d.category === 'videojuegos')).toBe(true)
@@ -162,7 +163,7 @@ it('leads with price-error candidates, strongest first, before any balancing', (
   const result = balanceRanking([...games, ...other, weak, strong])
   expect(result.slice(0, 2).map(d => d.id)).toEqual(['strong', 'weak'])
   expect(result.slice(2, 9).every(d => !d.category)).toBe(true)
-  expect(result[9]?.category).toBe('videojuegos')
+  expect(result[12]?.category).toBe('videojuegos')
   expect(result).toHaveLength(22)
   // A 39 is not a candidate and keeps its place in the balanced order.
   const near = deal({ id: 'near', score: 1, errorScore: 39 })

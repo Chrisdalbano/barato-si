@@ -25,7 +25,7 @@ function compact(d: Deal): Deal {
   return copy
 }
 export async function writeOutputs(root: string, file: DealsFile): Promise<void> {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(file.date) || !Number.isFinite(Date.parse(file.generatedAt)) || file.count !== file.deals.length || file.deals.length > 400) throw new Error('Invalid output contract')
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(file.date) || !Number.isFinite(Date.parse(file.generatedAt)) || file.count !== file.deals.length || file.deals.length > (file.version === 3 ? 250 : 400)) throw new Error('Invalid output contract')
   const all = collected.get(file) || file.deals
   const errors = all.filter(d => d.errorScore >= 40).sort((a, b) => b.errorScore - a.errorScore || b.score - a.score || a.id.localeCompare(b.id))
   const raw = Object.fromEntries(all.filter(d => d.syndication?.itemXml || d.syndication?.descriptionHtml).map(d => [d.id, { itemXml: d.syndication!.itemXml, descriptionHtml: d.syndication!.descriptionHtml }]))
@@ -65,7 +65,7 @@ Ofertas y posibles errores de precio con evidencia. API JSON gratuita, sin auten
 Actualización UTC: ${file.generatedAt}. Programación: cada tres horas, a la hora en punto UTC.
 
 ## Endpoints
-https://barato.si/api/deals.json — versión 2, hasta 400 ofertas. Orden editorial: candidatos a error de precio (errorScore >= 40) primero, después una oferta de videojuegos por cada siete de otras categorías.
+https://barato.si/api/deals.json — versión 3, hasta 250 ofertas. Orden editorial: candidatos a error de precio primero, después interés y enlaces directos; videojuegos al final.
 https://barato.si/api/errors.json — { date, generatedAt, deals }, todas las ofertas con errorScore >= 40, de mayor a menor puntuación.
 https://barato.si/errors.xml — RSS 2.0 de posibles errores, con evidencia en español.
 https://barato.si/api/deals/YYYY-MM-DD.json — archivo de los últimos 30 días UTC.
@@ -73,13 +73,13 @@ https://barato.si/api/raw/YYYY-MM-DD.json — contenido sindicado original por i
 https://barato.si/api/index.json — { latest, days }, fechas disponibles en orden descendente.
 https://barato.si/feed.xml — RSS 2.0, hasta 30 ofertas.
 
-## Esquema v2
-DealsFile: { version: 2, date, generatedAt, count, sources, deals, classifier? }.
+## Esquema v3
+DealsFile: { version: 3, date, generatedAt, count, sources, deals, gate, classifier? }.
 sources: { name, ok, count, requests, ms, direct, error?, errorEs? }. Los conteos son anteriores a la deduplicación.
-Deal: { id, title, url, storeUrl, store, storeDomain, source, sourceUrl, currency, price, listPrice, discountPct, image, category, publishedAt, foundAt, score, errorScore, errorSignals, flag, reasons, sourceText?, sourceSignal?, history?, ai?, syndication? }.
+Deal: { id, title, url, storeUrl, store, storeDomain, source, sourceUrl, currency, price, listPrice, discountPct, image, category, publishedAt, foundAt, score, errorScore, errorSignals, flag, reasons, sourceText?, sourceSignal?, history?, ai?, syndication?, productKey?, brand?, reference?, referenceDiscountPct?, interest?, interestSignals?, direct?, seenIn?, staffPick? }.
 score (0–100) mide la oferta; errorScore (0–100) estima una anomalía de precio. Error probable requiere >= 70; >= 40 identifica candidatos para revisar. No equivale a una probabilidad estadística ni confirma un error.
 storeUrl es la página del comercio cuando se conoce; url conserva el enlace de la fuente. image usa HTTPS o null cuando falta en la fuente. Los precios usan la moneda indicada, sin conversión. listPrice y discountPct pueden ser null.
-history: { days, minPrice, maxPrice, firstSeen }, observaciones anteriores del archivo, no precios históricos externos.
+history: { days, minPrice, maxPrice, firstSeen }, observaciones anteriores del registro de precios, no precios históricos externos.
 ai: { product, category, verdict, confidence, note, model }, clasificación opcional validada. classifier: { model, ok, classified, cached, error? }; se omite sin clave configurada. Los fallos del modelo no desactivan las reglas automáticas.
 syndication: { attribution, feedUrl, itemUrl }; el XML y HTML originales están en el archivo raw.
 Las clasificaciones visibles son Error probable, Baratísimo y Normal. Se conserva el idioma original de los títulos de las fuentes.

@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+--- a/package.json
++++ b/package.json
+@@ -13,1 +13,2 @@
+     "deals": "node --experimental-strip-types scripts/fetch-deals.mjs",
++    "watch": "node --experimental-strip-types scripts/watch.ts",
+diff --git a/.github/workflows/pages.yml b/.github/workflows/pages.yml
+--- a/.github/workflows/pages.yml
++++ b/.github/workflows/pages.yml
+@@ -53,1 +53,1 @@
+-          git add data/ public/api public/errors.xml public/feed.xml public/llms.txt public/robots.txt public/sitemap.xml
++          git add data/classify-cache.json data/price-ledger.json public/api public/errors.xml public/feed.xml public/llms.txt public/robots.txt public/sitemap.xml

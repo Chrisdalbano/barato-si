@@ -9,9 +9,9 @@ const level = computed(() => (v.value >= 70 ? 'alta' : v.value >= 55 ? 'media' :
 <template>
   <div
     class="meter" :class="`meter--${level}`" role="meter" aria-valuemin="0" aria-valuemax="100" :aria-valuenow="v"
-    :aria-valuetext="`Sospecha ${v} de 100`" aria-label="Sospecha de error de precio"
+    :aria-valuetext="`${v} de 100`" aria-label="Probabilidad de error de precio, heurística"
   >
-    <span class="meter__label" aria-hidden="true">Sospecha</span>
+    <span class="meter__label" aria-hidden="true">Error</span>
     <span class="meter__num" aria-hidden="true">{{ v }}<span class="meter__of">/100</span></span>
     <span class="meter__bar" aria-hidden="true"><span class="meter__fill" :style="{ width: `${v}%` }" /></span>
   </div>

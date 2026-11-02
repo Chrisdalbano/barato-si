@@ -1,0 +1,194 @@
+[
+  {
+    "titleRegex": "\\bDGX\\s+Spark\\b(?=.*\\b128\\s*GB\\b)",
+    "kind": "msrp",
+    "currency": "USD",
+    "price": 6950,
+    "asOf": "2026-10-02",
+    "source": "NVIDIA subió el DGX Spark de 128 GB a 6950 USD el 2026-10-02 (The Register, ServeTheHome)."
+  },
+  {
+    "titleRegex": "\\b(?:DGX\\s+Spark|GB10)\\b(?=.*\\b64\\s*GB\\b)",
+    "kind": "msrp",
+    "currency": "USD",
+    "price": 4999,
+    "asOf": "2026-10-23",
+    "source": "Configuración GB10 de 64 GB anunciada a unos 4999 USD (The Register, 2026-10-02)."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*5090\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1800,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*5080\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1200,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*5070 ?Ti\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 800,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*5070(?! ?Ti)\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 600,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*5060\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 450,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*4090\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1200,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*4080\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 800,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*4070\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 450,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*4060\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 350,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:gaming laptop|laptop|notebook)\\b)(?=.*\\bRTX\\s*4050\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 300,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?!.*\\b(?:laptop|notebook|desktop|PC|mini)\\b)(?=.*\\b(?:graphics card|GPU|video card)\\b)(?=.*\\bRTX\\s*5090\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1000,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?!.*\\b(?:laptop|notebook|desktop|PC|mini)\\b)(?=.*\\b(?:graphics card|GPU|video card)\\b)(?=.*\\bRTX\\s*5080\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 600,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?!.*\\b(?:laptop|notebook|desktop|PC|mini)\\b)(?=.*\\b(?:graphics card|GPU|video card)\\b)(?=.*\\bRTX\\s*5070 ?Ti\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 400,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?!.*\\b(?:laptop|notebook|desktop|PC|mini)\\b)(?=.*\\b(?:graphics card|GPU|video card)\\b)(?=.*\\bRTX\\s*5070(?! ?Ti)\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 300,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?!.*\\b(?:laptop|notebook|desktop|PC|mini)\\b)(?=.*\\b(?:graphics card|GPU|video card)\\b)(?=.*\\bRTX\\s*4090\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 800,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?!.*\\b(?:laptop|notebook|desktop|PC|mini)\\b)(?=.*\\b(?:graphics card|GPU|video card)\\b)(?=.*\\bRTX\\s*4080\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 500,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\bMac Studio\\b)(?=.*\\bM4 Max\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1200,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\bMac Studio\\b)(?=.*\\bM3 Ultra\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 2500,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\bMacBook Pro\\b)(?=.*\\bM[45] Max\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1800,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\bMacBook Pro\\b)(?=.*\\bM[45] Pro\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1100,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\bAI Max\\+? ?395\\b)(?=.*\\b128\\s*GB\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 1200,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  },
+  {
+    "titleRegex": "^(?!.*\\b(?:refurb\\w*|renewed|used|open.box|pre.owned|parts?|repair|replacement|accessor\\w*|warranty|stand|sleeve|adapter|pad|mount|holder|heatsink|thermal|riser|cable|backplate|block|cooler|fans?|bracket|bag|backpack|case|charger|screen|battery|skin|compatible|for)\\b)(?=.*\\b(?:DGX Spark|GB10)\\b)(?=.*\\b128\\s*GB\\b).*$",
+    "kind": "spec-floor",
+    "currency": "USD",
+    "price": 4000,
+    "asOf": "2026-11-02",
+    "source": "Suelo editorial: muy por debajo de cualquier rebaja honesta conocida; no es precio de mercado medido."
+  }
+]

@@ -1,18 +1,18 @@
-import type { Deal, DealsFile, SourceOutcome } from '~~/lib/types'
+import type { Deal, DealsFile, GateReport, SourceOutcome } from '~~/lib/types'
 
 /**
  * What the UI actually renders. Syndicated XML/HTML, raw source text and
- * internal timestamps stay in the API, never in the page payload. Every v2
- * field is normalized here with a default, so v1 files (and archives written
- * before the pipeline caught up) render the same way.
+ * internal timestamps stay in the API, never in the page payload. Every v2 and
+ * v3 field is normalized here with a default, so v1 and v2 archives render the
+ * same way: this is the one place a missing field is decided.
  */
-export interface DealView extends Omit<Deal, 'syndication' | 'sourceSignal' | 'sourceText' | 'foundAt' | 'ai'> {
+export interface DealView extends Omit<Deal, 'syndication' | 'sourceSignal' | 'sourceText' | 'foundAt' | 'ai' | 'productKey' | 'direct'> {
   /** Trimmed model note (only what the page shows). */
   ai?: { verdict: NonNullable<Deal['ai']>['verdict']; confidence: number; note: string }
-  /** Linked straight to the merchant: a storeUrl, or a first-party source (Steam, GOG, Epic). */
+  /** Linked straight to the merchant. v3 files say so; older ones: a storeUrl, or a first-party source (Steam, GOG, Epic). */
   direct: boolean
 }
-export interface DayView extends Omit<DealsFile, 'deals' | 'sources'> { sources: SourceOutcome[]; deals: DealView[] }
+export interface DayView extends Omit<DealsFile, 'deals' | 'sources' | 'gate'> { sources: SourceOutcome[]; deals: DealView[]; gate?: GateReport }
 export interface ErrorsView { date: string; generatedAt: string; deals: DealView[] }
 export interface ArchiveIndex { latest: string; days: string[] }
 
@@ -28,6 +28,10 @@ export function toDealView(d: Deal, directSources: ReadonlySet<string> = new Set
   const history = h && typeof h.firstSeen === 'string'
     ? { days: num(h.days, 0), minPrice: num(h.minPrice, NaN), maxPrice: num(h.maxPrice, NaN), firstSeen: h.firstSeen }
     : undefined
+  const texts = (v: unknown): string[] => (Array.isArray(v) ? v.filter((s): s is string => typeof s === 'string' && !!s.trim()) : [])
+  const { reference, referenceDiscountPct } = normalizeReference(d)
+  const interestSignals = texts(d.interestSignals)
+  const seenIn = texts(d.seenIn)
   return {
     id: d.id, title: d.title, url: d.url, storeUrl, store: d.store, storeDomain: str(d.storeDomain),
     source: d.source, sourceUrl: d.sourceUrl,
@@ -35,11 +39,18 @@ export function toDealView(d: Deal, directSources: ReadonlySet<string> = new Set
     image: str(d.image) && /^https?:\/\//.test(d.image!) ? d.image : null,
     category: d.category ?? null, publishedAt: d.publishedAt, score: num(d.score, 0),
     errorScore: Math.max(0, Math.min(100, num(d.errorScore, 0))),
-    errorSignals: Array.isArray(d.errorSignals) ? d.errorSignals.filter(s => typeof s === 'string' && s.trim()) : [],
+    errorSignals: texts(d.errorSignals),
     flag: d.flag, reasons: d.reasons ?? [],
     ...(history ? { history } : {}),
     ...(ai ? { ai } : {}),
-    direct: !!storeUrl || directSources.has(d.source.toLocaleLowerCase('en')),
+    brand: str(d.brand),
+    ...(reference ? { reference } : {}),
+    referenceDiscountPct,
+    ...(typeof d.interest === 'number' && Number.isFinite(d.interest) ? { interest: Math.max(0, Math.min(100, d.interest)) } : {}),
+    ...(interestSignals.length ? { interestSignals } : {}),
+    ...(seenIn.length ? { seenIn } : {}),
+    ...(d.staffPick ? { staffPick: true } : {}),
+    direct: typeof d.direct === 'boolean' ? d.direct : !!storeUrl || directSources.has(d.source.toLocaleLowerCase('en')),
   }
 }
 
@@ -51,6 +62,7 @@ function directOf(sources: SourceOutcome[] | undefined): Set<string> {
 export function toView(file: DealsFile): DayView {
   const sources = file.sources ?? []
   const direct = directOf(sources)
+  const gate = normalizeGate(file.gate)
   return {
     date: file.date,
     generatedAt: file.generatedAt,
@@ -58,6 +70,7 @@ export function toView(file: DealsFile): DayView {
     sources,
     ...(file.classifier ? { classifier: file.classifier } : {}),
     ...(file.version ? { version: file.version } : {}),
+    ...(gate ? { gate } : {}),
     deals: (file.deals ?? []).map(d => toDealView(d, direct)),
   }
 }
@@ -67,7 +80,7 @@ export function errorsFromDay(day: DayView, min = 40): ErrorsView {
   return {
     date: day.date,
     generatedAt: day.generatedAt,
-    deals: day.deals.filter(d => d.errorScore >= min).sort((a, b) => b.errorScore - a.errorScore),
+    deals: byEvidence(day.deals.filter(d => d.errorScore >= min)),
   }
 }
 
@@ -76,7 +89,7 @@ function toErrorsView(file: ErrorsFile, direct: Set<string>): ErrorsView {
   return {
     date: file.date,
     generatedAt: file.generatedAt,
-    deals: (file.deals ?? []).map(d => toDealView(d, direct)).sort((a, b) => b.errorScore - a.errorScore),
+    deals: byEvidence((file.deals ?? []).map(d => toDealView(d, direct))),
   }
 }
 

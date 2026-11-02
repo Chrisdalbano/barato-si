@@ -1,4 +1,5 @@
 import type { Deal } from './types.ts'
+import { brandOf } from './identity.ts'
 import { categorize } from './categorize.ts'
 import { formatMoney } from './format.ts'
 
@@ -14,18 +15,24 @@ export function scoreError(d: UnscoredDeal, pct: number, history = d.history): P
   let total = 0
   const evidence: { weight: number; text: string }[] = []
   const add = (weight: number, text: string) => { total += weight; evidence.push({ weight: Math.abs(weight), text }) }
-  const list = d.listPrice || 0
+  const ref = d.reference
+  const list = ref?.price || d.listPrice || 0
+  pct = list > 0 ? Math.max(0, (1 - d.price / list) * 100) : 0
+  const trusted = !!ref && ref.kind !== 'list'
+  const label = ref ? ref.note : 'precio de lista'
   const stable = !!history && history.days >= 2 && Math.abs(history.minPrice - d.price) <= d.price * .02 && Math.abs(history.maxPrice - d.price) <= d.price * .02
   const comparable = ['USD', 'EUR', 'GBP'].includes(d.currency)
   const category = categorize(d.title, d.category, d.store)
-  if (comparable && list > 40 && pct >= 85) add(pct >= 95 ? 75 : pct >= 90 ? 65 : 55, `Cuesta el ${Math.round(d.price / list * 100)} % del precio de lista`)
-  if (comparable && list >= 300) add(list >= 1000 ? 20 : 10, `Artículo de precio alto (lista ${formatMoney(list)} ${d.currency})`)
+  const floor = ref?.kind === 'curated' && /Suelo conservador/.test(ref.note)
+  if (!floor && comparable && list > 40 && pct >= (trusted ? 60 : 85)) add((pct >= 95 ? 75 : pct >= 90 ? 65 : pct >= 85 ? 55 : pct >= 70 ? 45 : 20) * (ref?.kind === 'source-previous' ? .8 : ref?.kind === 'cross-store' ? .9 : 1), `Cuesta el ${Math.round(d.price / list * 100)} % de su referencia. ${label}`)
+  if (floor && d.price < list) add(pct >= 25 ? 70 : 55, `${Math.round(pct)} % bajo el suelo conservador. ${ref!.note}`)
+  if (comparable && list >= 300) add(list >= 1000 ? 20 : 10, `Artículo de precio alto: referencia de ${formatMoney(list)} ${d.currency}`)
   if (comparable && list >= 200 && pct >= 70 && (['informatica', 'electronica'].includes(category) || /\b(laptop|notebook|RTX|GPU|graphics card|OLED|TV|iPhone|MacBook|iPad|Galaxy|PlayStation|Xbox|Switch 2|camera|lens)\b/i.test(d.title))) add(15, 'Electrónica cara con rebaja fuera de lo normal')
   if (explicitError(d)) add(35, 'La fuente habla de un posible error de precio')
   if (/\b(clearance|liquidación|open box|open-box|refurb\w*|renewed|used|pre-owned|certified)\b/i.test(d.title)) add(-30, 'Reacondicionado o liquidación: rebaja esperable')
   if (/w\/ coupon|with code|clip coupon|promo code|subscribe|S&S/i.test(d.title)) add(-15, 'Rebaja condicionada a cupón o suscripción')
   if (history) {
-    if (stable) add(-25, `Mismo precio ${history.days} días seguidos: rebaja estable, no error`)
+    if (stable) add(-25, `Mismo precio ${history.days} días observados: rebaja estable, no error`)
     if (d.price < history.minPrice * .4) add(10, 'Baja repentina frente al archivo')
   }
   if (d.ai && d.ai.confidence >= .7) {
@@ -35,6 +42,7 @@ export function scoreError(d: UnscoredDeal, pct: number, history = d.history): P
   }
   // Caps apply last: a model cannot turn an ordinary game sale into an error.
   // The required stable-laptop example needs a ceiling as well as the -25 penalty.
+  if (!trusted && !brandOf(d.title) && !explicitError(d) && !(history && d.price < history.minPrice * .4)) { total = Math.min(total, 39); if (total > 0) evidence.push({ weight: 39, text: 'Marca no reconocida: el precio de lista solo no demuestra una anomalía' }) }
   if (stable) total = Math.min(total, 69)
   if (['videojuegos', 'software'].includes(category)) { total = Math.min(total, 15); evidence.push({ weight: 15, text: 'Rebaja habitual en videojuegos o software' }) }
   if (['ropa', 'belleza', 'alimentacion'].includes(category)) { total = Math.min(total, 40); evidence.push({ weight: 40, text: 'Categoría con liquidaciones frecuentes' }) }

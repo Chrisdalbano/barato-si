@@ -14,7 +14,7 @@ defineProps<{ day: DayView; level?: 1 | 2; errorsHref?: string }>()
 </template>
 
 <style scoped>
-.day { padding: clamp(32px, 5vw, 64px) 0 clamp(24px, 3vw, 40px); }
-.day__date { margin: 0 0 clamp(20px, 3vw, 32px); font-size: clamp(2.25rem, 6vw, 4.75rem); line-height: 0.95; font-weight: 600; letter-spacing: -0.045em; }
+.day { padding: clamp(20px, 3vw, 36px) 0 clamp(8px, 1vw, 12px); }
+.day__date { margin: 0 0 clamp(10px, 1.5vw, 16px); font-size: clamp(1.75rem, 3.5vw, 2.75rem); line-height: 1; font-weight: 600; letter-spacing: -0.045em; }
 .day__date::first-letter { text-transform: uppercase; }
 </style>

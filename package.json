@@ -11,6 +11,7 @@
     "typecheck": "nuxt typecheck",
     "test": "vitest run",
     "deals": "node --experimental-strip-types scripts/fetch-deals.mjs",
+    "watch": "node --experimental-strip-types scripts/watch.ts",
     "typecheck:lib": "tsc -p scripts/tsconfig.json",
     "lock:platforms": "node scripts/lockfile-platforms.mjs"
   },

@@ -6,7 +6,7 @@ import { deal } from './helpers'
 it('canonicalizes tracking without changing the outgoing attribution link', () => {
   const a = deal({ url: 'http://www.shop.test/p?utm_source=feed&id=1#x', score: 10 })
   const b = deal({ url: 'https://shop.test/p?id=1', score: 5 })
-  expect(dedupe([b, a])).toEqual([a])
+  expect(dedupe([b, a])).toEqual([{ ...a, seenIn: ['test'] }])
   expect(dealId(a.url)).toBe(dealId(b.url))
   expect(canonicalUrl('javascript:alert(1)')).toBe('')
 })

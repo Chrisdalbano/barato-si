@@ -2,33 +2,27 @@
 import type { DayView } from '~/composables/useDeals'
 
 // The home page nameplate. The name is the pun: barato.si reads "barato, sí",
-// and the cobalt full stop is the mark (same as the OG image and favicon).
+// and the full stop is the mark. Small enough that the evidence below is in the
+// first screen.
 defineProps<{ day: DayView | null | undefined }>()
 </script>
 
 <template>
   <header class="mast">
-    <h1 class="mast__name">
-      barato, sí<span class="mast__dot" aria-hidden="true">.</span>
-    </h1>
-    <p class="mast__lede">
-      Las mayores rebajas del día, ordenadas por cuánto bajan de verdad. Un índice de precios, no una tienda.
-    </p>
+    <div class="mast__plate">
+      <h1 class="mast__name">barato, sí<span class="mast__dot" aria-hidden="true">.</span></h1>
+      <p class="mast__lede">
+        Los precios de hoy contra lo que cada producto suele costar. Un índice, no una tienda.
+      </p>
+    </div>
     <DayStrip v-if="day" :day="day" show-date />
   </header>
 </template>
 
 <style scoped>
-.mast { padding: clamp(36px, 6vw, 88px) 0 clamp(28px, 4vw, 48px); }
-.mast__name {
-  margin: 0; font-size: clamp(3.5rem, 19vw, 12.5rem); line-height: 0.86; font-weight: 700;
-  letter-spacing: -0.055em; color: var(--fg-primary);
-  /* Optical: pull the bowl of the b onto the gutter line. */
-  margin-left: -0.04em;
-}
+.mast { padding: clamp(16px, 2.5vw, 28px) 0 0; }
+.mast__plate { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 32px; padding-bottom: clamp(10px, 1.5vw, 16px); }
+.mast__name { margin: 0 0 0 -0.03em; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 0.95; font-weight: 700; letter-spacing: -0.05em; color: var(--fg-primary); }
 .mast__dot { color: var(--accent-lead); }
-.mast__lede {
-  margin: clamp(18px, 2.4vw, 32px) 0 clamp(28px, 4vw, 48px); max-width: 40ch;
-  font-size: clamp(1.125rem, 2vw, 1.5rem); line-height: 1.35; letter-spacing: -0.01em; color: var(--fg-secondary);
-}
+.mast__lede { margin: 0; max-width: 34ch; font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); line-height: 1.35; color: var(--fg-secondary); }
 </style>

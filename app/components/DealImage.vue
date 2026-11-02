@@ -26,22 +26,24 @@ watch(() => props.src, () => { failed.value = false })
 </script>
 
 <template>
-  <div class="frame" :class="{ 'frame--wide': wide }">
+  <div class="frame" :class="{ 'frame--wide': wide, 'frame--bare': !mark && (!src || failed) }">
     <img
       v-if="src && !failed" ref="img" :src="src" :alt="alt" :width="size.w" :height="size.h"
       :loading="eager ? 'eager' : 'lazy'" decoding="async" referrerpolicy="no-referrer"
       @error="failed = true"
     >
-    <span v-else class="frame__mark" :title="alt">{{ mark }}</span>
+    <span v-else-if="mark" class="frame__mark" :title="alt">{{ mark }}</span>
   </div>
 </template>
 
 <style scoped>
 .frame { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; background: var(--bg-surface); overflow: hidden; }
 .frame--wide { aspect-ratio: 16 / 9; }
+/* A small slot with no picture and no room for a mark stays empty, not a grey box. */
+.frame--bare { background: none; }
 .frame img { width: 100%; height: 100%; object-fit: contain; padding: 6%; mix-blend-mode: var(--image-blend, normal); }
 .frame__mark {
-  max-width: 88%; font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.02em;
+  display: inline-block; max-width: 88%; font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.02em;
   color: var(--fg-muted); text-align: center; overflow-wrap: anywhere;
 }
 .frame--wide .frame__mark { font-size: clamp(0.9375rem, 1.6vw, 1.25rem); }

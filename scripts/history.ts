@@ -1,8 +1,9 @@
 import { readFile, readdir } from 'node:fs/promises'
 import { join } from 'node:path'
-import type { Deal } from '../lib/types.ts'
+import { ledgerHistory } from '../lib/ledger.ts'
+import type { Deal, PriceLedger } from '../lib/types.ts'
 
-export async function readPrevious(root: string, now = new Date()): Promise<Deal[]> {
+export async function readPrevious(root: string, now = new Date(), ledger?: PriceLedger): Promise<Deal[]> {
   const today = now.toISOString().slice(0, 10)
   const cutoff = new Date(now.getTime() - 30 * 86400000).toISOString().slice(0, 10)
   const known = new Map<string, Deal>()
@@ -31,5 +32,6 @@ export async function readPrevious(root: string, now = new Date()): Promise<Deal
     const days = prices.get(id)
     if (days?.size) d.history = { days: days.size, minPrice: Math.min(...days.values()), maxPrice: Math.max(...days.values()), firstSeen: d.foundAt }
   }
+  if (ledger) for (const d of known.values()) { delete d.history; const h = ledgerHistory(d,ledger,now); if (h) d.history = h }
   return [...known.values()]
 }

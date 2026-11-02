@@ -17,7 +17,7 @@ const router = useRouter()
 const selected = ref('')
 const day = ref<DayView | null>(null)
 const state = ref<'idle' | 'loading' | 'error'>('idle')
-const errors = computed(() => (day.value?.deals ?? []).filter(d => d.flag === 'error-probable'))
+const errors = computed(() => byEvidence((day.value?.deals ?? []).filter(d => d.errorScore >= ERROR_LEVELS[0])))
 
 async function load(date: string) {
   selected.value = date
@@ -75,20 +75,21 @@ function pick(date: string) {
     </p>
     <template v-else-if="day">
       <DayHeader :day="day" :level="2" errors-href="#errores" />
-      <ErrorWatch v-if="errors.length" :deals="errors" :level="3" :more="false" />
-      <DealList
+      <EvidenceBoard v-if="errors.length" :deals="errors" :level="3" :more="false" />
+      <DealExplorer
         v-if="day.deals.length" :key="day.date" :deals="day.deals" :generated-at="day.generatedAt"
         :shown-above="errors.map(d => d.id)"
       />
       <p v-else class="arch__status">Ese día no hubo nada barato de verdad.</p>
+      <GateReport v-if="day.gate" :gate="day.gate" />
     </template>
     <p v-else-if="index?.days.length" class="arch__status">Elige un día para ver qué estaba barato.</p>
   </div>
 </template>
 
 <style scoped>
-.arch__head { padding: clamp(40px, 6vw, 88px) 0 clamp(20px, 3vw, 32px); }
-.arch__title { margin: 8px 0 12px; font-size: clamp(2.25rem, 6vw, 4.75rem); line-height: 0.98; font-weight: 600; letter-spacing: -0.045em; }
+.arch__head { padding: clamp(20px, 3vw, 36px) 0 clamp(16px, 2vw, 24px); }
+.arch__title { margin: 6px 0 10px; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1; font-weight: 600; letter-spacing: -0.045em; }
 .arch__dot { color: var(--accent-lead); }
 .arch__lede { margin: 0; color: var(--fg-secondary); }
 .days { border-top: 2px solid var(--fg-primary); padding: 16px 0 8px; }

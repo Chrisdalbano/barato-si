@@ -157,3 +157,84 @@ Final verification: npm test **196 passed across 12 files**; npm run typecheck:l
 **Editorial order.** `balanceRanking` now leads with price-error candidates (`errorScore >= 40`, strongest first, then score), then interleaves one game for every seven non-game offers (`GAMES_EVERY = 8`, was 4), so the 400-item cap holds about 50 games instead of 100. Games cap at 15 in `lib/errors.ts`, so no game can lead. Covered by `tests/pipeline.test.ts` (interleave counts, candidates first, 39 is not a candidate). The errors.json threshold is unchanged at 40.
 
 **Verified on the owner's PC:** `npm ci` from the patched lockfile (642 packages), `npm test` (12 files, 209 tests before the UI pass), `npm run typecheck:lib`, `node scripts/lockfile-platforms.mjs --check`. **Verified in CI:** run 38631044979 on the fix commit built, collected, tested and deployed in 1m34s. The ranking change had not yet run live when this was written; the next scheduled run publishes it. The front-end counterpart (games hidden by default, new filters) is Astra's run documented in `UI-NOTES.md`.
+
+
+## 2026-11-02: v3 pipeline, product ledger, interest gate and private watch
+
+Implemented in lib/, scripts/, tests/, curated reference data and .gitignore; lib/types.ts is unchanged. No commits, pushes, dependency changes, frontend edits or manual public-data edits. The live collector regenerated its public outputs and data files. Edited source files use CRLF. The gate returns copies instead of mutating its input.
+
+Identity recognizes Amazon/CCC ASINs, Best Buy SKUs, Shopify handles and Steam app IDs, with URL-ID fallback. Brand recognition uses a curated two-tier table and the first recognized brand in the title (before later component brands). A direct link must match the known merchant domain; aggregator URLs are never direct. Source corroboration survives deduplication.
+
+The pure ledger merges every freshly collected non-game offer before dedupe/gating/capping; carried offers do not create fresh observations. It seeds from archives on first run, keeps one daily low per UTC day for 120 days, keeps currencies separate, and prunes the largest serialized entries oldest-first to fit 3,000,000 bytes. Persistence uses a temporary file and rename. A change to a Shopify handle’s cheapest configuration resets that handle’s series; a mismatched configuration cannot supply a ledger reference/history. Published history comes from the ledger, including products absent from prior published lists.
+
+References resolve in this order: median of at least three previous observed days (today excluded), same-key or identical strong manufacturer-model token at another merchant in the same currency, dated curated evidence, source previous price, seller list. Shared GPU/CPU/capacity tokens are not strong model identities. Curated MSRP seeds are operator-supplied NVIDIA DGX Spark 128GB 6,950 USD (2026-10-02) and GB10 64GB 4,999 USD (2026-10-23), not independently verified manufacturer quotes. Two editorial conservative floors dated today: 200 USD for a complete new RTX 4060 laptop, 150 USD for a complete new RTX 4080 graphics card. Regex exclusions reject used/parts/accessories; explicit regex checks also rejected cooling pads, refurbished laptops and GPU fans; these are deliberately low screening floors, not measured market prices.
+
+Error scoring retains thresholds 40/70 and existing refurb (-30), coupon (-15), stable-price (subtract 25 and cap 69), game/software (cap 15), roundup/noise/free (zero), category and classifier demotions. Reference depth supplies evidence without a list price. Source-previous depth weighs 0.8 and cross-store 0.9 versus ledger/curated 1.0. A noname list claim alone caps at 39. The first live pass incorrectly made a rug and a digital calendar with roughly 40% drops candidates; a regression now requires 60% reference depth before ordinary depth points begin (20 points at 60%, 45 at 70%, 55/65/75 at 85/90/95%). Curated-floor breaches have their own explicit 40-point signal. No threshold was lowered to fill the error list.
+
+Interest awards 30/20 brand points, 25 technical-category or 10 durable-product points, 10 for unit value >=25 USD/EUR/GBP, 15 for a direct link, 15 for two sources and 15 for DealNews staffPick (cap 100). Normal offers need 45 interest and a 15-unit price floor; apparel/food/beauty/seasonal decor/gift cards and noname inflated-list offers are rejected. Non-game error candidates pass except roundups/noise; games remain eligible but rank last. Ordering is candidates first by error score, then directness, interest, deal score and stable ID. Publication caps at 250. Gate considered is post-dedupe; rejected includes the publication cap under low-value, so considered = published + rejected. Raw syndicated output retains admitted uncapped offers, and errors.json remains independent of the 250-row cap.
+
+CamelCamelCamel parses the down-percent / to / from title form, validates arithmetic and ASIN, publishes the canonical Amazon link and preserves the CCC attribution/reference. Shopify uses available variants and each variant’s own compare_at_price, selecting the cheapest US variant when regional variants exist; an EU-only product is excluded. The exact selected configuration is visible in the title. Catalog endpoints are scoped to verified US-dollar storefronts: robots-checked /meta.json returned currency USD for Minisforum, GMKtec and AOOSTAR on 2026-11-02. No retailer HTML enters the public collector. Keepa is dormant without KEEPA_API_KEY; its documented /deal schema uses deals.dr and current[0] cents, excluding -1 unavailable values. No paid Keepa call was made. Fixture documentation: [Deal Object](https://keepa.com/api-docs/deal-object.html), [Browsing Deals](https://keepa.com/api-docs/deals.html). Keys are added only inside transport and never to published configuration; robots preflight carries no key. No robots exceptions were added.
+
+Live merchant probes used the exact existing honest UA, manual redirects and robots-aware reader:
+
+| Merchant | Probe result | Decision |
+| --- | --- | --- |
+| store.minisforum.com | robots allowed; products.json HTTP 200, 64 products | enabled |
+| www.gmktec.com | robots allowed; HTTP 200, 66 products | enabled; first collection later returned 429, final collection recovered |
+| aoostar.com | robots allowed; HTTP 200, 24 products | enabled |
+| www.bee-link.com | robots passed, catalog HTTP 429 | excluded |
+| acemagic.com | robots passed, catalog HTTP 429 | excluded |
+| shop.canaan.io | robots.txt unavailable | excluded without catalog request |
+
+Private watch: copy data/private/watchlist.example.json to watchlist.json; run node --experimental-strip-types scripts/watch.ts. Rules are {name,title,maxPrice?,urls?}, with title a regex. Local collection saves every fresh pre-gate offer into ignored data/private/collected.json; watch ignores snapshots older than 14h. Explicit HTTPS product URLs use the same robots-aware reader, parse only JSON-LD offers.price/currency/availability, and record blocked challenges/403s without bypass. First sighting, max-price match, >=5% drop and back-in-stock can fire; rises and blocked checks are retained too. Fires deduplicate by rule, currency and price. BARATO_BOARD_CMD is a literal executable path or JSON argv array, never a shell string; stdin receives one JSON line {title,body}. Unset prints. An exclusive local lock prevents concurrent watch runs. CI/GITHUB_ACTIONS abort before private reads or writes; watch never accesses public/. Local refresh calls it non-fatally after commit/push and stages only explicit generated data including the ledger; rebase conflict handling covers the ledger too. The example is trackable, all other private contents are ignored.
+
+Integration boundary: package.json and .github/workflows/pages.yml were excluded by the task’s allowed-path list, so they remain untouched pending explicit permission. scripts/v3-wiring.patch contains the npm watch entry and explicit CI data-path staging change. The current workflow already stages data/, so it already includes data/price-ledger.json; the proposed narrowing makes this explicit. CI has no rebase path today; none was added. The local script does have rebase handling and was updated. Keepa requires the owner to provide its env key to a process (the existing workflow does not map a Keepa secret).
+
+Final verification: npm test was attempted but this worktree lacks the other builder’s generated .nuxt/tsconfig.json. To stay within ownership, added tests/vitest.config.ts with inline TS transform options. npm test -- --config tests/vitest.config.ts passed **238 tests / 14 files**. npm run typecheck:lib passed. Windows sandbox esbuild ancestor access failed initially; the approved outside-sandbox test invocation succeeded. All unit tests use synthetic/mocked data; only merchant probes and the requested real npm run deals calls contacted providers. No Nuxt prepare/generate/typecheck, browser UI checks, real Desk command delivery, private live watch URL requests, scheduled-task execution, CI execution or authenticated Keepa calls were performed. The configured classifier failed and published a visible failure outcome; deterministic rules completed.
+
+Final real npm run deals: **2026-11-02T19:32:04.300Z**. All ten enabled sources completed successfully; 1698 normalized offers, 23 endpoint requests. Published **250**, direct **246**. Ledger: 1258575 bytes, 5068 product series.
+
+| Source | Offers | Requests | Outcome |
+| --- | ---: | ---: | --- |
+| CheapShark | 180 | 3 | success (643 ms) |
+| Steam | 310 | 4 | success (927 ms) |
+| Epic | 1 | 1 | success (187 ms) |
+| DealNews | 198 | 7 | success (14458 ms) |
+| GOG | 300 | 3 | success (1761 ms) |
+| Techbargains | 587 | 1 | success (426 ms) |
+| Minisforum | 59 | 1 | success (10652 ms) |
+| GMKtec | 32 | 1 | success (556 ms) |
+| AOOSTAR | 11 | 1 | success (571 ms) |
+| CamelCamelCamel | 20 | 1 | success (2703 ms) |
+
+Gate: {"considered":1606,"published":250,"rejected":1356,"byReason":{"noname-inflated":4,"low-value":1211,"apparel":46,"seasonal-decor":9,"food":69,"beauty":16,"gift-card":1}}. Zero middleman-duplicate rejections in this final run. low-value includes rows below the interest/price gate and rows outside the 250 publication cap.
+
+References among published rows: ledger 69; cross-store 0; curated 0; source-previous 1; list 69; none 111.
+
+Exact first 15 rows in publication order (all prices USD; references are evidence, not verified market values):
+
+| # | Title | Store | Price | Reference | errorScore | Interest |
+| ---: | --- | --- | ---: | --- | ---: | ---: |
+| 1 | GMKtec G5S Intel® Celeron N5095 Mini PC — 8GB+128GB / US | GMKtec | 229.99 | list 399.99 | 10 | 80 |
+| 2 | GMKtec G11 Plus AMD Ryzen™ 5 3500U Mini PC — Barebone (No DDR & SSD & OS） / US | GMKtec | 169.99 | list 299.99 | 0 | 80 |
+| 3 | GMKtec K17 Plus Intel® Core™ Ultra 7 258V Mini PC — 32GB RAM+1TB SSD / US | GMKtec | 949.99 | list 1399.00 | 20 | 80 |
+| 4 | GMKtec K13 Intel® Core™ Ultra 7 256V Mini PC — 16GB RAM+ 512GB SSD / US | GMKtec | 589.99 | list 899.99 | 10 | 80 |
+| 5 | GMKtec EVO-T1 Intel® Core™ Ultra 9 285H AI Mini PC — Barebone (No DDR & SSD & OS） / US | GMKtec | 829.99 | list 1199.99 | 20 | 80 |
+| 6 | GMKtec K16 AMD Ryzen™ 7 7735HS Mini PC — 32GB RAM+ 512GB SSD / US | GMKtec | 619.99 | list 899.99 | 10 | 80 |
+| 7 | GMKtec M6 Ultra AMD Ryzen™ 5 7640HS Mini PC — Barebone (No DDR & SSD & OS） / US | GMKtec | 269.99 | list 399.99 | 10 | 80 |
+| 8 | GMKtec M5S AMD Ryzen™ 3 5400U Mini PC — Barebone (No DDR & SSD & OS) / US | GMKtec | 269.99 | list 389.99 | 10 | 80 |
+| 9 | MINISFORUM MS-S1 MAX 128GB Max AI Compute Edition — AMD Ryzen™ AI Max+ 395 / 128GB RAM + 2TB SSD \| Estimated shipping time: Early November / US | Minisforum | 3919.00 | list 4899.00 | 20 | 80 |
+| 10 | MINISFORUM N5 MAX AI NAS — AMD Ryzen™ AI Max+ 395 / 64GB LPDDR5x + 128GB OS Storage / US | Minisforum | 2399.00 | list 2999.00 | 20 | 80 |
+| 11 | MINISFORUM MS-S1 MAX 64GB Local AI Pilot Edition — AMD Ryzen™ AI Max+ 395 / 64GB RAM + 2TB SSD / US | Minisforum | 2599.00 | list 3249.00 | 20 | 80 |
+| 12 | GMKtec M3S Intel® Core™ 3 304 Mini PC — 12GB RAM + 256GB SSD / US | GMKtec | 389.99 | list 519.99 | 10 | 80 |
+| 13 | GMKtec NEO-X1 Pro AMD Ryzen™ 9 9955HX3D + NVIDIA® GeForce RTX™ 5070 MODT Gaming PC — AMD Ryzen™ 9 9955HX + NVIDIA® GeForce RTX™ 5060 Ti 8G / 32GB RAM + 1TB SSD / US | GMKtec | 2199.99 | list 2699.99 | 20 | 80 |
+| 14 | MINISFORUM M2 Pro — Intel® Core™ Ultra X7 358H / 32GB RAM + 1TB SSD / US | Minisforum | 1439.00 | list 1799.00 | 20 | 80 |
+| 15 | MINISFORUM AtomMan G1 Pro-89A6 — AMD Ryzen™ 9 8945HX / 32GB RAM+1TB SSD / US | Minisforum | 1759.00 | list 2199.00 | 20 | 80 |
+
+Error-candidate list (>=40): **empty**. Probable errors (>=70): **0**. Hardware leads the final list; the rug/calendar false candidates are gone.
+
+## 2026-11-02: operator tuning after the first v3 run
+
+The first full run put 15 permanently discounted mini PCs on top, so ranking changed. A store's own catalog (`isCatalog`) now publishes only with 8%+ against its ledger or 35%+ off list (`catalog-price`). `rankValue` is half interest, half evidence, where a seller's list claim is worth 0.2-0.5 of an observed drop. `diversify` caps non-Amazon stores at 12 and breaks runs of three. New slugs: `replacement-part`, `variant-duplicate`, `publication-cap` (the cap no longer inflates `low-value`). CamelCamelCamel now reads daily and weekly feeds overall and for electronics, plus daily appliances; `bn=` values other than these came back empty or unfiltered. Spec floors widened to GPUs, gaming laptops, Mac Studio/MacBook Pro and 128GB AI Max+ 395 systems: editorial, dated, conservative, not measured. A breach scores 55, or 70 at 25% under. Classifier defaults moved to models that answered on 2026-11-02 (gemma free tier returned 429).
+
+CamelCamelCamel's robots says `Content-Signal: search=yes,ai-train=no,use=reference`. Its rows are therefore linked and credited and kept out of the classifier, whose free models may log prompts. Its terms page gave no readable text: unverified. Techbargains images returned 403 to a plain request and do not load in Chrome; rows fall back to the store mark. A check using a browser user-agent and referrer was blocked by the harness and was against this project's rules; it must not be retried.

@@ -5,8 +5,8 @@ import { plainText } from './feeds.ts'
 import { bounded } from './budget.ts'
 
 export type ClassifyCache = Record<string, { price: number; date: string; ai: NonNullable<Deal['ai']> }>
-export const defaultModel = 'google/gemma-4-26b-a4b-it:free'
-const fallbackModels = 'nvidia/nemotron-3-super-120b-a12b:free,google/gemma-4-31b-it:free'
+export const defaultModel = 'nvidia/nemotron-3-ultra-550b-a55b:free'
+const fallbackModels = 'nvidia/nemotron-3.5-lightning:free,google/gemma-4-26b-a4b-it:free,google/gemma-4-31b-it:free'
 const clean = (text: string, limit: number) => plainText(plainText(text)).replace(/(?:[a-z][a-z0-9+.-]*:\/\/|www\.)\S+/gi, '').trim().slice(0, limit)
 export function validateBatch(value: unknown, ids: string[], model: string): Map<string, NonNullable<Deal['ai']>> {
   if (!value || typeof value !== 'object' || !Array.isArray((value as any).items)) throw new Error('Invalid classification')
@@ -50,7 +50,7 @@ export async function classify(deals: Deal[], env: Record<string, string | undef
   const status: NonNullable<DealsFile['classifier']> = { model: models[0]!, ok: true, classified: 0, cached: 0 }
   const result = deals.map(d => ({ ...d }))
   const pending: Deal[] = []
-  const candidates = result.filter(d => d.category !== 'videojuegos' && (d.errorScore >= 30 || (d.discountPct || 0) >= 60 && (d.listPrice || 0) >= 100 || explicitError(d))).slice(0, 150)
+  const candidates = result.filter(d => d.category !== 'videojuegos' && d.source !== 'CamelCamelCamel' && (d.errorScore >= 30 || (d.discountPct || 0) >= 60 && (d.listPrice || 0) >= 100 || explicitError(d))).slice(0, 150)
   for (const d of candidates) {
     const saved = pruned[d.id]
     if (saved && saved.price === d.price) {

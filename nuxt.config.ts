@@ -1,6 +1,6 @@
 // barato.si — static site (nuxt generate), hosted on GitHub Pages.
-const title = 'barato, sí. Las mayores rebajas del día · barato.si'
-const description = 'Un índice diario de precios rebajados: las mayores rebajas del día y los posibles errores de precio, ordenados. También en JSON y RSS, gratis y sin clave.'
+const title = 'barato, sí. Índice de precios y errores de precio · barato.si'
+const description = 'Los precios de hoy contra lo que cada producto suele costar, con la evidencia a la vista, y los posibles errores de precio. También en JSON y RSS, gratis y sin clave.'
 const ogImage = 'https://barato.si/og.png'
 
 export default defineNuxtConfig({
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
         { property: 'og:image', content: ogImage },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: 'barato, sí. Índice diario de rebajas y posibles errores de precio, en la web, en JSON y en RSS.' },
+        { property: 'og:image:alt', content: 'barato, sí. Índice de precios y posibles errores de precio, en la web, en JSON y en RSS.' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: description },

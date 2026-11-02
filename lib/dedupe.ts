@@ -71,7 +71,8 @@ export function dedupe(deals: Deal[]): Deal[] {
       const preferNew = sameProduct && (closePrice(d, duplicate) ? direct(d) && !direct(duplicate) : d.price < duplicate.price)
       const kept = preferNew ? d : duplicate, dropped = preferNew ? duplicate : d
       kept.image ||= dropped.image
-      kept.storeUrl ||= dropped.storeUrl
+      if (kept.store === dropped.store) kept.storeUrl ||= dropped.storeUrl
+      kept.seenIn = [...new Set([...(kept.seenIn || [kept.source]), ...(dropped.seenIn || [dropped.source])])]
       if (preferNew) result[result.indexOf(duplicate)] = kept
     }
   }

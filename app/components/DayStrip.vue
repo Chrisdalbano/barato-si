@@ -7,23 +7,28 @@ import type { DayView } from '~/composables/useDeals'
 const props = withDefaults(defineProps<{ day: DayView; showDate?: boolean; errorsHref?: string }>(), { errorsHref: '/errores' })
 
 const total = computed(() => props.day.deals.length)
-const bargains = computed(() => props.day.deals.filter(d => d.flag === 'chollo').length)
+const direct = computed(() => props.day.deals.filter(d => d.direct).length)
 const errors = computed(() => props.day.deals.filter(d => d.flag === 'error-probable').length)
 // With no probable errors, the suspects behind /errores (errorScore >= 40) still get a figure.
 const suspects = computed(() => (errors.value ? 0 : props.day.deals.filter(d => d.errorScore >= 40).length))
 const sources = computed(() => sourcesLine(props.day.sources))
+const considered = computed(() => {
+  const g = props.day.gate
+  return g && g.considered > 0 ? `${new Intl.NumberFormat('es-ES').format(g.considered)} consideradas` : ''
+})
 </script>
 
 <template>
   <div class="strip">
     <p class="strip__line">
       <time v-if="showDate" class="strip__date" :datetime="day.date">{{ formatDay(day.date) }}</time>
-      <span v-if="total" class="strip__fig">{{ plural(total, 'oferta', 'ofertas') }}</span>
-      <span v-if="bargains" class="strip__fig">{{ plural(bargains, 'baratísima', 'baratísimas') }}</span>
       <!-- In the archive the figure jumps to the day's own section; on today's page it opens /errores. -->
       <a v-if="errors && errorsHref.startsWith('#')" class="strip__fig strip__fig--err" :href="errorsHref">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</a>
       <NuxtLink v-else-if="errors" class="strip__fig strip__fig--err" :to="errorsHref">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</NuxtLink>
       <NuxtLink v-else-if="suspects && !errorsHref.startsWith('#')" class="strip__fig strip__fig--err" :to="errorsHref">{{ plural(suspects, 'precio sospechoso', 'precios sospechosos') }}</NuxtLink>
+      <span v-if="total" class="strip__fig">{{ plural(total, 'oferta', 'ofertas') }}</span>
+      <span v-if="direct && direct < total" class="strip__fig">{{ plural(direct, 'con enlace directo', 'con enlace directo') }}</span>
+      <a v-if="considered" class="strip__fig strip__fig--plain" href="#filtro">{{ considered }}</a>
       <span class="strip__time">Actualizado <time :datetime="day.generatedAt">{{ formatGenerated(day.generatedAt) }}</time></span>
     </p>
     <p v-if="sources.working || sources.quiet" class="strip__src">
@@ -39,7 +44,7 @@ const sources = computed(() => sourcesLine(props.day.sources))
 .strip p { margin: 0; }
 .strip__line {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0;
-  padding: 10px 0; border-bottom: 1px solid var(--fg-primary);
+  padding: 7px 0; border-bottom: 1px solid var(--fg-primary);
   font-size: 0.8125rem; font-weight: 500; font-variant-numeric: tabular-nums;
 }
 .strip__date { font-weight: 600; }
@@ -48,9 +53,11 @@ const sources = computed(() => sourcesLine(props.day.sources))
 .strip__line > * + *::before { content: ''; display: inline-block; width: 1px; height: 0.85em; margin: 0 0.85em; background: var(--border-strong); vertical-align: -0.05em; }
 .strip__fig--err { color: var(--accent-lead); font-weight: 600; text-decoration: none; }
 .strip__fig--err:hover { text-decoration: underline; text-underline-offset: 3px; }
+.strip__fig--plain { color: inherit; text-decoration: none; }
+.strip__fig--plain:hover { text-decoration: underline; text-underline-offset: 3px; }
 .strip__time { margin-left: auto; color: var(--fg-secondary); font-weight: 400; }
 .strip__time::before { display: none !important; }
-.strip__src { padding-top: 10px; font-size: 0.8125rem; color: var(--fg-secondary); }
+.strip__src { padding-top: 6px; font-size: 0.75rem; color: var(--fg-muted); }
 @media (max-width: 640px) {
   /* Wrapped lines would start with a rule; use plain spacing instead. */
   .strip__line { column-gap: 14px; }

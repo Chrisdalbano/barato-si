@@ -26,11 +26,11 @@ it('requires affirmative sentence-level evidence', () => {
   for (const sourceText of ['Not a price error.', 'Price error? Fixed now.', 'This is not a pricing mistake.']) expect(scoreDeal(deal({ price: 60, listPrice: 100, sourceText }), now).errorScore).toBe(0)
 })
 it('demotes stable prices and notices a sudden archive drop', () => {
-  const d = deal({ price: 10, listPrice: 100 })
+  const d = deal({ title: 'Sony headphones', price: 10, listPrice: 100 })
   const history = { days: 3, minPrice: 10, maxPrice: 10.1, firstSeen: '2026-10-01' }
   const result = scoreDeal(d, now, history)
   expect(result.errorScore).toBe(40)
-  expect(result.errorSignals.join(' ')).toContain('3 días seguidos')
+  expect(result.errorSignals.join(' ')).toContain('3 días observados')
   expect(scoreDeal(d, now, { ...history, minPrice: 50, maxPrice: 60 }).errorScore).toBe(75)
 })
 it('never calls the $99 laptop an error after three stable archive days', () => {
@@ -38,7 +38,7 @@ it('never calls the $99 laptop an error after three stable archive days', () => 
   expect(scoreDeal(laptop, now, history)).toMatchObject({ errorScore: 69, flag: 'chollo' })
 })
 it('includes demotion evidence and obeys model confidence boundaries', () => {
-  expect(scoreDeal({ ...laptop, title: 'Refurbished laptop with code' }, now).errorScore).toBe(55)
+  expect(scoreDeal({ ...laptop, title: 'Lenovo Refurbished laptop with code' }, now).errorScore).toBe(55)
   const ai = { product: 'Laptop', category: 'informatica' as const, verdict: 'noise' as const, confidence: .7, note: 'Oferta múltiple o condicionada', model: 'fixture' }
   expect(scoreDeal({ ...laptop, ai }, now)).toMatchObject({ errorScore: 0, flag: 'normal', reasons: expect.arrayContaining(['Oferta múltiple o condicionada']) })
   expect(scoreDeal({ ...laptop, ai: { ...ai, confidence: .69 } }, now).errorScore).toBe(100)

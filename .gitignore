@@ -5,3 +5,6 @@ dist
 .env
 *.log
 data/local-refresh.log
+
+data/private/*
+!data/private/watchlist.example.json

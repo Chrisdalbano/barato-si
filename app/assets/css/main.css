@@ -17,6 +17,27 @@ a { color: var(--link-fg); }
 .flag--posible-error { color: var(--accent-lead); }
 .flag--baratisimo { color: var(--fg-primary); }
 
+/* Evidence: what a reference price is worth, drawn the same way everywhere. Solid
+   underline and full ink for what was observed, dashed and muted for a seller's claim. */
+.ref__price { font-variant-numeric: tabular-nums; }
+.ref--fuerte .ref__price { color: var(--fg-primary); font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--accent-lead); text-underline-offset: 3px; }
+.ref--media .ref__price { color: var(--fg-primary); text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: var(--fg-secondary); text-underline-offset: 3px; }
+.ref--debil .ref__price { color: var(--fg-muted); text-decoration: underline dashed; text-decoration-thickness: 1px; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.evi--fuerte { color: var(--fg-primary); font-weight: 500; }
+.evi--media { color: var(--fg-secondary); }
+.evi--debil, .evi--ninguna { color: var(--fg-muted); }
+.depth--fuerte { color: var(--accent-lead); font-weight: 700; }
+.depth--media { color: var(--fg-primary); font-weight: 600; }
+.depth--debil, .depth--ninguna { color: var(--fg-muted); font-weight: 400; }
+
+/* Text inputs and selects: square, ruled. */
+.field { height: 38px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 0; background: var(--bg-canvas); color: var(--fg-primary); font: inherit; font-size: 0.9375rem; min-width: 0; }
+.field:focus-visible { outline: 2px solid var(--accent-lead); outline-offset: 1px; }
+
+/* The one filled action. */
+.go { display: inline-block; padding: 10px 14px; background: var(--accent-lead); color: var(--accent-lead-foreground); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
+.go:hover { background: var(--fg-primary); color: var(--bg-canvas); }
+
 /* Segmented text buttons for filters: square, ruled, no pills. */
 .seg { height: 38px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 0; background: transparent; color: var(--fg-primary); font: inherit; font-size: 0.875rem; cursor: pointer; }
 .seg + .seg { margin-left: -1px; }
