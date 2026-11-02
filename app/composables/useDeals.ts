@@ -37,6 +37,7 @@ export function toDealView(d: Deal, directSources: ReadonlySet<string> = new Set
     source: d.source, sourceUrl: d.sourceUrl,
     currency: d.currency, price: d.price, listPrice: d.listPrice ?? null, discountPct: d.discountPct ?? null,
     image: str(d.image) && /^https?:\/\//.test(d.image!) ? d.image : null,
+    imageFallback: str(d.imageFallback) && /^https?:\/\//.test(d.imageFallback!) ? d.imageFallback : null,
     category: d.category ?? null, publishedAt: d.publishedAt, score: num(d.score, 0),
     errorScore: Math.max(0, Math.min(100, num(d.errorScore, 0))),
     errorSignals: texts(d.errorSignals),

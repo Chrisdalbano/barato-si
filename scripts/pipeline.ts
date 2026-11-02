@@ -11,6 +11,7 @@ import { bounded } from '../lib/budget.ts'
 import { classify, type ClassifyCache } from '../lib/classify.ts'
 import type { RequestContext } from './network.ts'
 import { retainCollected } from './outputs.ts'
+import { verifyCandidates } from './verify.ts'
 export { readPrevious } from './history.ts'
 export { writeOutputs, rss } from './outputs.ts'
 
@@ -128,9 +129,9 @@ export async function collect(sources: Source[], read: (source: Source, context?
     }
     const classified = await classify(dedupe(deals), options.env || {}, now, options.cache, options.fetcher, runSignal)
     options.onCache?.(classified.cache)
-    const all = dedupe(classified.deals.map(d => ({ ...d, ...scoreDeal(d, now) })))
+    const all = await verifyCandidates(dedupe(classified.deals.map(d => ({ ...d, ...scoreDeal(d, now) }))), read, now, runSignal)
     options.onCollected?.(fresh)
-    const { kept, gate } = applyGate(all)
+    const { kept, gate } = applyGate(all, now)
     const ranked = balanceRanking(kept, now).slice(0, 250)
     const capped = kept.length - ranked.length
     gate.rejected += capped

@@ -5,32 +5,35 @@
 // store's domain set in mono on the same plate: no broken icon, no stock art.
 const props = defineProps<{
   src: string | null
+  fallback?: string | null
   alt: string
   mark: string
   wide?: boolean
   eager?: boolean
 }>()
 
-const failed = ref(false)
+// Pictures still to try, in order. A failed load or a 1x1 placeholder moves to the next.
+const tried = ref(0)
+const chain = computed(() => [props.src, props.fallback].filter((u): u is string => !!u))
+const current = computed(() => chain.value[tried.value] ?? null)
 const img = ref<HTMLImageElement | null>(null)
 // Intrinsic size hints for the frame ratio, so nothing shifts while loading.
 const size = computed(() => (props.wide ? { w: 640, h: 360 } : { w: 400, h: 300 }))
-
-// An image that failed before hydration fired its error event before Vue
-// listened; catch that case on mount.
-onMounted(() => {
+const check = () => {
   const el = img.value
-  if (el && el.complete && el.naturalWidth === 0) failed.value = true
-})
-watch(() => props.src, () => { failed.value = false })
+  if (el && el.complete && el.naturalWidth <= 1) tried.value++
+}
+// An image that settled before hydration fired its events before Vue listened.
+onMounted(check)
+watch(() => [props.src, props.fallback], () => { tried.value = 0 })
 </script>
 
 <template>
-  <div class="frame" :class="{ 'frame--wide': wide, 'frame--bare': !mark && (!src || failed) }">
+  <div class="frame" :class="{ 'frame--wide': wide, 'frame--bare': !mark && !current }">
     <img
-      v-if="src && !failed" ref="img" :src="src" :alt="alt" :width="size.w" :height="size.h"
+      v-if="current" ref="img" :key="current" :src="current" :alt="alt" :width="size.w" :height="size.h"
       :loading="eager ? 'eager' : 'lazy'" decoding="async" referrerpolicy="no-referrer"
-      @error="failed = true"
+      @load="check" @error="tried++"
     >
     <span v-else-if="mark" class="frame__mark" :title="alt">{{ mark }}</span>
   </div>

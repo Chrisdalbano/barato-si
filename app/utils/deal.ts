@@ -175,6 +175,7 @@ const GATE_LABEL: Record<string, string> = {
   'middleman-duplicate': 'duplicado de intermediario',
   'catalog-price': 'precio de catálogo, sin rebaja real',
   'publication-cap': 'fuera del tope de publicación',
+  'stale-price': 'precio demasiado antiguo',
   'replacement-part': 'repuestos',
   'variant-duplicate': 'variantes de la misma oferta',
 }

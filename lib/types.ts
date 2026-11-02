@@ -50,6 +50,8 @@ export interface Deal {
   discountPct: number | null
   /** Product image from the source (https). null only when the source has none. */
   image: string | null
+  /** v3: a second picture to try if `image` fails or is Amazon's 1x1 placeholder. */
+  imageFallback?: string | null
   /** Our coarse category (DealCategory) when classified; else the source's label or null. */
   category: DealCategory | string | null
   /** ISO timestamp when the source published it. */

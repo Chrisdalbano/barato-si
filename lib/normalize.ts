@@ -21,6 +21,12 @@ export function cheapSharkDealId(value: string): string {
 }
 const safeUrl = (v: unknown): string | null => typeof v === 'string' && canonicalUrl(v) ? v : null
 
+// Any row with an ASIN can show Amazon's own product picture, sharper than a feed's
+// thumbnail. Amazon answers an unknown ASIN with a 1x1 gif, so the UI falls back.
+const amazonPicture = (asin: string | null | undefined, feedImage: string | null) => asin
+  ? { image: `https://m.media-amazon.com/images/P/${asin}.01._SL300_.jpg`, imageFallback: feedImage }
+  : { image: feedImage }
+
 export function normalizeSource(source: Source, raw: string, now: Date, previous: Deal[] = []): Deal[] {
   const seen = new Map(previous.map(d => [d.id, d]))
   const output: Deal[] = []
@@ -33,7 +39,7 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
     const base = {
       ...row, id, title: row.title.trim(), url: row.url, source: source.name, sourceUrl: safeUrl(row.sourceUrl) || new URL('/', source.url).href,
       store: row.store || source.name, currency: row.currency || 'USD', price: row.price,
-      listPrice, discountPct: discount(row.price, listPrice), image: httpsImage(row.image), category: categorize(row.title, row.category || null, row.store || source.name),
+      listPrice, discountPct: discount(row.price, listPrice), ...amazonPicture(asinFrom(row.storeUrl || row.url), httpsImage(row.image)), category: categorize(row.title, row.category || null, row.store || source.name),
       storeUrl: row.storeUrl || (source.direct || ['steam', 'steam-search', 'gog', 'epic', 'bestbuy', 'woot'].includes(source.kind) ? row.url : null),
       storeDomain: row.storeDomain || storeDomain(row.store || source.name),
       publishedAt: date(row.publishedAt, old?.publishedAt || stamp), foundAt: old?.foundAt || stamp,

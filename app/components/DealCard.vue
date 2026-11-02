@@ -12,7 +12,7 @@ const depth = computed(() => { const v = depthOf(props.deal); return v !== null 
 <template>
   <article class="card">
     <a class="card__pic" :href="linkFor(deal)" rel="noopener" target="_blank" tabindex="-1" aria-hidden="true">
-      <DealImage :src="deal.image" :alt="deal.title" :mark="storeMark(deal)" />
+      <DealImage :src="deal.image" :fallback="deal.imageFallback" :alt="deal.title" :mark="storeMark(deal)" />
     </a>
     <div class="card__body">
       <p class="card__line">

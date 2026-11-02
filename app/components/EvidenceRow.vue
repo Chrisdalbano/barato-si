@@ -22,7 +22,7 @@ const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.dea
   <article class="er" :class="`er--${strength}`">
     <div class="er__grid">
       <a class="er__pic" :href="linkFor(deal)" rel="noopener" target="_blank" tabindex="-1" aria-hidden="true">
-        <DealImage :src="deal.image" :alt="deal.title" :mark="storeMark(deal)" />
+        <DealImage :src="deal.image" :fallback="deal.imageFallback" :alt="deal.title" :mark="storeMark(deal)" />
       </a>
 
       <div class="er__head">

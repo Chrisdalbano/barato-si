@@ -1,3 +1,4 @@
+import { verifyCandidates } from '../scripts/verify'
 import { describe, expect, it } from 'vitest'
 import { readFile, mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -210,4 +211,40 @@ it('reads CamelCamelCamel history tables and stock words from pages without JSON
   expect(rows[1]).toMatchObject({ price: 7899.99, currency: 'USD', available: true, status: 'ok', url: 'https://camelcamelcamel.com/product/B0G1MQYHRD#terceros' })
   expect(parseStorePage('<title>GX10</title><p>Backorder $3,999.00</p>', 'https://s.test/a', 'now')[0]).toMatchObject({ available: false, status: 'unavailable' })
   expect(parseStorePage('<title>GX10</title><p>$3,999.00</p><button>Add to Cart</button>', 'https://s.test/a', 'now')[0]).toMatchObject({ price: 3999, available: true })
+})
+
+it('gives ASIN rows Amazon pictures and keeps the feed image as the fallback', () => {
+  const xml = '<rss><channel><item><title>Canon EOS R5 - down 13.34% ($400.00) to $2,599.00 from $2,999.00</title><link>https://camelcamelcamel.com/product/B08C7KG5LP</link><description></description><pubDate>Mon, 02 Nov 2026 11:17:46 PST</pubDate></item></channel></rss>'
+  const [row] = normalizeSource({ name: 'CamelCamelCamel', kind: 'camelcamelcamel', url: 'https://camelcamelcamel.com/top_drops/feed' }, xml, new Date('2026-11-02T20:00:00Z'))
+  expect(row!.image).toBe('https://m.media-amazon.com/images/P/B08C7KG5LP.01._SL300_.jpg')
+  expect(row!.imageFallback).toBeNull()
+})
+
+describe('price freshness (2026-11-02)', () => {
+  const now = new Date('2026-11-02T20:00:00Z')
+  const row = (o: Record<string, unknown>) => ({ id: 'x', title: 'ASUS Laptop', url: 'https://www.amazon.com/dp/B0C549K894', storeUrl: 'https://www.amazon.com/dp/B0C549K894', sourceUrl: 'https://t.test/1', store: 'Amazon', storeDomain: 'amazon.com', source: 'Techbargains', currency: 'USD', price: 500, listPrice: null, discountPct: null, image: null, category: 'informatica', publishedAt: '2026-11-02T00:00:00.000Z', foundAt: '2026-11-02T00:00:00.000Z', score: 50, errorScore: 0, errorSignals: [], flag: 'normal', reasons: [], direct: true, interest: 80, ...o }) as any
+  const hoursAgo = (h: number) => new Date(now.getTime() - h * 3600000).toISOString()
+  it('holds third-party Amazon rows to a day and sold-by-Amazon rows to four days', () => {
+    expect(rejection(row({ publishedAt: hoursAgo(30), storeUrl: 'https://www.amazon.com/dp/B0C549K894?smid=A3Q5O9' }), now)).toBe('stale-price')
+    expect(rejection(row({ publishedAt: hoursAgo(30), storeUrl: 'https://www.amazon.com/dp/B0C549K894?smid=ATVPDKIKX0DER' }), now)).toBeUndefined()
+    expect(rejection(row({ publishedAt: hoursAgo(100), storeUrl: 'https://www.amazon.com/dp/B0C549K894?smid=ATVPDKIKX0DER' }), now)).toBe('stale-price')
+  })
+  it('stale prices do not get in as error candidates either', () => {
+    expect(rejection(row({ publishedAt: hoursAgo(30), source: 'CamelCamelCamel', errorScore: 80 }), now)).toBe('stale-price')
+  })
+  const camel = (cells: string) => '<title>Shark | x</title><table><tr><td>Amazon</td><td>$200.00 (Mar 30, 2026)</td><td>$900.00 (Aug 31, 2026)</td><td>' + cells + '</td><td>$500.00</td></tr></table>'
+  const cand = (o = {}) => row({ price: 279.99, errorScore: 56, errorSignals: ['a'], reference: { price: 1299.99, kind: 'source-previous', note: 'n' }, ...o })
+  it('corrects a moved candidate price, which ends the false alarm', async () => {
+    const [d] = await verifyCandidates([cand()], async () => camel('$989.99'), now)
+    expect(d!.price).toBe(989.99)
+    expect(d!.errorScore).toBeLessThan(40)
+    expect(d!.errorSignals.at(-1)).toMatch(/corregido/)
+  })
+  it('confirms a matching price, drops a vanished one, and leaves failures alone', async () => {
+    expect((await verifyCandidates([cand()], async () => camel('$279.99'), now))[0]!.errorSignals.at(-1)).toMatch(/confirmado/)
+    expect(await verifyCandidates([cand()], async () => camel('-'), now)).toHaveLength(0)
+    const [d] = await verifyCandidates([cand()], async () => { throw new Error('403') }, now)
+    expect(d!.price).toBe(279.99)
+    expect(d!.errorSignals.at(-1)).toMatch(/sin comprobar/)
+  })
 })

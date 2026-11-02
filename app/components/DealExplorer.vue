@@ -91,7 +91,7 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
             <input type="checkbox" :checked="!state.direct" @change="f.toggleMiddlemen()">
             Incluir enlaces de intermediarios<span v-if="middlemen" class="ex__direct-n"> ({{ middlemen }})</span>
           </label>
-          <span class="ex__direct-note">{{ state.direct ? 'Ahora, solo enlaces directos a la tienda.' : 'Algunos enlaces pasan por la fuente antes de llegar a la tienda.' }}</span>
+          <span class="ex__direct-note">{{ state.direct ? 'Ahora, solo enlaces directos a la tienda.' : 'Algunos enlaces pasan por la fuente antes de llegar a la tienda.' }} Cada precio es el que publicó la fuente hace el tiempo indicado: confírmalo en la tienda.</span>
         </p>
 
         <ActiveFilters :items="f.items.value" @remove="f.set" @clear="f.reset" />

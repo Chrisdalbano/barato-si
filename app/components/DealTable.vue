@@ -67,7 +67,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
           <td class="c-product">
             <div class="dt__cell">
               <a class="dt__pic" :href="linkFor(d)" rel="noopener" target="_blank" tabindex="-1" aria-hidden="true">
-                <DealImage :src="d.image" :alt="d.title" mark="" />
+                <DealImage :src="d.image" :fallback="d.imageFallback" :alt="d.title" mark="" />
               </a>
               <div class="dt__what">
                 <a class="dt__title" :href="linkFor(d)" rel="noopener" target="_blank">{{ d.title }}</a>

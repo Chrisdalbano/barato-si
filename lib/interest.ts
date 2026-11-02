@@ -1,7 +1,7 @@
 import type { Deal, GateReport } from './types.ts'
 import { brandOf, brandTier, productKey } from './identity.ts'
 import { roundup } from './errors.ts'
-export type RejectReason = 'apparel' | 'food' | 'beauty' | 'seasonal-decor' | 'gift-card' | 'low-value' | 'noname-inflated' | 'middleman-duplicate' | 'catalog-price' | 'replacement-part' | 'variant-duplicate'
+export type RejectReason = 'apparel' | 'food' | 'beauty' | 'seasonal-decor' | 'gift-card' | 'low-value' | 'noname-inflated' | 'middleman-duplicate' | 'catalog-price' | 'replacement-part' | 'variant-duplicate' | 'stale-price'
 export const isGame = (d: Deal) => d.category === 'videojuegos'
 // A store's own catalog is a price list, not a deal: nobody posted it. It feeds the
 // ledger and the private watch every run, and is published only with a real discount.
@@ -22,7 +22,7 @@ export function rankValue(d: Deal, now: Date): number {
   const fresh = Number.isFinite(age) ? 10 * Math.exp(-Math.max(0, age) / 2) : 0
   const h = d.history
   const flat = h && h.days >= 7 && Math.abs(h.maxPrice - h.minPrice) <= d.price * .02 ? 20 : 0
-  return (d.interest || 0) * .5 + evidenceOf(d) * .5 + fresh - flat - (isCatalog(d) ? 10 : 0)
+  return (d.interest || 0) * .5 + evidenceOf(d) * .5 + fresh - flat - (isCatalog(d) ? 10 : 0) - (/amazon\./i.test(d.storeDomain || d.store) && d.source === 'Techbargains' && !soldByAmazon(d) ? 15 : 0)
 }
 const MAX_PER_STORE = 12
 /** No store may wall off the page: small stores are capped, and no store runs three in a row while another is waiting. */
@@ -56,7 +56,18 @@ export function interestOf(d: Deal): Pick<Deal, 'interest' | 'interestSignals'> 
   if (d.staffPick) add(15, 'Selección editorial de DealNews')
   return { interest: Math.min(100, interest), interestSignals }
 }
-export function rejection(d: Deal): RejectReason | undefined {
+// How long a posted price can be trusted. Measured 2026-11-02 on 32 Amazon rows against
+// live pages: of 16 sold by Amazon (smid in the link) 1 had moved; of the third-party rows
+// most had, because the posted price was a short promotion. A store's own catalog is live.
+export const soldByAmazon = (d: Deal) => /[?&]smid=ATVPDKIKX0DER\b/.test(d.storeUrl || d.url)
+export function maxAgeHours(d: Deal): number {
+  if (isGame(d) || isCatalog(d)) return Infinity
+  if (d.source === 'CamelCamelCamel') return 24
+  if (/amazon\./i.test(d.storeDomain || d.store)) return soldByAmazon(d) ? 96 : 24
+  return d.source === 'DealNews' ? 72 : 48
+}
+export function rejection(d: Deal, now?: Date): RejectReason | undefined {
+  if (now && (now.getTime() - Date.parse(d.publishedAt)) / 3600000 > maxAgeHours(d)) return 'stale-price'
   if (roundup(d.title) || (d.ai?.verdict === 'noise' && d.ai.confidence >= .7)) return 'low-value'
   if (!isGame(d) && d.errorScore >= 40) return undefined
   if (isGame(d)) return undefined
@@ -73,7 +84,7 @@ export function rejection(d: Deal): RejectReason | undefined {
 }
 // Same store, same price, same opening words: colours and sizes of one offer (eight Oura rings).
 const variantKey = (d: Deal) => [d.store, d.currency, d.price, d.title.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').trim().split(/\s+/).slice(0, 4).join(' ')].join('|')
-export function applyGate(deals: Deal[]): { kept: Deal[]; gate: GateReport } {
+export function applyGate(deals: Deal[], now?: Date): { kept: Deal[]; gate: GateReport } {
   const gate: GateReport = { considered: deals.length, published: 0, rejected: 0, byReason: {} }
   const direct = new Set(deals.filter(d => d.direct).map(d => productKey(d) + ':' + d.currency + ':' + d.store.toLowerCase()))
   const kept: Deal[] = [], variants = new Set<string>()
@@ -81,7 +92,7 @@ export function applyGate(deals: Deal[]): { kept: Deal[]; gate: GateReport } {
     const d = { ...input, ...interestOf(input) }
     const duplicate = !d.direct && direct.has(productKey(d) + ':' + d.currency + ':' + d.store.toLowerCase())
     const variant = variantKey(d)
-    const reason = duplicate ? 'middleman-duplicate' : rejection(d) ?? (variants.has(variant) && d.errorScore < 40 ? 'variant-duplicate' : undefined)
+    const reason = duplicate ? 'middleman-duplicate' : rejection(d, now) ?? (variants.has(variant) && d.errorScore < 40 ? 'variant-duplicate' : undefined)
     if (reason) { gate.rejected++; gate.byReason[reason] = (gate.byReason[reason] || 0) + 1 } else { variants.add(variant); kept.push(d) }
   }
   gate.published = kept.length
