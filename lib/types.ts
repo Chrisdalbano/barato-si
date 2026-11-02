@@ -102,6 +102,55 @@ export interface Deal {
   }
   /** Original syndicated item attribution, retained for sources whose terms require it (DealNews). */
   syndication?: { attribution: string; feedUrl: string; itemUrl?: string; itemXml?: string; descriptionHtml?: string }
+
+  // ---- v3 (2026-11-02, docs/V3-DESIGN.md). All optional: v1/v2 archives still parse. ----
+
+  /** Stable product identity across sources: asin:B0..., bestbuy:123, shopify:domain:handle, steam:440, url:<id>. */
+  productKey?: string
+  /** Canonical brand when recognized ("ASUS", "NVIDIA"); null when unknown. Unknown is not an insult, it just earns no brand points. */
+  brand?: string | null
+  /** The best evidence of what this product normally costs. Absent when we have none. */
+  reference?: {
+    price: number
+    /** Strongest first: ledger > cross-store > curated > source-previous > list. */
+    kind: ReferenceKind
+    /** Observed days behind a ledger reference; stores compared for cross-store. */
+    observations?: number
+    /** ISO date this evidence is from (curated entries are dated). */
+    asOf?: string
+    /** Short Spanish line for readers: "Mediana de 14 días observados". */
+    note: string
+  }
+  /** 0-100 discount against `reference`, null without one. This, not discountPct, is what error scoring trusts. */
+  referenceDiscountPct?: number | null
+  /** 0-100: is this worth a reader's attention? Replaces community votes. */
+  interest?: number
+  /** Short Spanish evidence behind `interest`, strongest first. */
+  interestSignals?: string[]
+  /** True only when the primary link goes straight to the merchant's product page. */
+  direct?: boolean
+  /** Every source that carried this product this run. Two or more is corroboration. */
+  seenIn?: string[]
+  /** DealNews staff pick flag. */
+  staffPick?: boolean
+}
+
+export type ReferenceKind = 'ledger' | 'cross-store' | 'curated' | 'source-previous' | 'list'
+
+/** data/price-ledger.json. Every collected non-game offer, published or not. */
+export interface PriceLedger {
+  version: 1
+  updatedAt: string
+  /** productKey -> series. `d` is a UTC day, `p` that day's lowest price, `s` the source. */
+  products: Record<string, { title: string; currency: string; firstSeen: string; series: { d: string; p: number; s: string }[] }>
+}
+
+/** What the interest gate kept out this run, so the filter is visible and never silent. */
+export interface GateReport {
+  considered: number
+  published: number
+  rejected: number
+  byReason: Record<string, number>
 }
 
 export interface SourceOutcome {
@@ -145,7 +194,9 @@ export interface DealsFile {
    */
   classifier?: { model: string; ok: boolean; classified: number; cached: number; error?: string }
   /** Schema version of this file. Absent in v1 files. */
-  version?: 2
+  version?: 2 | 3
+  /** v3: what the interest gate rejected and why. */
+  gate?: GateReport
 }
 
 // ---- Files the job writes --------------------------------------------------
