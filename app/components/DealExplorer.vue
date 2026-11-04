@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { DealView } from '~/composables/useDeals'
 import { sortLabel, sortValue } from '~/utils/filters'
+import { dealAnchor } from '~~/lib/landing'
 
 // The index itself: search, sort and view above the results, the facet panel at
 // the side (a drawer on phones), the active filters, then the table or the grid.
-const props = defineProps<{ deals: DealView[]; generatedAt: string; shownAbove?: string[]; hideGames?: boolean; directDefault?: boolean; ads?: boolean }>()
+const props = defineProps<{ deals: DealView[]; generatedAt: string; shownAbove?: string[]; hideGames?: boolean; directDefault?: boolean; ads?: boolean; title?: string }>()
 const { locale, t } = useLang()
 // The in-stream ad goes after this many rows (only on pages that ask for it).
 const AD_AFTER = 12
@@ -22,9 +23,61 @@ const shown = computed(() => (f.active.value || !above.value.size ? f.results.va
 // Up to 400 deals: render in chunks. Any change of state starts again at the first.
 const CHUNK = 60
 const limit = ref(CHUNK)
-watch(() => JSON.stringify(state.value), () => { limit.value = CHUNK })
+watch(() => JSON.stringify(state.value), () => { limit.value = CHUNK; reveal() })
 const visible = computed(() => shown.value.slice(0, limit.value))
 const remaining = computed(() => Math.max(0, shown.value.length - limit.value))
+
+// A shared link (#d-<id>, see ShareDeal) may point past the first chunk: show
+// enough rows to include it, then bring it into view. After mount only, so the
+// prerendered HTML is the same for everyone. Hydration then reads the query and
+// the state change resets the chunk, so the hash stays pending (re-applied after
+// any reset) until the reader first touches the page.
+const route = useRoute()
+let pendingHash = ''
+function reveal() {
+  if (!pendingHash) return
+  const at = shown.value.findIndex(d => dealAnchor(d.id) === pendingHash)
+  if (at < 0) return
+  if (at >= limit.value) limit.value = (Math.floor(at / CHUNK) + 1) * CHUNK
+  const id = pendingHash
+  nextTick(() => {
+    const el = pendingHash ? document.getElementById(id) : null
+    if (!el) return
+    // :target does not match a row that did not exist when the hash was applied.
+    document.querySelectorAll('.is-shared').forEach(n => n.classList.remove('is-shared'))
+    el.classList.add('is-shared')
+    el.scrollIntoView({ block: 'center' })
+  })
+}
+function settle() { pendingHash = '' }
+// During hydration both location.hash and the router's hash can still read empty;
+// the navigation entry keeps the URL the reader actually opened.
+function openedHash(): string {
+  const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined
+  // Only for the page the reader opened, not one reached later inside the app.
+  const opened = nav ? new URL(nav.name) : null
+  const fromNav = opened && opened.pathname === location.pathname ? opened.hash : ''
+  return decodeURIComponent((location.hash || route.hash || fromNav).slice(1))
+}
+function onHash() {
+  const hash = decodeURIComponent(location.hash.slice(1))
+  if (hash.startsWith('d-')) { pendingHash = hash; reveal() }
+}
+onMounted(() => {
+  window.addEventListener('hashchange', onHash)
+  const hash = openedHash()
+  if (!hash.startsWith('d-')) return
+  pendingHash = hash
+  document.addEventListener('pointerdown', settle, { once: true, capture: true })
+  document.addEventListener('keydown', settle, { once: true, capture: true })
+  reveal()
+})
+onUnmounted(() => {
+  window.removeEventListener('hashchange', onHash)
+  document.removeEventListener('pointerdown', settle, { capture: true })
+  document.removeEventListener('keydown', settle, { capture: true })
+})
+watch(shown, () => reveal())
 
 // Ages are measured from generation time in the prerendered HTML, then from the
 // reader's clock once the page is live.
@@ -53,7 +106,7 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
 <template>
   <section id="ofertas" class="ex" aria-labelledby="ex-title">
     <div class="ex__head">
-      <h2 id="ex-title" class="ex__title">{{ t.explorer.title }}</h2>
+      <h2 id="ex-title" class="ex__title">{{ title ?? t.explorer.title }}</h2>
       <p class="ex__count" aria-live="polite">{{ visible.length }} {{ t.explorer.of }} {{ shown.length }}</p>
     </div>
 

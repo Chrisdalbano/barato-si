@@ -4,6 +4,7 @@ import type { Deal, DealsFile, ErrorsFile, HighlightsFile, OracleFile } from '..
 import { nearestMisses, recentCandidates } from '../lib/error-feed.ts'
 import { xmlEscape as x } from '../lib/feeds.ts'
 import { formatMoney } from '../lib/format.ts'
+import { landingPages, landingPaths } from '../lib/landing.ts'
 
 const collected = new WeakMap<DealsFile, Deal[]>()
 export function retainCollected(file: DealsFile, all: Deal[]) { collected.set(file, all) }
@@ -30,9 +31,13 @@ export interface Extras { highlights?: HighlightsFile; oracle?: OracleFile }
 const SITE = 'https://barato.si/'
 /** Each Spanish route and its English twin. The UI owns the pages; the pipeline owns the sitemap. */
 export const PAGES: [string, string][] = [['', 'en/'], ['errores/', 'en/errores/'], ['archivo/', 'en/archivo/'], ['api/', 'en/api/'], ['si/', 'en/si/'], ['privacidad/', 'en/privacy/']] // trailing slash: what GitHub Pages serves and what the UI canonicals use
-export function sitemap(generatedAt: string): string {
-  const alternates = (es: string, en: string) => `<xhtml:link rel="alternate" hreflang="es" href="${SITE}${es}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${en}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${es}"/>`
-  const pages = PAGES.flatMap(([es, en]) => [es, en].map(loc => `<url><loc>${SITE}${loc}</loc><lastmod>${generatedAt}</lastmod>${alternates(es, en)}</url>`))
+/** Category and store pages with deals today, as [es, en] paths with the trailing slash. Same set the site prerenders. */
+export function landingPairs(deals: readonly Pick<Deal, 'category' | 'store'>[]): [string, string][] {
+  return landingPaths(landingPages(deals)).map(p => [p.es.slice(1) + '/', p.en.slice(1) + '/'])
+}
+export function sitemap(generatedAt: string, deals: readonly Pick<Deal, 'category' | 'store'>[] = []): string {
+  const alternates = (es: string, en: string) => `<xhtml:link rel="alternate" hreflang="es" href="${SITE}${x(es)}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${x(en)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${x(es)}"/>`
+  const pages = [...PAGES, ...landingPairs(deals)].flatMap(([es, en]) => [es, en].map(loc => `<url><loc>${SITE}${x(loc)}</loc><lastmod>${generatedAt}</lastmod>${alternates(es, en)}</url>`))
   const files = ['api/deals.json', 'api/errors.json', 'feed.xml', 'errors.xml'].map(path => `<url><loc>${SITE}${path}</loc><lastmod>${generatedAt}</lastmod></url>`)
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${[...pages, ...files].join('')}</urlset>\n`
 }
@@ -71,7 +76,7 @@ export async function writeOutputs(root: string, file: DealsFile, extras: Extras
     [join(root, 'feed.xml'), rss(file)],
     [join(root, 'errors.xml'), rss({ ...file, deals: errors }, true)],
     [join(root, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://barato.si/sitemap.xml\n'],
-    [join(root, 'sitemap.xml'), sitemap(file.generatedAt)],
+    [join(root, 'sitemap.xml'), sitemap(file.generatedAt, file.deals)],
     [join(root, 'llms.txt'), discovery(file)],
     [join(root, 'api/index.json'), JSON.stringify({ latest: file.date, days }) + '\n'],
     [join(root, 'api/deals.json'), json],

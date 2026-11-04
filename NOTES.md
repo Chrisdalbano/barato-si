@@ -290,3 +290,11 @@ sitemap.xml lists /, /errores, /archivo, /api, /si and their /en twins, each wit
 ### Verification
 
 `npm test`: 16 files, 302 tests passed (23 new in tests/oracle.test.ts: windows, prior fitting and clamps, predictions, log resolution, Brier/baseline/buckets, highlight rules, recent re-scoring, nearest, the two new signals, outputs, sitemap). `npm run typecheck:lib` passed. Two real `npm run deals` runs on 2026-11-04 (27.6 s; all ten enabled sources succeeded, 250 published); the second confirmed the same-day log dedupe (102 entries, unchanged). Not verified: Nuxt build/typecheck, CI, the UI's use of the new files, any resolved prediction (none can resolve before 2026-11-19).
+
+## 2026-11-04 (v4.1): landing pages in the sitemap, IndexNow
+
+Pipeline code only (`lib/landing.ts` new, `scripts/outputs.ts`, `scripts/indexnow.ts` new, tests). No `lib/types.ts` change; no published file edited by hand.
+
+- `sitemap(generatedAt, deals = [])` now also lists `/categoria/<slug>/`, `/en/category/<english slug>/`, `/tienda/<slug>/`, `/en/store/<slug>/` for every category and store with at least one deal in the published list, each with es/en/x-default alternates. `writeOutputs` passes `file.deals`. Slices with nothing today are not listed. The rule is `landingPages()` in `lib/landing.ts`, which the site's prerender list uses too, so the sitemap and the built pages are the same set (checked: 44 and 44 on 2026-11-04's data). `landingPairs()` is exported for tests.
+- IndexNow: `scripts/indexnow.ts` (`buildPayload()` tested; `main()` never throws) runs in a new workflow job after deploy. The key file `public/<key>.txt` is static and committed; `writeOutputs` only renames its own named outputs, so it is never removed.
+- Tests: `tests/landing.test.ts`. The sitemap test in `tests/oracle.test.ts` is unchanged and still passes (no deals = no landing URLs).

@@ -7,6 +7,9 @@
 html { background: var(--bg-canvas); color: var(--fg-primary); font-family: var(--font-sans); -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-y: scroll; scrollbar-gutter: stable; }
 /* A local fallback sized to Inter's metrics, so text set before the web font arrives
    takes the same room and nothing reflows when Inter swaps in. */
+/* The wordmark's face: Outfit Medium (SIL OFL 1.1, The Outfit Project Authors), subset to
+   a-z . , í (2 KB) and preloaded. block: never paint the wordmark in a fallback face. */
+@font-face { font-family: 'barato brand'; src: url('/fonts/outfit-500-brand.woff2') format('woff2'); font-weight: 500; font-display: block; }
 @font-face { font-family: 'Inter Fallback'; src: local('Arial'); size-adjust: 107.06%; ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; }
 body { margin: 0; min-height: 100dvh; background: var(--bg-canvas); line-height: 1.5; -webkit-font-smoothing: antialiased; }
 a { color: var(--link-fg); }

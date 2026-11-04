@@ -11,6 +11,10 @@ const { locale, t } = useLang()
 const state = computed(() => props.f.state.value)
 const o = computed(() => props.f.options.value)
 const FACET_LIMIT = 8
+// With one category or one store chosen, point at its own page (when it exists today).
+const landing = useLandingLinks()
+const catPage = computed(() => (state.value.category ? landing.categoryHref({ category: state.value.category }) : null))
+const storePage = computed(() => (state.value.stores.length === 1 ? landing.storeHref({ store: state.value.stores[0]! }) : null))
 
 const showAllStores = ref(false)
 const showAllBrands = ref(false)
@@ -54,6 +58,7 @@ const hasScope = computed(() => o.value.showFresh || state.value.fresh || o.valu
           <input type="radio" name="fp-cat" :checked="state.category === name" @change="f.set({ cat: name })">
           <span class="fc__name">{{ categoryLabel(name, locale) }}</span><span class="fc__n">{{ n }}</span>
         </label>
+        <NuxtLink v-if="catPage" :to="catPage" class="fp__page">{{ t.landing.pageOf(categoryLabel(state.category, locale)) }} <span aria-hidden="true">&rarr;</span></NuxtLink>
       </fieldset>
 
       <fieldset v-if="o.brands.length" class="fp__group">
@@ -76,6 +81,7 @@ const hasScope = computed(() => o.value.showFresh || state.value.fresh || o.valu
         <button v-if="o.stores.length > FACET_LIMIT" type="button" class="fp__more" @click="showAllStores = !showAllStores">
           {{ showAllStores ? t.panel.seeLess : t.panel.seeAll(o.stores.length) }}
         </button>
+        <NuxtLink v-if="storePage" :to="storePage" class="fp__page">{{ t.landing.pageOf(state.stores[0]!) }} <span aria-hidden="true">&rarr;</span></NuxtLink>
       </fieldset>
 
       <fieldset class="fp__group">
@@ -183,6 +189,8 @@ const hasScope = computed(() => o.value.showFresh || state.value.fresh || o.valu
 
 .fp__more { display: block; border: 0; background: none; padding: 4px 0 0; font: inherit; font-weight: 600; color: var(--link-fg); cursor: pointer; }
 .fp__more:hover { text-decoration: underline; text-underline-offset: 3px; }
+.fp__page { display: block; padding: 6px 0 0; font-weight: 600; color: var(--link-fg); text-decoration: none; }
+.fp__page:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .fp__prices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .fp__prices span { display: block; margin-bottom: 2px; color: var(--fg-secondary); font-size: 0.75rem; }

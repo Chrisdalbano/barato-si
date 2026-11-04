@@ -12,6 +12,9 @@ provideOracle(oracle)
 const all = computed(() => data.value?.deals ?? [])
 const recent = computed(() => data.value?.recent ?? [])
 const nearest = computed(() => data.value?.nearest ?? [])
+// Shared links land on #d-<id>. One row per id: a past candidate that is also
+// today's nearest miss keeps its anchor on today's row.
+const nearIds = computed(() => new Set(nearest.value.map(d => d.id)))
 
 // Filters live in the query string (?min=40|55|70&cat=&tienda=&evidencia=), read
 // after mount so the prerendered HTML is always the default view.
@@ -113,7 +116,7 @@ const groups = computed(() => TIER_IDS
         <h3 :id="`tier-${g.id}`" class="tier__title">{{ g.title }} <span class="tier__n">{{ g.deals.length }}</span></h3>
         <p class="tier__note">{{ g.note }}</p>
         <ol class="tier__items">
-          <li v-for="d in g.deals" :key="d.id"><EvidenceRow :deal="d" full :heading-level="4" /></li>
+          <li v-for="d in g.deals" :key="d.id"><EvidenceRow :deal="d" full anchored :heading-level="4" /></li>
         </ol>
       </section>
 
@@ -136,7 +139,7 @@ const groups = computed(() => TIER_IDS
         <p class="tier__note">{{ t.errors.recentNote }}</p>
         <ol class="tier__items">
           <li v-for="r in recent" :key="`${r.date}-${r.deal.id}`">
-            <EvidenceRow :deal="r.deal" :heading-level="3" :seen-on="formatDayMonth(r.date, locale)" />
+            <EvidenceRow :deal="r.deal" :heading-level="3" :seen-on="formatDayMonth(r.date, locale)" :anchored="!nearIds.has(r.deal.id)" />
           </li>
         </ol>
       </section>
@@ -147,7 +150,7 @@ const groups = computed(() => TIER_IDS
         </h2>
         <p class="tier__note">{{ t.errors.nearestNote }}</p>
         <ol class="tier__items">
-          <li v-for="d in nearest" :key="d.id"><EvidenceRow :deal="d" :heading-level="3" :kicker="t.errors.belowBar" /></li>
+          <li v-for="d in nearest" :key="d.id"><EvidenceRow :deal="d" anchored :heading-level="3" :kicker="t.errors.belowBar" /></li>
         </ol>
       </section>
 

@@ -407,3 +407,110 @@ Owner brief: interesting, cohesive, monetizable, owned by Formship LLC, bilingua
 - `public/sitemap.xml` (written by `scripts/outputs.ts`) lists only `/` and data files. It should list the 12 pages above with trailing slashes, with `xhtml:link` hreflang alternates if wanted.
 - `public/robots.txt` is also pipeline-written (`Allow: /` for every agent, sitemap pointed). That already admits AI crawlers; no change needed.
 - `public/llms.txt` could mention `/si`, `/en/` and `highlights.json` / `oracle.json`.
+
+## 2026-11-04 (v4.1): logo, landing pages, IndexNow, share, sponsored slot
+
+Branch `v4.1-logo-growth`, not merged. Lead brief: integrate logo concept 2 "Vectorial", plus growth that needs no third-party account.
+
+### Logo
+
+- **Sources** live in `brand/`: `mark.svg` (cropped to the drawing, viewBox 26 26 148 148), `lockup.svg` / `lockup-dark.svg` (from `_runs/logos-2026-11-04/v3/svg/geo-lockup-*.svg`, background rect removed), and the HTML compositions `icon.html` and `og.html`. `node scripts/brand.mjs` renders every PNG with headless Chrome (no dependency; `CHROME=` overrides the path): `public/og.png`, `public/og-en.png`, `public/apple-touch-icon.png` (180), `public/icon-512.png`, `public/icon-maskable-512.png` (mark at 52 %, so its farthest corner sits inside the 40 % safe circle). Nothing in the pipeline writes these files. There was no og script before; the old og.png was made by hand.
+- **Favicon** `public/favicon.svg`: the mark on transparent. Ink `#111111` turns white under `prefers-color-scheme: dark` (a `<style>` inside the SVG); the cobalt circle stays. `site.webmanifest` lists the 512, the maskable 512, the 180 and the SVG, with theme and background `#f3f0e8`. `nuxt.config.ts` links the apple-touch-icon and the manifest.
+- **The wordmark stays text.** The header is `<BrandMark>` (inline SVG, `currentColor` for the ink parts, `--brand-cobalt` for the accent circle, `aria-hidden`) next to "barato.si" as real text, now in the logo's face: Outfit Medium (SIL OFL 1.1). It is subset with fontTools to `a-z . , í`, giving a 2.4 KB `public/fonts/outfit-500-brand.woff2`, which is preloaded with `font-display: block`, so the wordmark never paints in a fallback face and never changes width. Only the wordmark uses it (`--font-brand`); the rest of the site stays Inter.
+- **Accent.** The paper accent was already `#2947d7`, the logo's cobalt, so it did not change. Contrast on paper `#f3f0e8` is 6.2:1, AA for body text. A new token, `--brand-cobalt` (the same in both variants), colours the mark's circle, the header full stop and the masthead and footer dots. Night keeps orange as its UI accent, but the brand stays cobalt, as in the logo's own dark version. Cobalt on night `#111310` is about 2.6:1. That colour is only ever used for the logo and decoration, which WCAG exempts as logotypes, never for text.
+- **Masthead.** "barato, sí" keeps its Inter 700 nameplate. The mark stands before it at cap height (0.72em, on the baseline), and the full stop is drawn as one of the mark's perfect circles (0.16em, cobalt). The footer sign-off uses the same circle. All sizes are fixed in em, so nothing shifts.
+- **OG.** Paper background, the lockup, one line ("Las rebajas de hoy, con la evidencia a la vista." / "Today's deepest US discounts, with the evidence.") and a ruled footer. `useSeo` now sets `og:image` and `twitter:image` per language (`seo.ogImage`), so `/en/*` gets `og-en.png`. The global tags in `nuxt.config.ts` carry keys, so pages override them.
+- **JSON-LD.** The publisher Organization is Formship LLC, and barato's logo is not Formship's, so it does not go in the Organization's `logo`. Instead the Organization carries `brand: { @type: Brand, name: barato.si, logo: icon-512.png }`, and the WebSite gets `image: icon-512.png` (`BRAND_LOGO` in `useSeo.ts`).
+
+### Category and store pages
+
+- **One rule, one module.** `lib/landing.ts` is used by the pipeline's sitemap, the prerender list in `nuxt.config.ts`, IndexNow and the app. A page exists for each of our categories and each store with at least one deal in today's `deals.json`. Store names are slugged to ASCII.
+  - Spanish category slugs are the category values. English ones are words: `/en/category/electronics/`, `video-games`, `computers`, and so on.
+  - Store slugs are the same in both languages. Store spellings that slug the same share a page.
+- **Routes.** `pages/categoria/[slug].vue` (alias `/en/category/:slug`) and `pages/tienda/[slug].vue` (alias `/en/store/:slug`) both render `LandingPage.vue`:
+  - an eyebrow crumb, the h1 "Electrónica, hoy", and a lede with the count and date;
+  - the same `DealExplorer` over that slice, with games and middlemen shown (the visitor chose the slice);
+  - "Otras categorías / tiendas con ofertas hoy" as internal links.
+  - `useSeo()`, the new general form of `usePageSeo`, gives each page its title, description, self canonical, es/en/x-default hreflang and a BreadcrumbList. An ItemList of the first 20 rows of the page's own default list is added.
+  - Today that is 9 categories + 13 stores = 44 pages.
+- **Language switch.** `utils/locale.ts` maps the pairs both ways, so EN/ES works on these pages.
+- **Links in only where the page was built.** Home and the landing pages call `provideLanding()`, and the rows call `useLandingLinks()`. The archive provides nothing, so old days show plain text.
+  - In the table, the store cell and a category line under the title are links.
+  - On grid cards, the who-line is.
+  - In the filter panel, choosing one category or exactly one store adds "Página de X →".
+- **Empty after a refresh.** If a client refresh empties a slice, the page says "Hoy no queda nada en esta página. No la rellenamos con ofertas viejas."
+
+### Share
+
+- `ShareDeal.vue` sits on table rows (last column), grid cards, carousel cards and evidence rows (the home board and `/errores`).
+  - With a coarse pointer and `navigator.share`, it opens the system sheet.
+  - Otherwise it opens a small menu: **WhatsApp** (first, bold), Telegram, X, copy link.
+  - This deviates from "always prefer navigator.share" on purpose: desktop Chrome on Windows exposes it too, and that sheet has no WhatsApp, so fine pointers get the menu.
+- The menu is `position: fixed` under the button, because carousel tracks scroll sideways and clip anything absolutely positioned. It closes on an outside click, on Escape (focus returns to the button), and on any scroll or resize.
+- The shared URL is barato.si, never the merchant:
+  - from evidence rows: `/errores/?ref=share#d-<id>`;
+  - otherwise: the deal's category page (it lists every deal in the category), else its store page.
+  - `?ref=share` is read by nothing.
+- Rows carry stable ids `d-<pipeline id>` (`dealAnchor()`). On `/errores` each id is used once: a past candidate that is also today's nearest miss keeps the id on today's row.
+- `DealExplorer` follows the hash after mount: it shows enough chunks to include the row, scrolls it to the centre and marks it (`.is-shared`, a cobalt rule). Two things made this harder than expected:
+  - During hydration, `location.hash` and the router's hash both read empty. It also reads the navigation entry's URL (only when its path is the current one) and listens to `hashchange`.
+  - The filter reset after mount would undo the expansion, so the hash stays pending until the first pointer or key event.
+
+### Sponsored slot
+
+- **The data.** `app/data/sponsor.json` is `{ active, label, text, url, until, image? }`, committed and shipped with `active: false`. `activeSponsor()` in `utils/sponsor.ts` shows the slot only when all of these hold:
+  - `active` is `true`;
+  - `label` and `text` are not empty (they are cut to 60 and 160 characters, on one line);
+  - `url` is https;
+  - `until` (YYYY-MM-DD, the last day shown) is on or after the build date.
+  - `image` is used only if it is https.
+  - The build date comes from `useState('build-date')`, so the server and hydration agree.
+- **The slot.** `SponsorSlot.vue` is one dashed-ruled line under the error board on the home page: the label "PATROCINADO", the sponsor's name in bold, their text and an arrow. It links with `rel="sponsored noopener"` in a new tab, and every field renders as text.
+- **The footer.** While no sponsor is live, the footer shows "¿Anunciar aquí?" / "Advertise here", linking to `runtimeConfig.public.sponsorUrl`, with this line: "10 USD por semana. Lo revisamos antes de publicarlo y, si no encaja, te devolvemos el dinero. Es un sitio pequeño y nuevo: no garantizamos tráfico."
+  - The old "Patrocina barato.si" link is gone (`footer.sponsor` was removed).
+  - `SPONSOR_URL_DEFAULT` in `nuxt.config.ts` is the lead's Stripe Payment Link: 10 USD for one week, and checkout collects the URL and one line of text. `NUXT_PUBLIC_SPONSOR_URL` overrides it, and `''` hides the line.
+
+#### Turning a sponsor on (Christian)
+
+1. A Stripe payment arrives with "Link to promote" and "Slot text". Check both. To decline, refund in Stripe.
+2. Edit `app/data/sponsor.json`:
+   - `"active": true`
+   - `"label"`: the sponsor's name
+   - `"text"`: their line, one line; edit it for length and honesty
+   - `"url"`: their https link
+   - `"until"`: the last day it shows (the paid day + 6 for one week)
+   - `"image"`: an https logo URL, or `null`
+3. Commit and push to main. The push-triggered deploy shows it, and the three-hourly builds keep it until `until` passes. After that it disappears on its own and "¿Anunciar aquí?" comes back. Set `active` back to `false` when you tidy up.
+
+### IndexNow
+
+- The key is `29c0951cd3928e86c5f663696aa6765c`, in `public/29c0951cd3928e86c5f663696aa6765c.txt`. The file is static and committed; `scripts/outputs.ts` writes only its own named files and never touches it.
+- `scripts/indexnow.ts` builds `{ host, key, keyLocation, urlList }` from the six daily pages (home, /errores and /si in both languages) plus every landing page of the day, and POSTs it to `https://api.indexnow.org/indexnow`. Today's payload is 50 URLs.
+- A new `indexnow` job in `.github/workflows/pages.yml` runs it with `needs: deploy` and `continue-on-error: true`, on Node only (no `npm ci`). The script always exits 0 and logs the HTTP status.
+
+### Verified
+
+- `npm test`: 18 files, 315 tests. New:
+  - `tests/landing.test.ts` (9): slugs, the landing set, paths, anchors, the sitemap with and without landing pages, the IndexNow payload and key file, locale pairs.
+  - `tests/sponsor.test.ts` (4).
+- `npm run typecheck:lib`, `npx nuxt typecheck` and `npx vue-tsc --noEmit -p .nuxt/tsconfig.app.json`: exit 0.
+- `npx nuxt generate` (after deleting `.nuxt`): 56 pages, the 12 from before plus 44 landing pages.
+- A script read the generated HTML and found:
+  - titles, descriptions, a self canonical, the three hreflang links and og:image per language;
+  - BreadcrumbList + ItemList on landing pages;
+  - `d-` ids and share buttons on rows, plus store and category links;
+  - icons, manifest and font preload in the head.
+- The pipeline's `sitemap()` on today's `deals.json` lists exactly the 44 built landing pages.
+- In Chrome 156 on a served copy:
+  - the home header and masthead render;
+  - the share menu opens with WhatsApp first, and the share URL is `https://barato.si/categoria/electronica/?ref=share#d-…`;
+  - a deep link to the 148th row of `/categoria/videojuegos/` expands the list to 148 and scrolls the row into view.
+
+### Not verified
+
+- A real IndexNow POST (the key file is not live until deploy), and the CI job itself.
+- `navigator.share` on a real phone. The system-sheet path was reviewed in code only.
+- `/errores` share and anchors with real rows: today's `errors.json` has no deals, no recent and no nearest.
+- A live sponsor on the site. The gate has unit tests, but nothing was rendered with `active: true`.
+- Link previews (Facebook, WhatsApp and X debuggers) for og.png and og-en.png.
+- How Bing and Google treat thin store pages (several have 1 to 3 deals). The rule is "at least one deal"; raise it in `lib/landing.ts` if they underperform.
