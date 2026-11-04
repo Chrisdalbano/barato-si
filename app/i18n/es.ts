@@ -306,9 +306,11 @@ export const es = {
     storeTitle: (name: string) => `${name}, hoy`,
     lede: (n: number, day: string) => `${n === 1 ? '1 oferta' : `${n} ofertas`} del ${day}, cada una contra lo que el producto suele costar, con la evidencia a la vista. Se actualiza cada tres horas.`,
     seoCatTitle: (label: string) => `${label} en oferta hoy: precios y posibles errores · barato.si`,
-    seoCatDesc: (label: string, n: number) => (n === 0
+    seoCatDesc: (label: string, n: number, intro?: string | null) => (n === 0
       ? `Hoy no hay ofertas de ${label.toLocaleLowerCase('es')} en barato.si. No rellenamos la página con ofertas viejas. Se actualiza cada tres horas.`
-      : `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${label.toLocaleLowerCase('es')} hoy en tiendas de EE. UU., cada una contra lo que suele costar y con la evidencia a la vista. Sin cuentas, actualizado cada tres horas.`),
+      : intro
+        ? `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${label.toLocaleLowerCase('es')} hoy en tiendas de EE. UU. ${intro} Actualizado cada tres horas.`
+        : `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${label.toLocaleLowerCase('es')} hoy en tiendas de EE. UU., cada una contra lo que suele costar y con la evidencia a la vista. Sin cuentas, actualizado cada tres horas.`),
     seoStoreTitle: (name: string) => `${name}: rebajas de hoy y posibles errores de precio · barato.si`,
     seoStoreDesc: (name: string, n: number) => (n === 0
       ? `Hoy no hay ofertas de ${name} en barato.si. No rellenamos la página con ofertas viejas. Se actualiza cada tres horas.`

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { applyFilters, filtersFromQuery } from '~/utils/filters'
-import { categoryFeedPath, categoryFromSlug, storeFeedPath, storeSlug } from '~~/lib/landing'
+import { categoryFeedPath, categoryFromSlug, categoryIntro, storeFeedPath, storeSlug } from '~~/lib/landing'
 import { SITE } from '~/utils/api'
 
 // One category or one store, today. The same index as the home page (search,
@@ -33,10 +33,14 @@ const esPath = computed(() => (props.kind === 'categoria'
   ? (category.value ? `/categoria/${category.value}` : `/categoria/${slug.value}`)
   : `/tienda/${slug.value}`))
 
+// One dry line on what the category lists (lib/landing.ts). Null for stores and
+// unknown slugs, which keep the plain lede and the generic description.
+const intro = computed(() => (props.kind === 'categoria' ? categoryIntro(category.value, locale.value) : null))
+
 const w = computed(() => t.value.landing)
 useSeo(() => ({
   title: props.kind === 'categoria' ? w.value.seoCatTitle(name.value) : w.value.seoStoreTitle(name.value),
-  description: props.kind === 'categoria' ? w.value.seoCatDesc(name.value, deals.value.length) : w.value.seoStoreDesc(name.value, deals.value.length),
+  description: props.kind === 'categoria' ? w.value.seoCatDesc(name.value, deals.value.length, intro.value) : w.value.seoStoreDesc(name.value, deals.value.length),
   esPath: esPath.value,
   enPath: localePath(esPath.value, 'en'),
   crumbs: [{ name: name.value }],
@@ -85,6 +89,7 @@ const otherStores = computed(() => landing.value.stores.filter(s => s.slug !== s
         <span>{{ kind === 'categoria' ? w.catEyebrow : w.storeEyebrow }}</span>
       </p>
       <h1 class="lp__title">{{ kind === 'categoria' ? w.catTitle(name) : w.storeTitle(name) }}</h1>
+      <p v-if="intro" class="lp__lede">{{ intro }}</p>
       <p v-if="day && deals.length" class="lp__lede">{{ w.lede(deals.length, formatDay(day.date, locale)) }}</p>
       <p v-if="feed" class="lp__rss"><a :href="feed" hreflang="es" type="application/rss+xml">{{ kind === 'categoria' ? w.rssCat : w.rssStore }}</a></p>
     </header>

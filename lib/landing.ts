@@ -107,6 +107,75 @@ export const CATEGORY_NAME_ES: Record<DealCategory, string> = {
   otros: 'Otros',
 }
 
+/**
+ * One dry line per category page: what it lists and what barato checks. Not
+ * every row has a reference price (some have none), hence "cuando la hay".
+ * Every row is scored for a possible price error, so that claim holds for all.
+ */
+export const CATEGORY_INTRO: Record<DealCategory, { es: string; en: string }> = {
+  videojuegos: {
+    es: 'Juegos de PC y consola rebajados en Steam, GOG, Epic y otras tiendas digitales, comparados con un precio de referencia cuando lo hay.',
+    en: 'PC and console games on sale at Steam, GOG, Epic and other digital stores, compared with a reference price when there is one.',
+  },
+  informatica: {
+    es: 'Portátiles, monitores, almacenamiento, periféricos y redes, comparados con un precio de referencia cuando lo hay y revisados por si son un error de precio.',
+    en: 'Laptops, monitors, storage, peripherals and networking, compared with a reference price when there is one and checked for a possible price error.',
+  },
+  electronica: {
+    es: 'Televisores, audio, móviles, tabletas, cámaras y cargadores, comparados con un precio de referencia cuando lo hay y revisados por si son un error de precio.',
+    en: 'TVs, audio, phones, tablets, cameras and chargers, compared with a reference price when there is one and checked for a possible price error.',
+  },
+  hogar: {
+    es: 'Muebles, ropa de cama, limpieza, climatización, jardín y artículos para bebé, comparados con un precio de referencia cuando lo hay.',
+    en: 'Furniture, bedding, cleaning, heating and cooling, garden and baby gear, compared with a reference price when there is one.',
+  },
+  cocina: {
+    es: 'Pequeños electrodomésticos, menaje, cafeteras, parrillas y termos, comparados con un precio de referencia cuando lo hay.',
+    en: 'Small appliances, cookware, coffee makers, grills and drinkware, compared with a reference price when there is one.',
+  },
+  herramientas: {
+    es: 'Herramientas eléctricas y de mano, cortacéspedes, compresores y accesorios para el coche, comparados con un precio de referencia cuando lo hay.',
+    en: 'Power and hand tools, mowers, compressors and car accessories, compared with a reference price when there is one.',
+  },
+  ropa: {
+    es: 'Ropa, calzado, mochilas y maletas, comparados con un precio de referencia cuando lo hay.',
+    en: 'Clothing, shoes, backpacks and luggage, compared with a reference price when there is one.',
+  },
+  deporte: {
+    es: 'Bicicletas, fitness, camping, pesca y deportes de raqueta, comparados con un precio de referencia cuando lo hay.',
+    en: 'Bikes, fitness, camping, fishing and racket sports, compared with a reference price when there is one.',
+  },
+  juguetes: {
+    es: 'LEGO, juegos de mesa, muñecos, peluches y aparatos para niños, comparados con un precio de referencia cuando lo hay.',
+    en: "LEGO, board games, dolls, plush toys and kids' gadgets, compared with a reference price when there is one.",
+  },
+  belleza: {
+    es: 'Cuidado de la piel y el pelo, afeitado, higiene dental y perfumes, comparados con un precio de referencia cuando lo hay.',
+    en: 'Skin and hair care, shaving, oral care and fragrance, compared with a reference price when there is one.',
+  },
+  alimentacion: {
+    es: 'Comida, bebidas, café en cápsulas, suplementos y comida para mascotas, comparados con un precio de referencia cuando lo hay.',
+    en: 'Food, drinks, coffee pods, supplements and pet food, compared with a reference price when there is one.',
+  },
+  software: {
+    es: 'Licencias de sistema operativo y ofimática, antivirus, VPN y almacenamiento en la nube, comparados con un precio de referencia cuando lo hay.',
+    en: 'Operating system and office licenses, antivirus, VPN and cloud storage, compared with a reference price when there is one.',
+  },
+  servicios: {
+    es: 'Tarjetas regalo, suscripciones, membresías y cursos en línea, comparados con un precio de referencia cuando lo hay.',
+    en: 'Gift cards, subscriptions, memberships and online courses, compared with a reference price when there is one.',
+  },
+  otros: {
+    es: 'Lo que no encaja en ninguna otra categoría, comparado con un precio de referencia cuando lo hay.',
+    en: 'Whatever fits no other category, compared with a reference price when there is one.',
+  },
+}
+
+/** The intro line for a category page, or null for anything that is not one of our categories. */
+export function categoryIntro(category: unknown, loc: 'es' | 'en' = 'es'): string | null {
+  return isCategory(category) ? CATEGORY_INTRO[category][loc] : null
+}
+
 /** RSS per slice, one file per Spanish slug; the English pages link the same feed (its text is Spanish). */
 export const categoryFeedPath = (slug: string) => `/feeds/categoria/${slug}.xml`
 export const storeFeedPath = (slug: string) => `/feeds/tienda/${slug}.xml`

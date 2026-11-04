@@ -531,3 +531,12 @@ Branch `v4.2-return-visits`, not merged.
 
 ### Not verified
 - `/en/week` and `/en/advertise` were checked in generated HTML only, not on screen. Phone widths not looked at. The "late" state and a live sponsor on `/anunciate` were not rendered. Feed readers (real subscriptions) not tried.
+
+## 2026-11-04: one intro line per category page (es + en)
+
+- **Copy table.** `CATEGORY_INTRO` in `lib/landing.ts` (next to `CATEGORY_NAME_ES`): one dry sentence per category and language, naming the kind of products and the check. Every line says "comparados con un precio de referencia cuando lo hay" / "compared with a reference price when there is one", because not every row has a reference. Informática and Electrónica also say each price is checked for a possible price error. Games name Steam, GOG and Epic, which are real sources. No "chollo", no traffic, savings or "best deals" claims, nothing about stores we cannot back up. `categoryIntro(category, loc)` returns null for anything that is not one of our categories.
+- **Page.** `LandingPage.vue` shows the line as a `lp__lede` paragraph above the count lede, on category pages only, and on empty days too (it describes the page, not today's rows). Stores and unknown slugs get nothing: no empty paragraph, the same page as before.
+- **Meta description.** `landing.seoCatDesc(label, n, intro?)`: with deals and an intro, "N ofertas de X hoy en tiendas de EE. UU. {intro} Actualizado cada tres horas." Without an intro the text is unchanged, and the empty-day text ("Hoy no hay ofertas de X…") is unchanged either way.
+- **Tests** (`tests/landing.test.ts`, 3 new): the table has exactly our 14 categories, each with a non-empty es and en line that is a single sentence of at most 170 characters with no hype words, and es differs from en; unknown values (`Electronics`, English slugs, `''`, null, `toString`, `__proto__`) give null in both languages, and a null or empty intro leaves the description unchanged; the intro sits after the count in the description and is left out on an empty day.
+
+**Verified:** `npm --prefix barato test` 19 files / 349 tests passed; `npm --prefix barato run typecheck:lib` clean. **Not verified:** `npx nuxt typecheck`, `npx nuxt generate` and the rendered page in a browser were not run, so the new paragraph and the meta tag were not seen in generated HTML. All edited files kept CRLF (Edit tool only, no new files).

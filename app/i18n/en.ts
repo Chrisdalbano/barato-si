@@ -304,9 +304,11 @@ export const en: Dict = {
     storeTitle: (name: string) => `${name}, today`,
     lede: (n: number, day: string) => `${n === 1 ? '1 deal' : `${n} deals`} from ${day}, each against what the product usually costs, with the evidence in view. Updated every three hours.`,
     seoCatTitle: (label: string) => `${label} deals today: prices and possible price errors · barato.si`,
-    seoCatDesc: (label: string, n: number) => (n === 0
+    seoCatDesc: (label: string, n: number, intro?: string | null) => (n === 0
       ? `No ${label.toLocaleLowerCase('en')} deals on barato.si today. We do not fill the page with old deals. Updated every three hours.`
-      : `${n === 1 ? '1 deal' : `${n} deals`} on ${label.toLocaleLowerCase('en')} today at US stores, each against what it usually costs, with the evidence in view. No accounts, updated every three hours.`),
+      : intro
+        ? `${n === 1 ? '1 deal' : `${n} deals`} on ${label.toLocaleLowerCase('en')} today at US stores. ${intro} Updated every three hours.`
+        : `${n === 1 ? '1 deal' : `${n} deals`} on ${label.toLocaleLowerCase('en')} today at US stores, each against what it usually costs, with the evidence in view. No accounts, updated every three hours.`),
     seoStoreTitle: (name: string) => `${name} deals today and possible price errors · barato.si`,
     seoStoreDesc: (name: string, n: number) => (n === 0
       ? `No deals at ${name} on barato.si today. We do not fill the page with old deals. Updated every three hours.`

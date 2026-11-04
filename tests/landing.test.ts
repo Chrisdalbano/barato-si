@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { categoryFromSlug, CATEGORY_SLUG_EN, dealAnchor, landingPages, landingPaths, storeSlug } from '../lib/landing'
+import { CATEGORY_INTRO, categoryFromSlug, categoryIntro, CATEGORY_SLUG_EN, dealAnchor, landingPages, landingPaths, storeSlug } from '../lib/landing'
 import { categories } from '../lib/categorize'
 import { landingPairs, sitemap } from '../scripts/outputs'
 import { buildPayload, DAILY_PATHS, INDEXNOW_KEY } from '../scripts/indexnow'
@@ -256,5 +256,39 @@ describe('landing SEO copy', async () => {
     for (const s of [es.landing.seoCatTitle('Hogar'), es.landing.seoCatDesc('Hogar', 0), es.landing.seoStoreDesc('Amazon', 3)]) {
       expect(s.toLowerCase()).not.toContain('chollo')
     }
+  })
+  it('has one short intro line per category in both languages, distinct and without hype', () => {
+    expect(Object.keys(CATEGORY_INTRO).sort()).toEqual([...categories].sort())
+    for (const c of categories) {
+      for (const loc of ['es', 'en'] as const) {
+        const line = categoryIntro(c, loc)!
+        expect(line.trim().length).toBeGreaterThan(20)
+        expect(line.length).toBeLessThanOrEqual(170)
+        expect(line).toMatch(/^\S.*\.$/)
+        expect(line.match(/\. /g)).toBeNull() // one sentence
+        expect(line.toLowerCase()).not.toMatch(/chollo|mejor(es)? ofertas|best deals|ahorr|saving|visitas|visitors/)
+      }
+      expect(categoryIntro(c, 'es')).not.toBe(categoryIntro(c, 'en'))
+    }
+    expect(categoryIntro('electronica')).toBe(CATEGORY_INTRO.electronica.es)
+  })
+  it('falls back to nothing for an unknown category and keeps the generic description', () => {
+    for (const bad of ['Electronics', 'electronics', '', null, undefined, 'nope', 'toString', '__proto__']) {
+      expect(categoryIntro(bad, 'es')).toBeNull()
+      expect(categoryIntro(bad, 'en')).toBeNull()
+    }
+    expect(es.landing.seoCatDesc('Electrónica', 12, null)).toBe(es.landing.seoCatDesc('Electrónica', 12))
+    expect(en.landing.seoCatDesc('Electronics', 12, null)).toBe(en.landing.seoCatDesc('Electronics', 12))
+    expect(es.landing.seoCatDesc('Electrónica', 12, '')).toBe(es.landing.seoCatDesc('Electrónica', 12))
+  })
+  it('puts the intro in the category description, after the count, and not on an empty day', () => {
+    const esIntro = categoryIntro('electronica', 'es')!
+    const enIntro = categoryIntro('electronica', 'en')!
+    const d = es.landing.seoCatDesc('Electrónica', 12, esIntro)
+    expect(d).toMatch(/^12 ofertas de electrónica hoy/)
+    expect(d).toContain(esIntro)
+    expect(d).not.toMatch(/undefined|null|\s{2}/)
+    expect(en.landing.seoCatDesc('Electronics', 1, enIntro)).toMatch(/^1 deal on electronics today at US stores\. TVs/)
+    expect(es.landing.seoCatDesc('Electrónica', 0, esIntro)).toBe(es.landing.seoCatDesc('Electrónica', 0))
   })
 })
