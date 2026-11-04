@@ -9,8 +9,8 @@ const ogImage = 'https://barato.si/og.png'
 
 // Every page in both languages. Aliases in each page make the English routes;
 // these make sure they are prerendered even if no link points at them.
-const pages = ['/', '/errores', '/si', '/archivo', '/api', '/privacidad',
-  '/en', '/en/errores', '/en/si', '/en/archivo', '/en/api', '/en/privacy']
+const pages = ['/', '/errores', '/si', '/semana', '/archivo', '/api', '/anunciate', '/privacidad',
+  '/en', '/en/errores', '/en/si', '/en/week', '/en/archivo', '/en/api', '/en/advertise', '/en/privacy']
 
 // Category and store pages: one per slice with deals today, read from the same
 // deals.json the pipeline just wrote (and the same lib/landing.ts rules its
@@ -88,6 +88,7 @@ export default defineNuxtConfig({
         { rel: 'preload', href: '/fonts/outfit-500-brand.woff2', as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
         { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · las rebajas del día', href: 'https://barato.si/feed.xml' },
         { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · posibles errores de precio', href: 'https://barato.si/errors.xml' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'barato.si · la semana de Don Centavo', href: 'https://barato.si/semana.xml' },
         { rel: 'alternate', type: 'application/json', title: 'barato.si API', href: 'https://barato.si/api/deals.json' },
       ],
     },

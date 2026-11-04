@@ -42,6 +42,14 @@ const graded = computed(() => !!sc.value && sc.value.resolved > 0 && sc.value.br
 const beats = computed(() => graded.value && sc.value!.baselineBrier !== null && sc.value!.brier! < sc.value!.baselineBrier!)
 const three = (v: number | null) => (v === null ? '—' : formatNumber(Math.round(v * 1000) / 1000, locale.value))
 const sinceText = computed(() => (sc.value?.since ? formatDayMonth(sc.value.since, locale.value) : ''))
+// Before the first grade: when it lands, counted from the data's own date (not the
+// visitor's clock), so the prerendered text and hydration agree.
+const dueText = computed(() => {
+  const due = sc.value?.firstDue, today = o.value?.date
+  if (graded.value || !due || !today) return ''
+  const n = Math.round((Date.parse(`${due}T00:00:00Z`) - Date.parse(`${today}T00:00:00Z`)) / 86400000)
+  return Number.isFinite(n) ? t.value.si.due(formatDayMonth(due, locale.value), n) : ''
+})
 const cat = (c: string | null) => (c ? categoryLabel(c, locale.value) : '—')
 
 const out = useOutbound()
@@ -111,7 +119,10 @@ const pct = (v: number) => formatShare(v, locale.value)
         </div>
         <p class="si__fine">{{ sc.since ? t.si.since(sinceText) : '' }} {{ o?.model ? t.si.model(o.model) : '' }}</p>
       </template>
-      <p v-else class="si__learning">{{ t.si.learning(sinceText) }}</p>
+      <template v-else>
+        <p class="si__learning">{{ t.si.learning(sinceText) }}</p>
+        <p v-if="dueText" class="si__due">{{ dueText }}</p>
+      </template>
     </section>
 
     <section class="si__sec" aria-labelledby="si-list">
@@ -154,6 +165,7 @@ const pct = (v: number) => formatShare(v, locale.value)
 .si__note { margin: 0 0 12px; max-width: var(--container-max-prose); font-size: 0.875rem; color: var(--fg-secondary); }
 .si__fine { margin: 10px 0 0; font-size: 0.75rem; color: var(--fg-muted); }
 .si__learning { margin: 0; max-width: var(--container-max-prose); font-size: 1.0625rem; color: var(--fg-primary); }
+.si__due { margin: 8px 0 0; font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent-lead); font-variant-numeric: tabular-nums; }
 
 .si__steps { margin: 0 0 14px; padding: 0; list-style: none; counter-reset: step; max-width: var(--container-max-prose); }
 .si__steps li { counter-increment: step; display: grid; grid-template-columns: 2rem minmax(0, 1fr); padding: 8px 0; border-bottom: 1px solid var(--border); }

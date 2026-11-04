@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { applyFilters, filtersFromQuery } from '~/utils/filters'
-import { categoryFromSlug, storeSlug } from '~~/lib/landing'
+import { categoryFeedPath, categoryFromSlug, storeFeedPath, storeSlug } from '~~/lib/landing'
+import { SITE } from '~/utils/api'
 
 // One category or one store, today. The same index as the home page (search,
 // sort, facets, table or grid), over that slice only, with games and middlemen
@@ -77,6 +78,16 @@ useHead(() => {
   }
 })
 
+// Each slice has its own RSS (written by the pipeline for every category and every
+// store with deals today). Its text is Spanish, hence hreflang on the English page.
+const feed = computed(() => {
+  if (props.kind === 'categoria') return category.value ? categoryFeedPath(category.value) : null
+  return deals.value.length || storePage.value ? storeFeedPath(slug.value) : null
+})
+useHead(() => (feed.value
+  ? { link: [{ key: 'slice-rss', rel: 'alternate', type: 'application/rss+xml', title: w.value.rssTitle(name.value), href: `${SITE}${feed.value}` }] }
+  : {}))
+
 // Internal links to the other slices that exist today.
 const otherCats = computed(() => landing.value.categories.filter(c => c.category !== category.value))
 const otherStores = computed(() => landing.value.stores.filter(s => s.slug !== slug.value))
@@ -92,6 +103,7 @@ const otherStores = computed(() => landing.value.stores.filter(s => s.slug !== s
       </p>
       <h1 class="lp__title">{{ kind === 'categoria' ? w.catTitle(name) : w.storeTitle(name) }}</h1>
       <p v-if="day && deals.length" class="lp__lede">{{ w.lede(deals.length, formatDay(day.date, locale)) }}</p>
+      <p v-if="feed" class="lp__rss"><a :href="feed" hreflang="es" type="application/rss+xml">{{ kind === 'categoria' ? w.rssCat : w.rssStore }}</a></p>
     </header>
 
     <DealExplorer
@@ -129,6 +141,9 @@ const otherStores = computed(() => landing.value.stores.filter(s => s.slug !== s
 .lp__eyebrow a { color: var(--fg-secondary); text-underline-offset: 3px; }
 .lp__title { margin: 0; font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1; font-weight: 700; letter-spacing: -0.045em; color: var(--fg-primary); overflow-wrap: anywhere; }
 .lp__lede { margin: 10px 0 0; max-width: 62ch; font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); line-height: 1.4; color: var(--fg-secondary); }
+.lp__rss { margin: 8px 0 0; font-size: 0.8125rem; }
+.lp__rss a { color: var(--fg-secondary); text-underline-offset: 3px; }
+.lp__rss a:hover { color: var(--link-fg); }
 .calm { padding: clamp(40px, 6vw, 80px) 0; border-top: 2px solid var(--fg-primary); max-width: var(--container-max-prose); color: var(--fg-secondary); }
 .calm__big { margin: 0 0 12px; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.03em; color: var(--fg-primary); }
 .more { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 24px 48px; margin-top: clamp(32px, 4vw, 48px); padding-top: 20px; border-top: 1px solid var(--fg-primary); }

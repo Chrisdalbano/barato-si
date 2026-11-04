@@ -1,9 +1,11 @@
-import { mkdir, readFile, writeFile, rename } from 'node:fs/promises'
+import { mkdir, readdir, readFile, writeFile, rename } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { loadLedger, saveLedger } from './ledger-store.ts'
 import { loadOracleLog, saveOracleLog } from './oracle-store.ts'
+import { readArchives } from './outputs.ts'
 import { buildHighlights } from '../lib/highlights.ts'
 import { buildOracle } from '../lib/oracle.ts'
+import { buildWeek, WEEK_DAYS } from '../lib/digest.ts'
 import type { Deal } from '../lib/types.ts'
 import { configuredSources } from './sources.ts'
 import { createSourceReader } from './network.ts'
@@ -38,7 +40,13 @@ export async function run(): Promise<void> {
   // predictions against the ledger (now including today) before making new ones.
   const highlights = buildHighlights(file.deals, ledger, now)
   const oracle = buildOracle(file.deals, ledger, await loadOracleLog(repo), now)
-  await writeOutputs(root, file, { highlights, oracle: oracle.file })
+  // The weekly digest: the last 7 UTC days of published archives plus today's list (written below).
+  const weekFrom = new Date(Date.parse(file.date + 'T00:00:00Z') - (WEEK_DAYS - 1) * 86400000).toISOString().slice(0, 10)
+  let archiveNames: string[] = []
+  try { archiveNames = await readdir(root + 'api/deals') } catch { /* first run */ }
+  const archives = [...await readArchives(root + 'api/deals', archiveNames, weekFrom, file.date), { date: file.date, deals: file.deals }]
+  const week = buildWeek({ archives, ledger, oracle: oracle.file, log: oracle.log, cache, now })
+  await writeOutputs(root, file, { highlights, oracle: oracle.file, week })
   await saveLedger(repo, ledger)
   await saveOracleLog(repo, oracle.log)
   if (!process.env.CI && !process.env.GITHUB_ACTIONS) {
@@ -57,5 +65,6 @@ export async function run(): Promise<void> {
   console.log('Destacados: ' + (highlights.slots.map(s => `${s.id} ${s.dealIds.length}`).join(', ') || 'ninguno'))
   const verdicts: Record<string, number> = {}
   for (const p of oracle.file.predictions) verdicts[p.verdict] = (verdicts[p.verdict] || 0) + 1
+  console.log(`Semana ${week.isoWeek}: ${week.days} días, ${week.drops.length} caídas, ${week.lows.length} mínimos, ${week.errors.length} errores`)
   console.log(`Oráculo: ${oracle.file.predictions.length} predicciones ${JSON.stringify(verdicts)}; resueltas ${oracle.file.scorecard.resolved}`)
 }

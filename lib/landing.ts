@@ -88,3 +88,25 @@ export const storePaths = (p: Pick<StorePage, 'slug'>) => ({ es: `/tienda/${p.sl
 export function landingPaths(set: LandingSet): { es: string; en: string }[] {
   return [...set.categories.map(categoryPaths), ...set.stores.map(storePaths)]
 }
+
+/** Spanish display name of each category (the site's CATEGORY_LABEL reads this). */
+export const CATEGORY_NAME_ES: Record<DealCategory, string> = {
+  videojuegos: 'Videojuegos',
+  informatica: 'Informática',
+  electronica: 'Electrónica',
+  hogar: 'Hogar',
+  cocina: 'Cocina',
+  herramientas: 'Herramientas',
+  ropa: 'Ropa',
+  deporte: 'Deporte',
+  juguetes: 'Juguetes',
+  belleza: 'Belleza',
+  alimentacion: 'Alimentación',
+  software: 'Software',
+  servicios: 'Servicios',
+  otros: 'Otros',
+}
+
+/** RSS per slice, one file per Spanish slug; the English pages link the same feed (its text is Spanish). */
+export const categoryFeedPath = (slug: string) => `/feeds/categoria/${slug}.xml`
+export const storeFeedPath = (slug: string) => `/feeds/tienda/${slug}.xml`

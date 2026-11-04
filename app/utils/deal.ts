@@ -2,6 +2,7 @@
 import type { Deal, GateReport, ReferenceKind } from '../../lib/types'
 import { formatDayMonth, formatMoney, formatPrice, hasListPrice, hostOf, moneyDigits, plural, sourceName } from './format'
 import type { Locale } from './locale'
+import { CATEGORY_NAME_ES } from '../../lib/landing'
 
 /** Anything with the link fields of a deal. */
 interface Linkable { url: string; storeUrl?: string | null }
@@ -43,22 +44,7 @@ export function needsCredit(deal: { store: string; source: string }): boolean {
 
 // Our coarse categories, in Spanish. Unknown strings (older files carry the
 // source's own label) pass through as they are.
-export const CATEGORY_LABEL: Record<string, string> = {
-  videojuegos: 'Videojuegos',
-  informatica: 'Informática',
-  electronica: 'Electrónica',
-  hogar: 'Hogar',
-  cocina: 'Cocina',
-  herramientas: 'Herramientas',
-  ropa: 'Ropa',
-  deporte: 'Deporte',
-  juguetes: 'Juguetes',
-  belleza: 'Belleza',
-  alimentacion: 'Alimentación',
-  software: 'Software',
-  servicios: 'Servicios',
-  otros: 'Otros',
-}
+export const CATEGORY_LABEL: Record<string, string> = { ...CATEGORY_NAME_ES }
 export const CATEGORY_LABEL_EN: Record<string, string> = {
   videojuegos: 'Video games',
   informatica: 'Computers',

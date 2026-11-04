@@ -1,6 +1,6 @@
 import type { InjectionKey, Ref } from 'vue'
-import { normalizeHighlights, normalizeOracle } from '../utils/extras'
-import type { HighlightsFile, OracleFile, OraclePrediction } from '../utils/extras'
+import { normalizeHighlights, normalizeOracle, normalizeWeek } from '../utils/extras'
+import type { HighlightsFile, OracleFile, OraclePrediction, WeekFile } from '../utils/extras'
 
 // Loaders for the pipeline's optional files. Same pattern as useErrors(): at
 // build time the file is pulled in with import.meta.glob, which resolves to
@@ -38,6 +38,25 @@ export async function useOracle() {
       } catch { return null }
     }
     try { return normalizeOracle(await $fetch('/api/oracle.json')) } catch { return null }
+  })
+  watch(fresh, (f) => { if (f && f.generatedAt !== data.value?.generatedAt) data.value = f })
+  return data
+}
+
+/** The weekly digest (week.json), same pattern: prerendered copy, then a fresher one if published. */
+export async function useWeek() {
+  const fresh = shallowRef<WeekFile | null>(null)
+  onMounted(async () => {
+    try { fresh.value = normalizeWeek(await $fetch('/api/week.json', { cache: 'no-cache' })) } catch { /* not published */ }
+  })
+  const { data } = await useAsyncData('week', async () => {
+    if (import.meta.server) {
+      try {
+        const load = Object.values(import.meta.glob('../../public/api/week.json', { import: 'default' }))[0]
+        return load ? normalizeWeek(await load()) : null
+      } catch { return null }
+    }
+    try { return normalizeWeek(await $fetch('/api/week.json')) } catch { return null }
   })
   watch(fresh, (f) => { if (f && f.generatedAt !== data.value?.generatedAt) data.value = f })
   return data
