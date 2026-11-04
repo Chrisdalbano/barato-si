@@ -41,7 +41,7 @@ export default defineNuxtConfig({
       adsenseClient: '', // ca-pub-…
       adsenseSlotStream: '', // ad unit in the deal stream, after ~12 rows
       adsenseSlotFooter: '', // ad unit above the footer
-      amazonTag: '', // Associates tag, e.g. barato-20
+      amazonTag: 'baratosi-20', // Associates tag (Christian's account, 2026-11-04)
       // Formship LLC Stripe Payment Link (reader picks the amount, 5 USD preset). Env overrides it.
       supportUrl: 'https://buy.stripe.com/fZucMZb8I3py3e08vK8k801',
       sponsorUrl: SPONSOR_URL_DEFAULT,
