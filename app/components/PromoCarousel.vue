@@ -54,6 +54,7 @@ const headId = computed(() => `promo-${props.id}`)
           <p class="pcard__who">{{ whoLine(item.deal) }}</p>
           <h4 class="pcard__title"><a :href="out.href(item.deal)" :rel="out.rel(item.deal)" target="_blank">{{ item.deal.title }}</a></h4>
           <PromoPrice :deal="item.deal" />
+          <p class="pcard__share"><ShareDeal :deal="item.deal" /></p>
           <p class="pcard__oracle"><OracleBadge :deal-id="item.deal.id" /></p>
         </article>
         <LoreCard v-else :n="item.n" :text="item.text" />
@@ -82,7 +83,7 @@ const headId = computed(() => `promo-${props.id}`)
 .pc__item { scroll-snap-align: start; min-width: 0; border-left: 1px solid var(--border); padding: 0 14px; }
 .pc__item:first-child { border-left: 0; padding-left: 0; }
 
-.pcard { display: grid; grid-template-rows: auto auto auto auto 1.2rem; gap: 5px; height: 100%; align-content: start; }
+.pcard { display: grid; grid-template-rows: auto auto auto auto auto 1.2rem; gap: 5px; height: 100%; align-content: start; }
 .pcard__pic { display: block; text-decoration: none; }
 .pcard p { margin: 0; }
 .pcard__who { font-size: 0.6875rem; color: var(--fg-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

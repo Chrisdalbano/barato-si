@@ -2,10 +2,12 @@ import { es } from '../i18n/es'
 import { basePath, localePath } from '../utils/locale'
 import { SITE } from '../utils/api'
 
-type PageKey = Exclude<keyof typeof es.seo, 'ogLocale' | 'ogAlt' | 'crumbHome'>
+type PageKey = Exclude<keyof typeof es.seo, 'ogLocale' | 'ogAlt' | 'crumbHome' | 'ogImage'>
 
 export const OG_IMAGE = `${SITE}/og.png`
 export const ORG_ID = 'https://formship.io/#org'
+/** The square brand icon, for JSON-LD (the brand's logo, not Formship's). */
+export const BRAND_LOGO = `${SITE}/icon-512.png`
 
 /**
  * Absolute URL for a site path, with the trailing slash the static host serves:
@@ -30,14 +32,35 @@ export function usePageSeo(key: PageKey, crumb?: { es: string; en: string }) {
   const { locale, t } = useLang()
   const route = useRoute()
   const base = basePath(route.path)
-  const esUrl = siteUrl(localePath(base, 'es'))
-  const enUrl = siteUrl(localePath(base, 'en'))
+  useSeo(() => ({
+    title: t.value.seo[key].title,
+    description: t.value.seo[key].description,
+    esPath: localePath(base, 'es'),
+    enPath: localePath(base, 'en'),
+    crumbs: crumb ? [{ name: crumb[locale.value] }] : [],
+  }))
+}
 
+export interface SeoInput {
+  title: string
+  description: string
+  /** Site paths of this page in each language (no host). */
+  esPath: string
+  enPath: string
+  /** Trail after "Home". The last one is this page; earlier ones need a path. Empty: no BreadcrumbList. */
+  crumbs: { name: string; path?: string }[]
+}
+
+/** The same as usePageSeo, for pages whose title and paths come from data (category and store pages). */
+export function useSeo(input: () => SeoInput) {
+  const { locale, t } = useLang()
   useHead(() => {
     const s = t.value.seo
-    const page = s[key]
+    const page = input()
+    const esUrl = siteUrl(page.esPath)
+    const enUrl = siteUrl(page.enPath)
     const url = locale.value === 'en' ? enUrl : esUrl
-    const script = crumb
+    const script = page.crumbs.length
       ? [{
           key: 'ld-crumbs',
           type: 'application/ld+json' as const,
@@ -46,7 +69,10 @@ export function usePageSeo(key: PageKey, crumb?: { es: string; en: string }) {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: s.crumbHome, item: siteUrl(localePath('/', locale.value)) },
-              { '@type': 'ListItem', position: 2, name: crumb[locale.value], item: url },
+              ...page.crumbs.map((c, i) => ({
+                '@type': 'ListItem', position: i + 2, name: c.name,
+                item: i === page.crumbs.length - 1 || !c.path ? url : siteUrl(c.path),
+              })),
             ],
           }).replace(/</g, '\\u003c'),
         }]
@@ -61,9 +87,11 @@ export function usePageSeo(key: PageKey, crumb?: { es: string; en: string }) {
         { key: 'og:url', property: 'og:url', content: url },
         { key: 'og:locale', property: 'og:locale', content: s.ogLocale },
         { key: 'og:locale:alternate', property: 'og:locale:alternate', content: locale.value === 'en' ? 'es_LA' : 'en_US' },
+        { key: 'og:image', property: 'og:image', content: s.ogImage },
         { key: 'og:image:alt', property: 'og:image:alt', content: s.ogAlt },
         { key: 'twitter:title', name: 'twitter:title', content: page.title },
         { key: 'twitter:description', name: 'twitter:description', content: page.description },
+        { key: 'twitter:image', name: 'twitter:image', content: s.ogImage },
       ],
       link: [
         { key: 'canonical', rel: 'canonical', href: url },

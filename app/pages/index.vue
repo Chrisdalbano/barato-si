@@ -10,6 +10,8 @@ const day = await useToday()
 const highlights = await useHighlights()
 const oracle = await useOracle()
 provideOracle(oracle)
+// Category and store names in the list link to their pages (they all exist today).
+provideLanding(() => day.value?.deals)
 
 // Candidates with evidence lead the page; /errores has the rest and every signal.
 const TOP = 6
@@ -23,13 +25,15 @@ useHead(() => {
   const d = day.value
   const home = siteUrl(lp('/'))
   const graph: Record<string, unknown>[] = [
-    organizationLd(),
+    // The publisher is Formship LLC; barato.si's own logo belongs to the brand, not to it.
+    { ...organizationLd(), brand: { '@type': 'Brand', name: 'barato.si', logo: BRAND_LOGO } },
     {
       '@type': 'WebSite',
       '@id': `${SITE}/#website`,
       name: 'barato.si',
       alternateName: 'barato, sí',
       url: `${SITE}/`,
+      image: BRAND_LOGO,
       inLanguage: ['es', 'en'],
       description: t.value.home.siteDescription,
       publisher: { '@id': ORG_ID },
@@ -81,6 +85,7 @@ useHead(() => {
     <Masthead :day="day" />
     <template v-if="day">
       <EvidenceBoard :deals="top" :total="candidates.length" />
+      <SponsorSlot />
       <HighlightRows :highlights="highlights" :deals="day.deals" :date="day.date" />
       <DealExplorer
         v-if="day.deals.length" :deals="day.deals" :generated-at="day.generatedAt"

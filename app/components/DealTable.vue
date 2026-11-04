@@ -2,6 +2,7 @@
 import type { DealView } from '~/composables/useDeals'
 import type { SortDir, SortKey } from '~/utils/filters'
 import { defaultDir } from '~/utils/filters'
+import { dealAnchor } from '~~/lib/landing'
 
 // The dense view. Sort buttons live in the headers, so they are in the tab order.
 // Columns with nothing behind them in this file (brand and interest on old
@@ -9,6 +10,8 @@ import { defaultDir } from '~/utils/filters'
 const props = defineProps<{ deals: DealView[]; all: DealView[]; now: number; sort: SortKey; dir: SortDir | null; adAfter?: number }>()
 const { locale, t } = useLang()
 const out = useOutbound()
+// Store and category become links when today's page for them exists.
+const landing = useLandingLinks()
 const emit = defineEmits<{ sort: [key: SortKey] }>()
 
 const hasBrand = computed(() => props.all.some(d => d.brand))
@@ -72,7 +75,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
       <tbody>
         <template v-for="(d, i) in deals" :key="d.id">
         <tr v-if="adsOn && i === adAfter" class="dt__ad"><td :colspan="columns.length + 1"><AdSlot slot="stream" /></td></tr>
-        <tr>
+        <tr :id="dealAnchor(d.id)" class="dt__row">
           <td class="c-product">
             <div class="dt__cell">
               <a class="dt__pic" :href="out.href(d)" :rel="out.rel(d)" target="_blank" tabindex="-1" aria-hidden="true">
@@ -82,6 +85,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
                 <a class="dt__title" :href="out.href(d)" :rel="out.rel(d)" target="_blank">{{ d.title }}</a>
                 <span class="dt__meta">
                   <span class="dt__fold">{{ whoLine(d) }}</span>
+                  <NuxtLink v-if="d.category && landing.categoryHref(d)" :to="landing.categoryHref(d)!" class="dt__tax">{{ categoryLabel(d.category, locale) }}</NuxtLink>
                   <span v-if="d.staffPick">{{ t.table.staffPick }}</span>
                   <span v-if="(d.seenIn?.length ?? 0) >= 2">{{ t.table.sources(d.seenIn!.length) }}</span>
                   <OracleBadge :deal-id="d.id" />
@@ -90,7 +94,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
             </div>
           </td>
           <td v-if="hasBrand" class="c-brand">{{ d.brand ?? '' }}</td>
-          <td class="c-store">{{ d.store }}</td>
+          <td class="c-store"><NuxtLink v-if="landing.storeHref(d)" :to="landing.storeHref(d)!" class="dt__tax">{{ d.store }}</NuxtLink><template v-else>{{ d.store }}</template></td>
           <td class="c-price num" :data-label="t.table.price">
             <strong>{{ formatPrice(d.price, d.currency, digits(d), locale) }}</strong>
             <HistoryMark class="dt__hist" :history="d.history" :price="d.price" :currency="d.currency" />
@@ -111,6 +115,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
               {{ t.seeAt(d.store) }}<span class="sr-only">{{ t.opens(hostOf(out.href(d))) }}</span> <span aria-hidden="true">&rarr;</span>
             </a>
             <DealCredit :deal="d" />
+            <ShareDeal :deal="d" class="dt__share" />
           </td>
         </tr>
         </template>
@@ -147,6 +152,13 @@ td.c-product { min-width: 15rem; }
 .dt__fold { display: none; color: var(--fg-secondary); }
 .c-brand, .c-store { max-width: 8.5rem; overflow-wrap: break-word; }
 .c-store { color: var(--fg-secondary); }
+.dt__tax { color: inherit; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.dt__tax:hover { color: var(--link-fg); text-decoration-color: currentColor; }
+/* A shared link lands on this row: mark it, quietly. */
+.dt__row:target td, .dt__row.is-shared td { background: var(--bg-surface); }
+.dt__row:target td.c-product, .dt__row.is-shared td.c-product { box-shadow: inset 3px 0 0 var(--brand-cobalt); }
+.dt__row { scroll-margin-top: 48px; }
+.dt__share { margin-top: 2px; }
 .c-price strong { font-weight: 600; font-size: 0.875rem; }
 .dt__hist { margin: 4px 0 0 auto; }
 .c-ref small { display: block; margin-top: 1px; font-family: var(--font-sans); font-size: 0.6875rem; line-height: 1.2; word-spacing: normal; }

@@ -29,7 +29,6 @@ export const en: Dict = {
     madeBy: 'Made by',
     project: 'barato.si is a project of',
     support: 'Support barato.si',
-    sponsor: 'Sponsor barato.si',
     affiliate: 'As an Amazon Associate, barato.si earns from qualifying purchases. Only some Amazon links carry the tag, and your price does not change.',
   },
 
@@ -298,6 +297,42 @@ export const en: Dict = {
     updated: 'Updated November 4, 2026.',
   },
 
+  landing: {
+    catEyebrow: 'Category',
+    storeEyebrow: 'Store',
+    catTitle: (label: string) => `${label}, today`,
+    storeTitle: (name: string) => `${name}, today`,
+    lede: (n: number, day: string) => `${n === 1 ? '1 deal' : `${n} deals`} from ${day}, each against what the product usually costs, with the evidence in view. Updated every three hours.`,
+    seoCatTitle: (label: string) => `${label} deals today: prices and possible price errors · barato.si`,
+    seoCatDesc: (label: string, n: number) => `${n === 1 ? '1 deal' : `${n} deals`} on ${label.toLocaleLowerCase('en')} today at US stores, each against what it usually costs, with the evidence in view. No accounts, updated every three hours.`,
+    seoStoreTitle: (name: string) => `${name} deals today and possible price errors · barato.si`,
+    seoStoreDesc: (name: string, n: number) => `${n === 1 ? '1 deal' : `${n} deals`} at ${name} today, each against what the product usually costs, with the evidence in view. Updated every three hours.`,
+    listName: (label: string, day: string) => `${label}: deals for ${day} on barato.si`,
+    empty: 'Nothing left on this page today. We do not fill it with old deals.',
+    back: "All of today's deals",
+    otherCats: 'Other categories with deals today',
+    otherStores: 'Other stores with deals today',
+    pageOf: (label: string) => `${label} page`,
+    explorer: 'Deals',
+  },
+
+  share: {
+    label: 'Share',
+    menu: (title: string) => `Share: ${title}`,
+    whatsapp: 'WhatsApp',
+    telegram: 'Telegram',
+    x: 'X',
+    copy: 'Copy link',
+    copied: 'Link copied',
+    text: (title: string, price: string, store: string) => `${title}: ${price} at ${store}. Seen on barato.si`,
+  },
+
+  sponsor: {
+    label: 'Sponsored',
+    advertise: 'Advertise here',
+    advertiseNote: '$10 a week. Reviewed before it goes up, refunded if declined. A small, new site: no traffic guarantees.',
+  },
+
   seo: {
     home: { title: 'barato, sí. A price index and price-error hunter · barato.si', description: "Today's US prices against what each product usually costs, with the evidence in view, plus possible price errors. Also as free JSON and RSS, no key needed." },
     errores: { title: 'Price errors · barato.si', description: "Today's prices that look like a store's mistake, with the evidence and the signals behind each one. An automatic guess, never a confirmation." },
@@ -307,6 +342,7 @@ export const en: Dict = {
     privacidad: { title: 'Privacy · barato.si', description: 'What data barato.si uses: analytics, and advertising and affiliate links when they are on. No accounts.' },
     ogLocale: 'en_US',
     ogAlt: 'barato, sí. A price index and possible price errors, on the web, in JSON and in RSS.',
+    ogImage: 'https://barato.si/og-en.png',
     crumbHome: 'Home',
   },
 }

@@ -19,6 +19,9 @@ const adsOn = computed(() => /^ca-pub-\d+$/.test(adsClient.value))
 const affiliateOn = computed(() => !!String(cfg.amazonTag ?? '').trim())
 const supportUrl = computed(() => /^https:\/\//.test(String(cfg.supportUrl ?? '')) ? String(cfg.supportUrl) : '')
 const sponsorUrl = computed(() => /^https:\/\//.test(String(cfg.sponsorUrl ?? '')) ? String(cfg.sponsorUrl) : '')
+// "Advertise here" only while the slot is free (app/data/sponsor.json).
+const sponsor = useSponsor()
+const advertise = computed(() => !sponsor.value && !!sponsorUrl.value)
 
 useHead(() => ({
   htmlAttrs: { lang: locale.value },
@@ -35,6 +38,7 @@ useHead(() => ({
       <div class="wrap top__inner">
         <div class="top__brand">
           <NuxtLink :to="lp('/')" class="brand" :aria-label="t.brandAria">
+            <BrandMark class="brand__mark" />
             <span class="brand__name">barato<span class="brand__dot">.</span>si</span>
             <span class="brand__tag">{{ t.brandTag }}</span>
           </NuxtLink>
@@ -61,7 +65,7 @@ useHead(() => ({
 
     <footer class="foot">
       <div class="wrap foot__inner">
-        <p class="foot__sign">barato, sí<span class="foot__dot" aria-hidden="true">.</span></p>
+        <p class="foot__sign">barato, sí<span class="foot__dot" aria-hidden="true" /></p>
         <div class="foot__text">
           <p class="foot__legal">{{ t.footer.legal }}</p>
           <p v-if="affiliateOn" class="foot__legal">{{ t.footer.affiliate }}</p>
@@ -74,9 +78,12 @@ useHead(() => ({
             <a href="/llms.txt">llms.txt</a>
             <NuxtLink :to="lp('/privacidad')">{{ t.footer.privacy }}</NuxtLink>
           </p>
-          <p v-if="supportUrl || sponsorUrl" class="foot__links">
-            <a v-if="supportUrl" :href="supportUrl" rel="noopener" target="_blank">{{ t.footer.support }}</a>
-            <a v-if="sponsorUrl" :href="sponsorUrl" rel="noopener" target="_blank">{{ t.footer.sponsor }}</a>
+          <p v-if="supportUrl" class="foot__links">
+            <a :href="supportUrl" rel="noopener" target="_blank">{{ t.footer.support }}</a>
+          </p>
+          <p v-if="advertise" class="foot__ad">
+            <a :href="sponsorUrl" rel="noopener" target="_blank">{{ t.sponsor.advertise }}</a>
+            <span>{{ t.sponsor.advertiseNote }}</span>
           </p>
           <p class="foot__made">
             <span>{{ t.footer.madeBy }} <a href="https://chrisdalbano.com" rel="noopener">Chris D'Albano</a>.</span>
@@ -105,9 +112,12 @@ main { flex: 1; min-height: 100dvh; }
 .top { border-bottom: 1px solid var(--fg-primary); }
 .top__inner { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; min-height: 48px; }
 .top__brand { position: relative; display: flex; align-items: center; min-width: 0; align-self: stretch; }
-.brand { display: flex; align-items: baseline; gap: 12px; color: var(--fg-primary); text-decoration: none; }
-.brand__name { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.04em; }
-.brand__dot { color: var(--accent-lead); }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--fg-primary); text-decoration: none; }
+/* The mark is sized to the wordmark's x-height-ish band; fixed size, so no shift. */
+.brand__mark { width: 19px; height: 19px; }
+.brand__name { font-family: var(--font-brand); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1; }
+.brand__dot { color: var(--brand-cobalt); }
+.brand__tag { margin-left: 4px; }
 .brand__tag { font-size: 0.8125rem; color: var(--fg-muted); white-space: nowrap; }
 .top__nav { display: flex; align-items: center; gap: clamp(12px, 2.2vw, 26px); }
 .top__link { font-size: 0.875rem; font-weight: 500; color: var(--fg-primary); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent; white-space: nowrap; }
@@ -120,7 +130,9 @@ main { flex: 1; min-height: 100dvh; }
 .foot__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); gap: 16px 48px; padding-top: 24px; padding-bottom: 40px; font-size: 0.8125rem; color: var(--fg-secondary); }
 .foot p { margin: 0; }
 .foot__sign { grid-column: 1 / -1; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: var(--fg-primary); }
-.foot__dot { color: var(--accent-lead); }
+.foot__dot { display: inline-block; width: 0.16em; height: 0.16em; margin-left: 0.05em; border-radius: 50%; background: var(--brand-cobalt); vertical-align: 0; }
+.foot__ad { display: grid; gap: 2px; }
+.foot__ad span { font-size: 0.75rem; color: var(--fg-muted); }
 .foot__text { display: grid; gap: 10px; align-content: start; }
 .foot__legal { max-width: 62ch; }
 .foot__side { display: grid; gap: 10px; align-content: start; }

@@ -1,0 +1,29 @@
+<!doctype html>
+<!--
+  Source for the PNG icons (apple-touch-icon.png, icon-512.png, icon-maskable-512.png).
+  scripts/brand.mjs opens it in headless Chrome as icon.html?size=180&mark=0.66 and
+  screenshots the viewport. `mark` is the share of the tile the mark spans.
+  Not served by the site.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; box-sizing: border-box; }
+html, body { background: #ffffff; overflow: hidden; }
+body { display: grid; place-items: center; }
+img { display: block; }
+</style>
+</head>
+<body>
+<img id="m" src="mark.svg" alt="">
+<script>
+  const q = new URLSearchParams(location.search)
+  const size = Number(q.get('size') || 512)
+  const share = Number(q.get('mark') || 0.66)
+  document.body.style.width = document.body.style.height = size + 'px'
+  const m = document.getElementById('m')
+  m.style.width = m.style.height = Math.round(size * share) + 'px'
+</script>
+</body>
+</html>

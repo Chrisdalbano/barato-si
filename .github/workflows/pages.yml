@@ -69,3 +69,19 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+  # Tell IndexNow which pages changed. After the deploy, so the URLs already serve
+  # the new content. Never fails the run: the script logs and exits 0, and the
+  # job is continue-on-error as well. No npm ci: the script uses only Node built-ins.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - run: node --experimental-strip-types scripts/indexnow.ts

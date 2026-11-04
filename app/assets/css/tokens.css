@@ -2,6 +2,10 @@
 :root {
   --p-paper: #f3f0e8; --p-ink: #181916; --p-cobalt: #2947d7;
   --p-night: #111310; --p-bone: #f1eee5; --p-orange: #ff9858;
+  /* The logo's cobalt. Same in both variants: the mark's accent circle and the wordmark's
+     full stop never turn orange at night (the logo's dark version keeps cobalt too). */
+  --brand-cobalt: var(--p-cobalt);
+  --font-brand: 'barato brand', 'Inter Variable', 'Inter', 'Inter Fallback', Arial, sans-serif;
   --p-paper-surface: #e8e5dc; --p-paper-elevated: #dedbd2;
   --p-ink-secondary: #52554e; --p-ink-muted: #62665d;
   --p-paper-border: #c9cbc0; --p-paper-border-strong: #9c9f94;

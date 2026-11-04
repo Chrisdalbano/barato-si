@@ -31,7 +31,6 @@ export const es = {
     madeBy: 'Hecho por',
     project: 'barato.si es un proyecto de',
     support: 'Apoya barato.si',
-    sponsor: 'Patrocina barato.si',
     affiliate: 'Como afiliado de Amazon, barato.si gana una comisión con las compras que cumplen los requisitos. Solo algunos enlaces a Amazon llevan la etiqueta, y el precio para ti no cambia.',
   },
 
@@ -300,6 +299,42 @@ export const es = {
     updated: 'Actualizado el 4 de noviembre de 2026.',
   },
 
+  landing: {
+    catEyebrow: 'Categoría',
+    storeEyebrow: 'Tienda',
+    catTitle: (label: string) => `${label}, hoy`,
+    storeTitle: (name: string) => `${name}, hoy`,
+    lede: (n: number, day: string) => `${n === 1 ? '1 oferta' : `${n} ofertas`} del ${day}, cada una contra lo que el producto suele costar, con la evidencia a la vista. Se actualiza cada tres horas.`,
+    seoCatTitle: (label: string) => `${label} en oferta hoy: precios y posibles errores · barato.si`,
+    seoCatDesc: (label: string, n: number) => `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${label.toLocaleLowerCase('es')} hoy en tiendas de EE. UU., cada una contra lo que suele costar y con la evidencia a la vista. Sin cuentas, actualizado cada tres horas.`,
+    seoStoreTitle: (name: string) => `${name}: rebajas de hoy y posibles errores de precio · barato.si`,
+    seoStoreDesc: (name: string, n: number) => `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${name} hoy, cada una contra lo que el producto suele costar y con la evidencia a la vista. Actualizado cada tres horas.`,
+    listName: (label: string, day: string) => `${label}: ofertas del ${day} en barato.si`,
+    empty: 'Hoy no queda nada en esta página. No la rellenamos con ofertas viejas.',
+    back: 'Todas las ofertas de hoy',
+    otherCats: 'Otras categorías con ofertas hoy',
+    otherStores: 'Otras tiendas con ofertas hoy',
+    pageOf: (label: string) => `Página de ${label}`,
+    explorer: 'Ofertas',
+  },
+
+  share: {
+    label: 'Compartir',
+    menu: (title: string) => `Compartir: ${title}`,
+    whatsapp: 'WhatsApp',
+    telegram: 'Telegram',
+    x: 'X',
+    copy: 'Copiar enlace',
+    copied: 'Enlace copiado',
+    text: (title: string, price: string, store: string) => `${title}: ${price} en ${store}. Visto en barato.si`,
+  },
+
+  sponsor: {
+    label: 'Patrocinado',
+    advertise: '¿Anunciar aquí?',
+    advertiseNote: '10 USD por semana. Lo revisamos antes de publicarlo y, si no encaja, te devolvemos el dinero. Es un sitio pequeño y nuevo: no garantizamos tráfico.',
+  },
+
   seo: {
     home: { title: 'barato, sí. Índice de precios y errores de precio · barato.si', description: 'Los precios de hoy contra lo que cada producto suele costar, con la evidencia a la vista, y los posibles errores de precio. También en JSON y RSS, gratis y sin clave.' },
     errores: { title: 'Errores de precio · barato.si', description: 'Los precios de hoy que parecen un error de la tienda, con la evidencia y las señales que lo sugieren. Una suposición automática, nunca una confirmación.' },
@@ -309,6 +344,7 @@ export const es = {
     privacidad: { title: 'Privacidad · barato.si', description: 'Qué datos usa barato.si: analítica, publicidad y enlaces de afiliado cuando están activos. Sin cuentas.' },
     ogLocale: 'es_LA',
     ogAlt: 'barato, sí. Índice de precios y posibles errores de precio, en la web, en JSON y en RSS.',
+    ogImage: 'https://barato.si/og.png',
     crumbHome: 'Inicio',
   },
 }
