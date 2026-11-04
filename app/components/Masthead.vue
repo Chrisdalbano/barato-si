@@ -5,15 +5,14 @@ import type { DayView } from '~/composables/useDeals'
 // and the full stop is the mark. Small enough that the evidence below is in the
 // first screen.
 defineProps<{ day: DayView | null | undefined }>()
+const { t } = useLang()
 </script>
 
 <template>
   <header class="mast">
     <div class="mast__plate">
       <h1 class="mast__name">barato, sí<span class="mast__dot" aria-hidden="true">.</span></h1>
-      <p class="mast__lede">
-        Los precios de hoy contra lo que cada producto suele costar. Un índice, no una tienda.
-      </p>
+      <p class="mast__lede">{{ t.masthead.lede }}</p>
     </div>
     <DayStrip v-if="day" :day="day" show-date />
   </header>

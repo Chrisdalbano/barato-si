@@ -1,16 +1,18 @@
+<script setup lang="ts">
+const { locale, t, lp } = useLang()
+const endpoints = computed(() => endpointsFor(locale.value))
+</script>
+
 <template>
   <section class="teaser" aria-labelledby="api-title">
     <div class="teaser__text">
-      <p class="eyebrow">Para scripts y agentes</p>
-      <h2 id="api-title" class="teaser__title">Los mismos datos, en JSON.</h2>
-      <p>
-        Todo lo que ves aquí sale de un archivo estático que cualquiera puede leer. Sin clave, sin registro.
-        Se regenera cada tres horas.
-      </p>
+      <p class="eyebrow">{{ t.teaser.eyebrow }}</p>
+      <h2 id="api-title" class="teaser__title">{{ t.teaser.title }}</h2>
+      <p>{{ t.teaser.body }}</p>
       <ul class="teaser__eps">
-        <li v-for="e in ENDPOINTS.slice(0, 3)" :key="e.path"><code>{{ e.path }}</code></li>
+        <li v-for="e in endpoints.slice(0, 3)" :key="e.path"><code>{{ e.path }}</code></li>
       </ul>
-      <NuxtLink to="/api" class="teaser__more">Documentación de la API <span aria-hidden="true">&rarr;</span></NuxtLink>
+      <NuxtLink :to="lp('/api')" class="teaser__more">{{ t.teaser.more }} <span aria-hidden="true">&rarr;</span></NuxtLink>
     </div>
     <CodeBlock :code="CURL_EXAMPLE" label="curl" />
   </section>

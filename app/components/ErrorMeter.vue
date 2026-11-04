@@ -3,15 +3,16 @@
 // bar filled to scale. Typographic, never a badge.
 const props = defineProps<{ value: number }>()
 const v = computed(() => Math.round(Math.max(0, Math.min(100, Number.isFinite(props.value) ? props.value : 0))))
+const { t } = useLang()
 const level = computed(() => (v.value >= 70 ? 'alta' : v.value >= 55 ? 'media' : 'baja'))
 </script>
 
 <template>
   <div
     class="meter" :class="`meter--${level}`" role="meter" aria-valuemin="0" aria-valuemax="100" :aria-valuenow="v"
-    :aria-valuetext="`${v} de 100`" aria-label="Probabilidad de error de precio, heurística"
+    :aria-valuetext="t.meter.of(v)" :aria-label="t.meter.aria"
   >
-    <span class="meter__label" aria-hidden="true">Error</span>
+    <span class="meter__label" aria-hidden="true">{{ t.meter.label }}</span>
     <span class="meter__num" aria-hidden="true">{{ v }}<span class="meter__of">/100</span></span>
     <span class="meter__bar" aria-hidden="true"><span class="meter__fill" :style="{ width: `${v}%` }" /></span>
   </div>

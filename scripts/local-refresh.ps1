@@ -21,13 +21,13 @@ try {
   # keep whichever side and move on.
   cmd /c 'git pull --rebase --autostash origin main 2>&1' | Out-File -Append -Encoding utf8 $log
   if ($LASTEXITCODE -ne 0) {
-    cmd /c 'git checkout --theirs -- public data/classify-cache.json data/price-ledger.json 2>&1' | Out-File -Append -Encoding utf8 $log
-    cmd /c 'git add public data/classify-cache.json data/price-ledger.json 2>&1' | Out-File -Append -Encoding utf8 $log
+    cmd /c 'git checkout --theirs -- public data/classify-cache.json data/price-ledger.json data/oracle-log.json 2>&1' | Out-File -Append -Encoding utf8 $log
+    cmd /c 'git add public data/classify-cache.json data/price-ledger.json data/oracle-log.json 2>&1' | Out-File -Append -Encoding utf8 $log
     $env:GIT_EDITOR = 'true'
     Step 'rebase-continue' 'git rebase --continue'
   }
   Step 'deals' 'npm.cmd run deals'
-  Step 'stage' 'git add public data/classify-cache.json data/price-ledger.json'
+  Step 'stage' 'git add public data/classify-cache.json data/price-ledger.json data/oracle-log.json'
   cmd /c 'git diff --cached --quiet' | Out-Null
   if ($LASTEXITCODE -ne 0) {
     Step 'commit' 'git commit -q -m "chore: refresh deals (local run)"'

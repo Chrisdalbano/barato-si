@@ -54,6 +54,9 @@ export function interestOf(d: Deal): Pick<Deal, 'interest' | 'interestSignals'> 
   if (d.direct) add(15, 'Enlace directo al comercio')
   if ((d.seenIn?.length || 0) >= 2) add(15, 'Corroborado por varias fuentes')
   if (d.staffPick) add(15, 'Selección editorial de DealNews')
+  // 2026-11-04: our own ledger saw it cheaper than on any earlier day (5 %+ under the prior low).
+  const h = d.history
+  if (h && h.days >= 2 && d.price > 0 && d.price <= h.minPrice * .95) add(10, `Nuevo mínimo frente a ${h.days} días observados`)
   return { interest: Math.min(100, interest), interestSignals }
 }
 // How long a posted price can be trusted. Measured 2026-11-02 on 32 Amazon rows against

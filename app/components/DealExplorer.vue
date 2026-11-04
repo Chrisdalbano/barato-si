@@ -4,7 +4,10 @@ import { sortLabel, sortValue } from '~/utils/filters'
 
 // The index itself: search, sort and view above the results, the facet panel at
 // the side (a drawer on phones), the active filters, then the table or the grid.
-const props = defineProps<{ deals: DealView[]; generatedAt: string; shownAbove?: string[]; hideGames?: boolean; directDefault?: boolean }>()
+const props = defineProps<{ deals: DealView[]; generatedAt: string; shownAbove?: string[]; hideGames?: boolean; directDefault?: boolean; ads?: boolean }>()
+const { locale, t } = useLang()
+// The in-stream ad goes after this many rows (only on pages that ask for it).
+const AD_AFTER = 12
 
 const deals = computed(() => props.deals)
 const f = useDealFilters(deals, computed(() => !!props.hideGames), computed(() => !!props.directDefault))
@@ -40,7 +43,7 @@ onUnmounted(() => clearTimeout(timer))
 
 // A column sort the control does not list still shows as the current order.
 const currentSort = computed(() => sortValue(state.value))
-const extraSort = computed(() => (options.value.sorts.some(o => o.value === currentSort.value) ? null : { value: currentSort.value, label: sortLabel(state.value) }))
+const extraSort = computed(() => (options.value.sorts.some(o => o.value === currentSort.value) ? null : { value: currentSort.value, label: sortLabel(state.value, locale.value) }))
 
 const middlemen = computed(() => options.value.middlemanCount)
 
@@ -50,15 +53,15 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
 <template>
   <section id="ofertas" class="ex" aria-labelledby="ex-title">
     <div class="ex__head">
-      <h2 id="ex-title" class="ex__title">Ofertas</h2>
-      <p class="ex__count" aria-live="polite">{{ visible.length }} de {{ shown.length }}</p>
+      <h2 id="ex-title" class="ex__title">{{ t.explorer.title }}</h2>
+      <p class="ex__count" aria-live="polite">{{ visible.length }} {{ t.explorer.of }} {{ shown.length }}</p>
     </div>
 
     <div class="ex__layout">
       <div v-if="open" class="ex__scrim" aria-hidden="true" @click="hide" />
       <aside
         ref="panel" class="ex__panel" :class="{ 'is-open': open }" tabindex="-1"
-        :role="open ? 'dialog' : undefined" :aria-modal="open ? 'true' : undefined" :aria-label="open ? 'Filtros' : undefined"
+        :role="open ? 'dialog' : undefined" :aria-modal="open ? 'true' : undefined" :aria-label="open ? t.explorer.filters : undefined"
         @keydown="onKeydown"
       >
         <FilterPanel :f="f" :result-count="shown.length" @close="hide" />
@@ -67,53 +70,54 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
       <div class="ex__main">
         <form class="bar" role="search" @submit.prevent>
           <label class="bar__search">
-            <span class="sr-only">Buscar por producto o marca</span>
-            <input v-model="search" class="field" type="search" placeholder="Buscar producto o marca" autocomplete="off">
+            <span class="sr-only">{{ t.explorer.searchSr }}</span>
+            <input v-model="search" class="field" type="search" :placeholder="t.explorer.searchPh" autocomplete="off">
           </label>
           <label class="bar__sort">
-            <span>Orden</span>
+            <span>{{ t.explorer.sort }}</span>
             <select class="field" :value="currentSort" @change="f.setSort(($event.target as HTMLSelectElement).value)">
               <option v-for="o in options.sorts" :key="o.value" :value="o.value">{{ o.label }}</option>
               <option v-if="extraSort" :value="extraSort.value">{{ extraSort.label }}</option>
             </select>
           </label>
-          <div class="bar__view" role="group" aria-label="Vista">
-            <button type="button" class="seg" :aria-pressed="state.view === 'tabla'" @click="f.set({ vista: null })">Tabla</button>
-            <button type="button" class="seg" :aria-pressed="state.view === 'cuadricula'" @click="f.set({ vista: 'cuadricula' })">Cuadrícula</button>
+          <div class="bar__view" role="group" :aria-label="t.explorer.view">
+            <button type="button" class="seg" :aria-pressed="state.view === 'tabla'" @click="f.set({ vista: null })">{{ t.explorer.table }}</button>
+            <button type="button" class="seg" :aria-pressed="state.view === 'cuadricula'" @click="f.set({ vista: 'cuadricula' })">{{ t.explorer.grid }}</button>
           </div>
           <button ref="trigger" type="button" class="seg bar__filters" :aria-expanded="open" @click="show">
-            Filtros<span v-if="f.items.value.length" class="bar__n"> · {{ f.items.value.length }}</span>
+            {{ t.explorer.filters }}<span v-if="f.items.value.length" class="bar__n"> · {{ f.items.value.length }}</span>
           </button>
         </form>
 
         <p v-if="middlemen > 0 || !state.direct" class="ex__direct">
           <label>
             <input type="checkbox" :checked="!state.direct" @change="f.toggleMiddlemen()">
-            Incluir enlaces de intermediarios<span v-if="middlemen" class="ex__direct-n"> ({{ middlemen }})</span>
+            {{ t.explorer.middlemen }}<span v-if="middlemen" class="ex__direct-n"> ({{ middlemen }})</span>
           </label>
-          <span class="ex__direct-note">{{ state.direct ? 'Ahora, solo enlaces directos a la tienda.' : 'Algunos enlaces pasan por la fuente antes de llegar a la tienda.' }} Cada precio es el que publicó la fuente hace el tiempo indicado: confírmalo en la tienda.</span>
+          <span class="ex__direct-note">{{ state.direct ? t.explorer.directNow : t.explorer.middleNote }} {{ t.explorer.confirm }}</span>
         </p>
 
         <ActiveFilters :items="f.items.value" @remove="f.set" @clear="f.reset" />
 
-        <DealGrid v-if="state.view === 'cuadricula' && visible.length" :deals="visible" :now="now" />
+        <DealGrid v-if="state.view === 'cuadricula' && visible.length" :deals="visible" :now="now" :ad-after="ads ? AD_AFTER : undefined" />
         <DealTable
           v-else-if="state.view === 'tabla' && visible.length" :deals="visible" :all="deals" :now="now" :sort="state.sort" :dir="state.dir"
+          :ad-after="ads ? AD_AFTER : undefined"
           @sort="f.sortBy"
         />
 
         <p v-if="remaining" class="ex__more">
-          <button type="button" class="seg" @click="limit += CHUNK">Mostrar {{ Math.min(CHUNK, remaining) }} más</button>
-          <span class="ex__shown">{{ visible.length }} de {{ shown.length }}</span>
+          <button type="button" class="seg" @click="limit += CHUNK">{{ t.explorer.showMore(Math.min(CHUNK, remaining)) }}</button>
+          <span class="ex__shown">{{ visible.length }} {{ t.explorer.of }} {{ shown.length }}</span>
         </p>
 
         <div v-if="!shown.length" class="ex__empty">
           <template v-if="deals.length && f.active.value">
-            <p>Nada con estos filtros.</p>
-            <button type="button" class="seg" @click="f.reset()">Quitar todo</button>
+            <p>{{ t.explorer.nothing }}</p>
+            <button type="button" class="seg" @click="f.reset()">{{ t.explorer.reset }}</button>
           </template>
-          <p v-else-if="deals.length">No hay más ofertas con esta selección.</p>
-          <p v-else>Ese día no hubo nada barato de verdad.</p>
+          <p v-else-if="deals.length">{{ t.explorer.noMore }}</p>
+          <p v-else>{{ t.explorer.dayNothing }}</p>
         </div>
       </div>
     </div>

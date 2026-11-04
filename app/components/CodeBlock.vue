@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{ code: string; label: string }>()
 const copied = ref(false)
+const { t } = useLang()
 let timer: ReturnType<typeof setTimeout> | undefined
 
 async function copy() {
@@ -19,7 +20,7 @@ async function copy() {
   <figure class="code">
     <figcaption>
       <span>{{ label }}</span>
-      <button type="button" class="code__copy" @click="copy">{{ copied ? 'Copiado' : 'Copiar' }}</button>
+      <button type="button" class="code__copy" @click="copy">{{ copied ? t.code.copied : t.code.copy }}</button>
     </figcaption>
     <pre><code>{{ code }}</code></pre>
   </figure>

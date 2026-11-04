@@ -4,27 +4,25 @@ import type { DealView } from '~/composables/useDeals'
 // The top of the page: every price-error candidate shown, strongest evidence
 // first. With no candidates it says so in one line and the page moves on.
 withDefaults(defineProps<{ deals: DealView[]; total?: number; level?: 2 | 3; more?: boolean }>(), { total: 0, level: 2, more: true })
+const { t, lp } = useLang()
 </script>
 
 <template>
   <section id="errores" class="ev" aria-labelledby="ev-title">
     <div class="ev__head">
-      <component :is="level === 3 ? 'h3' : 'h2'" id="ev-title" class="ev__title">Errores y sospechas</component>
+      <component :is="level === 3 ? 'h3' : 'h2'" id="ev-title" class="ev__title">{{ t.board.title }}</component>
       <p v-if="deals.length" class="ev__count">{{ Math.max(total, deals.length) }}</p>
     </div>
     <template v-if="deals.length">
-      <p class="ev__note">
-        Precios muy por debajo de su referencia, con la evidencia a la vista. Las tiendas suelen cancelar los
-        errores de precio, y la puntuación es una heurística, no una confirmación.
-      </p>
+      <p class="ev__note">{{ t.board.note }}</p>
       <ol class="ev__items">
         <li v-for="d in deals" :key="d.id"><EvidenceRow :deal="d" :heading-level="level === 3 ? 4 : 3" /></li>
       </ol>
       <p v-if="more" class="ev__more">
-        <NuxtLink to="/errores">Todas las señales, en Errores <span aria-hidden="true">&rarr;</span></NuxtLink>
+        <NuxtLink :to="lp('/errores')">{{ t.board.more }} <span aria-hidden="true">&rarr;</span></NuxtLink>
       </p>
     </template>
-    <p v-else class="ev__calm">Hoy ningún precio llega a sospechoso. No rellenamos el hueco.</p>
+    <p v-else class="ev__calm">{{ t.board.calm }}</p>
   </section>
 </template>
 

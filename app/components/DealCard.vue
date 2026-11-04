@@ -7,11 +7,15 @@ const props = defineProps<{ deal: DealView; now: number }>()
 const strength = computed(() => strengthOf(props.deal))
 const digits = computed(() => moneyDigits(props.deal.price, props.deal.reference?.price))
 const depth = computed(() => { const v = depthOf(props.deal); return v !== null && v > 0 ? v : null })
+const { locale, t } = useLang()
+const out = useOutbound()
+const href = computed(() => out.href(props.deal))
+const rel = computed(() => out.rel(props.deal))
 </script>
 
 <template>
   <article class="card">
-    <a class="card__pic" :href="linkFor(deal)" rel="noopener" target="_blank" tabindex="-1" aria-hidden="true">
+    <a class="card__pic" :href="href" :rel="rel" target="_blank" tabindex="-1" aria-hidden="true">
       <DealImage :src="deal.image" :fallback="deal.imageFallback" :alt="deal.title" :mark="storeMark(deal)" />
     </a>
     <div class="card__body">
@@ -19,24 +23,27 @@ const depth = computed(() => { const v = depthOf(props.deal); return v !== null 
         <span class="card__who">{{ whoLine(deal) }}</span>
         <span class="card__age"><time :datetime="deal.publishedAt">{{ formatAgeShort(deal.publishedAt, now) }}</time></span>
       </p>
-      <p v-if="deal.flag === 'error-probable'" class="flag flag--posible-error card__flag">{{ FLAG_LABEL[deal.flag] }}</p>
+      <p v-if="deal.flag === 'error-probable'" class="flag flag--posible-error card__flag">{{ flagLabel(deal.flag, locale) }}</p>
       <h3 class="card__title">
-        <a :href="linkFor(deal)" rel="noopener" target="_blank">{{ deal.title }}</a>
+        <a :href="href" :rel="rel" target="_blank">{{ deal.title }}</a>
       </h3>
       <p class="card__price">
-        <strong>{{ formatPrice(deal.price, deal.currency, digits) }}</strong>
-        <span v-if="depth !== null" :class="`depth--${strength}`">{{ formatDiscount(depth) }}</span>
+        <strong>{{ formatPrice(deal.price, deal.currency, digits, locale) }}</strong>
+        <span v-if="depth !== null" :class="`depth--${strength}`">{{ formatDiscount(depth, locale) }}</span>
       </p>
       <p class="card__ref" :class="`evi--${strength}`">
         <template v-if="deal.reference">
-          <span :class="`ref--${strength}`"><span class="ref__price">{{ formatMoney(deal.reference.price, deal.currency, digits) }}</span></span>
-          {{ evidenceLine(deal.reference) }}
+          <span :class="`ref--${strength}`"><span class="ref__price">{{ formatMoney(deal.reference.price, deal.currency, digits, locale) }}</span></span>
+          {{ evidenceLine(deal.reference, locale) }}
         </template>
-        <template v-else>Sin referencia de precio</template>
+        <template v-else>{{ evidenceLine(undefined, locale) }}</template>
+      </p>
+      <p class="card__oracle">
+        <OracleBadge :deal-id="deal.id" />
       </p>
       <div class="card__foot">
-        <a class="card__go" :href="linkFor(deal)" rel="noopener" target="_blank">
-          Ver en {{ deal.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(deal)) }})</span> <span aria-hidden="true">&rarr;</span>
+        <a class="card__go" :href="href" :rel="rel" target="_blank">
+          {{ t.seeAt(deal.store) }}<span class="sr-only">{{ t.opens(hostOf(href)) }}</span> <span aria-hidden="true">&rarr;</span>
         </a>
         <DealCredit :deal="deal" />
       </div>
@@ -62,6 +69,7 @@ const depth = computed(() => { const v = depthOf(props.deal); return v !== null 
 .card__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .card__price strong { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; }
 .card__ref { font-size: 0.75rem; line-height: 1.3; }
+.card__oracle:empty { display: none; }
 .card__ref .ref__price { font-family: var(--font-mono); margin-right: 0.25em; }
 .card__foot { display: grid; gap: 2px; padding-top: 6px; }
 .card__go { font-size: 0.8125rem; font-weight: 600; color: var(--link-fg); text-decoration: none; overflow-wrap: anywhere; }

@@ -6,26 +6,33 @@ import { defaultDir } from '~/utils/filters'
 // The dense view. Sort buttons live in the headers, so they are in the tab order.
 // Columns with nothing behind them in this file (brand and interest on old
 // archives) are dropped. Narrow containers fold the table; see the styles.
-const props = defineProps<{ deals: DealView[]; all: DealView[]; now: number; sort: SortKey; dir: SortDir | null }>()
+const props = defineProps<{ deals: DealView[]; all: DealView[]; now: number; sort: SortKey; dir: SortDir | null; adAfter?: number }>()
+const { locale, t } = useLang()
+const out = useOutbound()
 const emit = defineEmits<{ sort: [key: SortKey] }>()
 
 const hasBrand = computed(() => props.all.some(d => d.brand))
 const hasInterest = computed(() => props.all.some(d => d.interest != null))
 
 interface Column { id: string; key: SortKey; label: string; numeric?: boolean; invert?: boolean }
-const columns = computed<Column[]>(() => [
-  { id: 'product', key: 'producto', label: 'Producto' },
-  ...(hasBrand.value ? [{ id: 'brand', key: 'marca' as SortKey, label: 'Marca' }] : []),
-  { id: 'store', key: 'tienda', label: 'Tienda' },
-  { id: 'price', key: 'precio', label: 'Precio', numeric: true },
-  { id: 'ref', key: 'referencia', label: 'Referencia', numeric: true },
-  { id: 'depth', key: 'profundidad', label: 'Prof.', numeric: true },
-  { id: 'error', key: 'sospecha', label: 'Error', numeric: true },
-  ...(hasInterest.value ? [{ id: 'interest', key: 'interes' as SortKey, label: 'Int.', numeric: true }] : []),
-  // Sorted by publication time, newest first: as an age column that is ascending.
-  { id: 'age', key: 'recientes', label: 'Edad', numeric: true, invert: true },
-])
-const FULL_LABEL: Record<string, string> = { depth: 'Profundidad contra la referencia', interest: 'Interés' }
+const columns = computed<Column[]>(() => {
+  const w = t.value.table
+  return [
+    { id: 'product', key: 'producto', label: w.product },
+    ...(hasBrand.value ? [{ id: 'brand', key: 'marca' as SortKey, label: w.brand }] : []),
+    { id: 'store', key: 'tienda', label: w.store },
+    { id: 'price', key: 'precio', label: w.price, numeric: true },
+    { id: 'ref', key: 'referencia', label: w.reference, numeric: true },
+    { id: 'depth', key: 'profundidad', label: w.depth, numeric: true },
+    { id: 'error', key: 'sospecha', label: w.error, numeric: true },
+    ...(hasInterest.value ? [{ id: 'interest', key: 'interes' as SortKey, label: w.interest, numeric: true }] : []),
+    // Sorted by publication time, newest first: as an age column that is ascending.
+    { id: 'age', key: 'recientes', label: w.age, numeric: true, invert: true },
+  ]
+})
+const FULL_LABEL = computed<Record<string, string>>(() => ({ depth: t.value.table.depthFull, interest: t.value.table.interestFull }))
+// The labelled ad row, when ads are configured; AdSlot renders nothing otherwise.
+const adsOn = computed(() => !!props.adAfter && !!useRuntimeConfig().public.adsenseSlotStream)
 
 function direction(c: Column): SortDir | null {
   if (props.sort !== c.key) return null
@@ -48,7 +55,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
 <template>
   <div class="dt">
     <table>
-      <caption class="sr-only">Ofertas. Los encabezados ordenan la tabla.</caption>
+      <caption class="sr-only">{{ t.table.caption }}</caption>
       <thead>
         <tr>
           <th
@@ -59,50 +66,54 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
               {{ c.label }}<span class="dt__arrow" aria-hidden="true">{{ arrow(c) }}</span>
             </button>
           </th>
-          <th scope="col" class="c-go"><span class="sr-only">Enlace</span></th>
+          <th scope="col" class="c-go"><span class="sr-only">{{ t.table.link }}</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="d in deals" :key="d.id">
+        <template v-for="(d, i) in deals" :key="d.id">
+        <tr v-if="adsOn && i === adAfter" class="dt__ad"><td :colspan="columns.length + 1"><AdSlot slot="stream" /></td></tr>
+        <tr>
           <td class="c-product">
             <div class="dt__cell">
-              <a class="dt__pic" :href="linkFor(d)" rel="noopener" target="_blank" tabindex="-1" aria-hidden="true">
+              <a class="dt__pic" :href="out.href(d)" :rel="out.rel(d)" target="_blank" tabindex="-1" aria-hidden="true">
                 <DealImage :src="d.image" :fallback="d.imageFallback" :alt="d.title" mark="" />
               </a>
               <div class="dt__what">
-                <a class="dt__title" :href="linkFor(d)" rel="noopener" target="_blank">{{ d.title }}</a>
+                <a class="dt__title" :href="out.href(d)" :rel="out.rel(d)" target="_blank">{{ d.title }}</a>
                 <span class="dt__meta">
                   <span class="dt__fold">{{ whoLine(d) }}</span>
-                  <span v-if="d.staffPick">elección editorial</span>
-                  <span v-if="(d.seenIn?.length ?? 0) >= 2">{{ d.seenIn!.length }} fuentes</span>
+                  <span v-if="d.staffPick">{{ t.table.staffPick }}</span>
+                  <span v-if="(d.seenIn?.length ?? 0) >= 2">{{ t.table.sources(d.seenIn!.length) }}</span>
+                  <OracleBadge :deal-id="d.id" />
                 </span>
               </div>
             </div>
           </td>
           <td v-if="hasBrand" class="c-brand">{{ d.brand ?? '' }}</td>
           <td class="c-store">{{ d.store }}</td>
-          <td class="c-price num" data-label="Precio">
-            <strong>{{ formatPrice(d.price, d.currency, digits(d)) }}</strong>
+          <td class="c-price num" :data-label="t.table.price">
+            <strong>{{ formatPrice(d.price, d.currency, digits(d), locale) }}</strong>
             <HistoryMark class="dt__hist" :history="d.history" :price="d.price" :currency="d.currency" />
           </td>
-          <td class="c-ref num" data-label="Referencia" :title="evidenceLine(d.reference)">
+          <td class="c-ref num" :data-label="t.table.reference" :title="evidenceLine(d.reference, locale)">
             <template v-if="d.reference">
-              <span :class="`ref--${strengthOf(d)}`"><span class="ref__price">{{ formatMoney(d.reference.price, d.currency, digits(d)) }}</span></span>
-              <small :class="`evi--${strengthOf(d)}`">{{ EVIDENCE[evidenceOf(d)].short }}</small>
+              <span :class="`ref--${strengthOf(d)}`"><span class="ref__price">{{ formatMoney(d.reference.price, d.currency, digits(d), locale) }}</span></span>
+              <small :class="`evi--${strengthOf(d)}`">{{ evidenceText(evidenceOf(d), locale).short }}</small>
             </template>
-            <small v-else class="evi--ninguna">sin referencia</small>
+            <small v-else class="evi--ninguna">{{ evidenceText('ninguna', locale).short }}</small>
           </td>
-          <td class="c-depth num" data-label="Prof." :class="`depth--${strengthOf(d)}`">{{ depth(d) !== null ? formatDiscount(depth(d)!) : '—' }}</td>
-          <td class="c-error num" data-label="Error" :class="errorClass(d.errorScore)" :title="title(d.errorSignals)">{{ d.errorScore > 0 ? d.errorScore : '—' }}</td>
-          <td v-if="hasInterest" class="c-interest num" data-label="Int." :title="title(d.interestSignals)">{{ d.interest ?? '—' }}</td>
-          <td class="c-age num" data-label="Edad"><time :datetime="d.publishedAt">{{ formatAgeShort(d.publishedAt, now) }}</time></td>
+          <td class="c-depth num" :data-label="t.table.depth" :class="`depth--${strengthOf(d)}`">{{ depth(d) !== null ? formatDiscount(depth(d)!, locale) : '—' }}</td>
+          <td class="c-error num" :data-label="t.table.error" :class="errorClass(d.errorScore)" :title="title(d.errorSignals)">{{ d.errorScore > 0 ? d.errorScore : '—' }}</td>
+          <td v-if="hasInterest" class="c-interest num" :data-label="t.table.interest" :title="title(d.interestSignals)">{{ d.interest ?? '—' }}</td>
+          <td class="c-age num" :data-label="t.table.age"><time :datetime="d.publishedAt">{{ formatAgeShort(d.publishedAt, now) }}</time></td>
           <td class="c-go">
-            <a class="dt__go" :href="linkFor(d)" rel="noopener" target="_blank">
-              Ver en {{ d.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(d)) }})</span> <span aria-hidden="true">&rarr;</span>
+            <a class="dt__go" :href="out.href(d)" :rel="out.rel(d)" target="_blank">
+              {{ t.seeAt(d.store) }}<span class="sr-only">{{ t.opens(hostOf(out.href(d))) }}</span> <span aria-hidden="true">&rarr;</span>
             </a>
             <DealCredit :deal="d" />
           </td>
         </tr>
+        </template>
       </tbody>
     </table>
   </div>
@@ -121,6 +132,8 @@ th.num button { padding: 8px 0 7px 8px; }
 td { padding: 8px 8px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
 td.num { padding: 8px 0 8px 8px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; word-spacing: -0.35em; }
 tbody tr:hover td { background: var(--bg-surface); }
+tbody tr.dt__ad:hover td { background: none; }
+.dt__ad td { padding: 4px 0; }
 
 td.c-product { min-width: 15rem; }
 .dt__cell { display: flex; gap: 10px; align-items: flex-start; }

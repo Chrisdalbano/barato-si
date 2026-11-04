@@ -1,6 +1,9 @@
 import { mkdir, readFile, writeFile, rename } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { loadLedger, saveLedger } from './ledger-store.ts'
+import { loadOracleLog, saveOracleLog } from './oracle-store.ts'
+import { buildHighlights } from '../lib/highlights.ts'
+import { buildOracle } from '../lib/oracle.ts'
 import type { Deal } from '../lib/types.ts'
 import { configuredSources } from './sources.ts'
 import { createSourceReader } from './network.ts'
@@ -31,8 +34,13 @@ export async function run(): Promise<void> {
   const file = await collect(configuredSources(), createSourceReader(), now, previous, {
     runTimeout: Math.max(1, 240000 - (Date.now() - started)), env: process.env, cache, latest, ledger, curated, onLedger: value => { ledger = value }, onCollected: value => { collected = value }, onCache: value => { cache = value },
   })
-  await writeOutputs(root, file)
+  // Derived files: highlights over the published list, and the oracle, which resolves its own past
+  // predictions against the ledger (now including today) before making new ones.
+  const highlights = buildHighlights(file.deals, ledger, now)
+  const oracle = buildOracle(file.deals, ledger, await loadOracleLog(repo), now)
+  await writeOutputs(root, file, { highlights, oracle: oracle.file })
   await saveLedger(repo, ledger)
+  await saveOracleLog(repo, oracle.log)
   if (!process.env.CI && !process.env.GITHUB_ACTIONS) {
     const privateDir = new URL('../data/private/', import.meta.url)
     await mkdir(privateDir, { recursive: true })
@@ -46,4 +54,8 @@ export async function run(): Promise<void> {
   for (const source of file.sources) console.log(`${source.name}: ${source.ok ? `${source.count} ofertas; ${source.requests} consultas; ${source.ms} ms${source.reusedFrom ? `; reutilizadas de ${source.reusedFrom} [${source.error}]` : ''}` : `${source.errorEs} [${source.error}]`}`)
   console.log('Gate: ' + JSON.stringify(file.gate))
   console.log(`${file.count} ofertas guardadas para ${file.date}`)
+  console.log('Destacados: ' + (highlights.slots.map(s => `${s.id} ${s.dealIds.length}`).join(', ') || 'ninguno'))
+  const verdicts: Record<string, number> = {}
+  for (const p of oracle.file.predictions) verdicts[p.verdict] = (verdicts[p.verdict] || 0) + 1
+  console.log(`Oráculo: ${oracle.file.predictions.length} predicciones ${JSON.stringify(verdicts)}; resueltas ${oracle.file.scorecard.resolved}`)
 }

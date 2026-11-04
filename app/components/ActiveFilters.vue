@@ -4,21 +4,22 @@ import type { ActiveItem, QueryPatch } from '~/utils/filters'
 // The narrowings in force, as plain removable text above the results.
 defineProps<{ items: ActiveItem[] }>()
 const emit = defineEmits<{ remove: [patch: QueryPatch]; clear: [] }>()
+const { t } = useLang()
 </script>
 
 <template>
   <div v-if="items.length" class="af">
-    <h3 class="sr-only">Filtros activos</h3>
+    <h3 class="sr-only">{{ t.active.heading }}</h3>
     <ul>
       <li v-for="item in items" :key="item.id">
         <button type="button" @click="emit('remove', item.patch)">
           <span>{{ item.label }}</span>
           <span class="af__x" aria-hidden="true">&times;</span>
-          <span class="sr-only">Quitar</span>
+          <span class="sr-only">{{ t.active.remove }}</span>
         </button>
       </li>
     </ul>
-    <button type="button" class="af__clear" @click="emit('clear')">Quitar todo</button>
+    <button type="button" class="af__clear" @click="emit('clear')">{{ t.active.clear }}</button>
   </div>
 </template>
 

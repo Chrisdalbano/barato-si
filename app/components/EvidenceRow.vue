@@ -5,14 +5,20 @@ import type { DealView } from '~/composables/useDeals'
 // it goes, and exactly what the reference is worth. Strength is drawn three ways
 // so it survives without colour: the left rule, the reference's underline, and
 // the weight of the depth figure. `full` adds every signal (the /errores page).
-const props = defineProps<{ deal: DealView; full?: boolean; headingLevel?: 2 | 3 | 4 }>()
+const props = defineProps<{ deal: DealView; full?: boolean; headingLevel?: 2 | 3 | 4; seenOn?: string; kicker?: string }>()
+const { locale, t } = useLang()
+const out = useOutbound()
+const href = computed(() => out.href(props.deal))
+const rel = computed(() => out.rel(props.deal))
 
 const strength = computed(() => strengthOf(props.deal))
-const evidence = computed(() => EVIDENCE[evidenceOf(props.deal)])
+const evidence = computed(() => evidenceText(evidenceOf(props.deal), locale.value))
 const depth = computed(() => { const v = depthOf(props.deal); return v !== null && v > 0 ? v : null })
 const digits = computed(() => moneyDigits(props.deal.price, props.deal.reference?.price))
-const label = computed(() => (props.deal.flag === 'error-probable' || props.deal.errorScore >= 70 ? 'Posible error de precio' : 'Sospechoso'))
-const history = computed(() => historyLine(props.deal.history, props.deal.currency))
+const label = computed(() => props.kicker || (props.deal.flag === 'error-probable' || props.deal.errorScore >= 70 ? t.value.row.possibleError : t.value.row.suspicious))
+const history = computed(() => historyLine(props.deal.history, props.deal.currency, locale.value))
+// Signals and the model note are written by the pipeline in Spanish; mark them so.
+const dataLang = computed(() => (locale.value === 'es' ? undefined : 'es'))
 const ai = computed(() => (props.deal.ai?.note?.trim() ? props.deal.ai : undefined))
 const topSignal = computed(() => props.deal.errorSignals[0])
 const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.deal.seenIn!.map(sourceName).join(', ') : '')
@@ -21,7 +27,7 @@ const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.dea
 <template>
   <article class="er" :class="`er--${strength}`">
     <div class="er__grid">
-      <a class="er__pic" :href="linkFor(deal)" rel="noopener" target="_blank" tabindex="-1" aria-hidden="true">
+      <a class="er__pic" :href="href" :rel="rel" target="_blank" tabindex="-1" aria-hidden="true">
         <DealImage :src="deal.image" :fallback="deal.imageFallback" :alt="deal.title" :mark="storeMark(deal)" />
       </a>
 
@@ -29,40 +35,42 @@ const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.dea
         <p class="er__kicker">
           <span class="flag flag--posible-error">{{ label }}</span>
           <span class="er__who">{{ whoLine(deal) }}</span>
+          <span v-if="seenOn" class="er__when">{{ t.row.seenOn(seenOn) }}</span>
         </p>
         <component :is="`h${headingLevel ?? 3}`" class="er__title">
-          <a :href="linkFor(deal)" rel="noopener" target="_blank">{{ deal.title }}</a>
+          <a :href="href" :rel="rel" target="_blank">{{ deal.title }}</a>
         </component>
-        <p v-if="!full && topSignal" class="er__signal">{{ topSignal }}</p>
+        <p v-if="!full && topSignal" class="er__signal" :lang="dataLang">{{ topSignal }}</p>
+        <OracleBadge :deal-id="deal.id" />
       </div>
 
       <dl class="er__nums">
         <div class="er__num">
-          <dt>Precio</dt>
-          <dd class="er__price">{{ formatPrice(deal.price, deal.currency, digits) }}</dd>
+          <dt>{{ t.row.price }}</dt>
+          <dd class="er__price">{{ formatPrice(deal.price, deal.currency, digits, locale) }}</dd>
         </div>
         <div class="er__num er__num--ref">
-          <dt>Referencia</dt>
+          <dt>{{ t.row.reference }}</dt>
           <dd v-if="deal.reference" class="er__ref" :class="`ref--${strength}`">
-            <span class="ref__price">{{ formatMoney(deal.reference.price, deal.currency, digits) }}</span>
+            <span class="ref__price">{{ formatMoney(deal.reference.price, deal.currency, digits, locale) }}</span>
           </dd>
-          <dd v-else class="er__ref er__ref--none">Ninguna</dd>
-          <dd class="er__evidence" :class="`evi--${strength}`">{{ evidenceLine(deal.reference) }}</dd>
+          <dd v-else class="er__ref er__ref--none">{{ t.row.none }}</dd>
+          <dd class="er__evidence" :class="`evi--${strength}`">{{ evidenceLine(deal.reference, locale) }}</dd>
         </div>
         <div class="er__num">
-          <dt>Profundidad</dt>
-          <dd class="er__depth" :class="`depth--${strength}`">{{ depth !== null ? formatDiscount(depth) : '—' }}</dd>
+          <dt>{{ t.row.depth }}</dt>
+          <dd class="er__depth" :class="`depth--${strength}`">{{ depth !== null ? formatDiscount(depth, locale) : '—' }}</dd>
           <dd v-if="depth !== null" class="er__against">{{ evidence.against }}</dd>
         </div>
         <div class="er__num er__num--meter">
-          <dt class="sr-only">Error</dt>
+          <dt class="sr-only">{{ t.row.error }}</dt>
           <dd><ErrorMeter :value="deal.errorScore" /></dd>
         </div>
       </dl>
 
       <div class="er__action">
-        <a class="go" :href="linkFor(deal)" rel="noopener" target="_blank">
-          Ver en {{ deal.store }}<span class="sr-only"> (abre {{ hostOf(linkFor(deal)) }})</span> <span aria-hidden="true">&rarr;</span>
+        <a class="go" :href="href" :rel="rel" target="_blank">
+          {{ t.seeAt(deal.store) }}<span class="sr-only">{{ t.opens(hostOf(href)) }}</span> <span aria-hidden="true">&rarr;</span>
         </a>
         <DealCredit :deal="deal" />
       </div>
@@ -70,19 +78,20 @@ const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.dea
 
     <div v-if="full" class="er__more">
       <div v-if="deal.errorSignals.length">
-        <h5 class="er__sub">Señales de error, de más a menos fuerte</h5>
-        <ul class="er__lines">
+        <h5 class="er__sub">{{ t.row.signals }}</h5>
+        <ul class="er__lines" :lang="dataLang">
           <li v-for="s in deal.errorSignals" :key="s">{{ s }}</li>
         </ul>
       </div>
       <div class="er__aside">
         <p v-if="ai" class="er__ai">
-          <span class="er__sub">{{ confidenceLabel(ai.confidence) }}</span>
-          {{ ai.note }}
+          <span class="er__sub">{{ confidenceLabel(ai.confidence, locale) }}</span>
+          <span :lang="dataLang">{{ ai.note }}</span>
         </p>
         <p v-if="history" class="er__fact">{{ history.charAt(0).toUpperCase() + history.slice(1) }}.</p>
-        <p v-if="sources" class="er__fact">Visto en {{ sources }}.</p>
-        <p v-if="deal.staffPick" class="er__fact">Elección editorial de la fuente.</p>
+        <p v-if="sources" class="er__fact">{{ t.row.seenIn(sources) }}</p>
+        <p v-if="deal.staffPick" class="er__fact">{{ t.row.staffPick }}</p>
+        <p v-if="dataLang && (deal.errorSignals.length || ai)" class="er__fact er__langnote">{{ t.dataInSpanish }}</p>
       </div>
     </div>
   </article>
@@ -106,6 +115,8 @@ const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.dea
 .er__kicker .flag { margin: 0; }
 .er--debil .er__kicker .flag, .er--ninguna .er__kicker .flag { color: var(--fg-secondary); }
 .er__who { font-size: 0.8125rem; font-weight: 500; }
+.er__when { font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg-muted); }
+.er__langnote { font-size: 0.75rem; color: var(--fg-muted); }
 .er__title { margin: 0; font-size: 1.0625rem; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; overflow-wrap: anywhere; }
 .er__title a { color: var(--fg-primary); text-decoration: none; }
 .er__title a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }

@@ -201,18 +201,78 @@ export interface DealsFile {
   gate?: GateReport
 }
 
+// ---- v3.1 (2026-11-04): errors context, highlights, the .si oracle. -------
+// Added with a dated NOTES.md entry. All new files; DealsFile is unchanged.
+
+/** public/api/errors.json. `deals` keeps its meaning; the two lists after it are context, never errors. */
+export interface ErrorsFile {
+  date: string
+  generatedAt: string
+  /** Every collected deal with errorScore >= 40 today, strongest first. Empty is a result. */
+  deals: Deal[]
+  /** Past candidates (errorScore >= 40) from the published day archives, last 30 days, newest first, one per product. */
+  recent?: { date: string; deal: Deal }[]
+  /** Today's 5 highest errorScore deals BELOW 40 (games excluded). Closest, not errors. */
+  nearest?: Deal[]
+}
+
+export interface HighlightSlot {
+  /** Stable slug: 'caidas' | 'minimo-historico' | 'hardware-ia' | 'menos-de-25' | 'juegos'. */
+  id: string
+  titleEs: string; titleEn: string
+  /** One dry line stating the rule that qualifies these deals. */
+  noteEs: string; noteEn: string
+  /** Ids present in public/api/deals.json of the same run, strongest first, 3..12. */
+  dealIds: string[]
+}
+/** public/api/highlights.json. A slot with fewer than 3 deals is omitted, so `slots` may be empty. */
+export interface HighlightsFile { version: 1; date: string; generatedAt: string; slots: HighlightSlot[] }
+
+export interface OraclePrediction {
+  dealId: string; productKey: string; title: string
+  price: number; currency: string
+  /** P(an observed price within horizonDays is >= dropThresholdPct below `price`), posterior mean, 0..1. */
+  pDrop: number
+  horizonDays: number
+  verdict: 'espera' | 'compra' | 'aprendiendo'
+  /** observations = the product's own completed, non-overlapping windows. category is null when the global prior was used. */
+  basis: { observations: number; priorAlpha: number; priorBeta: number; category: string | null }
+}
+export interface OracleScorecard {
+  resolved: number
+  /** Model Brier score over resolved predictions; null until one resolves. */
+  brier: number | null
+  /** Brier of the naive base-rate predictor (the pooled rate known when each prediction was made), same set. */
+  baselineBrier: number | null
+  /** Calibration: 5 buckets of predicted pDrop, [0,.2) ... [.8,1]; hitRate null when n is 0. */
+  buckets: { lo: number; hi: number; n: number; hitRate: number | null }[]
+  /** Date of the oldest resolved prediction. */
+  since: string | null
+}
+/** public/api/oracle.json: "¿compra ahora o espera?", self-scored. */
+export interface OracleFile {
+  version: 1; date: string; generatedAt: string
+  model: string
+  horizonDays: number; dropThresholdPct: number
+  predictions: OraclePrediction[]
+  scorecard: OracleScorecard
+}
+
 // ---- Files the job writes --------------------------------------------------
 //
 // public/api/deals.json              DealsFile for today (the public API), up to 400 deals
-// public/api/errors.json             { date, generatedAt, deals: Deal[] } — every deal with errorScore >= 40,
+// public/api/errors.json             ErrorsFile { date, generatedAt, deals, recent?, nearest? } — every deal with errorScore >= 40,
 //                                    sorted by errorScore desc. The "cazador de errores" view reads this.
 // public/api/deals/YYYY-MM-DD.json   DealsFile archive, one per day (30 days)
 // public/api/index.json              { latest: string, days: string[] }
 // public/feed.xml                    RSS of today's top deals
 // public/errors.xml                  RSS of today's probable price errors
 // public/llms.txt                    plain-text description of the API for agents
+// public/api/highlights.json         HighlightsFile: deterministic carousel slots over deals.json ids
+// public/api/oracle.json             OracleFile: buy-now-or-wait predictions plus their own scorecard
 // public/robots.txt, public/sitemap.xml
 // data/classify-cache.json           model verdicts by deal id (committed, small, pruned to 30 days)
+// data/oracle-log.json               every oracle prediction and its outcome once resolved (bounded)
 //
 // ---- Functions lib/ must export (lib/index.ts) -----------------------------
 //

@@ -11,13 +11,14 @@ export function useDealFilters(deals: Ref<DealView[]>, hideGames: Ref<boolean>, 
   const route = useRoute()
   const router = useRouter()
   const ready = ref(false)
+  const { locale } = useLang()
   onMounted(() => { ready.value = true })
 
   // A file with no direct rows at all (an old archive) has nothing to default to.
   const defaultsToDirect = computed(() => directDefault.value && deals.value.some(d => d.direct))
   const state = computed(() => filtersFromQuery(ready.value ? route.query : {}, hideGames.value, defaultsToDirect.value))
-  const options = computed(() => filterOptions(deals.value, state.value))
-  const items = computed(() => activeItems(state.value))
+  const options = computed(() => filterOptions(deals.value, state.value, locale.value))
+  const items = computed(() => activeItems(state.value, locale.value))
   const active = computed(() => hasFilters(state.value))
   const results = computed(() => applyFilters(deals.value, state.value))
 

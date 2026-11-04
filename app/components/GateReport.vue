@@ -5,31 +5,32 @@ import type { GateReport } from '~~/lib/types'
 // share one scale (the largest reason) and every value is printed beside its bar.
 // Offers past the publication cap are counted apart: they were not rejected on merit.
 const props = defineProps<{ gate: GateReport }>()
-const nf = new Intl.NumberFormat('es-ES')
-const summary = computed(() => gateSummary(props.gate))
+const { locale, t } = useLang()
+const n = (v: number) => formatNumber(v, locale.value)
+const summary = computed(() => gateSummary(props.gate, locale.value))
 const reasons = computed(() => summary.value.reasons)
 const top = computed(() => reasons.value[0]?.n ?? 1)
 </script>
 
 <template>
   <section id="filtro" class="gate" aria-labelledby="gate-title">
-    <h2 id="gate-title" class="gate__title">El filtro de hoy</h2>
+    <h2 id="gate-title" class="gate__title">{{ t.gate.title }}</h2>
     <dl class="gate__sum">
-      <div><dt>Consideradas</dt><dd>{{ nf.format(gate.considered) }}</dd></div>
-      <div><dt>Publicadas</dt><dd>{{ nf.format(gate.published) }}</dd></div>
-      <div><dt>Rechazadas</dt><dd>{{ nf.format(summary.quality) }}</dd></div>
-      <div v-if="summary.capped"><dt>Fuera del tope de publicación</dt><dd>{{ nf.format(summary.capped) }}</dd></div>
+      <div><dt>{{ t.gate.considered }}</dt><dd>{{ n(gate.considered) }}</dd></div>
+      <div><dt>{{ t.gate.published }}</dt><dd>{{ n(gate.published) }}</dd></div>
+      <div><dt>{{ t.gate.rejected }}</dt><dd>{{ n(summary.quality) }}</dd></div>
+      <div v-if="summary.capped"><dt>{{ t.gate.capped }}</dt><dd>{{ n(summary.capped) }}</dd></div>
     </dl>
     <div v-if="reasons.length" class="gate__reasons">
       <p class="gate__lede">
-        Rechazadas por motivo. El historial de precios las sigue registrando.
-        <template v-if="summary.capped">Las que quedan fuera del tope pasaron el filtro: la lista ya estaba llena.</template>
+        {{ t.gate.lede }}
+        <template v-if="summary.capped">{{ t.gate.cappedNote }}</template>
       </p>
       <ul>
         <li v-for="r in reasons" :key="r.slug">
           <span class="gate__label">{{ r.label }}</span>
           <span class="gate__bar" aria-hidden="true"><span :style="{ width: `${(r.n / top) * 100}%` }" /></span>
-          <span class="gate__n">{{ nf.format(r.n) }}</span>
+          <span class="gate__n">{{ n(r.n) }}</span>
         </li>
       </ul>
     </div>
