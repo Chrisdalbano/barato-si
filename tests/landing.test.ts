@@ -101,3 +101,65 @@ describe('locale paths for landing pages', async () => {
     expect(localePath('/errores', 'en')).toBe('/en/errores')
   })
 })
+
+describe('landing JSON-LD', async () => {
+  const { breadcrumbLd, ldJson, offerListLd } = await import('../app/composables/useSeo')
+  const row = {
+    title: 'Monitor 27" <b>', url: 'https://www.dealnews.com/item/1', storeUrl: 'https://www.bestbuy.com/site/1',
+    image: null, price: 199, currency: 'USD', store: 'Best Buy',
+  }
+  const list = { id: 'https://barato.si/tienda/best-buy/#ofertas', name: 'Best Buy: ofertas del 4 de noviembre en barato.si', inLanguage: 'es' }
+
+  it('lists the given rows as Offers, in order, with only real fields', () => {
+    const ld = offerListLd([row, { ...row, title: 'Steam game', storeUrl: null, image: 'https://cdn.example/a.jpg', price: 0 }], list)!
+    expect(ld).toMatchObject({ '@type': 'ItemList', '@id': list.id, name: list.name, inLanguage: 'es', numberOfItems: 2 })
+    expect(ld.itemListOrder).toBeUndefined()
+    expect(ld.itemListElement).toEqual([
+      { '@type': 'ListItem', position: 1, item: { '@type': 'Offer', name: row.title, url: row.storeUrl, price: '199.00', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'Best Buy' } } },
+      { '@type': 'ListItem', position: 2, item: { '@type': 'Offer', name: 'Steam game', url: row.url, image: 'https://cdn.example/a.jpg', price: '0.00', priceCurrency: 'USD', seller: { '@type': 'Organization', name: 'Best Buy' } } },
+    ])
+    const json = JSON.stringify(ld)
+    for (const invented of ['aggregateRating', 'review', 'availability', 'priceValidUntil', 'brand']) expect(json).not.toContain(invented)
+  })
+  it('leaves out a field with no real value instead of filling it', () => {
+    const item = (offerListLd([{ ...row, price: Number.NaN, store: '  ' }], list)!.itemListElement as { item: Record<string, unknown> }[])[0]!.item
+    expect(item).toEqual({ '@type': 'Offer', name: row.title, url: row.storeUrl })
+  })
+  it('gives nothing for an empty list', () => {
+    expect(offerListLd([], list)).toBeNull()
+  })
+  it('marks the order only when asked (the home page ranks by score)', () => {
+    expect(offerListLd([row], { ...list, descending: true })!.itemListOrder).toBe('https://schema.org/ItemListOrderDescending')
+  })
+  it('builds a breadcrumb trail and escapes < for the script tag', () => {
+    const trail = [{ name: 'Inicio', url: 'https://barato.si/' }, { name: 'Best Buy', url: 'https://barato.si/tienda/best-buy/' }]
+    expect(breadcrumbLd(trail)).toEqual({
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://barato.si/' },
+        { '@type': 'ListItem', position: 2, name: 'Best Buy', item: 'https://barato.si/tienda/best-buy/' },
+      ],
+    })
+    expect(breadcrumbLd(trail.slice(0, 1))).toBeNull()
+    const out = ldJson(offerListLd([row], list))
+    expect(out).not.toContain('<')
+    expect(JSON.parse(out).itemListElement[0].item.name).toBe(row.title)
+  })
+})
+
+describe('landing SEO copy', async () => {
+  const { es } = await import('../app/i18n/es')
+  const { en } = await import('../app/i18n/en')
+  it('names the slice and its count, and says so plainly when it is empty', () => {
+    expect(es.landing.seoCatTitle('Electrónica')).toContain('Electrónica')
+    expect(es.landing.seoCatDesc('Electrónica', 12)).toMatch(/^12 ofertas de electrónica hoy/)
+    expect(es.landing.seoStoreDesc('Best Buy', 1)).toMatch(/^1 oferta de Best Buy hoy/)
+    expect(es.landing.seoCatDesc('Electrónica', 0)).toMatch(/^Hoy no hay ofertas de electrónica/)
+    expect(es.landing.seoStoreDesc('Best Buy', 0)).toMatch(/^Hoy no hay ofertas de Best Buy/)
+    expect(en.landing.seoCatDesc('Electronics', 0)).toMatch(/^No electronics deals/)
+    expect(en.landing.seoStoreDesc('Best Buy', 0)).toMatch(/^No deals at Best Buy/)
+    for (const s of [es.landing.seoCatTitle('Hogar'), es.landing.seoCatDesc('Hogar', 0), es.landing.seoStoreDesc('Amazon', 3)]) {
+      expect(s.toLowerCase()).not.toContain('chollo')
+    }
+  })
+})

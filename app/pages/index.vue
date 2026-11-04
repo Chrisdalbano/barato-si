@@ -11,7 +11,9 @@ const highlights = await useHighlights()
 const oracle = await useOracle()
 provideOracle(oracle)
 // Category and store names in the list link to their pages (they all exist today).
-provideLanding(() => day.value?.deals)
+// The same set is listed once near the end, so every built slice page has a plain
+// link from the home page, not only from rows inside the first chunk of the list.
+const landing = provideLanding(() => day.value?.deals)
 
 // Candidates with evidence lead the page; /errores has the rest and every signal.
 const TOP = 6
@@ -47,34 +49,15 @@ useHead(() => {
     },
   ]
   const listed = d ? applyFilters(d.deals, filtersFromQuery({}, true, d.deals.some(x => x.direct))).slice(0, 10) : []
-  if (d && listed.length) {
-    graph.push({
-      '@type': 'ItemList',
-      '@id': `${home}#ofertas`,
-      name: t.value.home.listName(formatDay(d.date, locale.value)),
-      inLanguage: locale.value,
-      numberOfItems: listed.length,
-      itemListOrder: 'https://schema.org/ItemListOrderDescending',
-      itemListElement: listed.map((deal, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        item: {
-          '@type': 'Offer',
-          name: deal.title,
-          url: linkFor(deal),
-          ...(deal.image ? { image: deal.image } : {}),
-          price: deal.price.toFixed(2),
-          priceCurrency: deal.currency,
-          seller: { '@type': 'Organization', name: deal.store },
-        },
-      })),
-    })
-  }
+  const list = d
+    ? offerListLd(listed, { id: `${home}#ofertas`, name: t.value.home.listName(formatDay(d.date, locale.value)), inLanguage: locale.value, descending: true })
+    : null
+  if (list) graph.push(list)
   return {
     script: [{
       key: 'ld-home',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c'),
+      innerHTML: ldJson({ '@context': 'https://schema.org', '@graph': graph }),
     }],
   }
 })
@@ -95,6 +78,24 @@ useHead(() => {
         <p class="calm__big">{{ t.home.calmBig }}</p>
         <p>{{ t.home.calmBody }} <NuxtLink :to="lp('/archivo')">{{ t.home.calmArchive }}</NuxtLink>.</p>
       </section>
+      <nav v-if="landing.categories.length || landing.stores.length" class="slices" :aria-label="t.home.slices">
+        <div v-if="landing.categories.length" class="slices__group">
+          <h2 class="slices__title">{{ t.home.byCategory }}</h2>
+          <ul class="slices__list">
+            <li v-for="c in landing.categories" :key="c.slug">
+              <NuxtLink :to="categoryPath(c.category, locale)!">{{ categoryLabel(c.category, locale) }}</NuxtLink> <span class="slices__n">{{ c.count }}</span>
+            </li>
+          </ul>
+        </div>
+        <div v-if="landing.stores.length" class="slices__group">
+          <h2 class="slices__title">{{ t.home.byStore }}</h2>
+          <ul class="slices__list">
+            <li v-for="s in landing.stores" :key="s.slug">
+              <NuxtLink :to="storePath(s.name, locale)!">{{ s.name }}</NuxtLink> <span class="slices__n">{{ s.count }}</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <GateReport v-if="day.gate" :gate="day.gate" />
     </template>
     <section v-else class="calm">
@@ -109,4 +110,11 @@ useHead(() => {
 <style scoped>
 .calm { padding: clamp(40px, 6vw, 80px) 0; border-top: 2px solid var(--fg-primary); max-width: var(--container-max-prose); color: var(--fg-secondary); }
 .calm__big { margin: 0 0 12px; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.03em; color: var(--fg-primary); }
+/* Same look as the "other categories / stores" block on the slice pages. */
+.slices { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 24px 48px; margin-top: clamp(32px, 4vw, 48px); padding-top: 20px; border-top: 1px solid var(--fg-primary); }
+.slices__title { margin: 0 0 8px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-secondary); }
+.slices__list { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; font-size: 0.875rem; }
+.slices__list a { color: var(--fg-primary); text-underline-offset: 3px; }
+.slices__list a:hover { color: var(--link-fg); }
+.slices__n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg-muted); }
 </style>

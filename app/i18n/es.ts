@@ -168,6 +168,9 @@ export const es = {
     failBody2: 'directamente.',
     listName: (day: string) => `Ofertas del ${day} en barato.si`,
     siteDescription: 'Los precios de hoy contra lo que cada producto suele costar, y los posibles errores de precio. Con API JSON y RSS gratis.',
+    slices: 'Las ofertas de hoy, por categoría y por tienda',
+    byCategory: 'Por categoría',
+    byStore: 'Por tienda',
   },
 
   promos: {
@@ -303,9 +306,13 @@ export const es = {
     storeTitle: (name: string) => `${name}, hoy`,
     lede: (n: number, day: string) => `${n === 1 ? '1 oferta' : `${n} ofertas`} del ${day}, cada una contra lo que el producto suele costar, con la evidencia a la vista. Se actualiza cada tres horas.`,
     seoCatTitle: (label: string) => `${label} en oferta hoy: precios y posibles errores · barato.si`,
-    seoCatDesc: (label: string, n: number) => `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${label.toLocaleLowerCase('es')} hoy en tiendas de EE. UU., cada una contra lo que suele costar y con la evidencia a la vista. Sin cuentas, actualizado cada tres horas.`,
+    seoCatDesc: (label: string, n: number) => (n === 0
+      ? `Hoy no hay ofertas de ${label.toLocaleLowerCase('es')} en barato.si. No rellenamos la página con ofertas viejas. Se actualiza cada tres horas.`
+      : `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${label.toLocaleLowerCase('es')} hoy en tiendas de EE. UU., cada una contra lo que suele costar y con la evidencia a la vista. Sin cuentas, actualizado cada tres horas.`),
     seoStoreTitle: (name: string) => `${name}: rebajas de hoy y posibles errores de precio · barato.si`,
-    seoStoreDesc: (name: string, n: number) => `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${name} hoy, cada una contra lo que el producto suele costar y con la evidencia a la vista. Actualizado cada tres horas.`,
+    seoStoreDesc: (name: string, n: number) => (n === 0
+      ? `Hoy no hay ofertas de ${name} en barato.si. No rellenamos la página con ofertas viejas. Se actualiza cada tres horas.`
+      : `${n === 1 ? '1 oferta' : `${n} ofertas`} de ${name} hoy, cada una contra lo que el producto suele costar y con la evidencia a la vista. Actualizado cada tres horas.`),
     listName: (label: string, day: string) => `${label}: ofertas del ${day} en barato.si`,
     empty: 'Hoy no queda nada en esta página. No la rellenamos con ofertas viejas.',
     back: 'Todas las ofertas de hoy',

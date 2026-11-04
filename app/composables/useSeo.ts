@@ -1,6 +1,8 @@
 import { es } from '../i18n/es'
 import { basePath, localePath } from '../utils/locale'
 import { SITE } from '../utils/api'
+import { linkFor } from '../utils/deal'
+import type { DealView } from './useDeals'
 
 type PageKey = Exclude<keyof typeof es.seo, 'ogLocale' | 'ogAlt' | 'crumbHome' | 'ogImage'>
 
@@ -21,6 +23,57 @@ export function siteUrl(path: string): string {
 /** The publisher, referenced by @id from every page's JSON-LD. */
 export function organizationLd() {
   return { '@type': 'Organization', '@id': ORG_ID, name: 'Formship LLC', url: 'https://formship.io' }
+}
+
+/** JSON-LD for a <script> body: `<` escaped, so no title can close the tag. */
+export function ldJson(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, '\\u003c')
+}
+
+/** The deal fields an Offer may carry. Nothing else reaches the JSON-LD. */
+export type LdDeal = Pick<DealView, 'title' | 'url' | 'storeUrl' | 'image' | 'price' | 'currency' | 'store'>
+
+/**
+ * An ItemList of Offers for the rows a page lists, in the order it lists them.
+ * Only fields the row shows: name, link (the same one "Ver en" uses), picture,
+ * price and currency, seller name. No ratings, reviews, availability or dates we
+ * have not seen; a field without a real value is left out. Null when the list is
+ * empty: an empty page gets no ItemList, never a padded one.
+ */
+export function offerListLd(
+  deals: readonly LdDeal[],
+  list: { id: string; name: string; inLanguage: string; descending?: boolean },
+): Record<string, unknown> | null {
+  if (!deals.length) return null
+  return {
+    '@type': 'ItemList',
+    '@id': list.id,
+    name: list.name,
+    inLanguage: list.inLanguage,
+    numberOfItems: deals.length,
+    ...(list.descending ? { itemListOrder: 'https://schema.org/ItemListOrderDescending' } : {}),
+    itemListElement: deals.map((deal, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Offer',
+        name: deal.title,
+        url: linkFor(deal),
+        ...(deal.image ? { image: deal.image } : {}),
+        ...(Number.isFinite(deal.price) && deal.currency ? { price: deal.price.toFixed(2), priceCurrency: deal.currency } : {}),
+        ...(deal.store?.trim() ? { seller: { '@type': 'Organization', name: deal.store } } : {}),
+      },
+    })),
+  }
+}
+
+/** A BreadcrumbList from absolute URLs, first crumb first. Null with fewer than two crumbs. */
+export function breadcrumbLd(trail: readonly { name: string; url: string }[]): Record<string, unknown> | null {
+  if (trail.length < 2) return null
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
+  }
 }
 
 /**
@@ -60,22 +113,14 @@ export function useSeo(input: () => SeoInput) {
     const esUrl = siteUrl(page.esPath)
     const enUrl = siteUrl(page.enPath)
     const url = locale.value === 'en' ? enUrl : esUrl
-    const script = page.crumbs.length
-      ? [{
-          key: 'ld-crumbs',
-          type: 'application/ld+json' as const,
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: s.crumbHome, item: siteUrl(localePath('/', locale.value)) },
-              ...page.crumbs.map((c, i) => ({
-                '@type': 'ListItem', position: i + 2, name: c.name,
-                item: i === page.crumbs.length - 1 || !c.path ? url : siteUrl(c.path),
-              })),
-            ],
-          }).replace(/</g, '\\u003c'),
-        }]
+    const crumbs = page.crumbs.length
+      ? breadcrumbLd([
+          { name: s.crumbHome, url: siteUrl(localePath('/', locale.value)) },
+          ...page.crumbs.map((c, i) => ({ name: c.name, url: i === page.crumbs.length - 1 || !c.path ? url : siteUrl(c.path) })),
+        ])
+      : null
+    const script = crumbs
+      ? [{ key: 'ld-crumbs', type: 'application/ld+json' as const, innerHTML: ldJson({ '@context': 'https://schema.org', ...crumbs }) }]
       : []
     return {
       htmlAttrs: { lang: locale.value },

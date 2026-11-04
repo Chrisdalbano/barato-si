@@ -43,38 +43,21 @@ useSeo(() => ({
 }))
 
 // Same honesty as the home page's JSON-LD: the first rows of this page's own
-// default list, real fields only.
+// default list (the DealExplorer below with no query: games and middlemen in, file
+// order), real fields only. An empty slice gets no ItemList at all.
 useHead(() => {
   const d = day.value
+  if (!d) return {}
   const listed = applyFilters(deals.value, filtersFromQuery({}, false, false)).slice(0, 20)
-  if (!d || !listed.length) return {}
   const here = siteUrl(locale.value === 'en' ? localePath(esPath.value, 'en') : esPath.value)
+  const list = offerListLd(listed, {
+    id: `${here}#ofertas`,
+    name: w.value.listName(name.value, formatDay(d.date, locale.value)),
+    inLanguage: locale.value,
+  })
+  if (!list) return {}
   return {
-    script: [{
-      key: 'ld-landing',
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        '@id': `${here}#ofertas`,
-        name: w.value.listName(name.value, formatDay(d.date, locale.value)),
-        inLanguage: locale.value,
-        numberOfItems: listed.length,
-        itemListElement: listed.map((deal, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          item: {
-            '@type': 'Offer',
-            name: deal.title,
-            url: linkFor(deal),
-            ...(deal.image ? { image: deal.image } : {}),
-            price: deal.price.toFixed(2),
-            priceCurrency: deal.currency,
-            seller: { '@type': 'Organization', name: deal.store },
-          },
-        })),
-      }).replace(/</g, '\\u003c'),
-    }],
+    script: [{ key: 'ld-landing', type: 'application/ld+json', innerHTML: ldJson({ '@context': 'https://schema.org', ...list }) }],
   }
 })
 

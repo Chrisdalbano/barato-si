@@ -166,6 +166,9 @@ export const en: Dict = {
     failBody2: 'directly.',
     listName: (day: string) => `Offers for ${day} on barato.si`,
     siteDescription: "Today's prices against what each product usually costs, and possible price errors. With a free JSON API and RSS.",
+    slices: "Today's deals, by category and by store",
+    byCategory: 'By category',
+    byStore: 'By store',
   },
 
   promos: {
@@ -301,9 +304,13 @@ export const en: Dict = {
     storeTitle: (name: string) => `${name}, today`,
     lede: (n: number, day: string) => `${n === 1 ? '1 deal' : `${n} deals`} from ${day}, each against what the product usually costs, with the evidence in view. Updated every three hours.`,
     seoCatTitle: (label: string) => `${label} deals today: prices and possible price errors · barato.si`,
-    seoCatDesc: (label: string, n: number) => `${n === 1 ? '1 deal' : `${n} deals`} on ${label.toLocaleLowerCase('en')} today at US stores, each against what it usually costs, with the evidence in view. No accounts, updated every three hours.`,
+    seoCatDesc: (label: string, n: number) => (n === 0
+      ? `No ${label.toLocaleLowerCase('en')} deals on barato.si today. We do not fill the page with old deals. Updated every three hours.`
+      : `${n === 1 ? '1 deal' : `${n} deals`} on ${label.toLocaleLowerCase('en')} today at US stores, each against what it usually costs, with the evidence in view. No accounts, updated every three hours.`),
     seoStoreTitle: (name: string) => `${name} deals today and possible price errors · barato.si`,
-    seoStoreDesc: (name: string, n: number) => `${n === 1 ? '1 deal' : `${n} deals`} at ${name} today, each against what the product usually costs, with the evidence in view. Updated every three hours.`,
+    seoStoreDesc: (name: string, n: number) => (n === 0
+      ? `No deals at ${name} on barato.si today. We do not fill the page with old deals. Updated every three hours.`
+      : `${n === 1 ? '1 deal' : `${n} deals`} at ${name} today, each against what the product usually costs, with the evidence in view. Updated every three hours.`),
     listName: (label: string, day: string) => `${label}: deals for ${day} on barato.si`,
     empty: 'Nothing left on this page today. We do not fill it with old deals.',
     back: "All of today's deals",
