@@ -3,15 +3,19 @@ import type { DealView } from '~/composables/useDeals'
 
 // The picture view: ruled cells, one deal each. Off-screen cells are skipped by
 // the browser until they come near the viewport.
-defineProps<{ deals: DealView[]; now: number }>()
+const props = defineProps<{ deals: DealView[]; now: number; adAfter?: number }>()
+const adsOn = computed(() => !!props.adAfter && !!useRuntimeConfig().public.adsenseSlotStream)
 </script>
 
 <template>
   <div class="grid">
     <ol class="grid__cells">
-      <li v-for="d in deals" :key="d.id" class="grid__cell">
-        <DealCard :deal="d" :now="now" />
-      </li>
+      <template v-for="(d, i) in deals" :key="d.id">
+        <li v-if="adsOn && i === adAfter" class="grid__ad"><AdSlot slot="stream" /></li>
+        <li class="grid__cell">
+          <DealCard :deal="d" :now="now" />
+        </li>
+      </template>
     </ol>
   </div>
 </template>
@@ -28,6 +32,7 @@ defineProps<{ deals: DealView[]; now: number }>()
   border-top: 1px solid var(--border); border-left: 1px solid var(--border); min-width: 0;
   content-visibility: auto; contain-intrinsic-size: auto 420px;
 }
+.grid__ad { grid-column: 1 / -1; border-top: 1px solid var(--border); border-left: 1px solid var(--border); padding: 0 14px; }
 @media (max-width: 540px) {
   .grid__cells { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

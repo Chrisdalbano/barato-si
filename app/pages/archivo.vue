@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import type { DayView } from '~/composables/useDeals'
 
-useSeoMeta({
-  title: 'Archivo · barato.si',
-  description: 'Lo que fue barato: las ofertas de días anteriores en barato.si, tal como se publicaron. Se guardan los últimos 30 días.',
-  ogTitle: 'Archivo · barato.si',
-  ogUrl: `${SITE}/archivo`,
-})
-useHead({ link: [{ rel: 'canonical', href: `${SITE}/archivo` }] })
+definePageMeta({ alias: ['/en/archivo'] })
+
+const { locale, t, lp } = useLang()
+usePageSeo('archivo', { es: 'Archivo', en: 'Archive' })
 
 const index = await useArchiveIndex()
 const route = useRoute()
@@ -47,31 +44,29 @@ function pick(date: string) {
 <template>
   <div class="wrap">
     <header class="arch__head">
-      <p class="eyebrow">Archivo</p>
-      <h1 class="arch__title">Lo que fue barato<span class="arch__dot" aria-hidden="true">.</span></h1>
-      <p class="arch__lede">
-        Cada día queda guardado tal como se publicó, con sus precios de entonces. Se conservan los últimos 30.
-      </p>
+      <p class="eyebrow">{{ t.archive.eyebrow }}</p>
+      <h1 class="arch__title">{{ t.archive.title }}<span class="arch__dot" aria-hidden="true">.</span></h1>
+      <p class="arch__lede">{{ t.archive.lede }}</p>
     </header>
 
-    <nav class="days" aria-label="Días disponibles">
-      <p v-if="!index?.days.length" class="arch__empty">Todavía no hay días guardados. El archivo empieza mañana.</p>
+    <nav class="days" :aria-label="t.archive.daysAria">
+      <p v-if="!index?.days.length" class="arch__empty">{{ t.archive.none }}</p>
       <ol v-else>
         <li v-for="d in index.days" :key="d">
           <a
-            :href="`/archivo?dia=${d}`" :aria-current="d === selected ? 'page' : undefined"
+            :href="`${lp('/archivo')}?dia=${d}`" :aria-current="d === selected ? 'page' : undefined"
             @click.prevent="pick(d)"
           >
-            <span class="days__d">{{ formatShortDay(d) }}</span>
+            <span class="days__d">{{ formatShortDay(d, locale) }}</span>
             <span class="days__iso">{{ d }}</span>
           </a>
         </li>
       </ol>
     </nav>
 
-    <p v-if="state === 'loading'" class="arch__status">Cargando {{ selected }}…</p>
+    <p v-if="state === 'loading'" class="arch__status">{{ t.archive.loading(selected) }}</p>
     <p v-else-if="state === 'error'" class="arch__status">
-      No se pudo cargar <code>/api/deals/{{ selected }}.json</code>. Puede que ese día ya no esté en el archivo.
+      {{ t.archive.failA }} <code>/api/deals/{{ selected }}.json</code>. {{ t.archive.failB }}
     </p>
     <template v-else-if="day">
       <DayHeader :day="day" :level="2" errors-href="#errores" />
@@ -80,10 +75,10 @@ function pick(date: string) {
         v-if="day.deals.length" :key="day.date" :deals="day.deals" :generated-at="day.generatedAt"
         :shown-above="errors.map(d => d.id)"
       />
-      <p v-else class="arch__status">Ese día no hubo nada barato de verdad.</p>
+      <p v-else class="arch__status">{{ t.archive.dayNothing }}</p>
       <GateReport v-if="day.gate" :gate="day.gate" />
     </template>
-    <p v-else-if="index?.days.length" class="arch__status">Elige un día para ver qué estaba barato.</p>
+    <p v-else-if="index?.days.length" class="arch__status">{{ t.archive.pick }}</p>
   </div>
 </template>
 

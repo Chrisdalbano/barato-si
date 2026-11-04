@@ -1,6 +1,7 @@
 import type { DealView } from '../composables/useDeals'
-import { categoryLabel, depthOf, ERROR_LEVELS, EVIDENCE, EVIDENCE_ORDER, evidenceOf } from './deal'
-import { FLAG_QUERY, FLAG_LABEL, flagFromQuery } from './format'
+import { categoryLabel, depthOf, ERROR_LEVELS, EVIDENCE, EVIDENCE_ORDER, evidenceOf, evidenceText } from './deal'
+import { FLAG_QUERY, flagFromQuery, flagLabel } from './format'
+import type { Locale } from './locale'
 
 export type SortKey =
   | 'destacadas' | 'sospecha' | 'interes' | 'profundidad' | 'precio' | 'recientes'
@@ -41,6 +42,19 @@ export const SORTS: { key: SortKey; value: string; label: string }[] = [
   { key: 'precio', value: 'precio:desc', label: 'Precio, de mayor a menor' },
   { key: 'recientes', value: 'recientes', label: 'Más recientes' },
 ]
+const SORT_LABEL_EN: Record<string, string> = {
+  destacadas: 'Editorial', sospecha: 'Error', interes: 'Interest', profundidad: 'Depth',
+  precio: 'Price, low to high', 'precio:desc': 'Price, high to low', recientes: 'Newest',
+}
+/** The sort control's options in the page language. */
+export function sortsFor(loc: Locale = 'es'): typeof SORTS {
+  return loc === 'en' ? SORTS.map(o => ({ ...o, label: SORT_LABEL_EN[o.value] ?? o.label })) : SORTS
+}
+const OTHER_SORT_LABEL_EN: Partial<Record<SortKey, string>> = {
+  producto: 'Product', marca: 'Brand', tienda: 'Store', referencia: 'Reference',
+  puntuacion: 'Score', descuento: 'Declared discount', sospecha: 'Error', interes: 'Interest',
+  profundidad: 'Depth', recientes: 'Oldest',
+}
 const OTHER_SORT_LABEL: Partial<Record<SortKey, string>> = {
   producto: 'Producto', marca: 'Marca', tienda: 'Tienda', referencia: 'Referencia',
   puntuacion: 'Puntuación', descuento: 'Descuento declarado', sospecha: 'Error', interes: 'Interés',
@@ -133,7 +147,7 @@ export function applyFilters(deals: readonly DealView[], state: Partial<FilterSt
     && (!s.staff || !!d.staffPick)
     && (!s.corroborated || isCorroborated(d))
     && (!s.direct || d.direct)
-    && (!needle || fold(`${d.title} ${d.brand ?? ''} ${d.store} ${d.category ? categoryLabel(d.category) : ''}`).includes(needle)))
+    && (!needle || fold(`${d.title} ${d.brand ?? ''} ${d.store} ${d.category ? `${categoryLabel(d.category)} ${categoryLabel(d.category, 'en')}` : ''}`).includes(needle)))
   return sortDeals(list, s.sort, s.dir)
 }
 
@@ -165,13 +179,13 @@ const keepSelected = (rows: [string, number][], selected: string[]): [string, nu
   [...rows, ...selected.filter(s => !rows.some(r => r[0] === s)).map((s): [string, number] => [s, 0])]
 
 /** Facets ignore their own selection, but respect every other filter. */
-export function filterOptions(deals: readonly DealView[], state: FilterState) {
+export function filterOptions(deals: readonly DealView[], state: FilterState, loc: Locale = 'es') {
   const base = (patch: Partial<FilterState>) => applyFilters(deals, { ...state, sort: 'destacadas', ...patch })
   const stores = keepSelected(tally(base({ stores: [] }).map(d => d.store)), state.stores)
   const brands = keepSelected(tally(base({ brands: [] }).map(d => d.brand)), state.brands)
   const categories = keepSelected(tally(base({ category: '', games: true }).map(d => d.category)), state.category ? [state.category] : [])
   const flagBase = base({ flag: '' })
-  const flags = Object.keys(FLAG_QUERY).map(flag => ({ flag, query: FLAG_QUERY[flag]!, label: FLAG_LABEL[flag]!, count: flagBase.filter(d => d.flag === flag).length })).filter(o => o.count > 0 && o.count < flagBase.length)
+  const flags = Object.keys(FLAG_QUERY).map(flag => ({ flag, query: FLAG_QUERY[flag]!, label: flagLabel(flag, loc), count: flagBase.filter(d => d.flag === flag).length })).filter(o => o.count > 0 && o.count < flagBase.length)
   const minBase = base({ min: 0 })
   const mins = MIN_DISCOUNTS.filter(m => m === 0 || (minBase.some(d => (depthOf(d) ?? 0) >= m) && minBase.some(d => (depthOf(d) ?? 0) < m)))
   const minFacet = [...new Set([...mins.filter(m => m > 0), ...(state.min ? [state.min] : [])])]
@@ -182,7 +196,7 @@ export function filterOptions(deals: readonly DealView[], state: FilterState) {
   const maxes = PRICE_BUCKETS.filter(m => inScope.some(d => d.price <= m) && inScope.some(d => d.price > m))
   const evidenceBase = base({ evidence: [] })
   const evidence = EVIDENCE_ORDER
-    .map(key => ({ key, label: EVIDENCE[key].label, strength: EVIDENCE[key].strength, count: evidenceBase.filter(d => evidenceOf(d) === key).length }))
+    .map(key => ({ key, label: evidenceText(key, loc).label, strength: EVIDENCE[key].strength, count: evidenceBase.filter(d => evidenceOf(d) === key).length }))
     .filter(o => o.count > 0 || state.evidence.includes(o.key))
   const interestBase = base({ interest: 0 })
   const interests = [...new Set([...INTEREST_LEVELS, ...(state.interest ? [state.interest] : [])])]
@@ -212,7 +226,7 @@ export function filterOptions(deals: readonly DealView[], state: FilterState) {
     showFresh: freshCount > 0 && freshCount < freshBase.length,
     showDirect: directCount > 0 && directCount < directBase.length,
     gamesCount: base({ games: true }).filter(d => d.category === 'videojuegos').length,
-    sorts: SORTS.filter(o => has[o.key] !== false),
+    sorts: sortsFor(loc).filter(o => has[o.key] !== false),
   }
 }
 
@@ -221,35 +235,41 @@ export function sortValue(s: Pick<FilterState, 'sort' | 'dir'>): string {
   return !s.dir || s.dir === defaultDir(s.sort) ? s.sort : `${s.sort}:${s.dir}`
 }
 /** Label for a column sort the control does not list, so it can still show the current order. */
-export function sortLabel(s: Pick<FilterState, 'sort' | 'dir'>): string {
-  const base = OTHER_SORT_LABEL[s.sort] ?? s.sort
-  return s.dir && s.dir !== defaultDir(s.sort) && s.sort !== 'recientes' ? `${base}, invertido` : base
+export function sortLabel(s: Pick<FilterState, 'sort' | 'dir'>, loc: Locale = 'es'): string {
+  const base = (loc === 'en' ? OTHER_SORT_LABEL_EN : OTHER_SORT_LABEL)[s.sort] ?? s.sort
+  return s.dir && s.dir !== defaultDir(s.sort) && s.sort !== 'recientes' ? `${base}, ${loc === 'en' ? 'reversed' : 'invertido'}` : base
 }
 
 export type QueryPatch = Record<string, string | number | string[] | null>
 export interface ActiveItem { id: string; label: string; patch: QueryPatch }
 
+const ACTIVE_WORDS = {
+  es: { q: 'Búsqueda', cat: 'Categoría', brand: 'Marca', store: 'Tienda', from: 'Desde', to: 'Hasta', depth: (n: number) => `Profundidad: ${n} % o más`, evidence: 'Evidencia', interest: (n: number) => `Interés: ${n} o más`, error: (n: number) => `Error: ${n} o más`, direct: 'Solo enlaces directos', middle: 'Con intermediarios', games: 'Con videojuegos', fresh: 'Nuevas hoy', staff: 'Elección editorial', corroborated: 'En dos fuentes o más' },
+  en: { q: 'Search', cat: 'Category', brand: 'Brand', store: 'Store', from: 'From', to: 'Up to', depth: (n: number) => `Depth: ${n}% or more`, evidence: 'Evidence', interest: (n: number) => `Interest: ${n} or more`, error: (n: number) => `Error: ${n} or more`, direct: 'Direct links only', middle: 'With middlemen', games: 'With video games', fresh: 'New today', staff: 'Editors\' pick', corroborated: 'In two sources or more' },
+}
+
 /** Every narrowing in force, as a removable line of text. A default view lists nothing. */
-export function activeItems(s: FilterState): ActiveItem[] {
+export function activeItems(s: FilterState, loc: Locale = 'es'): ActiveItem[] {
+  const w = ACTIVE_WORDS[loc]
   const out: ActiveItem[] = []
   const add = (id: string, label: string, patch: QueryPatch) => out.push({ id, label, patch })
-  if (s.text) add('q', `Búsqueda: ${s.text}`, { q: null })
-  if (s.category) add('cat', `Categoría: ${categoryLabel(s.category)}`, { cat: null })
-  for (const b of s.brands) add(`marca:${b}`, `Marca: ${b}`, { marca: s.brands.filter(x => x !== b) })
-  for (const t of s.stores) add(`tienda:${t}`, `Tienda: ${t}`, { tienda: s.stores.filter(x => x !== t) })
-  if (s.priceMin !== null) add('desde', `Desde ${s.priceMin}`, { desde: null })
-  if (s.max !== null) add('max', `Hasta ${s.max}`, { max: null })
-  if (s.min) add('min', `Profundidad: ${s.min} % o más`, { min: null })
-  for (const k of s.evidence) add(`evidencia:${k}`, `Evidencia: ${EVIDENCE[k as keyof typeof EVIDENCE].label}`, { evidencia: s.evidence.filter(x => x !== k) })
-  if (s.interest) add('interes', `Interés: ${s.interest} o más`, { interes: null })
-  if (s.errorLevel) add('error', `Error: ${s.errorLevel} o más`, { error: null })
-  if (s.flag) add('tipo', FLAG_LABEL[s.flag] ?? s.flag, { tipo: null })
-  if (s.direct && !s.directDefault) add('directas', 'Solo enlaces directos', { directas: null })
-  if (!s.direct && s.directDefault) add('intermediarios', 'Con intermediarios', { intermediarios: null })
-  if (s.games) add('juegos', 'Con videojuegos', { juegos: null })
-  if (s.fresh) add('nuevas', 'Nuevas hoy', { nuevas: null })
-  if (s.staff) add('elegida', 'Elección editorial', { elegida: null })
-  if (s.corroborated) add('corroborada', 'En dos fuentes o más', { corroborada: null })
+  if (s.text) add('q', `${w.q}: ${s.text}`, { q: null })
+  if (s.category) add('cat', `${w.cat}: ${categoryLabel(s.category, loc)}`, { cat: null })
+  for (const b of s.brands) add(`marca:${b}`, `${w.brand}: ${b}`, { marca: s.brands.filter(x => x !== b) })
+  for (const t of s.stores) add(`tienda:${t}`, `${w.store}: ${t}`, { tienda: s.stores.filter(x => x !== t) })
+  if (s.priceMin !== null) add('desde', `${w.from} ${s.priceMin}`, { desde: null })
+  if (s.max !== null) add('max', `${w.to} ${s.max}`, { max: null })
+  if (s.min) add('min', w.depth(s.min), { min: null })
+  for (const k of s.evidence) add(`evidencia:${k}`, `${w.evidence}: ${evidenceText(k as keyof typeof EVIDENCE, loc).label}`, { evidencia: s.evidence.filter(x => x !== k) })
+  if (s.interest) add('interes', w.interest(s.interest), { interes: null })
+  if (s.errorLevel) add('error', w.error(s.errorLevel), { error: null })
+  if (s.flag) add('tipo', flagLabel(s.flag, loc), { tipo: null })
+  if (s.direct && !s.directDefault) add('directas', w.direct, { directas: null })
+  if (!s.direct && s.directDefault) add('intermediarios', w.middle, { intermediarios: null })
+  if (s.games) add('juegos', w.games, { juegos: null })
+  if (s.fresh) add('nuevas', w.fresh, { nuevas: null })
+  if (s.staff) add('elegida', w.staff, { elegida: null })
+  if (s.corroborated) add('corroborada', w.corroborated, { corroborada: null })
   return out
 }
 

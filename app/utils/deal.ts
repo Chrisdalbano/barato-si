@@ -1,6 +1,7 @@
 // Small, pure helpers about a single deal. Shared by every card, row and page.
 import type { Deal, GateReport, ReferenceKind } from '../../lib/types'
-import { formatMoney, formatPrice, hasListPrice, hostOf, moneyDigits, plural, sourceName } from './format'
+import { formatDayMonth, formatMoney, formatPrice, hasListPrice, hostOf, moneyDigits, plural, sourceName } from './format'
+import type { Locale } from './locale'
 
 /** Anything with the link fields of a deal. */
 interface Linkable { url: string; storeUrl?: string | null }
@@ -58,8 +59,24 @@ export const CATEGORY_LABEL: Record<string, string> = {
   servicios: 'Servicios',
   otros: 'Otros',
 }
-export function categoryLabel(value: string): string {
-  return CATEGORY_LABEL[value] ?? value
+export const CATEGORY_LABEL_EN: Record<string, string> = {
+  videojuegos: 'Video games',
+  informatica: 'Computers',
+  electronica: 'Electronics',
+  hogar: 'Home',
+  cocina: 'Kitchen',
+  herramientas: 'Tools',
+  ropa: 'Clothing',
+  deporte: 'Sports',
+  juguetes: 'Toys',
+  belleza: 'Beauty',
+  alimentacion: 'Food',
+  software: 'Software',
+  servicios: 'Services',
+  otros: 'Other',
+}
+export function categoryLabel(value: string, loc: Locale = 'es'): string {
+  return (loc === 'en' ? CATEGORY_LABEL_EN : CATEGORY_LABEL)[value] ?? value
 }
 
 /** Error thresholds offered on /errores and in the filters. */
@@ -80,6 +97,19 @@ export const EVIDENCE: Record<EvidenceKey, { label: string; short: string; stren
   list: { label: 'Lista del vendedor, sin verificar', short: 'lista, sin verificar', strength: 'debil', against: 'según el vendedor' },
   ninguna: { label: 'Sin referencia', short: 'sin referencia', strength: 'ninguna', against: '' },
 }
+export const EVIDENCE_EN: Record<EvidenceKey, { label: string; short: string; against: string }> = {
+  ledger: { label: 'Observed history', short: 'observed history', against: 'against what we observed' },
+  'cross-store': { label: 'Compared with another store', short: 'another store', against: 'against another store' },
+  curated: { label: 'Curated reference', short: 'curated reference', against: 'against a curated reference' },
+  'source-previous': { label: 'Reported previous price', short: 'reported previous', against: 'against the reported price' },
+  list: { label: "Seller's list price, unverified", short: 'list, unverified', against: 'per the seller' },
+  ninguna: { label: 'No reference', short: 'no reference', against: '' },
+}
+/** The reader-facing words for an evidence kind, in the page language. */
+export function evidenceText(key: EvidenceKey, loc: Locale = 'es'): { label: string; short: string; against: string } {
+  return loc === 'en' ? EVIDENCE_EN[key] : EVIDENCE[key]
+}
+
 /** Strongest first. */
 export const EVIDENCE_ORDER: EvidenceKey[] = ['ledger', 'cross-store', 'curated', 'source-previous', 'list', 'ninguna']
 const STRENGTH_RANK: Record<EvidenceStrength, number> = { fuerte: 3, media: 2, debil: 1, ninguna: 0 }
@@ -153,8 +183,33 @@ export function normalizeReference(d: Pick<Deal, 'price' | 'listPrice' | 'discou
 
 const asOfDay = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
+/**
+ * English reading of a reference. The pipeline writes its notes in Spanish, so
+ * English is rebuilt from the kind and the numbers; the one name worth keeping
+ * (who reported a previous price) is lifted from the Spanish note.
+ */
+function englishNote(reference: NonNullable<Deal['reference']>): string {
+  const n = reference.observations
+  switch (reference.kind) {
+    case 'ledger': return n ? `Median of ${n} observed ${n === 1 ? 'day' : 'days'}` : 'Median of the observed days'
+    case 'cross-store': return n ? `Compared with ${n} ${n === 1 ? 'store' : 'stores'}` : 'Compared with another store'
+    case 'curated': return 'Curated reference price'
+    case 'source-previous': {
+      const who = /según\s+(.+?)\.?$/i.exec(reference.note)?.[1]
+      return who ? `Previous price per ${who}` : 'Previous price, as reported'
+    }
+    default: return "Seller's list price, unverified"
+  }
+}
+
 /** The evidence as one readable line, dated when the evidence is dated. */
-export function evidenceLine(reference: Deal['reference']): string {
+export function evidenceLine(reference: Deal['reference'], loc: Locale = 'es'): string {
+  if (loc === 'en') {
+    if (!reference) return 'No reference price'
+    const note = englishNote(reference)
+    const day = reference.kind === 'curated' && reference.asOf ? formatDayMonth(reference.asOf, 'en') : ''
+    return day ? `${note} (${day})` : note
+  }
   if (!reference) return 'Sin referencia de precio'
   const t = reference.asOf ? Date.parse(reference.asOf) : NaN
   return Number.isFinite(t) && reference.kind === 'curated'
@@ -179,8 +234,23 @@ const GATE_LABEL: Record<string, string> = {
   'replacement-part': 'repuestos',
   'variant-duplicate': 'variantes de la misma oferta',
 }
-export function gateReasonLabel(slug: string): string {
-  return GATE_LABEL[slug] ?? slug
+const GATE_LABEL_EN: Record<string, string> = {
+  apparel: 'clothing',
+  food: 'food',
+  beauty: 'beauty',
+  'seasonal-decor': 'seasonal decor',
+  'gift-card': 'gift cards',
+  'low-value': 'low value',
+  'noname-inflated': 'inflated list price',
+  'middleman-duplicate': 'middleman duplicate',
+  'catalog-price': 'catalog price, no real cut',
+  'publication-cap': 'past the publication cap',
+  'stale-price': 'price too old',
+  'replacement-part': 'replacement parts',
+  'variant-duplicate': 'variants of the same offer',
+}
+export function gateReasonLabel(slug: string, loc: Locale = 'es'): string {
+  return (loc === 'en' ? GATE_LABEL_EN : GATE_LABEL)[slug] ?? slug
 }
 
 /**
@@ -188,12 +258,12 @@ export function gateReasonLabel(slug: string): string {
  * list was full. The pipeline adds it to `rejected`, so it is taken back out here,
  * and the reasons below list only real rejections.
  */
-export function gateSummary(gate: GateReport): { quality: number; capped: number; reasons: { slug: string; label: string; n: number }[] } {
+export function gateSummary(gate: GateReport, loc: Locale = 'es'): { quality: number; capped: number; reasons: { slug: string; label: string; n: number }[] } {
   const capped = gate.byReason['publication-cap'] ?? 0
   const reasons = Object.entries(gate.byReason)
     .filter(([slug]) => slug !== 'publication-cap')
-    .map(([slug, n]) => ({ slug, label: gateReasonLabel(slug), n }))
-    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label, 'es'))
+    .map(([slug, n]) => ({ slug, label: gateReasonLabel(slug, loc), n }))
+    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label, loc))
   return { quality: Math.max(0, gate.rejected - capped), capped, reasons }
 }
 
@@ -216,8 +286,17 @@ const seenDay = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short
 export function historyLine(
   history: { days: number; minPrice: number; maxPrice: number; firstSeen: string } | undefined,
   currency: string,
+  loc: Locale = 'es',
 ): string {
   if (!history) return ''
+  if (loc === 'en') {
+    const parts: string[] = []
+    const since = formatDayMonth(history.firstSeen, 'en')
+    if (since) parts.push(`seen since ${since}`)
+    else if (history.days > 0) parts.push(`seen ${plural(history.days, 'day', 'days', 'en')} before`)
+    if (Number.isFinite(history.minPrice)) parts.push(`low ${formatPrice(history.minPrice, currency, moneyDigits(history.minPrice), 'en')}`)
+    return parts.join(', ')
+  }
   const t = Date.parse(/^\d{4}-\d{2}-\d{2}$/.test(history.firstSeen) ? `${history.firstSeen}T12:00:00Z` : history.firstSeen)
   const parts: string[] = []
   if (Number.isFinite(t)) parts.push(`visto desde el ${seenDay.format(new Date(t)).replace('.', '')}`)
@@ -238,12 +317,19 @@ export function historyRange(
   history: { days: number; minPrice: number; maxPrice: number } | undefined,
   price: number,
   currency: string,
+  loc: Locale = 'es',
 ): { position: number; label: string } | null {
   if (!history || !(history.days > 0) || !Number.isFinite(history.minPrice) || !Number.isFinite(history.maxPrice)) return null
   const low = Math.min(history.minPrice, price)
   const high = Math.max(history.maxPrice, price)
   if (!(high > low)) return null
   const d = moneyDigits(low, high)
+  if (loc === 'en') {
+    return {
+      position: (price - low) / (high - low),
+      label: `Today ${formatPrice(price, currency, d, 'en')}. Over ${plural(history.days, 'earlier day', 'earlier days', 'en')}, between ${formatMoney(history.minPrice, currency, d, 'en')} and ${formatMoney(history.maxPrice, currency, d, 'en')}.`,
+    }
+  }
   return {
     position: (price - low) / (high - low),
     label: `Hoy ${formatPrice(price, currency, d)}. En ${plural(history.days, 'día anterior', 'días anteriores')}, entre ${formatMoney(history.minPrice, currency, d)} y ${formatMoney(history.maxPrice, currency, d)}.`,
@@ -251,7 +337,7 @@ export function historyRange(
 }
 
 /** "modelo · 78 %" for an ai confidence in 0-1. */
-export function confidenceLabel(confidence: number): string {
+export function confidenceLabel(confidence: number, loc: Locale = 'es'): string {
   const c = Number.isFinite(confidence) ? Math.max(0, Math.min(1, confidence)) : 0
-  return `modelo · ${Math.round(c * 100)} %`
+  return loc === 'en' ? `model · ${Math.round(c * 100)}%` : `modelo · ${Math.round(c * 100)} %`
 }

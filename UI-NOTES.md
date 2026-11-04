@@ -316,3 +316,94 @@ On the home page `min` means depth against the reference, with the declared disc
 
 - **Build dir.** With a `.nuxt` already present, `nuxt generate` builds under `node_modules/.cache/nuxt/.nuxt`. In this worktree that path crosses the junction, the server bundle gets `C:/…` imports, and every route fails with "Received protocol 'c:'". Delete `.nuxt` first, then generate. CI has no junction and is not affected.
 - **Techbargains images fail.** The URL tested returned 403 to curl and the same images failed to load in Chrome, so those rows show no picture in the table and the store domain in the grid. CamelCamelCamel rows carry no image at all. Not worked around.
+
+## 2026-11-04: bilingual, Formship, money switches, carousels, .si, errors context, layout shift
+
+Owner brief: interesting, cohesive, monetizable, owned by Formship LLC, bilingual, better SEO and AI SEO, fix the feel. Front end only; the pipeline agent wrote `highlights.json`, `oracle.json`, `errors.json` `recent`/`nearest` and their types in `lib/types.ts` in the same session.
+
+### What changed
+
+- **English, no library.** `app/i18n/es.ts` is the source dictionary and `en.ts` is typed against it (`Dict`), so a missing key is a type error. `utils/locale.ts` holds the pure path map: Spanish at `/`, English at `/en`, `/en/errores`, `/en/si`, `/en/archivo`, `/en/api` and `/en/privacy`. `useLang()` reads the language from the path, so server and client always agree. English routes are `definePageMeta({ alias })` on the same page components, and `nitro.prerender.routes` lists all 12. Formatters and labels in `utils/format.ts`, `utils/deal.ts` and `utils/filters.ts` take an optional last `loc` argument that defaults to `'es'`, so the existing tests and callers read exactly as before. English reference notes are rebuilt from `kind`/`observations` (the pipeline writes them in Spanish). Pipeline-authored lines (error signals, the model note) stay Spanish on the English site, carry `lang="es"`, and get one line saying so. Deal titles stay as sourced. Flags in English: "Possible price error", "Dirt cheap".
+- **Language switch.** A mono `EN` / `ES` at the end of the nav. It is a plain `<a>`, not a NuxtLink: `/en` is an alias of the same route record, and Vue Router treats a push from `/` to `/en` as a duplicate and stays put. This was observed in the browser, and NuxtLink also marked the link `aria-current="page"`.
+- **The callout** (`LangCallout.vue`). It shows only on the Spanish site, only after mount, and only when `navigator.languages` has no `es*`. It is one line, absolutely positioned under the wordmark (no layout shift), and its text is "barato = cheap, in Spanish. barato.si = cheap as f***, yes. Read it in English →". Dismissal is remembered in `localStorage` (`barato.lang-callout`), and following the link also dismisses it.
+- **Formship LLC.** In the footer: "barato.si es un proyecto de / barato.si is a project of [mark] Formship LLC", linking to formship.io. `FormshipMark.vue` is the Formship icon's two paths, copied exactly from `Formship-Site/public/brand/formship-icon-blue.svg` and drawn in `currentColor` with the base at 45% opacity, muted. Organization JSON-LD (`@id https://formship.io/#org`) is the WebSite's `publisher`. The "El dominio barato.si está en venta" line is gone. "Hecho por Chris D'Albano" stays. There is a new `/privacidad` and `/en/privacy` page: no accounts, Mouseflow analytics (already on the site), AdSense cookies *when ads are on*, affiliate tag *when on*, the one localStorage flag, and contact through formship.io. The page avoids specifics it cannot verify (for example, what Mouseflow masks).
+- **Money switches.** These are `runtimeConfig.public` values in `nuxt.config.ts`. Each renders nothing when empty. See the table below.
+  - `AdSlot.vue` loads only when `adsenseClient` matches `ca-pub-\d+` and the slot id is numeric. The script is added in `app.vue`'s head only then. There are at most two units: `stream` (a full-width labelled row after the 12th row of the home table or grid, and only on home) and `footer` (above the footer). Each is labelled "Publicidad"/"Ad" with a reserved `min-height` (120px / 100px).
+  - `utils/affiliate.ts` + `useOutbound()`: with `amazonTag` set, only `https://(www.)amazon.com/dp/<10-char ASIN>` links with no `tag`/`ascsubtag`/`linkCode`/`linkId`/`camp`/`creative`/`creativeASIN`/`ref_` parameter get `?tag=`. Those links get `rel="sponsored nofollow noopener"`. No other link is touched, and someone else's tag is never replaced. The one-line FTC disclosure appears in the footer only when a tag is set. The JSON-LD keeps the plain link. Today 2 of the first 3 Amazon store URLs are canonical `/dp/` and the third (`/gp/product/…`) would be left alone.
+  - `supportUrl` defaults to the Formship LLC Stripe Payment Link (lead, 2026-11-04), so the quiet "Apoya barato.si / Support barato.si" footer link is live. `sponsorUrl` adds "Patrocina barato.si / Sponsor barato.si" when set.
+- **Carousels and lore** (`HighlightRows`, `PromoCarousel`, `PromoPrice`, `LoreCard`). There is one scroll-snap row per `highlights.json` slot, in the slot's language, between the error board and the table.
+  - Behaviour: prev/next buttons (disabled at the ends), a focusable track so arrow keys scroll it, no autoplay, `smooth` only without `prefers-reduced-motion`, and lazy images in fixed-ratio frames, so the row height is known at first paint.
+  - Data handling: slots whose ids are not in today's `deals.json` are skipped, and with no file or no slots nothing renders.
+  - Don Centavo, the house tightwad, is a fictional narrator with seven "reglas de la casa". A rule card sits after the third card in rows with more than three deals, and the rule rotates with the date (the same on server and client). The first row ends with the intro card: "Don Centavo no existe. Sus reglas sí, y este índice las cumple." The rules are opinions in brand voice, with no numbers or claims about the world. He also signs a line on `/si` and in the `/errores` empty state.
+- **`/si`** (`pages/si.vue`): "barato.si — .si de superinteligencia (experimental)".
+  - Explainer: four numbered plain-language steps (empirical-Bayes beta-binomial on the ledger; horizon and drop threshold read from the file) and the caveat that this is not buying advice.
+  - Scorecard: with resolved predictions it shows Brier vs. baseline and calibration buckets (predicted range, count, observed rate as a bar with the bucket midpoint tick). Before any prediction resolves it says honestly that the model is learning, since the ledger began in November 2026.
+  - Verdict list: "espera" first, then "compra"; "aprendiendo" is only counted. Today all 102 predictions are `aprendiendo`, so the page says so instead of "no predictions".
+  - Outbound links come from a small id→link map built from `deals.json`, so the page payload stays small.
+  - The "¿espera o compra?" badge (`OracleBadge`) shows on grid cards, table rows, carousel cards and error rows when a non-learning prediction exists for that deal id. The page provides the map through `provideOracle()`, and with no provider there is no badge. Nav gains ".si".
+- **`/errores` is never a dead end.** The threshold stays at 40. With nothing at 40+ today the page shows, in order:
+  1. The honest empty state.
+  2. "Errores recientes" from `recent` (each row dated "Visto el 3 nov").
+  3. "Lo más cerca hoy (no son errores)" from `nearest`. These rows get the kicker "Bajo el umbral" instead of "Sospechoso", dashed muted rules and no accent, and the section note says they are below the bar.
+  4. A pointer to `errors.xml` and the front page.
+- **Layout shift between tabs** (measured, see below).
+  - Root cause 1 was the scrollbar appearing and disappearing: `/archivo` is shorter than the viewport, so `clientWidth` went 1897 → 1912 and the centred header moved 7.5px. `scrollbar-gutter: stable` alone did not hold in Chrome 156 here. `html` now has `overflow-y: scroll; overflow-x: hidden` (the gutter is kept as well), and `body` lost its `overflow-x: hidden`. Left on body, that would have made body a scroll container and broken the sticky table header and filter panel once html's overflow stopped being `visible`.
+  - Root cause 2 was a visible footer being dragged down when the next page's content arrived (0.085 on `/archivo`, 0.26 on `/api`). `main` now has `min-height: 100dvh`, so the footer always starts below the fold.
+  - Root cause 3 was the font swap: an `'Inter Fallback'` `@font-face` on local Arial with Inter's metric overrides sits in `--font-sans`.
+  - Active nav items change colour and rule only, never weight. On phones the header is two fixed rows (wordmark, then a sideways-scrolling nav), the same on every page.
+- **SEO.**
+  - `usePageSeo(key, crumb?)` sets, per page and language: title, description, `og:title/description/url/locale/locale:alternate/image:alt`, `twitter:title/description`, a self canonical, and hreflang `es`/`en`/`x-default`.
+  - The old global hreflang links in `nuxt.config.ts` were removed: they told every subpage that `/` was its Spanish alternate.
+  - URLs carry the trailing slash GitHub Pages serves (`/errores/`, `/en/`), because the host 301s the slashless form.
+  - Home JSON-LD: Organization (Formship LLC), WebSite (publisher, author, `inLanguage` es+en, and a SearchAction on `?q=`, which is a real search because the home list filters on it), and an ItemList of the first 10 default-list offers as `Offer` (name, url, image, price, priceCurrency, seller name only; no ratings or reviews). Subpages get a BreadcrumbList.
+  - `<html lang>` follows the page.
+  - The API page is fully bilingual (`endpointsFor`, `schemaFor`, `fetchExampleFor` in `utils/api.ts`) and says the pipeline's text fields are Spanish.
+
+### Env vars (all `NUXT_PUBLIC_*`, read at `nuxt generate`; the workflow must pass them)
+
+| Variable | Default | Effect when set |
+| --- | --- | --- |
+| `NUXT_PUBLIC_ADSENSE_CLIENT` | empty | AdSense script loads (needs `ca-pub-<digits>`). Nothing renders without it. |
+| `NUXT_PUBLIC_ADSENSE_SLOT_STREAM` | empty | Ad unit after the 12th row of the home list (needs the client too). |
+| `NUXT_PUBLIC_ADSENSE_SLOT_FOOTER` | empty | Ad unit above the footer (needs the client too). |
+| `NUXT_PUBLIC_AMAZON_TAG` | empty | Associates tag on canonical untagged `amazon.com/dp/` links, plus the footer disclosure. |
+| `NUXT_PUBLIC_SUPPORT_URL` | Formship Stripe link | Footer "Apoya barato.si". Must be `https://`. Set to an empty string to hide. |
+| `NUXT_PUBLIC_SPONSOR_URL` | empty | Footer "Patrocina barato.si". Must be `https://`. |
+
+`.github/workflows/pages.yml` is not front-end-owned and was not touched. It needs these as `env:` on the generate step once Christian has AdSense approval and an Associates tag.
+
+### Verified
+
+- `npx nuxt typecheck`: exit 0. `npx vue-tsc --noEmit -p .nuxt/tsconfig.app.json`: exit 0.
+- `npm test`: 16 files, 302 tests pass (the suite includes the pipeline agent's new tests). The existing UI filter tests pass unchanged with the locale parameter added.
+- `app/utils/affiliate.test.ts` (new; `npm test` only includes `tests/**`, so it was run with a scratch config): 5 tests pass. They cover tagging only canonical `/dp/`, leaving existing `tag`/`ascsubtag`, `/gp/`, `.co.uk`, `http`, lookalike URLs and bad tags alone, `rel`, and the locale path map both ways.
+- `npx nuxt generate` (after deleting `.nuxt`): exit 0. All 12 pages prerendered: `/`, `/errores`, `/si`, `/archivo`, `/api`, `/privacidad`, and `/en`, `/en/errores`, `/en/si`, `/en/archivo`, `/en/api`, `/en/privacy`.
+- Generated HTML, read with a script:
+  - every page has the right `lang`, title, one description, a self canonical, the three hreflang links and `og:url`;
+  - home JSON-LD = Organization + WebSite + ItemList(10), and subpages carry a BreadcrumbList;
+  - no "está en venta"; formship.io and the Stripe link are present; no googlesyndication; the callout is absent from server HTML;
+  - home has "Para mirar hoy", two carousels and three lore cards;
+  - `/en` has no "Ver en" and 60 "See at";
+  - `/errores` has the empty state, "Lo más cerca hoy" with five "Bajo el umbral" rows, and no "Errores recientes" (today's `recent` is empty, which is correct);
+  - `/si` has the all-learning message.
+- Real Chrome 156, served copy of `.output/public` at 1912px, using a PerformanceObserver on `layout-shift`:
+  - Before the fixes: Hoy → Errores → .si → Archivo → API gave footer shifts of 0.085 and 0.262, and `clientWidth` changed on `/archivo`.
+  - After the fixes, across the same five tabs: header height 49px and identical nav x-positions on every page, `clientWidth` 1897 throughout, and total shift ≈ 0.001 (one sub-0.001 entry at first load, plus one marked `hadRecentInput`).
+  - The EN switch goes `/` → `/en/` with `lang="en"`. English nav to `/en/errores`, `/en/si`, `/en/archivo`, `/en/api` and back to `/en` renders English titles and h1s.
+  - Carousels: the 3-card row fits with both buttons disabled. The 12-card row scrolled 1080px on "next" and enabled "previous".
+  - No console messages.
+  - Screenshots of `/en`, `/si` and `/errores` were read.
+
+### Not verified
+
+- **The callout on screen.** This browser's languages include `es-ES`, so it correctly did not show, and it could not be forced before mount from the tool. Its absence from the prerendered HTML and its logic were checked; its look was not.
+- **Ads and the affiliate tag live.** Both are unset. The gating, the tagging rule and the reserved heights were checked in code and tests, not with a real AdSense unit.
+- **Oracle badges, the graded scorecard and the "recent" list with real entries.** Today's data has no non-learning prediction, no resolved prediction and an empty `recent`, and no fixture was rendered for them. Those paths are typechecked and reviewed in source only.
+- Phone width and the night variant were not looked at in this pass. The header's two-row phone layout was reviewed in CSS only.
+- Link previews for the new titles and descriptions.
+
+### For the pipeline (not edited here)
+
+- `public/sitemap.xml` (written by `scripts/outputs.ts`) lists only `/` and data files. It should list the 12 pages above with trailing slashes, with `xhtml:link` hreflang alternates if wanted.
+- `public/robots.txt` is also pipeline-written (`Allow: /` for every agent, sitemap pointed). That already admits AI crawlers; no change needed.
+- `public/llms.txt` could mention `/si`, `/en/` and `highlights.json` / `oracle.json`.

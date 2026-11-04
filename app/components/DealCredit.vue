@@ -5,12 +5,13 @@ import type { DealView } from '~/composables/useDeals'
 // does not go straight to the merchant, the host it actually passes through.
 const props = defineProps<{ deal: DealView }>()
 const host = computed(() => hostOf(linkFor(props.deal)))
+const { t } = useLang()
 </script>
 
 <template>
   <span class="credit">
-    <span v-if="needsCredit(deal)">vía <a :href="deal.sourceUrl" rel="noopener" target="_blank">{{ sourceName(deal.source) }}</a></span>
-    <span v-if="!deal.direct && host" class="credit__hop">pasa por {{ host }}</span>
+    <span v-if="needsCredit(deal)">{{ t.via }} <a :href="deal.sourceUrl" rel="noopener" target="_blank">{{ sourceName(deal.source) }}</a></span>
+    <span v-if="!deal.direct && host" class="credit__hop">{{ t.passesThrough(host) }}</span>
   </span>
 </template>
 

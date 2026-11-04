@@ -4,36 +4,38 @@ import type { DayView } from '~/composables/useDeals'
 // The ruled dateline under a day's title: the date, the figures that have
 // something behind them (never a zero), when it was generated, and one quiet
 // line of sources. A source that failed gets a short mention, not its error.
-const props = withDefaults(defineProps<{ day: DayView; showDate?: boolean; errorsHref?: string }>(), { errorsHref: '/errores' })
+const props = defineProps<{ day: DayView; showDate?: boolean; errorsHref?: string }>()
+const { locale, t, lp } = useLang()
+const href = computed(() => props.errorsHref ?? lp('/errores'))
 
 const total = computed(() => props.day.deals.length)
 const direct = computed(() => props.day.deals.filter(d => d.direct).length)
 const errors = computed(() => props.day.deals.filter(d => d.flag === 'error-probable').length)
 // With no probable errors, the suspects behind /errores (errorScore >= 40) still get a figure.
 const suspects = computed(() => (errors.value ? 0 : props.day.deals.filter(d => d.errorScore >= 40).length))
-const sources = computed(() => sourcesLine(props.day.sources))
+const sources = computed(() => sourcesLine(props.day.sources, locale.value))
 const considered = computed(() => {
   const g = props.day.gate
-  return g && g.considered > 0 ? `${new Intl.NumberFormat('es-ES').format(g.considered)} consideradas` : ''
+  return g && g.considered > 0 ? t.value.strip.considered(formatNumber(g.considered, locale.value)) : ''
 })
 </script>
 
 <template>
   <div class="strip">
     <p class="strip__line">
-      <time v-if="showDate" class="strip__date" :datetime="day.date">{{ formatDay(day.date) }}</time>
+      <time v-if="showDate" class="strip__date" :datetime="day.date">{{ formatDay(day.date, locale) }}</time>
       <!-- In the archive the figure jumps to the day's own section; on today's page it opens /errores. -->
-      <a v-if="errors && errorsHref.startsWith('#')" class="strip__fig strip__fig--err" :href="errorsHref">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</a>
-      <NuxtLink v-else-if="errors" class="strip__fig strip__fig--err" :to="errorsHref">{{ plural(errors, 'posible error de precio', 'posibles errores de precio') }}</NuxtLink>
-      <NuxtLink v-else-if="suspects && !errorsHref.startsWith('#')" class="strip__fig strip__fig--err" :to="errorsHref">{{ plural(suspects, 'precio sospechoso', 'precios sospechosos') }}</NuxtLink>
-      <span v-if="total" class="strip__fig">{{ plural(total, 'oferta', 'ofertas') }}</span>
-      <span v-if="direct && direct < total" class="strip__fig">{{ plural(direct, 'con enlace directo', 'con enlace directo') }}</span>
+      <a v-if="errors && href.startsWith('#')" class="strip__fig strip__fig--err" :href="href">{{ plural(errors, ...t.strip.errors, locale) }}</a>
+      <NuxtLink v-else-if="errors" class="strip__fig strip__fig--err" :to="href">{{ plural(errors, ...t.strip.errors, locale) }}</NuxtLink>
+      <NuxtLink v-else-if="suspects && !href.startsWith('#')" class="strip__fig strip__fig--err" :to="href">{{ plural(suspects, ...t.strip.suspects, locale) }}</NuxtLink>
+      <span v-if="total" class="strip__fig">{{ plural(total, ...t.strip.offers, locale) }}</span>
+      <span v-if="direct && direct < total" class="strip__fig">{{ plural(direct, ...t.strip.direct, locale) }}</span>
       <a v-if="considered" class="strip__fig strip__fig--plain" href="#filtro">{{ considered }}</a>
-      <span class="strip__time">Actualizado <time :datetime="day.generatedAt">{{ formatGenerated(day.generatedAt) }}</time></span>
+      <span class="strip__time">{{ t.strip.updated }} <time :datetime="day.generatedAt">{{ formatGenerated(day.generatedAt, locale) }}</time></span>
     </p>
     <p v-if="sources.working || sources.quiet" class="strip__src">
-      <template v-if="sources.working">Fuentes de hoy: {{ sources.working }}.</template>
-      <template v-else>Hoy no respondió ninguna fuente.</template>
+      <template v-if="sources.working">{{ t.strip.sourcesToday }} {{ sources.working }}.</template>
+      <template v-else>{{ t.strip.noSource }}</template>
       <span v-if="sources.working && sources.quiet">{{ ` ${sources.quiet}` }}</span>
     </p>
   </div>

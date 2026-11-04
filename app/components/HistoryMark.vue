@@ -3,7 +3,8 @@
 // range with a tick, not a sparkline: `history` holds a minimum and a maximum,
 // no daily points, so a line would be invented. Renders nothing without a range.
 const props = defineProps<{ history?: { days: number; minPrice: number; maxPrice: number }; price: number; currency: string }>()
-const range = computed(() => historyRange(props.history, props.price, props.currency))
+const { locale } = useLang()
+const range = computed(() => historyRange(props.history, props.price, props.currency, locale.value))
 const x = computed(() => 1 + (range.value?.position ?? 0) * 58)
 </script>
 

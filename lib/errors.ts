@@ -34,6 +34,10 @@ export function scoreError(d: UnscoredDeal, pct: number, history = d.history): P
   if (history) {
     if (stable) add(-25, `Mismo precio ${history.days} días observados: rebaja estable, no error`)
     if (d.price < history.minPrice * .4) add(10, 'Baja repentina frente al archivo')
+    // 2026-11-04: a price that held within 10 % for 3+ observed days and then falls through its own
+    // floor is the shape of a pricing mistake; a sale usually steps down or was already moving.
+    const plunge = history.days >= 3 && history.minPrice > 0 && history.maxPrice <= history.minPrice * 1.1 ? 1 - d.price / history.minPrice : 0
+    if (plunge >= .3) add(plunge >= .5 ? 30 : 15, `Rompe un precio estable: ${Math.round(plunge * 100)} % bajo el mínimo de ${history.days} días observados`)
   }
   if (d.ai && d.ai.confidence >= .7) {
     if (d.ai.verdict === 'error') add(20, d.ai.note)

@@ -1,4 +1,4 @@
-import type { Deal, DealsFile, GateReport, SourceOutcome } from '~~/lib/types'
+import type { Deal, DealsFile, ErrorsFile, GateReport, SourceOutcome } from '~~/lib/types'
 
 /**
  * What the UI actually renders. Syndicated XML/HTML, raw source text and
@@ -13,7 +13,13 @@ export interface DealView extends Omit<Deal, 'syndication' | 'sourceSignal' | 's
   direct: boolean
 }
 export interface DayView extends Omit<DealsFile, 'deals' | 'sources' | 'gate'> { sources: SourceOutcome[]; deals: DealView[]; gate?: GateReport }
-export interface ErrorsView { date: string; generatedAt: string; deals: DealView[] }
+export interface ErrorsView {
+  date: string; generatedAt: string; deals: DealView[]
+  /** Past candidates (last 30 days), newest first. Empty when the file has none. */
+  recent: { date: string; deal: DealView }[]
+  /** Today's closest offers below the threshold. Never errors; labelled as such. */
+  nearest: DealView[]
+}
 export interface ArchiveIndex { latest: string; days: string[] }
 
 const str = (v: unknown): string | null => (typeof v === 'string' && v.trim() ? v : null)
@@ -82,15 +88,24 @@ export function errorsFromDay(day: DayView, min = 40): ErrorsView {
     date: day.date,
     generatedAt: day.generatedAt,
     deals: byEvidence(day.deals.filter(d => d.errorScore >= min)),
+    recent: [],
+    nearest: [],
   }
 }
 
-interface ErrorsFile { date: string; generatedAt: string; deals: Deal[] }
+const isDeal = (d: unknown): d is Deal => !!d && typeof (d as Deal).id === 'string' && typeof (d as Deal).title === 'string' && typeof (d as Deal).price === 'number'
 function toErrorsView(file: ErrorsFile, direct: Set<string>): ErrorsView {
+  const recent = (Array.isArray(file.recent) ? file.recent : [])
+    .filter(r => r && typeof r.date === 'string' && isDeal(r.deal))
+    .map(r => ({ date: r.date, deal: toDealView(r.deal, direct) }))
+    .sort((a, b) => b.date.localeCompare(a.date) || b.deal.errorScore - a.deal.errorScore)
+  const nearest = (Array.isArray(file.nearest) ? file.nearest : []).filter(isDeal).map(d => toDealView(d, direct)).slice(0, 5)
   return {
     date: file.date,
     generatedAt: file.generatedAt,
     deals: byEvidence((file.deals ?? []).map(d => toDealView(d, direct))),
+    recent,
+    nearest,
   }
 }
 
@@ -181,7 +196,7 @@ export async function useErrors() {
   })
 
   watch(fresh, (f) => {
-    if (f && (f.generatedAt !== data.value?.generatedAt || f.deals.length !== data.value?.deals.length)) data.value = f
+    if (f && (f.generatedAt !== data.value?.generatedAt || f.deals.length !== data.value?.deals.length || f.recent.length !== data.value?.recent.length)) data.value = f
   })
   return data
 }

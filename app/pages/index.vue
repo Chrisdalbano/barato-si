@@ -1,37 +1,54 @@
 <script setup lang="ts">
 import { applyFilters, filtersFromQuery } from '~/utils/filters'
 
+definePageMeta({ alias: ['/en'] })
+
+const { locale, t, lp } = useLang()
+usePageSeo('home')
+
 const day = await useToday()
+const highlights = await useHighlights()
+const oracle = await useOracle()
+provideOracle(oracle)
 
 // Candidates with evidence lead the page; /errores has the rest and every signal.
 const TOP = 6
 const candidates = computed(() => byEvidence((day.value?.deals ?? []).filter(d => d.errorScore >= ERROR_LEVELS[0])))
 const top = computed(() => candidates.value.slice(0, TOP))
 
-useHead({
-  link: [{ rel: 'canonical', href: `${SITE}/` }],
-})
-
 // JSON-LD is built from the same data as the page, and from the rows its default
 // list shows, so the prerendered HTML describes the offers actually listed on it.
+// Only real fields: no ratings, no reviews, no availability we have not seen.
 useHead(() => {
   const d = day.value
-  const graph: Record<string, unknown>[] = [{
-    '@type': 'WebSite',
-    '@id': `${SITE}/#website`,
-    name: 'barato.si',
-    alternateName: 'barato, sí',
-    url: `${SITE}/`,
-    inLanguage: 'es',
-    description: 'Los precios de hoy contra lo que cada producto suele costar, y los posibles errores de precio. Con API JSON y RSS gratis.',
-    author: { '@type': 'Person', name: "Chris D'Albano", url: 'https://chrisdalbano.com' },
-  }]
+  const home = siteUrl(lp('/'))
+  const graph: Record<string, unknown>[] = [
+    organizationLd(),
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE}/#website`,
+      name: 'barato.si',
+      alternateName: 'barato, sí',
+      url: `${SITE}/`,
+      inLanguage: ['es', 'en'],
+      description: t.value.home.siteDescription,
+      publisher: { '@id': ORG_ID },
+      author: { '@type': 'Person', name: "Chris D'Albano", url: 'https://chrisdalbano.com' },
+      // The search box on this page filters the list from ?q=, so this is a real search.
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: `${home}?q={search_term_string}` },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ]
   const listed = d ? applyFilters(d.deals, filtersFromQuery({}, true, d.deals.some(x => x.direct))).slice(0, 10) : []
   if (d && listed.length) {
     graph.push({
       '@type': 'ItemList',
-      '@id': `${SITE}/#ofertas`,
-      name: `Ofertas del ${formatDay(d.date)} en barato.si`,
+      '@id': `${home}#ofertas`,
+      name: t.value.home.listName(formatDay(d.date, locale.value)),
+      inLanguage: locale.value,
       numberOfItems: listed.length,
       itemListOrder: 'https://schema.org/ItemListOrderDescending',
       itemListElement: listed.map((deal, i) => ({
@@ -64,22 +81,20 @@ useHead(() => {
     <Masthead :day="day" />
     <template v-if="day">
       <EvidenceBoard :deals="top" :total="candidates.length" />
+      <HighlightRows :highlights="highlights" :deals="day.deals" :date="day.date" />
       <DealExplorer
         v-if="day.deals.length" :deals="day.deals" :generated-at="day.generatedAt"
-        hide-games direct-default :shown-above="top.map(d => d.id)"
+        hide-games direct-default ads :shown-above="top.map(d => d.id)"
       />
       <section v-else class="calm">
-        <p class="calm__big">Hoy, nada barato de verdad.</p>
-        <p>
-          Ninguna oferta pasó el filtro, o las fuentes no respondieron. No rellenamos el hueco con ofertas viejas.
-          El índice se actualiza cada tres horas. Mira también el <NuxtLink to="/archivo">archivo</NuxtLink>.
-        </p>
+        <p class="calm__big">{{ t.home.calmBig }}</p>
+        <p>{{ t.home.calmBody }} <NuxtLink :to="lp('/archivo')">{{ t.home.calmArchive }}</NuxtLink>.</p>
       </section>
       <GateReport v-if="day.gate" :gate="day.gate" />
     </template>
     <section v-else class="calm">
-      <p class="calm__big">No pudimos leer la lista de hoy.</p>
-      <p>Prueba en un rato, o abre <a href="/api/deals.json">/api/deals.json</a> directamente.</p>
+      <p class="calm__big">{{ t.home.failBig }}</p>
+      <p>{{ t.home.failBody }} <a href="/api/deals.json">/api/deals.json</a> {{ t.home.failBody2 }}</p>
     </section>
 
     <ApiTeaser />
