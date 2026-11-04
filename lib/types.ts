@@ -248,6 +248,8 @@ export interface OracleScorecard {
   buckets: { lo: number; hi: number; n: number; hitRate: number | null }[]
   /** Date of the oldest resolved prediction. */
   since: string | null
+  /** v4.2: first UTC day an open prediction can resolve (its date + horizon + 1). null when none is open. Absent in older files. */
+  firstDue?: string | null
 }
 /** public/api/oracle.json: "¿compra ahora o espera?", self-scored. */
 export interface OracleFile {
@@ -256,6 +258,49 @@ export interface OracleFile {
   horizonDays: number; dropThresholdPct: number
   predictions: OraclePrediction[]
   scorecard: OracleScorecard
+}
+
+// ---- v4.2 (2026-11-04): the weekly digest. A new file; nothing above changes. ----
+
+/** A deal as the digest shows it: enough to name, picture and link it. */
+export interface WeekDeal {
+  id: string; title: string; store: string
+  url: string; storeUrl: string | null; image: string | null
+  currency: string; category: string | null
+}
+/**
+ * public/api/week.json, "La semana de Don Centavo": rebuilt every run from the last 7 UTC days of
+ * published archives (today included), the price ledger and the oracle. Every list may be empty.
+ */
+export interface WeekFile {
+  version: 1
+  generatedAt: string
+  /** First and last UTC day of the window, inclusive (to = today). */
+  from: string; to: string
+  /** ISO week of `to` ("2026-W45"): the RSS guid, so a feed reader gets one item per week. */
+  isoWeek: string
+  /** Published day archives inside the window; 7 is a full week. */
+  days: number
+  /** Distinct products (productKey + currency) published in the window. */
+  products: number
+  /** Largest fall per product inside the window against the previous day we observed it, >= 10 %. */
+  drops: { deal: WeekDeal; before: number; beforeDate: string; after: number; afterDate: string; pct: number }[]
+  /** Published at or below the lowest of >= 3 prior observed days, in a series that moved >= 5 %. */
+  lows: { deal: WeekDeal; price: number; date: string; priorDays: number; priorLow: number; priorHigh: number }[]
+  /** Candidates (errorScore >= 40) from the window's archives, re-scored by today's rules. `note`: the classifier's cached line, when one exists. */
+  errors: { deal: WeekDeal; date: string; price: number; errorScore: number; signals: string[]; note: string | null }[]
+  forecast: {
+    /** Today's predictions by verdict. */
+    predictions: number; espera: number; compra: number; aprendiendo: number
+    /** Log entries made inside the window, and those resolved inside it (with how many saw the drop). */
+    logged: number; resolved: number; dropped: number
+    /** First day an open prediction can resolve. */
+    firstDue: string | null
+    /** The oracle's cumulative scorecard once at least one prediction has resolved; null before. */
+    scorecard: OracleScorecard | null
+  }
+  /** Don Centavo's rule of the week (1-based n, rotates with the ISO week). */
+  rule: { n: number; es: string; en: string }
 }
 
 // ---- Files the job writes --------------------------------------------------
@@ -270,6 +315,8 @@ export interface OracleFile {
 // public/llms.txt                    plain-text description of the API for agents
 // public/api/highlights.json         HighlightsFile: deterministic carousel slots over deals.json ids
 // public/api/oracle.json             OracleFile: buy-now-or-wait predictions plus their own scorecard
+// public/api/week.json               WeekFile: the weekly digest (also /semana.xml)
+// public/feeds/categoria/<slug>.xml  RSS per category, public/feeds/tienda/<slug>.xml per store (not committed; rebuilt every run)
 // public/robots.txt, public/sitemap.xml
 // data/classify-cache.json           model verdicts by deal id (committed, small, pruned to 30 days)
 // data/oracle-log.json               every oracle prediction and its outcome once resolved (bounded)

@@ -1,13 +1,15 @@
 // English. Translated in spirit, same dry voice. The brand stays "barato, sí."
 import type { Dict } from './es'
 
+import { HOUSE_RULES_EN } from '../../lib/don-centavo'
+
 export const en: Dict = {
   lang: 'en',
   skip: 'Skip to content',
   brandAria: 'barato.si, home',
   brandTag: 'price index and price-error hunter',
   navAria: 'Sections',
-  nav: { today: 'Today', errors: 'Errors', si: '.si', archive: 'Archive', api: 'API', rss: 'RSS' },
+  nav: { today: 'Today', errors: 'Errors', si: '.si', week: 'Week', archive: 'Archive', api: 'API', rss: 'RSS' },
   switchTo: { label: 'ES', title: 'Leer esta página en español', hreflang: 'es' },
   seeAt: (store: string) => `See at ${store}`,
   opens: (host: string) => ` (opens ${host})`,
@@ -25,6 +27,7 @@ export const en: Dict = {
   footer: {
     legal: 'Prices and availability come from third parties and may change or be wrong. barato.si sells nothing: it only ranks what others publish and links to the original offer. "Possible price error" is an automatic guess, not a confirmation, and stores often cancel them.',
     errorsRss: 'Errors RSS',
+    weekRss: 'Weekly RSS',
     privacy: 'Privacy',
     madeBy: 'Made by',
     project: 'barato.si is a project of',
@@ -177,15 +180,8 @@ export const en: Dict = {
     rule: (n: number) => `Rule no. ${n}`,
     signature: 'Don Centavo',
     intro: 'Don Centavo does not exist. His rules do, and this index keeps them.',
-    rules: [
-      'A list price is an opinion.',
-      'If it has held for three days, it is not on sale. That is just the price.',
-      'Do not buy it because it is cheap. Buy what you were going to buy, when it is cheap.',
-      'Buy a price error fast and celebrate it slowly: the store may cancel it.',
-      'Free still costs. You pay in time.',
-      'Shipping is price too.',
-      'The countdown on a deal is set by the seller.',
-    ],
+    // One list for the site and the weekly digest's RSS (lib/don-centavo.ts).
+    rules: HOUSE_RULES_EN,
     oracle: 'Don Centavo does not trust predictions. That is why this one grades itself.',
     errorsEmpty: 'A Don Centavo rule: a day without errors is data too.',
   },
@@ -280,6 +276,7 @@ export const en: Dict = {
     since: (d: string) => `Since ${d}.`,
     model: (m: string) => `Model: ${m}.`,
     open: 'See the offer',
+    due: (date: string, n: number) => (n > 0 ? `First grades on ${date}: ${n === 1 ? '1 day to go' : `${n} days to go`}.` : `First grades: ${date}.`),
   },
 
   privacy: {
@@ -313,6 +310,9 @@ export const en: Dict = {
     otherCats: 'Other categories with deals today',
     otherStores: 'Other stores with deals today',
     pageOf: (label: string) => `${label} page`,
+    rssCat: 'RSS for this category',
+    rssStore: 'RSS for this store',
+    rssTitle: (name: string) => `barato.si · ${name}`,
     explorer: 'Deals',
   },
 
@@ -333,6 +333,50 @@ export const en: Dict = {
     advertiseNote: '$10 a week. Reviewed before it goes up, refunded if declined. A small, new site: no traffic guarantees.',
   },
 
+  week: {
+    eyebrow: 'The week',
+    rss: 'RSS for the week',
+    rssNote: 'One item per week, refreshed with the index every three hours.',
+    missing: 'The weekly digest has not been published yet. It is rebuilt with every refresh of the index.',
+    updated: 'Rebuilt',
+    signals: 'Signals',
+  },
+
+  next: {
+    lead: (time: string) => `Next refresh around ${time}.`,
+    late: (time: string) => `The ${time} refresh is running late.`,
+    local: 'your time',
+    week: "Don Centavo's week",
+  },
+
+  advertise: {
+    eyebrow: 'Advertise',
+    title: 'One line, one week, $10',
+    lede: 'barato.si has a single ad space of its own. This is everything to know before you pay.',
+    sections: [
+      { h: 'What it is', p: ['One line under the error board on the front page, on the Spanish and the English site. It carries the label "Sponsored", your name (up to 60 characters), your line (up to 160) and an https link.', 'The link is marked as sponsored (rel="sponsored"). No moving images, no pop-ups and no parameters added to your link.'] },
+      { h: 'How long', p: ['7 days in a row from when it goes up. Then it comes down on its own. There is one space, so there is one advertiser at a time.'] },
+      { h: 'Review and refund', p: ['A person reviews it before it goes up. We may shorten your line so it fits on one line, or ask you to change it if it promises something that cannot be checked.', 'If it does not fit, you get the full $10 back.'] },
+      { h: 'What we do not promise', p: ['We do not publish traffic or audience numbers, and we do not use them to sell this space. It is a small, new site: no guaranteed visits, clicks or sales.'] },
+    ],
+    factsTitle: 'The site today',
+    factsNote: "Read from the index's own files, not an estimate.",
+    deals: 'Deals published today',
+    sources: 'Sources that answered',
+    pages: 'Pages in each language',
+    landing: 'Of which category or store pages',
+    refresh: 'Refresh',
+    every3h: 'Every three hours',
+    updated: 'Latest',
+    feeds: 'Also as',
+    payTitle: 'How to pay',
+    pay: 'Pay $10 with Stripe',
+    payNote: 'Stripe processes the payment. The form asks for your link and your line.',
+    busy: (until: string) => `The space is taken until ${until}. Come back after that date.`,
+    closed: 'The space is not for sale right now.',
+    who: 'barato.si is a project of Formship LLC.',
+  },
+
   seo: {
     home: { title: 'barato, sí. A price index and price-error hunter · barato.si', description: "Today's US prices against what each product usually costs, with the evidence in view, plus possible price errors. Also as free JSON and RSS, no key needed." },
     errores: { title: 'Price errors · barato.si', description: "Today's prices that look like a store's mistake, with the evidence and the signals behind each one. An automatic guess, never a confirmation." },
@@ -340,6 +384,8 @@ export const en: Dict = {
     api: { title: 'API · barato.si', description: "A free JSON and RSS API with the day's prices, their reference and possible price errors. No key. Updated every three hours." },
     si: { title: 'Wait or buy? .si for superintelligence · barato.si', description: 'An experimental model estimates from price history whether a better price is coming soon, and publishes its own grade: Brier score against a baseline, and calibration.' },
     privacidad: { title: 'Privacy · barato.si', description: 'What data barato.si uses: analytics, and advertising and affiliate links when they are on. No accounts.' },
+    semana: { title: "Don Centavo's week: drops, lows and errors · barato.si", description: 'The last seven days of barato.si on one page: observed price drops, recorded lows, reviewed possible errors and what the model learned. Also as RSS.' },
+    anunciate: { title: 'Advertise on barato.si', description: 'One sponsored line under the error board, 7 days, $10. Reviewed before it goes up, refunded if declined. No traffic numbers.' },
     ogLocale: 'en_US',
     ogAlt: 'barato, sí. A price index and possible price errors, on the web, in JSON and in RSS.',
     ogImage: 'https://barato.si/og-en.png',

@@ -8,3 +8,7 @@ data/local-refresh.log
 
 data/private/*
 !data/private/watchlist.example.json
+
+# Rebuilt by every pipeline run (npm run deals) and deployed from the build; not committed.
+public/feeds/
+public/semana.xml

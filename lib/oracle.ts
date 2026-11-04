@@ -162,7 +162,9 @@ export function scorecard(log: OracleLog): OracleScorecard {
     return { lo, hi, n: inside.length, hitRate: inside.length ? round(inside.reduce((s, e) => s + e.outcome, 0) / inside.length, 4) : null }
   })
   const brier = (f: (e: OracleLogEntry) => number) => done.length ? round(done.reduce((s, e) => s + (f(e) - e.outcome) ** 2, 0) / done.length, 4) : null
-  return { resolved: done.length, brier: brier(e => e.pDrop), baselineBrier: brier(e => e.baseRate), buckets, since: done.length ? done.map(e => e.date).sort()[0]! : null }
+  // The first day an open prediction can resolve: resolveLog closes it once date + horizon is before today.
+  const due = log.entries.filter(e => e.outcome === undefined).map(e => new Date((dayNum(e.date) + e.horizonDays + 1) * DAY).toISOString().slice(0, 10)).sort()[0] ?? null
+  return { resolved: done.length, brier: brier(e => e.pDrop), baselineBrier: brier(e => e.baseRate), buckets, since: done.length ? done.map(e => e.date).sort()[0]! : null, firstDue: due }
 }
 
 /** One run: resolve old predictions, fit, predict for published deals the ledger tracks, log, score. */

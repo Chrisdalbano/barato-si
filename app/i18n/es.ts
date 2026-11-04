@@ -2,13 +2,15 @@
 // shape (typed as Dict), so a missing translation is a type error, not a blank.
 // Deal titles, stores and the pipeline's evidence lines are data and stay as sourced.
 
+import { HOUSE_RULES_ES } from '../../lib/don-centavo'
+
 export const es = {
   lang: 'es',
   skip: 'Saltar al contenido',
   brandAria: 'barato.si, portada',
   brandTag: 'índice de precios y errores de precio',
   navAria: 'Secciones',
-  nav: { today: 'Hoy', errors: 'Errores', si: '.si', archive: 'Archivo', api: 'API', rss: 'RSS' },
+  nav: { today: 'Hoy', errors: 'Errores', si: '.si', week: 'Semana', archive: 'Archivo', api: 'API', rss: 'RSS' },
   switchTo: { label: 'EN', title: 'Read this page in English', hreflang: 'en' },
   seeAt: (store: string) => `Ver en ${store}`,
   opens: (host: string) => ` (abre ${host})`,
@@ -27,6 +29,7 @@ export const es = {
   footer: {
     legal: 'Los precios y la disponibilidad vienen de terceros y pueden cambiar o estar mal. barato.si no vende nada: solo ordena lo que otros publican y enlaza a la oferta original. «Posible error de precio» es una suposición automática, no una confirmación, y las tiendas suelen cancelarlos.',
     errorsRss: 'RSS de errores',
+    weekRss: 'RSS de la semana',
     privacy: 'Privacidad',
     madeBy: 'Hecho por',
     project: 'barato.si es un proyecto de',
@@ -179,15 +182,8 @@ export const es = {
     rule: (n: number) => `Regla n.º ${n}`,
     signature: 'Don Centavo',
     intro: 'Don Centavo no existe. Sus reglas sí, y este índice las cumple.',
-    rules: [
-      'Un precio de lista es una opinión.',
-      'Si lleva tres días igual, no está rebajado: está así.',
-      'No compres algo porque está barato. Compra lo que ibas a comprar, cuando está barato.',
-      'Un error de precio se compra rápido y se celebra despacio: la tienda puede cancelarlo.',
-      'Lo gratis también cuesta. Se paga en tiempo.',
-      'El envío también es precio.',
-      'La cuenta atrás de una oferta la pone quien vende.',
-    ],
+    // One list for the site and the weekly digest's RSS (lib/don-centavo.ts).
+    rules: HOUSE_RULES_ES,
     oracle: 'Don Centavo no se fía de las predicciones. Por eso esta se pone nota a sí misma.',
     errorsEmpty: 'Regla de Don Centavo: un día sin errores también es un dato.',
   },
@@ -282,6 +278,7 @@ export const es = {
     since: (d: string) => `Desde el ${d}.`,
     model: (m: string) => `Modelo: ${m}.`,
     open: 'Ver la oferta',
+    due: (date: string, n: number) => (n > 0 ? `Primeras notas el ${date}: ${n === 1 ? 'falta 1 día' : `faltan ${n} días`}.` : `Primeras notas: ${date}.`),
   },
 
   privacy: {
@@ -315,6 +312,9 @@ export const es = {
     otherCats: 'Otras categorías con ofertas hoy',
     otherStores: 'Otras tiendas con ofertas hoy',
     pageOf: (label: string) => `Página de ${label}`,
+    rssCat: 'RSS de esta categoría',
+    rssStore: 'RSS de esta tienda',
+    rssTitle: (name: string) => `barato.si · ${name}`,
     explorer: 'Ofertas',
   },
 
@@ -335,6 +335,50 @@ export const es = {
     advertiseNote: '10 USD por semana. Lo revisamos antes de publicarlo y, si no encaja, te devolvemos el dinero. Es un sitio pequeño y nuevo: no garantizamos tráfico.',
   },
 
+  week: {
+    eyebrow: 'La semana',
+    rss: 'RSS de la semana',
+    rssNote: 'Una entrada por semana, que se actualiza con el índice cada tres horas.',
+    missing: 'El resumen de la semana todavía no se ha publicado. Se rehace con cada actualización del índice.',
+    updated: 'Rehecho',
+    signals: 'Señales',
+  },
+
+  next: {
+    lead: (time: string) => `Próxima actualización hacia las ${time}.`,
+    late: (time: string) => `La actualización de las ${time} va con retraso.`,
+    local: 'tu hora',
+    week: 'La semana de Don Centavo',
+  },
+
+  advertise: {
+    eyebrow: 'Anúnciate',
+    title: 'Una línea, una semana, 10 USD',
+    lede: 'barato.si tiene un solo espacio de publicidad propio. Esto es todo lo que hay que saber antes de pagar.',
+    sections: [
+      { h: 'Qué es', p: ['Una línea bajo el tablero de errores de la portada, en la versión en español y en la versión en inglés. Lleva la etiqueta «Patrocinado», tu nombre (hasta 60 caracteres), tu frase (hasta 160) y un enlace https.', 'El enlace va marcado como patrocinado (rel="sponsored"). Sin imágenes que se muevan, sin ventanas emergentes y sin parámetros añadidos al enlace.'] },
+      { h: 'Cuánto dura', p: ['7 días seguidos desde que se publica. Después se retira sola. Hay un solo espacio, así que hay un solo anunciante a la vez.'] },
+      { h: 'Revisión y devolución', p: ['Una persona lo revisa antes de publicarlo. Podemos acortar la frase para que quepa en una línea, o pedirte que la cambies si promete algo que no se puede comprobar.', 'Si no encaja, te devolvemos los 10 USD enteros.'] },
+      { h: 'Lo que no prometemos', p: ['No publicamos cifras de tráfico ni de audiencia, y no las usamos para vender este espacio. Es un sitio pequeño y nuevo: no garantizamos visitas, clics ni ventas.'] },
+    ],
+    factsTitle: 'El sitio, hoy',
+    factsNote: 'Leído de los archivos del propio índice, no de una estimación.',
+    deals: 'Ofertas publicadas hoy',
+    sources: 'Fuentes que respondieron',
+    pages: 'Páginas en cada idioma',
+    landing: 'De ellas, de categoría o tienda',
+    refresh: 'Actualización',
+    every3h: 'Cada tres horas',
+    updated: 'Última',
+    feeds: 'También en',
+    payTitle: 'Cómo pagar',
+    pay: 'Pagar 10 USD con Stripe',
+    payNote: 'El pago lo procesa Stripe. En el formulario te pedimos el enlace y la frase.',
+    busy: (until: string) => `Ahora mismo el espacio está ocupado hasta el ${until}. Vuelve después de esa fecha.`,
+    closed: 'El espacio no está a la venta ahora mismo.',
+    who: 'barato.si es un proyecto de Formship LLC.',
+  },
+
   seo: {
     home: { title: 'barato, sí. Índice de precios y errores de precio · barato.si', description: 'Los precios de hoy contra lo que cada producto suele costar, con la evidencia a la vista, y los posibles errores de precio. También en JSON y RSS, gratis y sin clave.' },
     errores: { title: 'Errores de precio · barato.si', description: 'Los precios de hoy que parecen un error de la tienda, con la evidencia y las señales que lo sugieren. Una suposición automática, nunca una confirmación.' },
@@ -342,6 +386,8 @@ export const es = {
     api: { title: 'API · barato.si', description: 'API JSON y RSS gratis con los precios del día, su referencia y los posibles errores de precio. Sin clave. Se actualiza cada tres horas.' },
     si: { title: '¿Espera o compra? .si de superinteligencia · barato.si', description: 'Un modelo experimental estima, con el historial de precios, si llegará un precio mejor pronto. Y publica su propia nota: Brier contra una línea base y calibración.' },
     privacidad: { title: 'Privacidad · barato.si', description: 'Qué datos usa barato.si: analítica, publicidad y enlaces de afiliado cuando están activos. Sin cuentas.' },
+    semana: { title: 'La semana de Don Centavo: caídas, mínimos y errores · barato.si', description: 'Los últimos siete días de barato.si en una página: caídas de precio observadas, mínimos registrados, posibles errores revisados y lo que aprendió el modelo. También por RSS.' },
+    anunciate: { title: 'Anúnciate en barato.si', description: 'Una línea patrocinada bajo el tablero de errores, 7 días, 10 USD. Revisada antes de publicarse y con devolución si no encaja. Sin cifras de tráfico.' },
     ogLocale: 'es_LA',
     ogAlt: 'barato, sí. Índice de precios y posibles errores de precio, en la web, en JSON y en RSS.',
     ogImage: 'https://barato.si/og.png',

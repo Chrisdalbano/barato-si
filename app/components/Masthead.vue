@@ -17,6 +17,7 @@ const { t } = useLang()
       <p class="mast__lede">{{ t.masthead.lede }}</p>
     </div>
     <DayStrip v-if="day" :day="day" show-date />
+    <NextRefresh v-if="day" :generated-at="day.generatedAt" />
   </header>
 </template>
 

@@ -514,3 +514,20 @@ Branch `v4.1-logo-growth`, not merged. Lead brief: integrate logo concept 2 "Vec
 - A live sponsor on the site. The gate has unit tests, but nothing was rendered with `active: true`.
 - Link previews (Facebook, WhatsApp and X debuggers) for og.png and og-en.png.
 - How Bing and Google treat thin store pages (several have 1 to 3 deals). The rule is "at least one deal"; raise it in `lib/landing.ts` if they underperform.
+
+## 2026-11-04 (v4.2): return visits, the weekly page, the advertise page
+
+Branch `v4.2-return-visits`, not merged.
+
+- **`/semana` and `/en/week`** (`pages/semana.vue`, `useWeek()` in `useExtras.ts`, `normalizeWeek()` in `utils/extras.ts`): renders `week.json`; every sentence with a number comes from `lib/digest.ts` `weekCopy()`, the same function that writes `/semana.xml`. Drops, lows and re-scored errors with a fixed 56 px picture box (44 px on phones), the forecast lines, the rule of the week, "RSS de la semana". Pipeline evidence lines and classifier notes are Spanish and carry `lang="es"` on the English page. Missing file: one honest line. Nav gains "Semana" / "Week" between .si and Archivo; footer gains "RSS de la semana"; a global `alternate` link for semana.xml.
+- **`/anunciate` and `/en/advertise`**: what the slot is (one labelled line under the error board, both languages, 7 days, 10 USD), review and full refund if declined, what we do not promise (no traffic or audience numbers, no guarantees), facts read at build from `deals.json` (deals today, sources that answered, pages per language = the 8 static pages + landing pages, landing count, cadence, last update), and the Stripe button (`runtimeConfig.public.sponsorUrl`). While a sponsor is live it says the space is taken until `until`; with `sponsorUrl` empty it says the space is not for sale. The footer's "¿Anunciar aquí?" now opens this page (shown whenever no sponsor is live) instead of Stripe.
+- **Category/store pages**: a visible "RSS de esta categoría / tienda" link under the lede and a per-page `<link rel="alternate" type="application/rss+xml">` to `/feeds/…`.
+- **Home "vuelve" line** (`NextRefresh.vue`, under the masthead strip): next slot = generatedAt floored to 3 h + 3 h (cron `0 */3 * * *`). Prerendered in UTC, switched to the reader's clock after mount, "va con retraso" once more than 60 min past due, plus a link to the week. One fixed-height line with ellipsis: measured CLS 0.0007 on home in Chrome.
+- **`/si` countdown**: "Primeras notas el 19 nov: faltan 15 días." from `scorecard.firstDue` counted against the oracle file's own date (not the visitor's clock), shown only while nothing is graded.
+
+### Verified
+- `npm test` 19 files / 332 tests, `npm run typecheck:lib`, `npx nuxt typecheck`: exit 0. `npx nuxt generate` (clean `.nuxt`): 166 routes, incl. the four new pages; canonicals, `lang` and titles read from the HTML.
+- Chrome on a local static server: `/semana/` (8 drops with pictures, honest empty errors, forecast lines, rule 4, no console errors); `/anunciate/` (facts 250 / 9 / 30 / 22, Stripe button, footer link -> /anunciate); `/categoria/electronica/` (RSS link -> feed 200, valid XML, 46 items = 46 deals on the page); home next-refresh line in local time.
+
+### Not verified
+- `/en/week` and `/en/advertise` were checked in generated HTML only, not on screen. Phone widths not looked at. The "late" state and a live sponsor on `/anunciate` were not rendered. Feed readers (real subscriptions) not tried.

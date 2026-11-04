@@ -14,7 +14,7 @@ const HOST = 'barato.si'
 const SITE = `https://${HOST}`
 
 /** Pages whose content follows the day's data, in both languages, with the trailing slash the host serves. */
-export const DAILY_PATHS = ['/', '/en/', '/errores/', '/en/errores/', '/si/', '/en/si/']
+export const DAILY_PATHS = ['/', '/en/', '/errores/', '/en/errores/', '/si/', '/en/si/', '/semana/', '/en/week/']
 
 export interface IndexNowPayload { host: string; key: string; keyLocation: string; urlList: string[] }
 

@@ -7,6 +7,7 @@ const nav = computed(() => [
   { to: lp('/'), label: t.value.nav.today },
   { to: lp('/errores'), label: t.value.nav.errors },
   { to: lp('/si'), label: t.value.nav.si },
+  { to: lp('/semana'), label: t.value.nav.week },
   { to: lp('/archivo'), label: t.value.nav.archive },
   { to: lp('/api'), label: t.value.nav.api },
 ])
@@ -18,10 +19,10 @@ const adsClient = computed(() => String(cfg.adsenseClient ?? ''))
 const adsOn = computed(() => /^ca-pub-\d+$/.test(adsClient.value))
 const affiliateOn = computed(() => !!String(cfg.amazonTag ?? '').trim())
 const supportUrl = computed(() => /^https:\/\//.test(String(cfg.supportUrl ?? '')) ? String(cfg.supportUrl) : '')
-const sponsorUrl = computed(() => /^https:\/\//.test(String(cfg.sponsorUrl ?? '')) ? String(cfg.sponsorUrl) : '')
-// "Advertise here" only while the slot is free (app/data/sponsor.json).
+// "Advertise here" only while the slot is free (app/data/sponsor.json). It opens /anunciate,
+// which explains the slot before anyone reaches Stripe.
 const sponsor = useSponsor()
-const advertise = computed(() => !sponsor.value && !!sponsorUrl.value)
+const advertise = computed(() => !sponsor.value)
 
 useHead(() => ({
   htmlAttrs: { lang: locale.value },
@@ -75,6 +76,7 @@ useHead(() => ({
             <a href="/api/deals.json">deals.json</a>
             <a href="/feed.xml">RSS</a>
             <a href="/errors.xml">{{ t.footer.errorsRss }}</a>
+            <a href="/semana.xml">{{ t.footer.weekRss }}</a>
             <a href="/llms.txt">llms.txt</a>
             <NuxtLink :to="lp('/privacidad')">{{ t.footer.privacy }}</NuxtLink>
           </p>
@@ -82,7 +84,7 @@ useHead(() => ({
             <a :href="supportUrl" rel="noopener" target="_blank">{{ t.footer.support }}</a>
           </p>
           <p v-if="advertise" class="foot__ad">
-            <a :href="sponsorUrl" rel="noopener" target="_blank">{{ t.sponsor.advertise }}</a>
+            <NuxtLink :to="lp('/anunciate')">{{ t.sponsor.advertise }}</NuxtLink>
             <span>{{ t.sponsor.advertiseNote }}</span>
           </p>
           <p class="foot__made">

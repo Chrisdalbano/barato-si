@@ -65,8 +65,8 @@ describe('sitemap with landing pages', () => {
     expect(map).not.toContain('categoria/Electronics')
     expect(map).not.toContain('categoria/hogar')
     const pairs = landingPairs(deals).length
-    expect(map.match(/<url>/g)).toHaveLength(16 + pairs * 2)
-    expect(map.match(/hreflang="x-default"/g)).toHaveLength(12 + pairs * 2)
+    expect(map.match(/<url>/g)).toHaveLength(22 + pairs * 2)
+    expect(map.match(/hreflang="x-default"/g)).toHaveLength(16 + pairs * 2)
     expect(sitemap(at, [])).toBe(sitemap(at))
   })
 })

@@ -8,11 +8,13 @@ export type Locale = 'es' | 'en'
 const EN_PATH: Record<string, string> = {
   '/': '/en',
   '/privacidad': '/en/privacy',
+  '/semana': '/en/week',
+  '/anunciate': '/en/advertise',
 }
 const ES_PATH: Record<string, string> = Object.fromEntries(Object.entries(EN_PATH).map(([es, en]) => [en, es]))
 
 /** Every page in both languages: what nitro prerenders and what hreflang pairs. */
-export const PAGES = ['/', '/errores', '/si', '/archivo', '/api', '/privacidad'] as const
+export const PAGES = ['/', '/errores', '/si', '/semana', '/archivo', '/api', '/anunciate', '/privacidad'] as const
 
 const clean = (path: string): string => (path.replace(/\/+$/, '') || '/')
 
