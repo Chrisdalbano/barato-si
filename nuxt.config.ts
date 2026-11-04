@@ -9,8 +9,8 @@ const ogImage = 'https://barato.si/og.png'
 
 // Every page in both languages. Aliases in each page make the English routes;
 // these make sure they are prerendered even if no link points at them.
-const pages = ['/', '/errores', '/si', '/semana', '/archivo', '/api', '/anunciate', '/privacidad',
-  '/en', '/en/errores', '/en/si', '/en/week', '/en/archivo', '/en/api', '/en/advertise', '/en/privacy']
+const pages = ['/', '/errores', '/black-friday', '/si', '/semana', '/archivo', '/api', '/anunciate', '/privacidad',
+  '/en', '/en/errores', '/en/black-friday', '/en/si', '/en/week', '/en/archivo', '/en/api', '/en/advertise', '/en/privacy']
 
 // Category and store pages: one per slice with deals today, read from the same
 // deals.json the pipeline just wrote (and the same lib/landing.ts rules its

@@ -78,6 +78,7 @@ useHead(() => {
         <p class="calm__big">{{ t.home.calmBig }}</p>
         <p>{{ t.home.calmBody }} <NuxtLink :to="lp('/archivo')">{{ t.home.calmArchive }}</NuxtLink>.</p>
       </section>
+      <p class="hub-link"><NuxtLink :to="lp('/black-friday')">{{ t.hub.link }}</NuxtLink> <span aria-hidden="true">&rarr;</span></p>
       <nav v-if="landing.categories.length || landing.stores.length" class="slices" :aria-label="t.home.slices">
         <div v-if="landing.categories.length" class="slices__group">
           <h2 class="slices__title">{{ t.home.byCategory }}</h2>
@@ -117,4 +118,8 @@ useHead(() => {
 .slices__list a { color: var(--fg-primary); text-underline-offset: 3px; }
 .slices__list a:hover { color: var(--link-fg); }
 .slices__n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg-muted); }
+.hub-link { margin: clamp(32px, 4vw, 48px) 0 0; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--fg-secondary); }
+.hub-link a { color: var(--fg-primary); font-weight: 500; text-underline-offset: 3px; }
+.hub-link a:hover { color: var(--link-fg); }
+.hub-link + .slices { margin-top: 20px; }
 </style>

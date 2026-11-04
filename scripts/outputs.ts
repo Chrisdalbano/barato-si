@@ -95,7 +95,7 @@ function compact(d: Deal): Deal {
 export interface Extras { highlights?: HighlightsFile; oracle?: OracleFile; week?: WeekFile }
 const SITE = 'https://barato.si/'
 /** Each Spanish route and its English twin. The UI owns the pages; the pipeline owns the sitemap. */
-export const PAGES: [string, string][] = [['', 'en/'], ['errores/', 'en/errores/'], ['archivo/', 'en/archivo/'], ['api/', 'en/api/'], ['si/', 'en/si/'], ['semana/', 'en/week/'], ['anunciate/', 'en/advertise/'], ['privacidad/', 'en/privacy/']] // trailing slash: what GitHub Pages serves and what the UI canonicals use
+export const PAGES: [string, string][] = [['', 'en/'], ['errores/', 'en/errores/'], ['black-friday/', 'en/black-friday/'], ['archivo/', 'en/archivo/'], ['api/', 'en/api/'], ['si/', 'en/si/'], ['semana/', 'en/week/'], ['anunciate/', 'en/advertise/'], ['privacidad/', 'en/privacy/']] // trailing slash: what GitHub Pages serves and what the UI canonicals use
 /** Category and store pages with deals today, as [es, en] paths with the trailing slash. Same set the site prerenders. */
 export function landingPairs(deals: readonly Pick<Deal, 'category' | 'store'>[]): [string, string][] {
   return landingPaths(landingPages(deals)).map(p => [p.es.slice(1) + '/', p.en.slice(1) + '/'])

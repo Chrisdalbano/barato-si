@@ -7,7 +7,8 @@ import { dealAnchor } from '~~/lib/landing'
 // so it survives without colour: the left rule, the reference's underline, and
 // the weight of the depth figure. `full` adds every signal (the /errores page).
 // `anchored`: give the row its stable id (only on /errores, where each deal is listed once).
-const props = defineProps<{ deal: DealView; full?: boolean; headingLevel?: 2 | 3 | 4; seenOn?: string; kicker?: string; anchored?: boolean }>()
+// `shareOn`: which page a shared link opens; 'list' (the deal's category page) for rows that are not on /errores.
+const props = defineProps<{ deal: DealView; full?: boolean; headingLevel?: 2 | 3 | 4; seenOn?: string; kicker?: string; anchored?: boolean; shareOn?: 'errors' | 'list' }>()
 const { locale, t } = useLang()
 const out = useOutbound()
 const href = computed(() => out.href(props.deal))
@@ -75,7 +76,7 @@ const sources = computed(() => (props.deal.seenIn?.length ?? 0) >= 2 ? props.dea
           {{ t.seeAt(deal.store) }}<span class="sr-only">{{ t.opens(hostOf(href)) }}</span> <span aria-hidden="true">&rarr;</span>
         </a>
         <DealCredit :deal="deal" />
-        <ShareDeal :deal="deal" on="errors" />
+        <ShareDeal :deal="deal" :on="shareOn ?? 'errors'" />
       </div>
     </div>
 

@@ -159,6 +159,8 @@ const groups = computed(() => TIER_IDS
         {{ t.errors.rssTail }} <NuxtLink :to="lp('/')">{{ t.errors.home }}</NuxtLink>.
       </p>
     </template>
+
+    <p class="hunt__hub"><NuxtLink :to="lp('/black-friday')">{{ t.hub.link }}</NuxtLink> <span aria-hidden="true">&rarr;</span></p>
   </div>
 </template>
 
@@ -209,6 +211,8 @@ const groups = computed(() => TIER_IDS
 .tier--near :deep(.er) { border-left: 1px dashed var(--border-strong); padding-left: 16px; }
 .tier--near :deep(.er .flag) { color: var(--fg-secondary); }
 .hunt__rss { margin: clamp(24px, 3vw, 36px) 0 0; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--fg-secondary); }
+.hunt__hub { margin: clamp(20px, 3vw, 28px) 0 0; font-size: 0.875rem; color: var(--fg-secondary); }
+.hunt__hub a { color: var(--fg-primary); text-underline-offset: 3px; }
 
 @media (max-width: 640px) {
   .hunt__strip { column-gap: 14px; }

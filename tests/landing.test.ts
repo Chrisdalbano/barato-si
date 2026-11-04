@@ -65,8 +65,8 @@ describe('sitemap with landing pages', () => {
     expect(map).not.toContain('categoria/Electronics')
     expect(map).not.toContain('categoria/hogar')
     const pairs = landingPairs(deals).length
-    expect(map.match(/<url>/g)).toHaveLength(22 + pairs * 2)
-    expect(map.match(/hreflang="x-default"/g)).toHaveLength(16 + pairs * 2)
+    expect(map.match(/<url>/g)).toHaveLength(24 + pairs * 2)
+    expect(map.match(/hreflang="x-default"/g)).toHaveLength(18 + pairs * 2)
     expect(sitemap(at, [])).toBe(sitemap(at))
   })
 })
@@ -144,6 +144,101 @@ describe('landing JSON-LD', async () => {
     const out = ldJson(offerListLd([row], list))
     expect(out).not.toContain('<')
     expect(JSON.parse(out).itemListElement[0].item.name).toBe(row.title)
+  })
+})
+
+describe('Black Friday hub', async () => {
+  const { hubSections, HUB_MAX_DEEP, HUB_MAX_ERRORS, HUB_MIN_DEPTH } = await import('../app/utils/hub')
+  type Row = {
+    id: string; category: string | null; store: string; errorScore: number
+    reference?: { price: number; kind: 'ledger' | 'cross-store' | 'curated' | 'source-previous' | 'list'; note: string }
+    referenceDiscountPct: number | null; discountPct: number | null
+  }
+  const row = (id: string, o: Partial<Row> = {}): Row => ({
+    id, category: 'electronica', store: 'Amazon', errorScore: 0,
+    reference: { price: 100, kind: 'list', note: 'Precio de lista del vendedor, sin verificar' },
+    referenceDiscountPct: 50, discountPct: 50, ...o,
+  })
+  const ledger = { price: 100, kind: 'ledger' as const, note: 'Mediana de 5 días observados' }
+
+  it('puts error candidates first, strongest evidence first, merged by id with errors.json', () => {
+    const deals = [row('a', { errorScore: 45 }), row('b', { errorScore: 72 }), row('c', { errorScore: 39 }), row('d', { errorScore: 50, reference: ledger })]
+    const extra = row('x', { errorScore: 80, store: 'Best Buy' }) // in errors.json, outside the published 250
+    const hub = hubSections(deals, [extra, deals[0]!])
+    expect(hub.errors.map(d => d.id)).toEqual(['d', 'x', 'b', 'a'])
+    expect(hub.errorsTotal).toBe(4)
+    expect(hub.errors.some(d => d.id === 'c')).toBe(false) // 39 is not a candidate
+  })
+  it('lists deep cuts by evidence, then depth, without games, candidates or offers with no reference', () => {
+    const deals = [
+      row('list80', { referenceDiscountPct: 80 }),
+      row('ledger35', { reference: ledger, referenceDiscountPct: 35 }),
+      row('ledger60', { reference: ledger, referenceDiscountPct: 60 }),
+      row('shallow', { reference: ledger, referenceDiscountPct: HUB_MIN_DEPTH - 1 }),
+      row('edge', { referenceDiscountPct: HUB_MIN_DEPTH }),
+      row('game', { category: 'videojuegos', referenceDiscountPct: 95 }),
+      row('error', { errorScore: 70, referenceDiscountPct: 90 }),
+      row('noref', { reference: undefined, referenceDiscountPct: null, discountPct: 70 }),
+    ]
+    const hub = hubSections(deals)
+    expect(hub.deep.map(d => d.id)).toEqual(['ledger60', 'ledger35', 'list80', 'edge'])
+    expect(hub.errors.map(d => d.id)).toEqual(['error'])
+    expect(hub.empty).toBe(false)
+  })
+  it('caps each group and reports the totals', () => {
+    const deals = Array.from({ length: 40 }, (_, i) => row(`d${i}`, { referenceDiscountPct: 40 + (i % 50) }))
+    const errs = Array.from({ length: 20 }, (_, i) => row(`e${i}`, { errorScore: 40 + i }))
+    const hub = hubSections(deals, errs)
+    expect(hub.deep).toHaveLength(HUB_MAX_DEEP)
+    expect(hub.deepTotal).toBe(40)
+    expect(hub.errors).toHaveLength(HUB_MAX_ERRORS)
+    expect(hub.errorsTotal).toBe(20)
+    expect(hub.errors[0]!.id).toBe('e19')
+  })
+  it('links only categories with deals today', () => {
+    const hub = hubSections([row('a'), row('b', { category: 'hogar' }), row('c', { category: 'hogar' }), row('g', { category: 'videojuegos' }), row('n', { category: 'Electronics' })])
+    expect(hub.categories.map(c => [c.slug, c.count])).toEqual([['hogar', 2], ['electronica', 1], ['videojuegos', 1]])
+  })
+  it('is empty, honestly, when nothing qualifies, and never pads', () => {
+    const quiet = [row('a', { referenceDiscountPct: 10 }), row('g', { category: 'videojuegos', referenceDiscountPct: 90 })]
+    const hub = hubSections(quiet, [])
+    expect(hub).toMatchObject({ errors: [], errorsTotal: 0, deep: [], deepTotal: 0, empty: true })
+    expect(hub.categories.length).toBe(2) // the slices still exist and are still linked
+    expect(hubSections([], [])).toEqual({ errors: [], errorsTotal: 0, deep: [], deepTotal: 0, categories: [], empty: true })
+  })
+  it('does not mutate its inputs', () => {
+    const deals = [row('a', { referenceDiscountPct: 40 }), row('b', { reference: ledger, referenceDiscountPct: 35 })]
+    const before = JSON.stringify(deals)
+    hubSections(deals, [row('e', { errorScore: 90 })])
+    expect(JSON.stringify(deals)).toBe(before)
+    expect(deals.map(d => d.id)).toEqual(['a', 'b'])
+  })
+  it('has a page in both languages, in the sitemap with alternates', async () => {
+    const { localePath, basePath, PAGES } = await import('../app/utils/locale')
+    expect(PAGES).toContain('/black-friday')
+    expect(localePath('/black-friday', 'en')).toBe('/en/black-friday')
+    expect(basePath('/en/black-friday/')).toBe('/black-friday')
+    const map = sitemap('2026-11-04T12:00:00.000Z')
+    expect(map).toContain('<loc>https://barato.si/black-friday/</loc>')
+    expect(map).toContain('<loc>https://barato.si/en/black-friday/</loc>')
+    expect(map).toContain('<xhtml:link rel="alternate" hreflang="en" href="https://barato.si/en/black-friday/"/>')
+    expect(DAILY_PATHS).toEqual(expect.arrayContaining(['/black-friday/', '/en/black-friday/']))
+  })
+  it('has its own title and description per language, says "Hoy no hay" when empty, and no "chollo"', async () => {
+    const { es } = await import('../app/i18n/es')
+    const { en } = await import('../app/i18n/en')
+    expect(es.seo.blackFriday.title).not.toBe(en.seo.blackFriday.title)
+    expect(es.seo.blackFriday.description).not.toBe(en.seo.blackFriday.description)
+    for (const page of ['home', 'errores', 'semana'] as const) expect(es.seo.blackFriday.title).not.toBe(es.seo[page].title)
+    expect(es.hub.errorsNone).toMatch(/^Hoy no hay/)
+    expect(es.hub.deepNone(30)).toMatch(/^Hoy no hay/)
+    expect(es.hub.emptyBig).toMatch(/^Hoy no hay/)
+    expect(es.hub.guide.length).toBeGreaterThanOrEqual(2)
+    expect(es.hub.guide.length).toBeLessThanOrEqual(4)
+    expect(en.hub.guide).toHaveLength(es.hub.guide.length)
+    const all = JSON.stringify([es.hub.guide, es.hub.lede, es.seo.blackFriday, es.hub.deepNote(30), es.hub.emptyBody(30)]).toLowerCase()
+    expect(all).not.toContain('chollo')
+    expect(all).not.toMatch(/cuenta atrás termina|quedan \d|solo hoy/)
   })
 })
 
