@@ -256,7 +256,21 @@ export function errorDetail(x: WeekFile['errors'][number], loc: Loc): string {
     ? `${money(x.price, x.deal.currency, loc)} el ${dayMonth(x.date, loc)}, ${num(x.errorScore, loc)} puntos de error.`
     : `${money(x.price, x.deal.currency, loc)} on ${dayMonth(x.date, loc)}, ${num(x.errorScore, loc)} error points.`
 }
-const named = (x: { deal: WeekDeal }) => `${x.deal.title} (${x.deal.store}): `
+/**
+ * A listed item's title without a bare trailing price. Techbargains titles end
+ * in the price on the day they were published ("Heated Socks $41.29"); next to
+ * a drop "from 41.29 to 29.49" that stale number reads as a contradiction.
+ * Only a lone "$N" at the very end goes; "for $1,549 in cart" keeps its words,
+ * and a title that would end on "for"/"to"/"at"... or be empty is left alone.
+ */
+export function weekTitle(title: string): string {
+  const m = /\s+\$\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s*$/.exec(title)
+  if (!m) return title
+  const rest = title.slice(0, m.index).trimEnd()
+  if (!rest || /\b(?:for|to|at|from|under|only|just|now|was|is|and|or|w\/)$/i.test(rest)) return title
+  return rest
+}
+const named = (x: { deal: WeekDeal }) => `${weekTitle(x.deal.title)} (${x.deal.store}): `
 export const dropLine = (x: WeekFile['drops'][number], loc: Loc) => named(x) + dropDetail(x, loc)
 export const lowLine = (x: WeekFile['lows'][number], loc: Loc) => named(x) + lowDetail(x, loc)
 export const errorLine = (x: WeekFile['errors'][number], loc: Loc) => named(x) + errorDetail(x, loc)

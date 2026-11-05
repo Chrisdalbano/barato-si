@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { dropDetail, errorDetail, lowDetail, weekCopy } from '~~/lib/digest'
+import { dropDetail, errorDetail, lowDetail, weekCopy, weekTitle } from '~~/lib/digest'
 import type { WeekDeal } from '~~/lib/types'
 
 // "La semana de Don Centavo": the pipeline rebuilds public/api/week.json on every
@@ -40,7 +40,7 @@ const pct = (v: number) => formatDiscount(v, locale.value)
           <li v-for="x in w.drops" :key="x.deal.id" class="wk__item">
             <span class="wk__img"><img v-if="x.deal.image" :src="x.deal.image" alt="" loading="lazy" decoding="async" width="56" height="56"></span>
             <div class="wk__body">
-              <a class="wk__name" :href="href(x.deal)" :rel="rel(x.deal)" target="_blank">{{ x.deal.title }}</a>
+              <a class="wk__name" :href="href(x.deal)" :rel="rel(x.deal)" target="_blank">{{ weekTitle(x.deal.title) }}</a>
               <p class="wk__meta"><span class="wk__store">{{ x.deal.store }}</span> {{ dropDetail(x, locale) }}</p>
             </div>
             <span class="wk__fig">{{ pct(x.pct) }}</span>
@@ -56,7 +56,7 @@ const pct = (v: number) => formatDiscount(v, locale.value)
           <li v-for="x in w.lows" :key="x.deal.id" class="wk__item">
             <span class="wk__img"><img v-if="x.deal.image" :src="x.deal.image" alt="" loading="lazy" decoding="async" width="56" height="56"></span>
             <div class="wk__body">
-              <a class="wk__name" :href="href(x.deal)" :rel="rel(x.deal)" target="_blank">{{ x.deal.title }}</a>
+              <a class="wk__name" :href="href(x.deal)" :rel="rel(x.deal)" target="_blank">{{ weekTitle(x.deal.title) }}</a>
               <p class="wk__meta"><span class="wk__store">{{ x.deal.store }}</span> {{ lowDetail(x, locale) }}</p>
             </div>
             <span class="wk__fig wk__fig--quiet">{{ pct((1 - x.price / x.priorHigh) * 100) }}</span>
@@ -72,7 +72,7 @@ const pct = (v: number) => formatDiscount(v, locale.value)
           <li v-for="x in w.errors" :key="x.deal.id" class="wk__item">
             <span class="wk__img"><img v-if="x.deal.image" :src="x.deal.image" alt="" loading="lazy" decoding="async" width="56" height="56"></span>
             <div class="wk__body">
-              <a class="wk__name" :href="href(x.deal)" :rel="rel(x.deal)" target="_blank">{{ x.deal.title }}</a>
+              <a class="wk__name" :href="href(x.deal)" :rel="rel(x.deal)" target="_blank">{{ weekTitle(x.deal.title) }}</a>
               <p class="wk__meta"><span class="wk__store">{{ x.deal.store }}</span> {{ errorDetail(x, locale) }}</p>
               <ul v-if="x.signals.length" class="wk__signals" :aria-label="t.week.signals" lang="es">
                 <li v-for="s in x.signals" :key="s">{{ s }}</li>
