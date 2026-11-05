@@ -1,6 +1,7 @@
 // Two languages, no library. Spanish lives at the root, English under /en.
 // Pure: no Vue, no Nuxt, so tests and the server can use it the same way.
 import { CATEGORY_SLUG_EN, categoryFromSlug, isCategory } from '../../lib/landing'
+import { GUIDE_SLUGS, guideFromEnSlug, isGuide } from '../../lib/guides'
 
 export type Locale = 'es' | 'en'
 
@@ -31,6 +32,9 @@ export function basePath(path: string): string {
   if (cat) { const c = categoryFromSlug(cat[1]!, 'en'); return c ? `/categoria/${c}` : `/categoria/${cat[1]}` }
   const store = /^\/en\/store\/([^/]+)$/.exec(p)
   if (store) return `/tienda/${store[1]}`
+  // Guides: /en/guide/<english slug>.
+  const guide = /^\/en\/guide\/([^/]+)$/.exec(p)
+  if (guide) return `/guia/${guideFromEnSlug(guide[1]!) ?? guide[1]}`
   return ES_PATH[p] ?? (p.slice(3) || '/')
 }
 
@@ -42,6 +46,8 @@ export function localePath(path: string, loc: Locale): string {
   if (cat) return `/en/category/${isCategory(cat[1]) ? CATEGORY_SLUG_EN[cat[1]] : cat[1]}`
   const store = /^\/tienda\/([^/]+)$/.exec(base)
   if (store) return `/en/store/${store[1]}`
+  const guide = /^\/guia\/([^/]+)$/.exec(base)
+  if (guide) return `/en/guide/${isGuide(guide[1]) ? GUIDE_SLUGS[guide[1]] : guide[1]}`
   return EN_PATH[base] ?? `/en${base}`
 }
 

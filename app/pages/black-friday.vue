@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { hubSections, HUB_MIN_DEPTH } from '~/utils/hub'
+import { guideList } from '~/utils/guides'
 
 // Black Friday / Cyber Monday. Not a separate list: today's deals.json and
 // errors.json (the same loaders as the home page and /errores), grouped by
@@ -20,6 +21,8 @@ provideLanding(() => day.value?.deals)
 
 const hub = computed(() => hubSections(day.value?.deals ?? [], errors.value?.deals ?? []))
 const h = computed(() => t.value.hub)
+// The deal-season explainers (utils/guides.ts), under "how to read these days".
+const guides = computed(() => guideList(locale.value))
 
 // ItemList of exactly the rows shown, in order. Nothing shown: no ItemList.
 useHead(() => {
@@ -97,6 +100,9 @@ useHead(() => {
     <section class="guide" aria-labelledby="bf-guide">
       <h2 id="bf-guide" class="guide__title">{{ h.guideTitle }}</h2>
       <p v-for="(p, i) in h.guide" :key="i">{{ p }}</p>
+      <ul class="guide__links">
+        <li v-for="gd in guides" :key="gd.slug"><NuxtLink :to="gd.path">{{ gd.title }}</NuxtLink> <span aria-hidden="true">&rarr;</span></li>
+      </ul>
     </section>
   </div>
 </template>
@@ -140,6 +146,10 @@ useHead(() => {
 .guide { margin-top: clamp(32px, 4vw, 48px); padding-top: 20px; border-top: 1px solid var(--border); max-width: var(--container-max-prose); }
 .guide__title { margin: 0 0 10px; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.015em; }
 .guide p { margin: 0 0 12px; font-size: 0.9375rem; line-height: 1.55; color: var(--fg-secondary); }
+.guide__links { margin: 4px 0 0; padding: 0; list-style: none; font-size: 0.9375rem; }
+.guide__links li { margin: 0 0 6px; }
+.guide__links a { color: var(--fg-primary); font-weight: 500; text-underline-offset: 3px; }
+.guide__links a:hover { color: var(--link-fg); }
 
 @media (max-width: 640px) {
   .bf__time { margin-left: 0; flex-basis: 100%; }

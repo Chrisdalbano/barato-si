@@ -7,6 +7,7 @@ import { formatMoney } from '../lib/format.ts'
 import { categories } from '../lib/categorize.ts'
 import { CATEGORY_NAME_ES, categoryFeedPath, landingPages, landingPaths, storeFeedPath, storeSlug } from '../lib/landing.ts'
 import { weekCopy, weekText } from '../lib/digest.ts'
+import { guidePaths } from '../lib/guides.ts'
 
 const collected = new WeakMap<DealsFile, Deal[]>()
 export function retainCollected(file: DealsFile, all: Deal[]) { collected.set(file, all) }
@@ -102,7 +103,8 @@ export function landingPairs(deals: readonly Pick<Deal, 'category' | 'store'>[])
 }
 export function sitemap(generatedAt: string, deals: readonly Pick<Deal, 'category' | 'store'>[] = []): string {
   const alternates = (es: string, en: string) => `<xhtml:link rel="alternate" hreflang="es" href="${SITE}${x(es)}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${x(en)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${x(es)}"/>`
-  const pages = [...PAGES, ...landingPairs(deals)].flatMap(([es, en]) => [es, en].map(loc => `<url><loc>${SITE}${x(loc)}</loc><lastmod>${generatedAt}</lastmod>${alternates(es, en)}</url>`))
+  const guides = guidePaths().map((p): [string, string] => [p.es.slice(1) + '/', p.en.slice(1) + '/'])
+  const pages = [...PAGES, ...guides, ...landingPairs(deals)].flatMap(([es, en]) => [es, en].map(loc => `<url><loc>${SITE}${x(loc)}</loc><lastmod>${generatedAt}</lastmod>${alternates(es, en)}</url>`))
   const files = ['api/deals.json', 'api/errors.json', 'api/week.json', 'feed.xml', 'errors.xml', 'semana.xml'].map(path => `<url><loc>${SITE}${path}</loc><lastmod>${generatedAt}</lastmod></url>`)
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${[...pages, ...files].join('')}</urlset>\n`
 }

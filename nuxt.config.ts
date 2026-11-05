@@ -1,6 +1,7 @@
 // barato.si — static site (nuxt generate), hosted on GitHub Pages.
 import { readFileSync } from 'node:fs'
 import { landingPages, landingPaths } from './lib/landing'
+import { guidePaths } from './lib/guides'
 // Spanish at /, English at /en/... Each page sets its own title, description,
 // canonical and hreflang (composables/useSeo.ts); these are the fallbacks.
 const title = 'barato, sí. Índice de precios y errores de precio · barato.si'
@@ -21,7 +22,9 @@ function landingRoutes(): string[] {
     return landingPaths(landingPages(Array.isArray(file?.deals) ? file.deals : [])).flatMap(p => [p.es, p.en])
   } catch { return [] }
 }
-const routes = [...pages, ...landingRoutes()]
+// Deal-season explainers, both languages (lib/guides.ts).
+const guideRoutes = guidePaths().flatMap(p => [p.es, p.en])
+const routes = [...pages, ...guideRoutes, ...landingRoutes()]
 
 // The Stripe Payment Link for the self-serve sponsored slot (10 USD, one week,
 // reviewed before it goes up). NUXT_PUBLIC_SPONSOR_URL overrides it; '' hides the
