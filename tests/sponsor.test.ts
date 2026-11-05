@@ -18,6 +18,17 @@ describe('sponsored slot', () => {
     ]) expect(activeSponsor(bad, '2026-11-04')).toBeNull()
     expect(activeSponsor(on, 'today')).toBeNull()
   })
+  it('waits for an optional first day booked in advance', () => {
+    const bf = { ...on, from: '2026-11-23', until: '2026-11-30' }
+    expect(activeSponsor(bf, '2026-11-22')).toBeNull()
+    expect(activeSponsor(bf, '2026-11-23')?.label).toBe('Acme')
+    expect(activeSponsor(bf, '2026-11-30')?.until).toBe('2026-11-30')
+    expect(activeSponsor(bf, '2026-12-01')).toBeNull()
+    expect(activeSponsor({ ...on, from: '' }, '2026-11-04')?.label).toBe('Acme')
+    expect(activeSponsor({ ...on, from: null }, '2026-11-04')?.label).toBe('Acme')
+    for (const from of ['23/11/2026', 20261123, '2026-11-12'])
+      expect(activeSponsor({ ...on, from }, '2026-11-11')).toBeNull()
+  })
   it('keeps only an https image and one clean line of text', () => {
     expect(activeSponsor({ ...on, image: 'https://acme.example/a.png' }, '2026-11-04')?.image).toBe('https://acme.example/a.png')
     expect(activeSponsor({ ...on, image: 'http://acme.example/a.png' }, '2026-11-04')?.image).toBeNull()

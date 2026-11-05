@@ -479,6 +479,7 @@ Branch `v4.1-logo-growth`, not merged. Lead brief: integrate logo concept 2 "Vec
    - `"text"`: their line, one line; edit it for length and honesty
    - `"url"`: their https link
    - `"until"`: the last day it shows (the paid day + 6 for one week)
+   - `"from"` (optional, added 2026-11-05): the first day it shows, for a week booked in advance, e.g. `"from": "2026-11-23", "until": "2026-11-30"` for Black Friday week. The site is static, so it appears with the first build on or after `from` (builds run every three hours). Leave it out or `""` to show from the next build.
    - `"image"`: an https logo URL, or `null`
 3. Commit and push to main. The push-triggered deploy shows it, and the three-hourly builds keep it until `until` passes. After that it disappears on its own and "¿Anunciar aquí?" comes back. Set `active` back to `false` when you tidy up.
 
@@ -550,3 +551,9 @@ Branch `v4.2-return-visits`, not merged.
 - **Tests:** `tests/guides.test.ts` (6): slugs, path round-trip, sitemap alternates, per-language text checks (no chollo, no em dash, description 80-200 chars), list order, prerender and hub wiring. The fixed sitemap counts in `landing.test.ts` and `oracle.test.ts` went from 24/18 to 30/24.
 
 **Verified:** `npm --prefix barato test` 20 files / 355 tests passed; `npm --prefix barato run typecheck:lib` clean. **Not verified:** `npx nuxt typecheck`, `npx nuxt generate` and the rendered page (not run in the shift), so the prerender of the 6 routes and the HTML/JSON-LD were not observed. Check the live `/guia/precio-antes-inflado/` and `/en/guide/fake-was-price/` after deploy. **Line endings:** the 4 new files (`lib/guides.ts`, `app/utils/guides.ts`, `app/pages/guia/[slug].vue`, `tests/guides.test.ts`) were written with LF, because the shift's tools can't write CR. Every edited file kept CRLF. Convert those four to CRLF.
+
+## 2026-11-05 (later): CRLF on the guides, sponsor `from` date
+
+- The four guide files are CRLF now (`python check_links.py --crlf`, run from the Formship repo). At 15:0x UTC the live site didn't have the guides yet: `/guia/precio-antes-inflado/` and `/en/guide/fake-was-price/` returned an HTTP error, and the live sitemap was from 10:41Z, before the guides commit. The next three-hourly build should publish them. Check again after that build.
+- **Sponsor slot `from` (optional).** `activeSponsor()` now takes an optional `from` (YYYY-MM-DD, first day shown) in `app/data/sponsor.json`, so a Black Friday week booked early can be committed ahead of time (`from` 2026-11-23, `until` 2026-11-30). A `from` that is present but malformed, or later than `until`, means no slot, matching the gate's rule that anything malformed shows nothing. `sponsor.json` still ships with `active: false` and no `from`. The `Sponsor` return shape is unchanged. "Turning a sponsor on" documents the field. Known gap: `/anunciate` doesn't say a future week is taken, so during a booked-ahead week the Stripe button stays up until `from`, and a second buyer for the same week gets a refund.
+- **Tests:** `tests/sponsor.test.ts` +1 (before/on/after a booked week, empty/null `from`, malformed and after-`until` `from`).
