@@ -14,6 +14,7 @@ usePageSeo('anunciate', { es: 'Anúnciate', en: 'Advertise' })
 const cfg = useRuntimeConfig().public
 const payUrl = computed(() => (/^https:\/\//.test(String(cfg.sponsorUrl ?? '')) ? String(cfg.sponsorUrl) : ''))
 const sponsor = useSponsor()
+const booked = useBookedSponsor()
 
 const day = await useToday()
 const facts = computed(() => {
@@ -68,6 +69,7 @@ const a = computed(() => t.value.advertise)
       <div>
         <p v-if="sponsor" class="ad__busy">{{ a.busy(formatDayMonth(sponsor.until, locale)) }}</p>
         <template v-else-if="payUrl">
+          <p v-if="booked" class="ad__busy ad__booked">{{ a.booked(formatDayMonth(booked.from, locale), formatDayMonth(booked.until, locale)) }}</p>
           <p><a class="ad__btn" :href="payUrl" rel="noopener" target="_blank">{{ a.pay }}</a></p>
           <p class="ad__note">{{ a.payNote }}</p>
         </template>
@@ -97,6 +99,7 @@ const a = computed(() => t.value.advertise)
 .ad__note a { color: var(--fg-primary); text-underline-offset: 3px; }
 .ad__busy { margin: 0; color: var(--fg-primary); }
 .ad__pay p { margin: 0; }
+.ad__pay p.ad__booked { margin-bottom: 10px; }
 .ad__btn { display: inline-block; margin: 2px 0 0; padding: 10px 16px; background: var(--accent-lead); color: var(--bg-canvas); font-weight: 600; text-decoration: none; border-radius: 2px; }
 .ad__btn:hover { background: var(--fg-primary); }
 .ad__btn:focus-visible { outline: 2px solid var(--fg-primary); outline-offset: 2px; }

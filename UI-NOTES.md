@@ -479,7 +479,7 @@ Branch `v4.1-logo-growth`, not merged. Lead brief: integrate logo concept 2 "Vec
    - `"text"`: their line, one line; edit it for length and honesty
    - `"url"`: their https link
    - `"until"`: the last day it shows (the paid day + 6 for one week)
-   - `"from"` (optional, added 2026-11-05): the first day it shows, for a week booked in advance, e.g. `"from": "2026-11-23", "until": "2026-11-30"` for Black Friday week. The site is static, so it appears with the first build on or after `from` (builds run every three hours). Leave it out or `""` to show from the next build.
+   - `"from"` (optional, added 2026-11-05): the first day it shows, for a week booked in advance, e.g. `"from": "2026-11-23", "until": "2026-11-30"` for Black Friday week. The site is static, so it appears with the first build on or after `from` (builds run every three hours). Leave it out or `""` to show from the next build. Until `from`, `/anunciate` tells new buyers that week is booked (2026-11-06).
    - `"image"`: an https logo URL, or `null`
 3. Commit and push to main. The push-triggered deploy shows it, and the three-hourly builds keep it until `until` passes. After that it disappears on its own and "¿Anunciar aquí?" comes back. Set `active` back to `false` when you tidy up.
 
@@ -565,3 +565,13 @@ Branch `v4.2-return-visits`, not merged.
 - **Tests:** `tests/week-title.test.ts` (3): strips trailing prices, leaves 8 titles it must not touch unchanged, and the drop line no longer prints the stale price.
 
 **Verified:** `npm --prefix barato test` 21 files / 359 passed; `npm --prefix barato run typecheck:lib` clean. **Not verified:** `npx nuxt typecheck` / `nuxt generate` (not run in the shift). Check the live /semana after the next build.
+
+## 2026-11-06 (L1S11): /anunciate says when a week is already booked ahead
+
+- **Gap closed (from 2026-11-05).** With a Black Friday week committed early (`from` 2026-11-23, `until` 2026-11-30), the slot stays hidden until `from`, so `/anunciate` kept showing only the Stripe button and a second buyer could pay for the same week. BF-week sponsor pitches are going out now (11-06 to 11-18), so this is the case that will actually happen.
+- **`bookedSponsor(raw, today)`** in `app/utils/sponsor.ts`: `{ from, until }` when `from` is after `today` and `activeSponsor(raw, from)` would show the slot on its first day (same gate: active, label, text, https url, valid days). Otherwise null, including once the week has started (then `activeSponsor` takes over and the page says "ocupado hasta").
+- **`useBookedSponsor()`** in `composables/useSponsor.ts`, on the same `build-date` state as `useSponsor()`.
+- **Page.** In the pay section, above the Stripe button: "La semana del 23 nov al 30 nov ya está reservada. Si pagas ahora, tu línea sale en otra semana libre; si ninguna te sirve, te devolvemos los 10 USD." / "The week of … to … is already booked. If you pay now, your line runs in another free week; if none suits you, we refund the $10." The button stays: other weeks are still for sale. The live-sponsor and closed states are unchanged.
+- **Tests:** `tests/sponsor.test.ts` +1 (booked before the week, null on/after `from`, 12 malformed or unbookable inputs, the shipped file).
+
+**Verified:** `npm --prefix barato test` 21 files / 360 passed; `npm --prefix barato run typecheck:lib` clean; `python check_links.py --crlf` on the 6 edited files: 0 bare LF. **Not verified:** `npx nuxt typecheck` / `nuxt generate` and the rendered notice (it only appears once `sponsor.json` has a future `from`, and it ships `active: false`).

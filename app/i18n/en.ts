@@ -382,6 +382,7 @@ export const en: Dict = {
     pay: 'Pay $10 with Stripe',
     payNote: 'Stripe processes the payment. The form asks for your link and your line.',
     busy: (until: string) => `The space is taken until ${until}. Come back after that date.`,
+    booked: (from: string, until: string) => `The week of ${from} to ${until} is already booked. If you pay now, your line runs in another free week; if none suits you, we refund the $10.`,
     closed: 'The space is not for sale right now.',
     who: 'barato.si is a project of Formship LLC.',
   },

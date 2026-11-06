@@ -384,6 +384,7 @@ export const es = {
     pay: 'Pagar 10 USD con Stripe',
     payNote: 'El pago lo procesa Stripe. En el formulario te pedimos el enlace y la frase.',
     busy: (until: string) => `Ahora mismo el espacio está ocupado hasta el ${until}. Vuelve después de esa fecha.`,
+    booked: (from: string, until: string) => `La semana del ${from} al ${until} ya está reservada. Si pagas ahora, tu línea sale en otra semana libre; si ninguna te sirve, te devolvemos los 10 USD.`,
     closed: 'El espacio no está a la venta ahora mismo.',
     who: 'barato.si es un proyecto de Formship LLC.',
   },

@@ -26,3 +26,16 @@ export function activeSponsor(raw: unknown, today: string): Sponsor | null {
   }
   return { label, text, url: (s.url as string).trim(), until, image: https(s.image) ? (s.image as string).trim() : null }
 }
+
+/**
+ * A week booked in advance that has not started yet on `today`: its first and last day, or null.
+ * It is the same gate as activeSponsor() asked on the `from` day, so only a booking that will really
+ * show counts. /anunciate uses it to say the week is taken while the Stripe button is still up.
+ */
+export function bookedSponsor(raw: unknown, today: string): { from: string; until: string } | null {
+  if (!raw || typeof raw !== 'object' || !DAY.test(today)) return null
+  const from = (raw as Record<string, unknown>).from
+  if (typeof from !== 'string' || !DAY.test(from) || from <= today) return null
+  const s = activeSponsor(raw, from)
+  return s ? { from, until: s.until } : null
+}
