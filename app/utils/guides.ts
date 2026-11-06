@@ -25,6 +25,11 @@ const FTC_233: GuideSource = {
   url: 'https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-233',
 }
 
+const REG_E_GIFT: GuideSource = {
+  label: '12 CFR 1005.20, Requirements for gift cards and gift certificates (Regulation E)',
+  url: 'https://www.ecfr.gov/current/title-12/chapter-X/part-1005/subpart-A/section-1005.20',
+}
+
 const es: Record<GuideSlug, Guide> = {
   'cuando-es-black-friday-2026': {
     title: 'Cuándo es el Black Friday 2026',
@@ -142,6 +147,38 @@ const es: Record<GuideSlug, Guide> = {
       },
     ],
     sources: [],
+  },
+  'tarjetas-de-regalo-black-friday': {
+    title: 'Tarjetas de regalo en Black Friday: qué mirar',
+    seoTitle: 'Tarjetas de regalo en Black Friday: ofertas, caducidad y comisiones · barato.si',
+    description: 'Una tarjeta de regalo «gratis» con la compra no es un descuento en efectivo. Qué dice la norma de EE. UU. sobre caducidad y comisiones, y cuándo esas ofertas valen la pena.',
+    lede: 'En noviembre muchas tiendas regalan una tarjeta con la compra o venden tarjetas con saldo extra. Valen menos de lo que parece: el dinero solo sirve en esa tienda, y la parte regalada puede caducar pronto.',
+    sections: [
+      {
+        h: 'Una tarjeta «con la compra» no es un descuento',
+        p: [
+          '«Compra 100 USD y llévate una tarjeta de 20» no equivale a un 20 % de descuento. Hoy pagas 100. Los 20 solo sirven si vuelves a comprar en la misma tienda, y antes de la fecha de caducidad que traiga.',
+          'Para comparar, pregúntate si el producto cuesta lo mismo en otra tienda sin tarjeta. Si es así, la tarjeta es un cupón para tu próxima compra, no una rebaja. Si en otra tienda está 20 USD más barato, esa es la mejor oferta, aunque no venga con nada.',
+          'Lo mismo con las tarjetas «paga 50 y recibe 60»: el saldo extra suele ser una tarjeta promocional aparte, con sus propias fechas.',
+        ],
+      },
+      {
+        h: 'Qué dice la norma en EE. UU.',
+        p: [
+          'La norma federal (Regulación E, 12 CFR 1005.20) dice que el dinero de una tarjeta de regalo que compras no puede caducar antes de cinco años desde que se emitió o desde la última recarga. Una comisión por inactividad solo se puede cobrar si la tarjeta lleva un año sin uso, como mucho una al mes, y si la tarjeta lo dice.',
+          'Las tarjetas promocionales, las que te regalan por comprar, quedan fuera de esa regla de cinco años. Deben decir en el frente que son promocionales y cuándo caducan. Mira esa fecha antes de contar con el dinero.',
+          'Es el mínimo federal, y algunos estados dan más protección. Ninguna norma te devuelve el saldo si la tienda cierra.',
+        ],
+      },
+      {
+        h: 'Qué hace barato.si con ellas',
+        p: [
+          'barato.si deja fuera de su índice las ofertas que anuncian una tarjeta de regalo, sea la tarjeta sola o un producto «con tarjeta». El valor de una tarjeta no tiene historial con el que comparar, y sumarlo a la rebaja la haría parecer más honda. La única excepción es un producto cuyo precio ya es un posible error.',
+          'Y una regla que vale todo el año: nadie legítimo te pide pagar una deuda, un impuesto o un premio con tarjetas de regalo. Si alguien lo pide, es una estafa.',
+        ],
+      },
+    ],
+    sources: [REG_E_GIFT],
   },
 }
 
@@ -262,6 +299,38 @@ const en: Record<GuideSlug, Guide> = {
       },
     ],
     sources: [],
+  },
+  'tarjetas-de-regalo-black-friday': {
+    title: 'Gift card deals on Black Friday: what to check',
+    seoTitle: 'Black Friday gift card deals: bonus cards, expiry and fees · barato.si',
+    description: 'A "free" gift card with purchase is not a cash discount. What US rules say about gift card expiry and fees, and when those Black Friday offers are worth it.',
+    lede: 'In November many stores hand out a gift card with a purchase or sell cards with bonus value. They are worth less than they look: the money only works at that store, and the bonus part can expire soon.',
+    sections: [
+      {
+        h: 'A card "with purchase" is not a discount',
+        p: [
+          '"Spend 100 USD, get a 20 USD gift card" is not 20% off. You pay 100 today. The 20 only counts if you shop at the same store again, before whatever expiry date the card carries.',
+          'To compare, check whether the product costs the same at another store without the card. If it does, the card is a coupon for your next purchase, not a markdown. If another store has it 20 USD cheaper, that is the better deal, even with nothing attached.',
+          'The same goes for "pay 50, get 60" cards: the extra value is usually a separate promotional card with its own dates.',
+        ],
+      },
+      {
+        h: 'What the US rule says',
+        p: [
+          'The federal rule (Regulation E, 12 CFR 1005.20) says the money on a gift card you buy cannot expire sooner than five years after the card was issued or last loaded. An inactivity fee is allowed only after a year with no use, at most one a month, and only if the card says so.',
+          'Promotional cards, the ones you get free for buying something, are outside that five-year rule. They must say on the front that they are promotional and when they expire. Check that date before you count on the money.',
+          'That is the federal floor, and some states give more protection. No rule gets your balance back if the store closes.',
+        ],
+      },
+      {
+        h: 'What barato.si does with them',
+        p: [
+          'barato.si leaves offers that advertise a gift card out of its index, whether it is the card alone or a product "with a gift card". A card\'s value has no history to compare against, and adding it to the discount would make the cut look deeper. The one exception is a product whose price is already a possible error.',
+          'And a rule for the whole year: nobody legitimate asks you to pay a debt, a tax or a prize fee with gift cards. If someone does, it is a scam.',
+        ],
+      },
+    ],
+    sources: [REG_E_GIFT],
   },
 }
 

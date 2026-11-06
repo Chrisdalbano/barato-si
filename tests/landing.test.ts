@@ -65,9 +65,9 @@ describe('sitemap with landing pages', () => {
     expect(map).not.toContain('categoria/Electronics')
     expect(map).not.toContain('categoria/hogar')
     const pairs = landingPairs(deals).length
-    // 18 fixed pages + 8 guide pages (lib/guides.ts) + 6 files; only pages carry alternates.
-    expect(map.match(/<url>/g)).toHaveLength(32 + pairs * 2)
-    expect(map.match(/hreflang="x-default"/g)).toHaveLength(26 + pairs * 2)
+    // 18 fixed pages + 10 guide pages (lib/guides.ts) + 6 files; only pages carry alternates.
+    expect(map.match(/<url>/g)).toHaveLength(34 + pairs * 2)
+    expect(map.match(/hreflang="x-default"/g)).toHaveLength(28 + pairs * 2)
     expect(sitemap(at, [])).toBe(sitemap(at))
   })
 })

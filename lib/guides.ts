@@ -9,6 +9,7 @@ export const GUIDE_SLUGS = {
   'precio-antes-inflado': 'fake-was-price',
   'por-que-cancelan-errores-de-precio': 'why-stores-cancel-price-errors',
   'para-que-sirve-cyber-monday': 'what-cyber-monday-is-good-for',
+  'tarjetas-de-regalo-black-friday': 'gift-card-deals-black-friday',
 } as const
 
 export type GuideSlug = keyof typeof GUIDE_SLUGS

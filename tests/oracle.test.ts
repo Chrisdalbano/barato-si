@@ -237,7 +237,7 @@ describe('outputs', () => {
   })
   it('keeps the sitemap well formed: every url has es, en and x-default alternates', () => {
     const map = sitemap(now.toISOString())
-    expect(map.match(/<url>/g)).toHaveLength(32) // 18 pages + 8 guide pages + 6 files
-    expect(map.match(/hreflang="x-default"/g)).toHaveLength(26)
+    expect(map.match(/<url>/g)).toHaveLength(34) // 18 pages + 10 guide pages + 6 files
+    expect(map.match(/hreflang="x-default"/g)).toHaveLength(28)
   })
 })

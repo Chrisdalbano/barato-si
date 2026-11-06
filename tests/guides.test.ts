@@ -9,9 +9,9 @@ import { sitemap } from '../scripts/outputs'
 const slugs = Object.keys(GUIDE_SLUGS) as GuideSlug[]
 
 describe('deal-season guides', () => {
-  it('has four guides with distinct slugs in both languages', () => {
-    expect(slugs).toHaveLength(4)
-    expect(new Set(Object.values(GUIDE_SLUGS)).size).toBe(4)
+  it('has five guides with distinct slugs in both languages', () => {
+    expect(slugs).toHaveLength(5)
+    expect(new Set(Object.values(GUIDE_SLUGS)).size).toBe(5)
     for (const s of slugs) {
       expect(s).toMatch(/^[a-z0-9-]+$/)
       expect(GUIDE_SLUGS[s]).toMatch(/^[a-z0-9-]+$/)
