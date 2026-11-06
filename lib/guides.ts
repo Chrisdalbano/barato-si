@@ -5,6 +5,7 @@
 
 /** Spanish slug -> English slug, in the order the hub lists them. */
 export const GUIDE_SLUGS = {
+  'cuando-es-black-friday-2026': 'when-is-black-friday-2026',
   'precio-antes-inflado': 'fake-was-price',
   'por-que-cancelan-errores-de-precio': 'why-stores-cancel-price-errors',
   'para-que-sirve-cyber-monday': 'what-cyber-monday-is-good-for',

@@ -18,7 +18,7 @@ export interface Guide {
 }
 
 /** When the text was last reviewed (ISO date). */
-export const GUIDES_UPDATED = '2026-11-05'
+export const GUIDES_UPDATED = '2026-11-06'
 
 const FTC_233: GuideSource = {
   label: '16 CFR Part 233, Guides Against Deceptive Pricing (FTC)',
@@ -26,6 +26,37 @@ const FTC_233: GuideSource = {
 }
 
 const es: Record<GuideSlug, Guide> = {
+  'cuando-es-black-friday-2026': {
+    title: 'Cuándo es el Black Friday 2026',
+    seoTitle: 'Cuándo es el Black Friday 2026 (y el Cyber Monday) · barato.si',
+    description: 'Black Friday 2026 es el viernes 27 de noviembre y Cyber Monday el lunes 30. Por qué cae ahí, y qué hacer antes para saber si una oferta de esos días es real.',
+    lede: 'El Black Friday 2026 es el viernes 27 de noviembre. El Cyber Monday es el lunes 30 de noviembre. Los dos se cuentan desde Acción de Gracias, que en 2026 es el jueves 26.',
+    sections: [
+      {
+        h: 'Por qué cae ahí',
+        p: [
+          'En EE. UU., Acción de Gracias es por ley el cuarto jueves de noviembre. En 2026 noviembre empieza en domingo, así que el cuarto jueves es el 26. El Black Friday es el día siguiente y el Cyber Monday, el lunes de esa misma semana.',
+          'Muchas tiendas usan el nombre «Black Friday» desde semanas antes y estiran las ofertas hasta después del lunes. La fecha del cartel no garantiza que el precio sea el más bajo del año.',
+        ],
+      },
+      {
+        h: 'Qué hacer antes del 27',
+        p: [
+          'Anota hoy el precio de lo que piensas comprar, en la tienda donde lo comprarías. El 27 tendrás una cifra real con la que comparar, y no solo el precio tachado que ponga la tienda.',
+          'Si el precio sube en las semanas previas y el 27 vuelve a donde estaba, no es una rebaja aunque el cartel diga lo contrario.',
+          'Decide de antemano cuánto pagarías. Así una cuenta atrás en la página no decide por ti.',
+        ],
+      },
+      {
+        h: 'Qué hace barato.si esos días',
+        p: [
+          'La página de Black Friday de barato.si muestra cada día los posibles errores de precio y los recortes más hondos con una referencia detrás, de tiendas de EE. UU. Se actualiza cada tres horas.',
+          'No baja sus criterios por ser temporada. Si un día nada pasa el filtro, la página lo dice en vez de rellenarse.',
+        ],
+      },
+    ],
+    sources: [{ label: '5 U.S.C. § 6103, días feriados federales (Cornell LII)', url: 'https://www.law.cornell.edu/uscode/text/5/6103' }],
+  },
   'precio-antes-inflado': {
     title: 'Cómo saber si el precio «antes» está inflado',
     seoTitle: 'Cómo saber si el precio «antes» de una oferta está inflado · barato.si',
@@ -115,6 +146,37 @@ const es: Record<GuideSlug, Guide> = {
 }
 
 const en: Record<GuideSlug, Guide> = {
+  'cuando-es-black-friday-2026': {
+    title: 'When is Black Friday 2026',
+    seoTitle: 'When is Black Friday 2026 (and Cyber Monday) · barato.si',
+    description: 'Black Friday 2026 is Friday, November 27, and Cyber Monday is Monday, November 30. Why the dates land there, and what to do before so you can tell a real deal.',
+    lede: 'Black Friday 2026 is Friday, November 27. Cyber Monday is Monday, November 30. Both are counted from Thanksgiving, which in 2026 is Thursday, November 26.',
+    sections: [
+      {
+        h: 'Why it lands there',
+        p: [
+          'US law sets Thanksgiving on the fourth Thursday of November. November 2026 starts on a Sunday, so the fourth Thursday is the 26th. Black Friday is the day after, and Cyber Monday is the Monday of that same week.',
+          'Many stores use the "Black Friday" name for weeks before and stretch the deals past Monday. The date on the banner doesn\'t mean the price is the lowest of the year.',
+        ],
+      },
+      {
+        h: 'What to do before the 27th',
+        p: [
+          'Write down today\'s price for the thing you plan to buy, at the store you\'d buy it from. On the 27th you\'ll have a real number to compare against, not just the crossed-out price the store shows.',
+          'If the price climbs in the weeks before and comes back down on the 27th, it isn\'t a discount, whatever the banner says.',
+          'Decide in advance what you\'d pay. Then a countdown timer on the page doesn\'t decide for you.',
+        ],
+      },
+      {
+        h: 'What barato.si does on those days',
+        p: [
+          'barato.si\'s Black Friday page shows the day\'s possible price errors and the deepest cuts that have a reference behind them, from US stores. It updates every three hours.',
+          'It doesn\'t lower its bar for the season. If on some day nothing passes, the page says so instead of filling up.',
+        ],
+      },
+    ],
+    sources: [{ label: '5 U.S.C. § 6103, federal holidays (Cornell LII)', url: 'https://www.law.cornell.edu/uscode/text/5/6103' }],
+  },
   'precio-antes-inflado': {
     title: 'How to tell if a "was" price is inflated',
     seoTitle: 'How to tell if a sale\'s "was" price is inflated · barato.si',
