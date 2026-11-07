@@ -1,6 +1,6 @@
 # barato.si — barato, sí
 Ofertas y posibles errores de precio con evidencia. API JSON gratuita, sin autenticación.
-Actualización UTC: 2026-11-06T23:35:54.998Z. Programación: cada tres horas, a la hora en punto UTC.
+Actualización UTC: 2026-11-07T00:49:33.734Z. Programación: cada tres horas, a la hora en punto UTC.
 
 ## Endpoints
 https://barato.si/api/deals.json — versión 3, hasta 250 ofertas. Orden editorial: candidatos a error de precio primero, después interés y enlaces directos; videojuegos al final.
@@ -17,8 +17,8 @@ https://barato.si/semana.xml — RSS 2.0 del resumen semanal: una entrada por se
 https://barato.si/feeds/categoria/<slug>.xml y https://barato.si/feeds/tienda/<slug>.xml — RSS 2.0 por categoría y por tienda, las ofertas de hoy de esa página (hasta 50). Cuando hoy no hay ninguna, el feed sigue ahí, vacío (las categorías siempre; una tienda, mientras siga en el archivo de 30 días).
 
 ## Feeds de hoy
-https://barato.si/feeds/categoria/videojuegos.xml — Videojuegos (117)
-https://barato.si/feeds/categoria/electronica.xml — Electrónica (65)
+https://barato.si/feeds/categoria/videojuegos.xml — Videojuegos (120)
+https://barato.si/feeds/categoria/electronica.xml — Electrónica (62)
 https://barato.si/feeds/categoria/informatica.xml — Informática (33)
 https://barato.si/feeds/categoria/herramientas.xml — Herramientas (18)
 https://barato.si/feeds/categoria/cocina.xml — Cocina (5)
@@ -26,9 +26,9 @@ https://barato.si/feeds/categoria/otros.xml — Otros (5)
 https://barato.si/feeds/categoria/hogar.xml — Hogar (3)
 https://barato.si/feeds/categoria/juguetes.xml — Juguetes (3)
 https://barato.si/feeds/categoria/software.xml — Software (1)
-https://barato.si/feeds/tienda/amazon.xml — Amazon (101)
-https://barato.si/feeds/tienda/gog.xml — GOG (90)
-https://barato.si/feeds/tienda/steam.xml — Steam (23)
+https://barato.si/feeds/tienda/amazon.xml — Amazon (100)
+https://barato.si/feeds/tienda/gog.xml — GOG (95)
+https://barato.si/feeds/tienda/steam.xml — Steam (21)
 https://barato.si/feeds/tienda/walmart.xml — Walmart (8)
 https://barato.si/feeds/tienda/ebay.xml — eBay (7)
 https://barato.si/feeds/tienda/best-buy.xml — Best Buy (5)
@@ -36,10 +36,8 @@ https://barato.si/feeds/tienda/digitalkeysbox-com.xml — digitalkeysbox.com (3)
 https://barato.si/feeds/tienda/gmktec.xml — GMKtec (3)
 https://barato.si/feeds/tienda/lowe-s.xml — Lowe's (2)
 https://barato.si/feeds/tienda/woot.xml — Woot (2)
-https://barato.si/feeds/tienda/aliexpress.xml — AliExpress (1)
 https://barato.si/feeds/tienda/epic-games.xml — Epic Games (1)
 https://barato.si/feeds/tienda/kohl-s.xml — Kohl's (1)
-https://barato.si/feeds/tienda/macy-s.xml — Macy's (1)
 https://barato.si/feeds/tienda/minisforum.xml — Minisforum (1)
 https://barato.si/feeds/tienda/stacksocial-com.xml — stacksocial.com (1)
 
