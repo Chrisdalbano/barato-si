@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { CATEGORY_INTRO, categoryFromSlug, categoryIntro, CATEGORY_SLUG_EN, dealAnchor, landingPages, landingPaths, storeSlug } from '../lib/landing'
 import { categories } from '../lib/categorize'
 import { landingPairs, sitemap } from '../scripts/outputs'
-import { buildPayload, DAILY_PATHS, INDEXNOW_KEY } from '../scripts/indexnow'
+import { buildPayload, DAILY_PATHS, GUIDE_URL_PATHS, INDEXNOW_KEY, isFirstRunOfDay } from '../scripts/indexnow'
 
 const deals = [
   { category: 'electronica', store: 'Amazon' },
@@ -84,6 +84,17 @@ describe('IndexNow', () => {
     expect(new Set(p.urlList).size).toBe(p.urlList.length)
     expect(p.urlList.every(u => u.startsWith('https://barato.si/') && u.endsWith('/'))).toBe(true)
     expect(buildPayload([]).urlList).toHaveLength(DAILY_PATHS.length)
+  })
+  it('adds both languages of every guide only when asked, once a UTC day', () => {
+    expect(GUIDE_URL_PATHS).toHaveLength(10)
+    expect(GUIDE_URL_PATHS).toContain('/guia/precio-antes-inflado/')
+    expect(GUIDE_URL_PATHS).toContain('/en/guide/fake-was-price/')
+    const withGuides = buildPayload([], INDEXNOW_KEY, true).urlList
+    expect(withGuides).toHaveLength(DAILY_PATHS.length + 10)
+    expect(withGuides).toContain('https://barato.si/en/guide/why-stores-cancel-price-errors/')
+    expect(buildPayload([]).urlList.some(u => u.includes('/guia/') || u.includes('/guide/'))).toBe(false)
+    expect(isFirstRunOfDay(new Date('2026-11-09T01:30:00Z'))).toBe(true)
+    expect(isFirstRunOfDay(new Date('2026-11-09T03:00:00Z'))).toBe(false)
   })
   it('has its key file committed in public/', async () => {
     expect(INDEXNOW_KEY).toMatch(/^[a-f0-9]{32}$/)

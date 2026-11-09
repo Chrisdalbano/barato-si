@@ -330,3 +330,13 @@ Front end plus two pipeline lists (sitemap pages, IndexNow paths). No `lib/types
 - **Tests** (`tests/landing.test.ts`, 8 new): candidates first and merged by id, 39 excluded; deep-cut order, game/candidate/no-reference exclusion and the 30 % edge; caps and totals; category links; honest empty result with no padding; no mutation; locale paths, sitemap entries and IndexNow paths; per-language SEO copy, "Hoy no hay" strings, 2-4 paragraphs, no "chollo". Sitemap counts in `tests/landing.test.ts` and `tests/oracle.test.ts` updated (9 page pairs: 24 urls, 18 x-default).
 
 **Verified by the shift:** `npm test` 19 files / 346 tests passed; `npm run typecheck:lib` clean. **Not verified:** `npx nuxt typecheck` and `npx nuxt generate` (not run, so the page's template, the prerender of both routes and the generated HTML/JSON-LD were not observed); browser rendering at any width; how the groups look on the checked-in data (the current errors.json has candidates; only the unit fixtures were run through `hubSections`). **Line endings:** `app/pages/black-friday.vue` and `app/utils/hub.ts` are new and were written with LF by the shift's tools (no way to write CR); every edited file kept CRLF. Convert those two to CRLF before committing.
+
+## 2026-11-09: guides in IndexNow, once a day
+
+Pipeline code only (`scripts/indexnow.ts`, `tests/landing.test.ts`). No `lib/types.ts`, published-data or dependency change.
+
+- **Why.** The five deal-season guides (10 URLs, es + en) were in the sitemap and linked from `/black-friday/`, but IndexNow never submitted them, and Mouseflow still showed 0 organic entries to them (11-06..11-08). They are the pages people search for in November.
+- **What.** `GUIDE_URL_PATHS` (from `lib/guides.ts` `guidePaths()`, trailing slash) joins the payload only when `isFirstRunOfDay()` (UTC hour < 3, i.e. the 00:00 scheduled run or a push in that window). The guide text rarely changes, so resubmitting it every three hours would only add noise. `buildPayload`'s new third argument defaults to false, so earlier calls and counts are unchanged.
+- **Tests:** 1 new (10 guide paths, both languages present, added only on request, the hour edge at 03:00Z).
+
+**Verified by the shift:** `npm test` 21 files / 361 tests passed; `npm run typecheck:lib` clean; both edited files are CRLF (`check_links.py --crlf`). **Not verified:** a live IndexNow POST (only runs in the workflow after deploy); whether Bing indexes the guides afterwards (check Mouseflow organic entries around 11-12).
