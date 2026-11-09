@@ -30,6 +30,7 @@ export const es = {
     legal: 'Los precios y la disponibilidad vienen de terceros y pueden cambiar o estar mal. barato.si no vende nada: solo ordena lo que otros publican y enlaza a la oferta original. «Posible error de precio» es una suposición automática, no una confirmación, y las tiendas suelen cancelarlos.',
     errorsRss: 'RSS de errores',
     weekRss: 'RSS de la semana',
+    guides: 'Guías',
     privacy: 'Privacidad',
     madeBy: 'Hecho por',
     project: 'barato.si es un proyecto de',

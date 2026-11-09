@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { guideList } from '~/utils/guides'
+
 const route = useRoute()
 const { locale, t, lp } = useLang()
 const cfg = useRuntimeConfig().public
@@ -23,6 +25,9 @@ const supportUrl = computed(() => /^https:\/\//.test(String(cfg.supportUrl ?? ''
 // which explains the slot before anyone reaches Stripe.
 const sponsor = useSponsor()
 const advertise = computed(() => !sponsor.value)
+// The deal-season guides, linked from every page so each one is a single hop from anywhere
+// (2026-11-09: they had 0 search entries and were reachable only via /black-friday).
+const guides = computed(() => guideList(locale.value))
 
 useHead(() => ({
   htmlAttrs: { lang: locale.value },
@@ -80,6 +85,10 @@ useHead(() => ({
             <a href="/llms.txt">llms.txt</a>
             <NuxtLink :to="lp('/privacidad')">{{ t.footer.privacy }}</NuxtLink>
           </p>
+          <nav class="foot__links foot__guides" :aria-label="t.footer.guides">
+            <span class="foot__label">{{ t.footer.guides }}:</span>
+            <NuxtLink v-for="gd in guides" :key="gd.slug" :to="gd.path">{{ gd.title }}</NuxtLink>
+          </nav>
           <p v-if="supportUrl" class="foot__links">
             <a :href="supportUrl" rel="noopener" target="_blank">{{ t.footer.support }}</a>
           </p>
@@ -139,6 +148,7 @@ main { flex: 1; min-height: 100dvh; }
 .foot__legal { max-width: 62ch; }
 .foot__side { display: grid; gap: 10px; align-content: start; }
 .foot__links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.foot__label { color: var(--fg-muted); }
 .foot__made { display: grid; gap: 4px; color: var(--fg-muted); }
 .foot a { color: var(--fg-primary); text-underline-offset: 3px; }
 .foot a:hover { color: var(--link-fg); }

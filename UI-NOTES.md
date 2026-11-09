@@ -575,3 +575,12 @@ Branch `v4.2-return-visits`, not merged.
 - **Tests:** `tests/sponsor.test.ts` +1 (booked before the week, null on/after `from`, 12 malformed or unbookable inputs, the shipped file).
 
 **Verified:** `npm --prefix barato test` 21 files / 360 passed; `npm --prefix barato run typecheck:lib` clean; `python check_links.py --crlf` on the 6 edited files: 0 bare LF. **Not verified:** `npx nuxt typecheck` / `nuxt generate` and the rendered notice (it only appears once `sponsor.json` has a future `from`, and it ships `active: false`).
+
+## 2026-11-09: guides linked from the footer on every page
+
+- **Why.** Mouseflow showed 0 search entries on /guia/* and /en/guide/* from 11-06 to 11-08 (Formship ops/analytics/2026-11-09.md). Before this change, the sitemap had all 10 guide URLs with alternates, robots allowed everything, IndexNow sent the guides on the first run of each day, and the only path to them was root → /black-friday → guide. Now every prerendered page (about 60) links each guide directly, which gives crawlers more paths in and a shorter route from the root.
+- **Footer** (`app/app.vue`): a `<nav class="foot__links foot__guides">` labelled "Guías:" / "Guides:" with `guideList(locale)` titles, between the feeds row and the support link. The new i18n key `footer.guides` is in both dictionaries. `.foot__label` is muted. No data, so nothing can come up empty.
+- **Tests:** `tests/guides.test.ts` +1 (footer wiring plus both labels).
+- **Still open, outside the repo:** a site isn't indexed until Google discovers it. Search Console (submit sitemap.xml, request indexing of /black-friday/ and the 5 guides) needs Christian's Google account.
+
+**Verified:** `npm --prefix barato test` 21 files / 362 passed; `npm --prefix barato run typecheck:lib` clean; `python check_links.py --crlf` on the edited files: 0 bare LF. **Not verified:** `npx nuxt typecheck` / `nuxt generate` and the rendered footer (check the live footer after the next deploy).

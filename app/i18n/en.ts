@@ -28,6 +28,7 @@ export const en: Dict = {
     legal: 'Prices and availability come from third parties and may change or be wrong. barato.si sells nothing: it only ranks what others publish and links to the original offer. "Possible price error" is an automatic guess, not a confirmation, and stores often cancel them.',
     errorsRss: 'Errors RSS',
     weekRss: 'Weekly RSS',
+    guides: 'Guides',
     privacy: 'Privacy',
     madeBy: 'Made by',
     project: 'barato.si is a project of',

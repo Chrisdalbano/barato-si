@@ -77,4 +77,14 @@ describe('deal-season guides', () => {
     expect(page).toContain("alias: ['/en/guide/:slug']")
     expect(page).not.toContain('v-html')
   })
+
+  it('is linked from the footer on every page (2026-11-09)', async () => {
+    const app = await readFile(new URL('../app/app.vue', import.meta.url), 'utf8')
+    expect(app).toContain('guideList(locale.value)')
+    expect(app).toMatch(/v-for="gd in guides"[^>]*:to="gd\.path"/)
+    const { es } = await import('../app/i18n/es')
+    const { en } = await import('../app/i18n/en')
+    expect(es.footer.guides).toBe('Guías')
+    expect(en.footer.guides).toBe('Guides')
+  })
 })
