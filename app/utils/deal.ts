@@ -59,6 +59,15 @@ export const CATEGORY_LABEL_EN: Record<string, string> = {
   alimentacion: 'Food',
   software: 'Software',
   servicios: 'Services',
+  muebles: 'Furniture',
+  jardin: 'Garden',
+  motor: 'Automotive',
+  oficina: 'Office',
+  salud: 'Health',
+  mascotas: 'Pets',
+  bebes: 'Baby',
+  ocio: 'Books & music',
+  viajes: 'Travel',
   otros: 'Other',
 }
 export function categoryLabel(value: string, loc: Locale = 'es'): string {
@@ -113,6 +122,16 @@ export function strengthOf(deal: WithReference): EvidenceStrength {
 /** Depth against the reference, falling back to the declared discount. */
 export function depthOf(deal: WithDepth): number | null {
   return deal.referenceDiscountPct ?? deal.discountPct ?? null
+}
+
+/** Colour tier of a cut: 4 from 70 %, 3 from 50 %, 2 from 30 %, 1 below. */
+export function depthTier(pct: number): 1 | 2 | 3 | 4 {
+  return pct >= 70 ? 4 : pct >= 50 ? 3 : pct >= 30 ? 2 : 1
+}
+/** Classes of the percentage tag: the tier's colour, outlined when the only evidence is the seller's own list price. */
+export function pctClass(deal: WithDepth): string {
+  const strength = strengthOf(deal)
+  return `pct--t${depthTier(depthOf(deal) ?? 0)}${strength === 'debil' || strength === 'ninguna' ? ' pct--claim' : ''}`
 }
 
 /** Price-error order: strongest evidence first, then errorScore. Never mutates. */
@@ -206,9 +225,9 @@ export function evidenceLine(reference: Deal['reference'], loc: Locale = 'es'): 
 // ---- Gate: what the interest filter kept out --------------------------------
 
 const GATE_LABEL: Record<string, string> = {
-  apparel: 'ropa',
-  food: 'alimentación',
-  beauty: 'belleza',
+  apparel: 'ropa sin marca o sin rebaja honda',
+  food: 'alimentación sin marca o sin rebaja honda',
+  beauty: 'belleza sin marca o sin rebaja honda',
   'seasonal-decor': 'decoración de temporada',
   'gift-card': 'tarjetas regalo',
   'low-value': 'poco valor',
@@ -219,11 +238,12 @@ const GATE_LABEL: Record<string, string> = {
   'stale-price': 'precio demasiado antiguo',
   'replacement-part': 'repuestos',
   'variant-duplicate': 'variantes de la misma oferta',
+  'store-cap': 'más de seis de la misma tienda propia',
 }
 const GATE_LABEL_EN: Record<string, string> = {
-  apparel: 'clothing',
-  food: 'food',
-  beauty: 'beauty',
+  apparel: 'clothing with no brand or no deep cut',
+  food: 'food with no brand or no deep cut',
+  beauty: 'beauty with no brand or no deep cut',
   'seasonal-decor': 'seasonal decor',
   'gift-card': 'gift cards',
   'low-value': 'low value',
@@ -234,6 +254,7 @@ const GATE_LABEL_EN: Record<string, string> = {
   'stale-price': 'price too old',
   'replacement-part': 'replacement parts',
   'variant-duplicate': 'variants of the same offer',
+  'store-cap': "more than six from one brand's own store",
 }
 export function gateReasonLabel(slug: string, loc: Locale = 'es'): string {
   return (loc === 'en' ? GATE_LABEL_EN : GATE_LABEL)[slug] ?? slug

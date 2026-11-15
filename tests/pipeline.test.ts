@@ -70,10 +70,10 @@ it('preserves first-seen dates when an offer disappears for a day', async () => 
   } finally { await rm(root, { recursive: true }) }
 })
 
-it('caps eligible ranked output at 250', async () => {
+it('caps eligible ranked output at 400', async () => {
   const raw = '<rss><channel>' + Array.from({ length: 425 }, (_, n) => `<item><title>Lenovo laptop model ${n} $50</title><link>https://shop.test/${n}</link></item>`).join('') + '</channel></rss>'
   const file = await collect([{ name: 'test', kind: 'rss', url: 'https://test/rss' }], async () => raw, now)
-  expect(file.count).toBe(250)
+  expect(file.count).toBe(400)
   expect(file.gate!.considered).toBe(file.gate!.published + file.gate!.rejected)
   expect(file.sources[0]?.count).toBe(425)
 })
@@ -121,7 +121,7 @@ it('fails closed on unavailable robots and makes no request for disabled sources
 })
 
 it('publishes only product sources, with ITAD opt-in and no leaked key', async () => {
-  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews', 'GOG', 'Techbargains', 'Minisforum', 'GMKtec', 'AOOSTAR', 'CamelCamelCamel'])
+  expect(configuredSources({}).map(s => s.name)).toEqual(['CheapShark', 'Steam', 'Epic', 'DealNews', 'GOG', 'Techbargains', 'Minisforum', 'GMKtec', 'AOOSTAR', 'Our Place', 'HexClad', 'Stanley', 'Ooni', 'Fellow', 'Roborock', 'Dreame', 'Wyze', 'EcoFlow', 'Jackery', 'Twelve South', '8BitDo', 'Satechi', 'Keychron', 'ELEGOO', 'Allbirds', 'Cotopaxi', 'Rumpl', 'Wild One', 'CamelCamelCamel'])
   const configured = configuredSources({ ITAD_API_KEY: 'test-secret' })
   expect(configured.at(-1)?.kind).toBe('itad')
   const file = await collect(configured, async () => { throw new Error('HTTP 403') }, now)

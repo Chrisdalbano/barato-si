@@ -122,7 +122,8 @@ describe('sorting', () => {
   it('old view and sort keys keep working', () => {
     expect(filtersFromQuery({ vista: 'lista' }).view).toBe('tabla')
     expect(filtersFromQuery({ vista: 'cuadricula' }).view).toBe('cuadricula')
-    expect(filtersFromQuery({}).view).toBe('tabla')
+    expect(filtersFromQuery({ vista: 'tabla' }).view).toBe('tabla')
+    expect(filtersFromQuery({}).view).toBe('cuadricula')
     expect(filtersFromQuery({ orden: 'puntuacion' }).sort).toBe('puntuacion')
   })
 })

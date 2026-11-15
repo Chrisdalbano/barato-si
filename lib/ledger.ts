@@ -2,7 +2,7 @@ import type { Deal, PriceLedger } from './types.ts'
 import { productKey } from './identity.ts'
 import { categorize } from './categorize.ts'
 
-export const LEDGER_LIMIT = 3_000_000
+export const LEDGER_LIMIT = 5_000_000
 export const emptyLedger = (now: Date): PriceLedger => ({ version: 1, updatedAt: now.toISOString(), products: {} })
 export function pruneLedger(ledger: PriceLedger, now: Date, maxBytes = LEDGER_LIMIT): PriceLedger {
   const today = now.toISOString().slice(0, 10)

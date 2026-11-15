@@ -93,6 +93,8 @@ export const es = {
     reset: 'Quitar todo',
     noMore: 'No hay más ofertas con esta selección.',
     dayNothing: 'Ese día no hubo nada barato de verdad.',
+    legend: 'Rebaja:',
+    legendClaim: 'borde punteado: según la lista del vendedor, sin verificar.',
   },
 
   table: {

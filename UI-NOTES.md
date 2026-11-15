@@ -584,3 +584,13 @@ Branch `v4.2-return-visits`, not merged.
 - **Still open, outside the repo:** a site isn't indexed until Google discovers it. Search Console (submit sitemap.xml, request indexing of /black-friday/ and the 5 guides) needs Christian's Google account.
 
 **Verified:** `npm --prefix barato test` 21 files / 362 passed; `npm --prefix barato run typecheck:lib` clean; `python check_links.py --crlf` on the edited files: 0 bare LF. **Not verified:** `npx nuxt typecheck` / `nuxt generate` and the rendered footer (check the live footer after the next deploy).
+
+## 2026-11-15 (v5): grid by default, the percentage coloured by depth
+
+- **Grid is the default view everywhere `DealExplorer` is used** (home, category and store pages, archive). `filtersFromQuery` reads `?vista=tabla` (and the older `vista=lista`) as the table and anything else as the grid; `useDealFilters.set` drops `vista` from the URL when it is the grid. The prerendered HTML is the grid, so hydration matches. The grid button now comes first.
+- **Percentage tag** (`.pct` in `main.css`, tokens `--pct-1..4` in both variants). Tier by depth: 70 %+ red, 50-69 % orange, 30-49 % amber, below 30 % neutral (`depthTier`, `pctClass` in `app/utils/deal.ts`). Filled when the reference was observed (ledger, another store, curated, reported previous price); a dashed outline when the only evidence is the seller's list price. Square, never a pill. On the card it sits on the picture's top-left corner; the picture link is `aria-hidden`, so the same figure stays in the price line as screen-reader text. The table's depth column and the carousel's small price use the same scale as text colour (`.pct-ink--t2..4`).
+- **Legend.** One line above the results reads the colours and the dashed outline (`explorer.legend`, `explorer.legendClaim`, es and en).
+- **Labels.** English names for the nine new categories; gate labels for `store-cap` and the reworded clothing / food / beauty reasons.
+- **Not changed:** the home page still shows direct links only by default (owner decision, 2026-11-02), so DealNews rows, including all travel, appear only with "Incluir enlaces de intermediarios".
+
+**Verified:** in Chrome on a local static server at 1568 px: grid first, tags and legend drawn, facets list the new categories. **Not verified:** see NOTES.md.

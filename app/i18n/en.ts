@@ -91,6 +91,8 @@ export const en: Dict = {
     reset: 'Clear all',
     noMore: 'No more offers with this selection.',
     dayNothing: 'Nothing was truly cheap that day.',
+    legend: 'Cut:',
+    legendClaim: "dashed outline: per the seller's list price, unverified.",
   },
 
   table: {

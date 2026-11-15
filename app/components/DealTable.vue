@@ -106,7 +106,7 @@ const title = (lines?: string[]) => (lines?.length ? lines.join('\n') : undefine
             </template>
             <small v-else class="evi--ninguna">{{ evidenceText('ninguna', locale).short }}</small>
           </td>
-          <td class="c-depth num" :data-label="t.table.depth" :class="`depth--${strengthOf(d)}`">{{ depth(d) !== null ? formatDiscount(depth(d)!, locale) : '—' }}</td>
+          <td class="c-depth num" :data-label="t.table.depth" :class="[`depth--${strengthOf(d)}`, depth(d) !== null ? `pct-ink--t${depthTier(depth(d)!)}` : '']">{{ depth(d) !== null ? formatDiscount(depth(d)!, locale) : '—' }}</td>
           <td class="c-error num" :data-label="t.table.error" :class="errorClass(d.errorScore)" :title="title(d.errorSignals)">{{ d.errorScore > 0 ? d.errorScore : '—' }}</td>
           <td v-if="hasInterest" class="c-interest num" :data-label="t.table.interest" :title="title(d.interestSignals)">{{ d.interest ?? '—' }}</td>
           <td class="c-age num" :data-label="t.table.age"><time :datetime="d.publishedAt">{{ formatAgeShort(d.publishedAt, now) }}</time></td>

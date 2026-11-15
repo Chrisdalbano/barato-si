@@ -112,8 +112,9 @@ export function filtersFromQuery(query: Query = {}, hideGames = true, directDefa
     staff: one(query.elegida) === '1', corroborated: one(query.corroborada) === '1',
     sort: isSortKey(sort) ? sort : 'destacadas',
     dir: dir === 'asc' || dir === 'desc' ? dir : null,
-    // Old links say vista=lista: that view became the table.
-    view: one(query.vista) === 'cuadricula' ? 'cuadricula' : 'tabla',
+    // 2026-11-15: the grid is the default. ?vista=tabla asks for the table; old links
+    // say vista=lista, which became the table.
+    view: one(query.vista) === 'tabla' || one(query.vista) === 'lista' ? 'tabla' : 'cuadricula',
     hideGames,
   }
 }

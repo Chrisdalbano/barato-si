@@ -31,7 +31,8 @@ export function useDealFilters(deals: Ref<DealView[]>, hideGames: Ref<boolean>, 
       } else if (v !== null && v !== undefined && v !== '') next[k] = String(v)
     }
     if (next.orden === 'destacadas') { delete next.orden; delete next.dir }
-    if (next.vista === 'tabla' || next.vista === 'lista') delete next.vista
+    if (next.vista === 'lista') next.vista = 'tabla'
+    if (next.vista !== 'tabla') delete next.vista
     router.replace({ query: next })
   }
   function reset() { set(RESET_PATCH) }

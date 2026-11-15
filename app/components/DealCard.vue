@@ -21,6 +21,7 @@ const storeHref = computed(() => landing.storeHref(props.deal))
   <article :id="dealAnchor(deal.id)" class="card">
     <a class="card__pic" :href="href" :rel="rel" target="_blank" tabindex="-1" aria-hidden="true">
       <DealImage :src="deal.image" :fallback="deal.imageFallback" :alt="deal.title" :mark="storeMark(deal)" />
+      <span v-if="depth !== null" class="pct card__pct" :class="pctClass(deal)">{{ formatDiscount(depth, locale) }}</span>
     </a>
     <div class="card__body">
       <p class="card__line">
@@ -37,7 +38,7 @@ const storeHref = computed(() => landing.storeHref(props.deal))
       </h3>
       <p class="card__price">
         <strong>{{ formatPrice(deal.price, deal.currency, digits, locale) }}</strong>
-        <span v-if="depth !== null" :class="`depth--${strength}`">{{ formatDiscount(depth, locale) }}</span>
+        <span v-if="depth !== null" class="sr-only">{{ formatDiscount(depth, locale) }}</span>
       </p>
       <p class="card__ref" :class="`evi--${strength}`">
         <template v-if="deal.reference">
@@ -62,7 +63,8 @@ const storeHref = computed(() => landing.storeHref(props.deal))
 
 <style scoped>
 .card { display: grid; grid-template-rows: auto 1fr; height: 100%; }
-.card__pic { display: block; text-decoration: none; }
+.card__pic { position: relative; display: block; text-decoration: none; }
+.card__pct { position: absolute; top: 0; left: 0; z-index: 1; }
 .card__body { display: grid; grid-auto-rows: auto; align-content: start; gap: 6px; padding: 12px 14px 14px; min-width: 0; }
 .card__body > p { margin: 0; }
 .card__line { display: flex; justify-content: space-between; gap: 8px; font-size: 0.75rem; color: var(--fg-secondary); }
