@@ -1,8 +1,16 @@
 import type { Deal } from './types.ts'
 
 const tiers: Record<string, number> = Object.fromEntries([
-  ['ASUS', 'NVIDIA', 'Dell', 'HP', 'Lenovo', 'MSI', 'Gigabyte', 'Acer', 'Apple', 'Samsung', 'LG', 'Sony', 'AMD', 'Intel', 'Corsair', 'Razer', 'Logitech', 'Bose', 'Anker', 'DeWalt', 'Milwaukee', 'Framework', 'Minisforum', 'Microsoft', 'Crucial', 'Kingston', 'Western Digital', 'Seagate', 'SanDisk', 'Epson', 'Brother', 'Canon', 'Nikon', 'Panasonic', 'TP-Link', 'Netgear', 'Ubiquiti', 'Beelink', 'GMKtec'],
-  ['Bosch', 'Makita', 'Ryobi', 'Kitchenaid', 'Ninja', 'Shark', 'Dyson', 'Philips', 'EcoFlow', 'Jackery', 'Eufy', 'Blink', 'Oura', 'Ring', 'LEGO', 'Garmin', 'Fitbit', 'JBL', 'Sennheiser', 'Audio-Technica', 'SteelSeries', 'Thermaltake', 'NZXT', 'G.Skill', 'Patriot', 'AOOSTAR', 'Pioneer', 'Onkyo', 'Denon'],
+  ['ASUS', 'NVIDIA', 'Dell', 'HP', 'Lenovo', 'MSI', 'Gigabyte', 'Acer', 'Apple', 'Samsung', 'LG', 'Sony', 'AMD', 'Intel', 'Corsair', 'Razer', 'Logitech', 'Bose', 'Anker', 'DeWalt', 'Milwaukee', 'Framework', 'Minisforum', 'Microsoft', 'Crucial', 'Kingston', 'Western Digital', 'Seagate', 'SanDisk', 'Epson', 'Brother', 'Canon', 'Nikon', 'Panasonic', 'TP-Link', 'Netgear', 'Ubiquiti', 'Beelink', 'GMKtec',
+    // v5 (2026-11-15): household names outside tech.
+    'Nike', 'adidas', 'LEGO', 'Dyson', 'Garmin', 'Nintendo', 'Sonos', 'GoPro', 'DJI', 'Google', 'KitchenAid', 'Vitamix', 'Weber', 'Yeti', 'Patagonia', 'The North Face', 'Herman Miller', 'Michelin'],
+  ['Bosch', 'Makita', 'Ryobi', 'Ninja', 'Shark', 'Philips', 'EcoFlow', 'Jackery', 'Eufy', 'Blink', 'Oura', 'Ring', 'Fitbit',
+    "Levi's", 'Columbia', 'Under Armour', 'Carhartt', 'New Balance', 'Crocs', 'Skechers', 'Puma', 'Reebok', 'Timberland', 'Samsonite', 'Osprey', 'Ray-Ban', 'Oakley', 'Casio', 'Seiko',
+    'Stanley', 'Traeger', 'Blackstone', 'Instant Pot', 'Keurig', 'Nespresso', 'Cuisinart', 'Le Creuset', 'OXO', 'Breville', 'Hamilton Beach', 'iRobot', 'Roborock', 'Bissell', 'Hoover', 'Honeywell',
+    'Casper', 'Tempur-Pedic', 'Sealy', 'Serta', 'Steelcase', 'Coleman', 'Hasbro', 'Mattel', 'Fisher-Price', 'Graco', 'Chicco', 'Pampers', 'Huggies', 'Goodyear', 'Craftsman', 'Black+Decker',
+    'Greenworks', 'EGO', 'WORX', 'Husqvarna', 'Roku', 'Fender', 'Yamaha', 'Oral-B',
+    // Brands read through their own stores (scripts/sources.ts).
+    'Our Place', 'HexClad', 'Ooni', 'Fellow', 'Roborock', 'Dreame', 'Wyze', 'Twelve South', '8BitDo', 'Satechi', 'Keychron', 'ELEGOO', 'Allbirds', 'Cotopaxi', 'Rumpl', 'Wild One', 'Braun', 'Olay', 'CeraVe', 'Neutrogena', 'Gillette', 'Purina', 'Bowflex', 'Peloton', 'Schwinn', 'Callaway', 'JBL', 'Sennheiser', 'Audio-Technica', 'SteelSeries', 'Thermaltake', 'NZXT', 'G.Skill', 'Patriot', 'AOOSTAR', 'Pioneer', 'Onkyo', 'Denon'],
 ].flatMap((brands, i) => brands.map(b => [b, i + 1])))
 const escape = (s: string) => s.replace(/[.*+?^$\{\}()|[\]\\]/g, '\\$&')
 export function brandOf(title: string): string | null {

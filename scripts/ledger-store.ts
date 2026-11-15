@@ -22,7 +22,7 @@ export async function saveLedger(repo: string, ledger: PriceLedger): Promise<voi
   const path = join(repo,'data/price-ledger.json')
   await mkdir(join(repo,'data'), { recursive: true })
   const json = JSON.stringify(ledger) + '\r\n'
-  if (Buffer.byteLength(json) > 3_000_000) throw new Error('Price ledger exceeds 3 MB')
+  if (Buffer.byteLength(json) > 5_000_000) throw new Error('Price ledger exceeds 5 MB')
   await writeFile(path + '.tmp', json)
   await rename(path + '.tmp', path)
 }

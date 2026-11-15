@@ -14,7 +14,7 @@ const depth = computed(() => { const v = depthOf(props.deal); return v !== null 
   <div class="pp">
     <p class="pp__now">
       <strong>{{ formatPrice(deal.price, deal.currency, digits, locale) }}</strong>
-      <span v-if="depth !== null" :class="`depth--${strength}`">{{ formatDiscount(depth, locale) }}</span>
+      <span v-if="depth !== null" :class="[`depth--${strength}`, `pct-ink--t${depthTier(depth)}`]">{{ formatDiscount(depth, locale) }}</span>
     </p>
     <p class="pp__ref" :class="`evi--${strength}`">
       <template v-if="deal.reference">

@@ -25,6 +25,8 @@ html, html[data-variant="paper"] {
   --accent-lead: var(--p-cobalt); --accent-lead-foreground: var(--p-paper);
   --border: var(--p-paper-border); --border-strong: var(--p-paper-border-strong);
   --link-fg: var(--accent-lead);
+  /* Depth scale for the percentage tag: neutral, amber, orange, red. Each holds 4.5:1 with the canvas as text. */
+  --pct-1: #5d6156; --pct-2: #7d5a00; --pct-3: #ad4207; --pct-4: #b81d2a;
   /* Multiply melts white product backdrops into the paper plate. Night sets it back to normal:
      multiply on a dark plate would swallow the picture (the scoped :global override never applied). */
   --image-blend: multiply;
@@ -36,5 +38,6 @@ html[data-variant="night"] {
   --accent-lead: var(--p-orange); --accent-lead-foreground: var(--p-night);
   --border: var(--p-night-border); --border-strong: var(--p-night-border-strong);
   --link-fg: var(--accent-lead);
+  --pct-1: #9da493; --pct-2: #e3c15c; --pct-3: #ff9858; --pct-4: #ff6a5c;
   --image-blend: normal;
 }

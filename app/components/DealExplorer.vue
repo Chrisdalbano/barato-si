@@ -134,8 +134,8 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
             </select>
           </label>
           <div class="bar__view" role="group" :aria-label="t.explorer.view">
-            <button type="button" class="seg" :aria-pressed="state.view === 'tabla'" @click="f.set({ vista: null })">{{ t.explorer.table }}</button>
-            <button type="button" class="seg" :aria-pressed="state.view === 'cuadricula'" @click="f.set({ vista: 'cuadricula' })">{{ t.explorer.grid }}</button>
+            <button type="button" class="seg" :aria-pressed="state.view === 'cuadricula'" @click="f.set({ vista: null })">{{ t.explorer.grid }}</button>
+            <button type="button" class="seg" :aria-pressed="state.view === 'tabla'" @click="f.set({ vista: 'tabla' })">{{ t.explorer.table }}</button>
           </div>
           <button ref="trigger" type="button" class="seg bar__filters" :aria-expanded="open" @click="show">
             {{ t.explorer.filters }}<span v-if="f.items.value.length" class="bar__n"> · {{ f.items.value.length }}</span>
@@ -151,6 +151,15 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
         </p>
 
         <ActiveFilters :items="f.items.value" @remove="f.set" @clear="f.reset" />
+
+        <p v-if="visible.length" class="ex__legend">
+          <span>{{ t.explorer.legend }}</span>
+          <span class="pct pct--t4">{{ formatDiscount(70, locale) }}+</span>
+          <span class="pct pct--t3">{{ formatDiscount(50, locale) }}+</span>
+          <span class="pct pct--t2">{{ formatDiscount(30, locale) }}+</span>
+          <span class="pct pct--t3 pct--claim">{{ formatDiscount(50, locale) }}</span>
+          <span>{{ t.explorer.legendClaim }}</span>
+        </p>
 
         <DealGrid v-if="state.view === 'cuadricula' && visible.length" :deals="visible" :now="now" :ad-after="ads ? AD_AFTER : undefined" />
         <DealTable
@@ -204,6 +213,8 @@ const { open, panel, trigger, show, hide, onKeydown } = useDrawer()
 .ex__direct-n { font-family: var(--font-mono); font-weight: 400; color: var(--fg-secondary); }
 .ex__direct-note { color: var(--fg-muted); font-size: 0.75rem; }
 
+.ex__legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0; padding: 0 0 10px; font-size: 0.75rem; color: var(--fg-muted); }
+.ex__legend .pct { font-size: 0.6875rem; padding: 3px 5px; }
 .ex__more { display: flex; align-items: baseline; gap: 16px; margin: 20px 0 0; }
 .ex__empty { padding: 32px 0; border-top: 1px solid var(--border); color: var(--fg-secondary); }
 .ex__empty p { margin: 0 0 12px; font-size: 1.0625rem; color: var(--fg-primary); }

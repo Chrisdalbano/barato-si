@@ -34,7 +34,7 @@ export async function run(): Promise<void> {
     if (typeof value?.generatedAt === 'string' && Array.isArray(value.deals)) latest = { generatedAt: value.generatedAt, sources: value.sources || [], deals: value.deals }
   } catch { /* first run */ }
   const file = await collect(configuredSources(), createSourceReader(), now, previous, {
-    runTimeout: Math.max(1, 240000 - (Date.now() - started)), env: process.env, cache, latest, ledger, curated, onLedger: value => { ledger = value }, onCollected: value => { collected = value }, onCache: value => { cache = value },
+    sourceTimeout: 90000, runTimeout: Math.max(1, 240000 - (Date.now() - started)), env: process.env, cache, latest, ledger, curated, onLedger: value => { ledger = value }, onCollected: value => { collected = value }, onCache: value => { cache = value },
   })
   // Derived files: highlights over the published list, and the oracle, which resolves its own past
   // predictions against the ledger (now including today) before making new ones.

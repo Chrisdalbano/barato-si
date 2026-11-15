@@ -70,7 +70,7 @@ export function createSourceReader(fetcher: typeof fetch = fetch, timeout = 2000
     try {
       await bounded(predecessor, signal)
       signal.throwIfAborted()
-      let delay = source.name === 'DealNews' ? 2000 : 0
+      let delay = source.name === 'DealNews' ? 2000 : source.name === 'CamelCamelCamel' ? 7000 : 0
       if (!ownerApproved(source)) {
         if (!robots.has(origin)) {
           const r = await request(origin + '/robots.txt', signal)

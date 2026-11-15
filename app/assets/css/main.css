@@ -41,6 +41,23 @@ a { color: var(--link-fg); }
 .depth--media { color: var(--fg-primary); font-weight: 600; }
 .depth--debil, .depth--ninguna { color: var(--fg-muted); font-weight: 400; }
 
+/* The percentage as a tag, coloured by how deep the cut is. Filled when the reference was
+   observed; a dashed outline when it is only the seller's list price. Square, never a pill. */
+.pct {
+  display: inline-block; padding: 4px 6px; border: 1px solid var(--pct-c); background: var(--pct-c); color: var(--bg-canvas);
+  font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 700; line-height: 1; letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums; word-spacing: -0.35em; white-space: nowrap;
+}
+.pct--t1 { --pct-c: var(--pct-1); }
+.pct--t2 { --pct-c: var(--pct-2); }
+.pct--t3 { --pct-c: var(--pct-3); }
+.pct--t4 { --pct-c: var(--pct-4); }
+.pct--claim { background: var(--bg-canvas); color: var(--pct-c); border-style: dashed; font-weight: 600; }
+/* The same scale as plain text (table cells, small cards). */
+.pct-ink--t2 { color: var(--pct-2); }
+.pct-ink--t3 { color: var(--pct-3); }
+.pct-ink--t4 { color: var(--pct-4); }
+
 /* Text inputs and selects: square, ruled. */
 .field { height: 38px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 0; background: var(--bg-canvas); color: var(--fg-primary); font: inherit; font-size: 0.9375rem; min-width: 0; }
 .field:focus-visible { outline: 2px solid var(--accent-lead); outline-offset: 1px; }

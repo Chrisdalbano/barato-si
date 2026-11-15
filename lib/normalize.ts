@@ -11,7 +11,13 @@ import { canonicalUrl, dealId } from './dedupe.ts'
 import { decodeEntities, feedItems, plainText, tag } from './feeds.ts'
 
 export type SourceKind = 'cheapshark' | 'rss' | 'reddit' | 'woot' | 'epic' | 'steam' | 'itad' | 'steam-search' | 'gog' | 'bestbuy' | 'camelcamelcamel' | 'shopify' | 'keepa'
-export interface Source { name: string; url: string; kind: SourceKind; disabled?: string; apiKey?: string; direct?: boolean; pages?: { url: string; kind?: SourceKind }[] }
+export interface Source { name: string; url: string; kind: SourceKind; disabled?: string; apiKey?: string; direct?: boolean;
+  /** v5: what a brand's own store mostly sells, used only when the title and the store's product type say nothing. */
+  category?: string;
+  /** v5: the store sells one kind of thing, so `category` always applies (a "Light Grey" shoe is not lighting). */
+  onlyCategory?: boolean;
+  /** v5: read only the rows the store itself marks down. Full catalogs of general stores would crowd the price ledger. */
+  saleOnly?: boolean; pages?: { url: string; kind?: SourceKind }[] }
 type Row = Record<string, any>
 const number = (v: unknown): number | null => (typeof v === 'number' || typeof v === 'string' && v.trim() !== '') && Number.isFinite(Number(v)) && Number(v) >= 0 ? Number(v) : null
 const date = (v: unknown, fallback: string): string => typeof v === 'string' && Number.isFinite(Date.parse(v)) ? new Date(v).toISOString() : fallback
@@ -110,10 +116,14 @@ export function normalizeSource(source: Source, raw: string, now: Date, previous
       const variants = p.variants.filter((v: Row) => v.available === true && number(v.price) !== null && (!hasRegions || region(v))).sort((a: Row,b: Row) => Number(a.price)-Number(b.price))
       const v = variants[0]
       if (!v) continue
+      if (source.saleOnly && !(Number(v.compare_at_price) > Number(v.price))) continue
       const url = origin + '/products/' + p.handle
+      const own = categorize(p.title, p.product_type || null, source.name)
       add({ title: p.title + (v.title && v.title !== 'Default Title' ? ' — ' + String(v.title).replace(/\s*\/\s*(?:US|USA|United States)\s*$/i, '') : ''), url, storeUrl: url, sourceUrl: url,
         store: source.name, storeDomain: new URL(origin).hostname, price: number(v.price), listPrice: number(v.compare_at_price), currency: 'USD',
-        image: p.images?.find((i: Row) => i.variant_ids?.includes(v.id))?.src || p.images?.[0]?.src, category: p.product_type || null, publishedAt: p.published_at })
+        image: p.images?.find((i: Row) => i.variant_ids?.includes(v.id))?.src || p.images?.[0]?.src, category: source.category && (source.onlyCategory || own === 'otros') ? source.category : p.product_type || null,
+        // A sale-only store row is a live price, not a post: its age counts from when we first saw it, not from the product launch.
+        publishedAt: source.saleOnly ? undefined : p.published_at })
     }
     return output
   }

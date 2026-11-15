@@ -19,6 +19,15 @@ export const CATEGORY_SLUG_EN: Record<DealCategory, string> = {
   alimentacion: 'food',
   software: 'software',
   servicios: 'services',
+  muebles: 'furniture',
+  jardin: 'garden',
+  motor: 'automotive',
+  oficina: 'office',
+  salud: 'health',
+  mascotas: 'pets',
+  bebes: 'baby',
+  ocio: 'books-music',
+  viajes: 'travel',
   otros: 'other',
 }
 const CATEGORY_FROM_EN: Record<string, DealCategory> = Object.fromEntries(
@@ -104,6 +113,15 @@ export const CATEGORY_NAME_ES: Record<DealCategory, string> = {
   alimentacion: 'Alimentación',
   software: 'Software',
   servicios: 'Servicios',
+  muebles: 'Muebles',
+  jardin: 'Jardín',
+  motor: 'Motor',
+  oficina: 'Oficina',
+  salud: 'Salud',
+  mascotas: 'Mascotas',
+  bebes: 'Bebés',
+  ocio: 'Libros y música',
+  viajes: 'Viajes',
   otros: 'Otros',
 }
 
@@ -164,6 +182,42 @@ export const CATEGORY_INTRO: Record<DealCategory, { es: string; en: string }> = 
   servicios: {
     es: 'Tarjetas regalo, suscripciones, membresías y cursos en línea, comparados con un precio de referencia cuando lo hay.',
     en: 'Gift cards, subscriptions, memberships and online courses, compared with a reference price when there is one.',
+  },
+  muebles: {
+    es: 'Sofás, colchones, mesas, estanterías y sillones, comparados con un precio de referencia cuando lo hay.',
+    en: 'Sofas, mattresses, tables, shelving and armchairs, compared with a reference price when there is one.',
+  },
+  jardin: {
+    es: 'Patio, césped, riego, iluminación exterior e invernaderos, comparados con un precio de referencia cuando lo hay.',
+    en: 'Patio, lawn, watering, outdoor lighting and greenhouses, compared with a reference price when there is one.',
+  },
+  motor: {
+    es: 'Neumáticos, cámaras de salpicadero, arrancadores, aceite y accesorios para el coche, comparados con un precio de referencia cuando lo hay.',
+    en: 'Tires, dash cams, jump starters, oil and car accessories, compared with a reference price when there is one.',
+  },
+  oficina: {
+    es: 'Sillas y escritorios de oficina, papelería y material escolar, comparados con un precio de referencia cuando lo hay.',
+    en: 'Office chairs and desks, stationery and school supplies, compared with a reference price when there is one.',
+  },
+  salud: {
+    es: 'Vitaminas, suplementos, masajeadores, ópticas y aparatos de salud, comparados con un precio de referencia cuando lo hay.',
+    en: 'Vitamins, supplements, massagers, eyewear and health devices, compared with a reference price when there is one.',
+  },
+  mascotas: {
+    es: 'Comida, camas, arena y accesorios para perros y gatos, comparados con un precio de referencia cuando lo hay.',
+    en: 'Food, beds, litter and gear for dogs and cats, compared with a reference price when there is one.',
+  },
+  bebes: {
+    es: 'Carritos, sillas de coche, cunas, pañales y artículos para bebé, comparados con un precio de referencia cuando lo hay.',
+    en: 'Strollers, car seats, cribs, diapers and baby gear, compared with a reference price when there is one.',
+  },
+  ocio: {
+    es: 'Libros, vinilos, películas, instrumentos musicales y coleccionables, comparados con un precio de referencia cuando lo hay.',
+    en: 'Books, vinyl, movies, musical instruments and collectibles, compared with a reference price when there is one.',
+  },
+  viajes: {
+    es: 'Cruceros, hoteles, paquetes de vacaciones y alquiler de coches, al precio que anuncia la fuente y por confirmar antes de reservar.',
+    en: 'Cruises, hotels, vacation packages and car rentals, at the price the source reports and to be confirmed before booking.',
   },
   otros: {
     es: 'Lo que no encaja en ninguna otra categoría, comparado con un precio de referencia cuando lo hay.',

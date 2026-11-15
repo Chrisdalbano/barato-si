@@ -132,7 +132,9 @@ export async function collect(sources: Source[], read: (source: Source, context?
     const all = await verifyCandidates(dedupe(classified.deals.map(d => ({ ...d, ...scoreDeal(d, now) }))), read, now, runSignal)
     options.onCollected?.(fresh)
     const { kept, gate } = applyGate(all, now)
-    const ranked = balanceRanking(kept, now).slice(0, 250)
+    const ordered = balanceRanking(kept, now)
+    const games = ordered.filter(isGame).slice(0, GAMES_CAP)
+    const ranked = [...ordered.filter(d => !isGame(d)).slice(0, PUBLICATION_CAP - games.length), ...games]
     const capped = kept.length - ranked.length
     gate.rejected += capped
     if (capped) gate.byReason['publication-cap'] = capped
@@ -143,6 +145,9 @@ export async function collect(sources: Source[], read: (source: Source, context?
   } finally { clearTimeout(runTimer) }
 }
 
+// v5 (2026-11-15): the list holds 400 again; games (hidden on the home page by default) keep at most 60 places.
+export const PUBLICATION_CAP = 400
+export const GAMES_CAP = 60
 // Candidates first; direct merchant links before intermediaries; games always last.
 export const ERROR_CANDIDATE = 40
 export function balanceRanking(ranked: Deal[], now = new Date()): Deal[] {

@@ -16,6 +16,8 @@ export type DealFlag =
 export type DealCategory =
   | 'videojuegos' | 'informatica' | 'electronica' | 'hogar' | 'cocina' | 'herramientas'
   | 'ropa' | 'deporte' | 'juguetes' | 'belleza' | 'alimentacion' | 'software' | 'servicios' | 'otros'
+  // v5 (2026-11-15): the general index. Carved out of hogar / alimentacion / herramientas / otros.
+  | 'muebles' | 'jardin' | 'motor' | 'oficina' | 'salud' | 'mascotas' | 'bebes' | 'ocio' | 'viajes'
 
 export interface Deal {
   /** Stable across days for the same offer (hash of canonical URL). */
@@ -188,6 +190,8 @@ export interface DealsFile {
    * Editorial order (scripts/pipeline.ts balanceRanking): price-error candidates
    * (errorScore >= 40) first, strongest first; then score order with one game for
    * every seven non-game offers. Up to 400 deals. The UI does its own sorting/filtering.
+   * v5 (2026-11-15): candidates, then the rest by interest and depth with stores and
+   * categories interleaved, then at most 60 games. Up to 400 deals again (v3 capped at 250).
    */
   deals: Deal[]
   /**
