@@ -1,6 +1,6 @@
 # barato.si — barato, sí
 Ofertas y posibles errores de precio con evidencia. API JSON gratuita, sin autenticación.
-Actualización UTC: 2026-11-16T23:35:24.380Z. Programación: cada tres horas, a la hora en punto UTC.
+Actualización UTC: 2026-11-16T23:37:29.184Z. Programación: cada tres horas, a la hora en punto UTC.
 
 ## Endpoints
 https://barato.si/api/deals.json — versión 3, hasta 400 ofertas. Orden editorial: candidatos a error de precio primero, después profundidad de la rebaja, interés y enlaces directos, alternando tiendas y categorías; videojuegos al final (60 como máximo).
@@ -23,7 +23,7 @@ https://barato.si/feeds/categoria/informatica.xml — Informática (47)
 https://barato.si/feeds/categoria/cocina.xml — Cocina (27)
 https://barato.si/feeds/categoria/hogar.xml — Hogar (18)
 https://barato.si/feeds/categoria/deporte.xml — Deporte (16)
-https://barato.si/feeds/categoria/herramientas.xml — Herramientas (16)
+https://barato.si/feeds/categoria/herramientas.xml — Herramientas (15)
 https://barato.si/feeds/categoria/ropa.xml — Ropa (12)
 https://barato.si/feeds/categoria/otros.xml — Otros (11)
 https://barato.si/feeds/categoria/juguetes.xml — Juguetes (6)
@@ -34,7 +34,7 @@ https://barato.si/feeds/categoria/bebes.xml — Bebés (1)
 https://barato.si/feeds/tienda/amazon.xml — Amazon (120)
 https://barato.si/feeds/tienda/gog.xml — GOG (36)
 https://barato.si/feeds/tienda/steam.xml — Steam (24)
-https://barato.si/feeds/tienda/walmart.xml — Walmart (19)
+https://barato.si/feeds/tienda/walmart.xml — Walmart (18)
 https://barato.si/feeds/tienda/allbirds.xml — Allbirds (6)
 https://barato.si/feeds/tienda/cotopaxi.xml — Cotopaxi (6)
 https://barato.si/feeds/tienda/dreame.xml — Dreame (6)
