@@ -357,3 +357,17 @@ Owner's ask: more departments so the index is general, more items and better dea
 **First real runs (2026-11-15, `npm run deals`, owner's PC):** all 29 sources answered. 2,991 considered, 258 published: 198 non-game offers (127 the day before) in 14 categories, 178 of them direct links; 60 games. By depth, of the direct rows: 12 at 70 %+, 42 at 50-69 %, 35 at 30-49 %, 15 below, 74 with no known cut. Rejected: stale-price 510, catalog-price 938, low-value 211, store-cap 172, apparel 59, food 38. Highlights and the week digest match the pre-change run (7 recorded lows, 8 week lows).
 
 **Verified:** `npm test` 22 files / 371 passed (9 new in `tests/v5.test.ts`); `npm run typecheck:lib` clean; `npx nuxt typecheck` exit 0; `npx nuxt generate` 316 routes. **Not verified:** a CI run (GitHub's runner may be blocked or rate-limited by stores that answered this PC); CamelCamelCamel's terms remain unread, as before.
+
+## 2026-11-24: shoppers only
+
+Owner: the page carried industrial parts, replacements and office-supply items; he wants finds worth hunting. Cause: CamelCamelCamel's lists are every Amazon price drop, unedited, and an observed 60-85 % cut scored as a price-error candidate, which leads the page and skips the gate (an SFP+ transceiver, a ULV fogger and a 40-pack of blood-pressure cuffs were rows 1, 2 and 7 on 2026-11-23).
+
+- `not-consumer` (`lib/interest.ts` `TRADE`, `tradeItem`): trade, clinical, datacenter, installer and foodservice words, any source, checked before the error pass. Replayed over the 3,715 rows collected 2026-11-23: every hit was a CamelCamelCamel row.
+- `unvetted-drop` (`unvetted`): a CamelCamelCamel row needs a known brand or one of `videojuegos`, `juguetes`, `deporte`, `ocio`, `bebes`. Edited sources (Techbargains, DealNews, brand stores) are not asked for a name. Eight brands added to `lib/identity.ts` for this.
+- `replacement-part` also takes control boards, level/temperature sensors, vent hoods, bare 8-10 digit part numbers, "(Recommended Accessory)" and spool holders. `roundup` takes "Sale:" and "Deals:" headlines anywhere in the title.
+- Feeds: `appliances` and `health-personal-care` out, `video-games` and `musical-instruments` in (both answered with their own lists; `videogames`, `computers`, `pc` return the general list). Still six requests.
+- CamelCamelCamel rows now go stale at 24 h even when filed as games.
+
+Measured on a full run (no classifier key): 22 rows rejected by the two new reasons, 391 published, non-game rows 331. The list is supply-limited outside games, not cap-limited: `publication-cap` is almost all games. Not done: a model judging appeal. CamelCamelCamel rows are still kept out of the classifier (see the robots note above); that reason was about free models logging prompts and the classifier has been on the Anthropic API since 2026-11-04, so it is the owner's call to reopen.
+
+**Verified:** `npx vitest run` 23 files / 379 passed (8 new in `tests/consumer.test.ts`); `npm run typecheck:lib` clean; one full `npm run deals` in a worktree, nothing pushed. **Not verified:** a CI run; `nuxt generate`.

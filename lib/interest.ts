@@ -1,7 +1,7 @@
 import type { Deal, GateReport } from './types.ts'
 import { brandOf, brandTier, productKey } from './identity.ts'
 import { roundup } from './errors.ts'
-export type RejectReason = 'store-cap' | 'apparel' | 'food' | 'beauty' | 'seasonal-decor' | 'gift-card' | 'low-value' | 'noname-inflated' | 'middleman-duplicate' | 'catalog-price' | 'replacement-part' | 'variant-duplicate' | 'stale-price'
+export type RejectReason = 'store-cap' | 'apparel' | 'food' | 'beauty' | 'seasonal-decor' | 'gift-card' | 'low-value' | 'noname-inflated' | 'middleman-duplicate' | 'catalog-price' | 'replacement-part' | 'variant-duplicate' | 'stale-price' | 'not-consumer' | 'unvetted-drop'
 export const isGame = (d: Deal) => d.category === 'videojuegos'
 // A store's own catalog is a price list, not a deal: nobody posted it. It feeds the
 // ledger and the private watch every run, and is published only with a real discount.
@@ -18,6 +18,15 @@ export const depthFor = (d: Deal): number => Math.max(d.referenceDiscountPct || 
 export const observedDepth = (d: Deal): number => d.reference && d.reference.kind !== 'list' ? d.referenceDiscountPct || 0 : 0
 /** Brand tier of a row. A brand's own store rarely repeats its name in the title, so there the store is the brand. */
 export const tierOf = (d: Deal): number => brandTier(brandOf(d.title)) || (isCatalog(d) ? brandTier(brandOf(d.store)) : 0)
+// 2026-11-24: the page is for shoppers. Trade, clinical, datacenter, installer and foodservice goods
+// can show a huge observed cut (an SFP+ transceiver at 14 % of its price led the page) and still be
+// nothing a person hunts for. Checked before the price-error pass: a mistake on a pallet jack is not a find.
+const TRADE = /\b(?:industrial|janitorial|food ?service|restaurant (?:supply|equipment)|commercial[- ](?:grade|kitchen|ice|refrigerat\w+|freezer|oven|mixer|dishwasher|vacuum|mower)|ice storage bin|plumbed|(?:large|small) business|NSF[- ]certified|Q?SFP\+?|transceivers?|\d+GBASE\S*|fiber (?:optic|patch|media)\w*|rack[- ]?mount\w*|\d{1,2}U (?:chassis|rack|server|standard|enclosure|cabinet)|server (?:chassis|rack|rails?|cabinet)|patch panel|KVM switch|PDU|sphygmomanomet\w*|surgical|medical[- ](?:grade|suppl\w+)|exam(?:ination)? gloves|catheters?|ostomy|specimen|\d+-\d+ ?mmHg|equine|veterinary|livestock|foggers?|transfer pump|chemical (?:pump|sprayer|resistant)|pallets?|forklift|conveyor|thermal transfer|barcode (?:scanner|printer|label)\w*|receipt printer|cash drawer|POS (?:system|terminal)|cubicles?|conference (?:table|room)|reception desk|lateral fil(?:e|ing)|shower door|stereo install\w*|wiring harness|trolling motor|pack of (?:[4-9]\d|\d{3,})|(?:[2-9]\d{2}|\d{4,}) count total|case of \d{2,})(?=$|[^a-z0-9+])/i
+export const tradeItem = (title: string): boolean => TRADE.test(title)
+// CamelCamelCamel's lists are every Amazon price drop, unedited, with titles cut short. A row from
+// there is published only with a name people know or from an aisle people browse for fun.
+const HUNTED = ['videojuegos', 'juguetes', 'deporte', 'ocio', 'bebes']
+export const unvetted = (d: Deal): boolean => d.source === 'CamelCamelCamel' && !tierOf(d) && !HUNTED.includes(d.category || '')
 /** A store's own catalog may fill this many places, deepest cuts first. */
 export const CATALOG_PER_STORE = 6
 const LIST_TRUST: Record<number, number> = { 0: .2, 1: .5, 2: .4 }
@@ -90,21 +99,23 @@ export function interestOf(d: Deal): Pick<Deal, 'interest' | 'interestSignals'> 
 // most had, because the posted price was a short promotion. A store's own catalog is live.
 export const soldByAmazon = (d: Deal) => /[?&]smid=ATVPDKIKX0DER\b/.test(d.storeUrl || d.url)
 export function maxAgeHours(d: Deal): number {
-  if (isGame(d) || isCatalog(d)) return Infinity
   if (d.source === 'CamelCamelCamel') return 24
+  if (isGame(d) || isCatalog(d)) return Infinity
   if (/amazon\./i.test(d.storeDomain || d.store)) return soldByAmazon(d) ? 96 : 24
   return d.source === 'DealNews' ? 72 : 48
 }
 export function rejection(d: Deal, now?: Date): RejectReason | undefined {
   if (now && (now.getTime() - Date.parse(d.publishedAt)) / 3600000 > maxAgeHours(d)) return 'stale-price'
   if (roundup(d.title) || (d.ai?.verdict === 'noise' && d.ai.confidence >= .7)) return 'low-value'
+  if (!isGame(d) && tradeItem(d.title)) return 'not-consumer'
+  if (unvetted(d)) return 'unvetted-drop'
   if (!isGame(d) && d.errorScore >= 40) return undefined
   if (isGame(d)) return undefined
   const soft = SOFT[d.category || '']
   if (soft && !(depthFor(d) >= SOFT_MIN_DEPTH && (tierOf(d) || d.staffPick || (d.seenIn?.length || 0) >= 2))) return soft
   if (/\b(?:christmas|halloween|holiday decor|inflatable.*(?:santa|tree)|ornaments?|pajamas?)\b/i.test(d.title)) return 'seasonal-decor'
   if (/\b(?:gift cards?|gift certificates?)\b/i.test(d.title)) return 'gift-card'
-  if (/\b(?:gaskets?|pressure switch|ignition switch|inlet valve|door seal|replacement (?:part|filter|belt|hose|brush|pads?|bags?)|brush roller|side brush(?:es)?|dust bags?|mop pads?|filter (?:set|pack|kit)|accessor(?:y|ies) kit|oem part|[A-Z]{2}\d{2}-\d{5}[A-Z]?)\b/i.test(d.title)) return 'replacement-part'
+  if (/\b(?:gaskets?|pressure switch|ignition switch|inlet valve|door seal|replacement (?:part|filter|belt|hose|brush|pads?|bags?)|control board|(?:water-?level|temperature|oxygen|O2) sensor|vent hood|recommended accessory|spool holders?|(?<![\w-])\d{8,10}(?![\w-])|brush roller|side brush(?:es)?|dust bags?|mop pads?|filter (?:set|pack|kit)|accessor(?:y|ies) kit|oem part|[A-Z]{2}\d{2}-\d{5}[A-Z]?)\b/i.test(d.title)) return 'replacement-part'
   if (isCatalog(d) && !catalogDiscount(d)) return 'catalog-price'
   if (!tierOf(d) && (d.reference?.kind === 'list' || !d.reference) && (d.discountPct || 0) >= 70) return 'noname-inflated'
   if ((d.price < 15 && ['USD','EUR','GBP'].includes(d.currency)) || (d.interest || 0) < 45) return 'low-value'

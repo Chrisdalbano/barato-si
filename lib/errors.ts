@@ -9,7 +9,7 @@ export function explicitError(d: Pick<Deal, 'title' | 'sourceText'>): boolean {
     /\b(?:price (?:error|mistake)|pricing (?:error|mistake)|glitch|mispriced|error de precio)\b/i.test(sentence)
     && !/\b(?:no|not|isn't|sin|wasn't|never)\b.{0,40}\b(?:error|mistake|glitch|mispriced)\b|\?|\b(?:fixed|expired|ended|corregido|agotado)\b/i.test(sentence)))
 }
-export const roundup = (title: string) => /\b(?:up to|from|starting at)\s*(?:[$€£]|\d)|\b(?:sitewide|storewide|buy one get|deals on|latest discounts)\b|^\s*sale:/i.test(title)
+export const roundup = (title: string) => /\b(?:up to|from|starting at)\s*(?:[$€£]|\d)|\b(?:sitewide|storewide|buy one get|deals on|latest discounts)\b|\b(?:sale|deals):\s/i.test(title)
 
 export function scoreError(d: UnscoredDeal, pct: number, history = d.history): Pick<Deal, 'errorScore' | 'errorSignals'> {
   let total = 0
