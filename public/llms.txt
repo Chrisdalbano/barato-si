@@ -1,6 +1,6 @@
 # barato.si — barato, sí
 Ofertas y posibles errores de precio con evidencia. API JSON gratuita, sin autenticación.
-Actualización UTC: 2026-11-28T07:29:51.557Z. Programación: cada tres horas, a la hora en punto UTC.
+Actualización UTC: 2026-11-28T17:28:30.035Z. Programación: cada tres horas, a la hora en punto UTC.
 
 ## Endpoints
 https://barato.si/api/deals.json — versión 3, hasta 400 ofertas. Orden editorial: candidatos a error de precio primero, después profundidad de la rebaja, interés y enlaces directos, alternando tiendas y categorías; videojuegos al final (60 como máximo).
@@ -18,23 +18,24 @@ https://barato.si/feeds/categoria/<slug>.xml y https://barato.si/feeds/tienda/<s
 
 ## Feeds de hoy
 https://barato.si/feeds/categoria/videojuegos.xml — Videojuegos (60)
-https://barato.si/feeds/categoria/electronica.xml — Electrónica (52)
 https://barato.si/feeds/categoria/informatica.xml — Informática (42)
-https://barato.si/feeds/categoria/cocina.xml — Cocina (24)
+https://barato.si/feeds/categoria/electronica.xml — Electrónica (40)
+https://barato.si/feeds/categoria/cocina.xml — Cocina (27)
 https://barato.si/feeds/categoria/juguetes.xml — Juguetes (17)
-https://barato.si/feeds/categoria/hogar.xml — Hogar (13)
-https://barato.si/feeds/categoria/ropa.xml — Ropa (13)
-https://barato.si/feeds/categoria/deporte.xml — Deporte (10)
+https://barato.si/feeds/categoria/ropa.xml — Ropa (14)
+https://barato.si/feeds/categoria/hogar.xml — Hogar (12)
+https://barato.si/feeds/categoria/deporte.xml — Deporte (8)
+https://barato.si/feeds/categoria/otros.xml — Otros (4)
 https://barato.si/feeds/categoria/jardin.xml — Jardín (3)
 https://barato.si/feeds/categoria/mascotas.xml — Mascotas (2)
 https://barato.si/feeds/categoria/herramientas.xml — Herramientas (1)
-https://barato.si/feeds/categoria/motor.xml — Motor (1)
-https://barato.si/feeds/categoria/otros.xml — Otros (1)
-https://barato.si/feeds/tienda/amazon.xml — Amazon (47)
+https://barato.si/feeds/categoria/ocio.xml — Libros y música (1)
+https://barato.si/feeds/categoria/software.xml — Software (1)
 https://barato.si/feeds/tienda/steam.xml — Steam (45)
+https://barato.si/feeds/tienda/amazon.xml — Amazon (34)
 https://barato.si/feeds/tienda/ebay.xml — eBay (15)
 https://barato.si/feeds/tienda/gog.xml — GOG (15)
-https://barato.si/feeds/tienda/walmart.xml — Walmart (8)
+https://barato.si/feeds/tienda/walmart.xml — Walmart (15)
 https://barato.si/feeds/tienda/allbirds.xml — Allbirds (6)
 https://barato.si/feeds/tienda/cotopaxi.xml — Cotopaxi (6)
 https://barato.si/feeds/tienda/dreame.xml — Dreame (6)
@@ -48,25 +49,24 @@ https://barato.si/feeds/tienda/satechi.xml — Satechi (6)
 https://barato.si/feeds/tienda/stanley.xml — Stanley (6)
 https://barato.si/feeds/tienda/twelve-south.xml — Twelve South (6)
 https://barato.si/feeds/tienda/wyze.xml — Wyze (6)
+https://barato.si/feeds/tienda/best-buy.xml — Best Buy (5)
 https://barato.si/feeds/tienda/aoostar.xml — AOOSTAR (3)
 https://barato.si/feeds/tienda/gmktec.xml — GMKtec (3)
-https://barato.si/feeds/tienda/woot-an-amazon-company.xml — Woot! An Amazon Company (3)
-https://barato.si/feeds/tienda/lenovo.xml — Lenovo (2)
 https://barato.si/feeds/tienda/nike.xml — Nike (2)
 https://barato.si/feeds/tienda/ooni.xml — Ooni (2)
-https://barato.si/feeds/tienda/under-armour.xml — Under Armour (2)
 https://barato.si/feeds/tienda/wild-one.xml — Wild One (2)
-https://barato.si/feeds/tienda/xgimi.xml — XGIMI (2)
+https://barato.si/feeds/tienda/woot-an-amazon-company.xml — Woot! An Amazon Company (2)
 https://barato.si/feeds/tienda/8bitdo.xml — 8BitDo (1)
 https://barato.si/feeds/tienda/aliexpress.xml — AliExpress (1)
 https://barato.si/feeds/tienda/b-and-h-photo-video.xml — B&H Photo Video (1)
-https://barato.si/feeds/tienda/best-buy.xml — Best Buy (1)
-https://barato.si/feeds/tienda/dick-s-sporting-goods.xml — Dick's Sporting Goods (1)
+https://barato.si/feeds/tienda/costco.xml — Costco (1)
 https://barato.si/feeds/tienda/keychron.xml — Keychron (1)
+https://barato.si/feeds/tienda/lenovo.xml — Lenovo (1)
 https://barato.si/feeds/tienda/lowe-s.xml — Lowe's (1)
 https://barato.si/feeds/tienda/minisforum.xml — Minisforum (1)
-https://barato.si/feeds/tienda/sam-s-club.xml — Sam's Club (1)
+https://barato.si/feeds/tienda/samsung.xml — Samsung (1)
 https://barato.si/feeds/tienda/sandisk.xml — SanDisk (1)
+https://barato.si/feeds/tienda/xgimi.xml — XGIMI (1)
 
 ## Esquema v3
 DealsFile: { version: 3, date, generatedAt, count, sources, deals, gate, classifier? }.
